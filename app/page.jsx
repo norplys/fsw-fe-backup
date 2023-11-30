@@ -5,6 +5,7 @@ import CardCategories from "@/components/HomePage/CardCategories";
 import HomePageButton from "@/components/HomePage/HomePageButton";
 import NavbarBeranda from "@/components/NavbarBeranda";
 import CoursesCard from "@/components/HomePage/CoursesCard";
+import Link from "next/link";
 
 const mockCategories = [
   {
@@ -120,12 +121,12 @@ const Beranda = () => {
             <h1 className="font-bold text-3xl text-center">
               Belajar dari Praktisi Terbaik
             </h1>
-            <a
+            <Link
               className="clickable text-2xl rounded bg-white px-2 py-1 text-center  font-bold uppercase text-DARKBLUE05"
               href="/courses"
             >
               Ikuti kelas
-            </a>
+            </Link>
           </div>
         </div>
         <div className="bg-check-fill">
@@ -135,9 +136,9 @@ const Beranda = () => {
                 Kategori Belajar
               </h1>
               {/* lihat semua tombol */}
-              <a href="" className="text-DARKBLUE05 font-semibold">
+              <Link href="/courses" className="text-DARKBLUE05 font-semibold">
                 Lihat Semua
-              </a>
+              </Link>
             </div>
             {/* KATEGORI */}
             <div className="flex gap-5 pb-5">
@@ -156,9 +157,9 @@ const Beranda = () => {
                 Kursus Populer
               </h1>
               {/* lihat semua tombol */}
-              <a href="" className="text-DARKBLUE05 font-semibold ">
+              <Link href="/courses" className="text-DARKBLUE05 font-semibold ">
                 Lihat Semua
-              </a>
+              </Link>
             </div>
             {/* TOMBOL TOMBOL */}
             <div className="flex gap-5  mb-5 justify-around">
