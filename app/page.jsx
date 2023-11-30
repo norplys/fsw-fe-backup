@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
-import CardCategories from "@/components/CategoriesCard";
-import HomePageButton from "@/components/HomePageButton";
+import CardCategories from "@/components/HomePage/CardCategories";
+import HomePageButton from "@/components/HomePage/HomePageButton";
 import NavbarBeranda from "@/components/NavbarBeranda";
-import CoursesCard from "@/components/CoursesCard";
+import CoursesCard from "@/components/HomePage/CoursesCard";
 
 const mockCategories = [
   {
@@ -168,7 +167,7 @@ const Beranda = () => {
               })}
             </div>
 
-            {/* COURSES CONtainer */}
+            {/* COURSES CONTAINER */}
             <div className="flex mx-auto flex-wrap gap-5 items-center">        
                 {mockCourses.map((item, index) => {
                     return (

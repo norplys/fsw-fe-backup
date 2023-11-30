@@ -1,9 +1,9 @@
-import Navbar from "@/components/Navbar"
+import NavbarBeranda from "@/components/NavbarBeranda"
 
 export default function CoursesLayout({children}) {
     return (
       <section>
-        <Navbar/>
+        <NavbarBeranda/>
         {children}
       </section>
     )
