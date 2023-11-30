@@ -105,7 +105,7 @@ const Beranda = () => {
   return (
     <>
       <NavbarBeranda />
-      <div className="font-montserrat">
+      <div className="font-montserrat min-h-screen">
         <div className="grid grid-cols-12">
           <div className="before:bg-gradient-to-r from-transparent to-DARKBLUE05 before:w-full before:h-full before:absolute relative col-span-7">
             <Image

@@ -147,7 +147,8 @@ const ButtonData = [
 
 export default function Courses() {
   return (
-    <div className=" bg-check-fill px-[150px] pt-4 w-full h-auto font-montserrat ">
+    <div className=" bg-check-fill px-[150px] pt-4 w-full font-montserrat min-h-screen">
+      <section className="max-w-7xl m-auto">
       <div className="flex justify-between ">
         <h1 className="text-black mb-10 font-bold text-[24px]">
           Kelas Berjalan
@@ -228,6 +229,7 @@ export default function Courses() {
           </div>
         </div>
       </div>
+      </section>
     </div>
   );
 }
