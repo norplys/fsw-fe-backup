@@ -35,6 +35,7 @@ const mockCategories = [
 ];
 const mockCourses = [
   {
+    id : 1,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -46,6 +47,7 @@ const mockCourses = [
     harga: 249000,
   },
   {
+    id : 2,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -57,6 +59,7 @@ const mockCourses = [
     harga: 249000,
   },
   {
+    id : 3,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -68,6 +71,7 @@ const mockCourses = [
     harga: 249000,
   },
   {
+    id : 4,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -79,6 +83,7 @@ const mockCourses = [
     harga: 249000,
   },
   {
+    id : 5,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",

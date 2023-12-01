@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CoursesCard({
+  id,
   name,
   img,
   price,
@@ -10,7 +12,7 @@ export default function CoursesCard({
   level,
 }) {
   return (
-    <div className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
+    <Link href={`course/${id}`} className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
       {/* GAMBAR */}
       <div className="w-full h-[80px] ">
         <Image
@@ -80,6 +82,6 @@ export default function CoursesCard({
           </div>
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
