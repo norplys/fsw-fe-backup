@@ -1,5 +1,5 @@
 "use client";
-import ClassCategoriesCard from "@/components/ClassPage/ClassCategoriesCard";
+import ClassCard from "@/components/ClassPage/ClassCard";
 import FilterCategory from "@/components/ClassPage/FilterCategory"; 
 import ClassButton from "@/components/ClassPage/ClassButton";
 
@@ -16,7 +16,7 @@ const mockCourses = [
     level: "Intermediate",
     modul: "10 Modul",
     waktu: "120 Menit",
-    isPremium: true,
+    totalProgress: "100%",
   },
   {
     name: "Belajar Web Designer dengan Figma",
@@ -27,7 +27,7 @@ const mockCourses = [
     level: "Intermediate",
     modul: "10 Modul",
     waktu: "120 Menit",
-    isPremium: false,
+    totalProgress: "50%",
   },
   {
     name: "Belajar Web Designer dengan Figma",
@@ -38,7 +38,7 @@ const mockCourses = [
     level: "Intermediate",
     modul: "10 Modul",
     waktu: "120 Menit",
-    isPremium: true,
+    totalProgress: "40%",
   },
   {
     name: "Belajar Web Designer dengan Figma",
@@ -49,7 +49,7 @@ const mockCourses = [
     level: "Intermediate",
     modul: "10 Modul",
     waktu: "120 Menit",
-    isPremium: false,
+    totalProgress: "30%",
   },
   {
     name: "Belajar Web Designer dengan Figma",
@@ -60,7 +60,7 @@ const mockCourses = [
     level: "Intermediate",
     modul: "10 Modul",
     waktu: "120 Menit",
-    isPremium: true,
+    totalProgress: "20%",
   },
 ];
 
@@ -136,16 +136,16 @@ const ButtonData = [
     value : "semua"
   },
   {
-    name : "Kelas Premium",
-    value : "premium"
+    name : "Kelas Berjalan",
+    value : "berjalan"
   },
   {
-    name : "Kelas Gratis",
-    value : "gratis"
+    name : "Kelas Selesai",
+    value : "selesai"
   }
 ]
 
-export default function Courses() {
+export default function MyCourses() {
   return (
     <div className=" bg-check-fill px-[150px] pt-4 w-full font-montserrat min-h-screen">
       <section className="max-w-7xl m-auto">
@@ -212,7 +212,7 @@ export default function Courses() {
           <div className="flex mx-auto flex-wrap flex-row content-start gap-5 flex-shrink-0">
             {mockCourses.map((item, index) => {
                     return (
-                      <ClassCategoriesCard
+                      <ClassCard
                         key={index}
                         name={item.name}
                         img={item.img}
@@ -222,7 +222,7 @@ export default function Courses() {
                         level={item.level}
                         modul={item.modul}
                         waktu={item.waktu}
-                        isPremium={item.isPremium}
+                        totalProgress={item.totalProgress}
                       />
                     );
                   })}

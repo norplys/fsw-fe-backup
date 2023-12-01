@@ -1,56 +1,78 @@
-"use client";
+'use client';
 
-import React from "react";
-import Image from "next/image";
-import { useState } from "react";
+import {useState} from 'react';
+import Link from 'next/link';
 
-import { BiSearchAlt } from "react-icons/bi";
+import { BiBrain, BiSearchAlt } from 'react-icons/bi';
+import { FiBell, FiList, FiUser } from 'react-icons/fi';
+import { CiLogin } from "react-icons/ci"
 
-const NavbarBeranda = () => {
-  // search useState
-  const [Search, setSearch] = useState("");
-  return (
-    <nav className="block w-full sticky top-0 bg-DARKBLUE05  py-2 px-4 text-white z-10">
-        <div className="container mx-auto flex items-center justify-between text-gray-900 max-w-6xl">
-          <div className="flex items-center gap-2">
-            <a href="#" className="mr-4  cursor-pointer p-[-20px]">
-              <Image
-                src="Belajar_white 3.svg"
-                className="relative top-0"
-                alt="logo"
-                width={100}
-                height={100}
-              />
-            </a>
-            <div className="relative flex leading-loose">
-              <input
-                type="text"
-                placeholder="Cari Kursus Terbaik...."
-                name="search"
-                className="px-5 py-2 rounded-xl"
-                value={Search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-              />
+const Navbar = () => {
+	const [keyword, setKeyword] = useState('');
+  const [isLogin, setIsLogin] = useState(false);
 
-              <button className="search absolute top-1/2 -translate-y-1/2 right-3 transform bg-DARKBLUE05 p-2 rounded-xl">
-                <BiSearchAlt color="white" />
+	const handleSearch = (e) => {
+		e.preventDefault();
+		console.log(keyword);
+	};
+
+	return (
+		<div className='bg-darkblue-500 sticky top-0 z-10'>
+			<nav className='container flex items-center justify-between h-20 px-2 mx-auto'>
+				<div className='flex items-center space-x-4'>
+					<Link href='/' className='flex items-center space-x-2'>
+						<BiBrain color='white' size={25} />
+						<h1 className='text-xl text-white'>Belajar</h1>
+					</Link>
+					<form className='relative hidden xl:block' onSubmit={handleSearch}>
+						<input
+							type='text'
+							value={keyword}
+							placeholder='Cari Kursus Terbaik....'
+							onChange={(e) => setKeyword(e.target.value)}
+							className='w-[500px] px-5 py-3 rounded-xl placeholder:text-sm'
+						/>
+						<button className='absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 bg-darkblue-500 rounded-xl search'>
+							<BiSearchAlt color='white' />
+						</button>
+					</form>
+				</div>
+
+				<ul className='flex items-center space-x-4'>
+					{
+            isLogin ?
+            <>
+            <li>
+						<Link href='/' className='flex items-center px-4 py-1 space-x-2 rounded-lg bg-darkblue-300'>
+							<FiList color='white' size={16} />
+							<p className='font-semibold text-white'>Kelas</p>
+						</Link>
+					</li>
+					<li>
+						<Link href='#'>
+							<FiBell color='white' size={25} />
+						</Link>
+					</li>
+					<li>
+						<Link href='#'>
+							<FiUser color='white' size={25} />
+						</Link>
+					</li>
+          </>
+          :
+          <li>
+            <Link href='/login'>
+              <button className='px-4 py-2 font-semibold text-white rounded-lg bg-darkblue-300 flex gap-4'>
+              <CiLogin color='white' size={25} />
+                Masuk
               </button>
-            </div>
-          </div>
-
-          <ul className="hidden items-center gap-6 lg:flex">
-            <li className="block p-1 ">
-              <a className="flex items-center gap-1" href="#">
-                <Image src="icon/fi_log-in.svg" width={20} height={20} alt="login" />
-                <p className="text-white">Masuk</p>
-              </a>
-            </li>
-          </ul>
-        </div>
-    </nav>
-  );
+            </Link>
+          </li>
+          }
+				</ul>
+			</nav>
+		</div>
+	);
 };
 
-export default NavbarBeranda;
+export default Navbar;

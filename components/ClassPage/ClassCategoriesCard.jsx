@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-export default function ClassPageCards({
+export default function ClassCategoriesCard({
   name,
   img,
   rating,
   teacher,
   category,
   level,
-  totalProgress,
+    isPremium,
 }) {
   return (
     <div className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
@@ -65,12 +65,27 @@ export default function ClassPageCards({
           </div>
         </div>
         {/* Progress Bar */}
-        <div className="w-[150px] bg-progress-plat rounded-[25px]">
-            <div className="bg-DARKBLUE05 p-1 rounded-[25px] z-1" style={{width : totalProgress}}>
-        {/* tulisan persennya */}
-            <p className="text-xs pl-3">{totalProgress}</p>
-            </div>
-        </div>
+        {
+        isPremium ? 
+        <button className="flex justify-center gap-1 mt-1 w-[143px] p-1 bg-DARKBLUE03 rounded-[15px] relative">
+          <Image
+            src="icon/diamond.svg"
+            width={10}
+            height={10}
+            className=" icon absolute left-3 top-[6px]"
+            alt="icon"
+          />
+          <div className="flex">
+            <h2 className="text-xs font-bold">Premium</h2>
+          </div>
+        </button>
+        :
+        <button className="flex justify-center gap-1 mt-1 w-[143px] p-1 bg-DARKBLUE05 rounded-[15px] relative">
+          <div className="flex">
+            <h2 className="text-xs font-bold ">Mulai Kelas</h2>
+          </div>
+        </button>
+        }
       </div>
     </div>
   );

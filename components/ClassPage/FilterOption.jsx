@@ -1,5 +1,5 @@
 export default function FilterOption({ name}) {
-    return (<div className="grid grid-cols-4 justify-center">
+    return (<div className="grid grid-cols-4 justify-center items-center">
             <input 
               type="checkbox"
               id="paling_baru"
