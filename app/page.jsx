@@ -188,6 +188,7 @@ const Beranda = () => {
                         modul={item.modul}
                         waktu={item.waktu}
                         price={item.harga}
+                        id={item.id}
                     />
                     );
                 })}
