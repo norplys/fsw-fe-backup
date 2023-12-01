@@ -30,7 +30,7 @@ const Navbar = () => {
 							value={keyword}
 							placeholder='Cari Kursus Terbaik....'
 							onChange={(e) => setKeyword(e.target.value)}
-							className='w-[500px] px-5 py-3 rounded-xl placeholder:text-sm'
+							className='w-80 px-5 py-3 rounded-xl placeholder:text-sm text-black'
 						/>
 						<button className='absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 bg-darkblue-500 rounded-xl search'>
 							<BiSearchAlt color='white' />
