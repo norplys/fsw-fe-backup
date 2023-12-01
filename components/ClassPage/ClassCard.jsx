@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ClassPageCards({
+  id,
   name,
   img,
   rating,
@@ -10,7 +12,7 @@ export default function ClassPageCards({
   totalProgress,
 }) {
   return (
-    <div className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
+    <Link href={`course/${id}`} className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
       {/* GAMBAR */}
       <div className="w-full h-[80px] ">
         <Image
@@ -72,6 +74,6 @@ export default function ClassPageCards({
             </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

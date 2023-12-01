@@ -3,7 +3,7 @@
 import Image from "next/image";
 import CardCategories from "@/components/HomePage/CardCategories";
 import HomePageButton from "@/components/HomePage/HomePageButton";
-import NavbarBeranda from "@/components/NavbarBeranda";
+import Navbar from "@/components/Navbar";
 import CoursesCard from "@/components/HomePage/CoursesCard";
 import Link from "next/link";
 
@@ -104,7 +104,7 @@ const mockButton = [
 const Beranda = () => {
   return (
     <>
-      <NavbarBeranda />
+      <Navbar/>
       <div className="font-montserrat min-h-screen">
         <div className="grid grid-cols-12">
           <div className="before:bg-gradient-to-r from-transparent to-DARKBLUE05 before:w-full before:h-full before:absolute relative col-span-7">

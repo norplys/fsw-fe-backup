@@ -8,6 +8,7 @@ import { BiSearchAlt } from "react-icons/bi";
 
 const mockCourses = [
   {
+    id: 1,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -19,6 +20,7 @@ const mockCourses = [
     totalProgress: "100%",
   },
   {
+    id: 2,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -30,6 +32,7 @@ const mockCourses = [
     totalProgress: "50%",
   },
   {
+    id: 3,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -41,6 +44,7 @@ const mockCourses = [
     totalProgress: "40%",
   },
   {
+    id: 4,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -52,6 +56,7 @@ const mockCourses = [
     totalProgress: "30%",
   },
   {
+    id: 5,
     name: "Belajar Web Designer dengan Figma",
     img: "/konten/gambarContent.svg",
     category: "UI/UX Design",
@@ -213,6 +218,7 @@ export default function MyCourses() {
             {mockCourses.map((item, index) => {
                     return (
                       <ClassCard
+                        id={item.id}
                         key={index}
                         name={item.name}
                         img={item.img}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ClassCategoriesCard({
   name,
@@ -8,9 +9,10 @@ export default function ClassCategoriesCard({
   category,
   level,
     isPremium,
+    id,
 }) {
   return (
-    <div className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
+    <Link href={`course/${id}`} className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
       {/* GAMBAR */}
       <div className="w-full h-[80px] ">
         <Image
@@ -87,6 +89,6 @@ export default function ClassCategoriesCard({
         </button>
         }
       </div>
-    </div>
+    </Link>
   );
 }
