@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { clsx } from 'clsx';
 import { BiPlay, BiShield, BiSolidChat, BiSolidStar, BiTime, BiX } from 'react-icons/bi';
-import { FiArrowLeft, FiArrowRight, FiArrowRightCircle, FiSmartphone } from 'react-icons/fi';
+import { FiArrowLeft, FiArrowRight, FiSmartphone } from 'react-icons/fi';
 import { Dialog, Transition } from '@headlessui/react';
 
 const detail = {
