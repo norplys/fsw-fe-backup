@@ -5,7 +5,7 @@ function categoriesQueries() {
     return axios.get("https://final-project-online-course.et.r.appspot.com/v1/courses")
 }
 
-export function useCategoriesData() {
+export function useCoursesData() {
     return useQuery("categories", categoriesQueries, {
         select: (data) => {
             return data.data.data

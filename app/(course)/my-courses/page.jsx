@@ -214,7 +214,7 @@ export default function MyCourses() {
               })
             }
           </div>
-          <div className="flex mx-auto flex-wrap flex-row content-start gap-5 flex-shrink-0">
+          <div className="grid grid-cols-2 max-w-3xl flex-wrap flex-row content-start gap-6">
             {mockCourses.map((item, index) => {
                     return (
                       <ClassCard

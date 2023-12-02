@@ -2,72 +2,13 @@
 import ClassCategoriesCard from "@/components/ClassPage/ClassCategoriesCard";
 import FilterCategory from "@/components/ClassPage/FilterCategory"; 
 import ClassButton from "@/components/ClassPage/ClassButton";
+import {useCoursesData} from "../../utils/hooks/useCoursesData";
+import ClassCardLoading from "@/components/ClassCardLoading";
 
 import { BiSearchAlt } from "react-icons/bi";
 
+const array = [1, 2, 3, 4, 5, 6];
 
-const mockCourses = [
-  {
-    id: 1,
-    name: "Belajar Web Designer dengan Figma",
-    img: "/konten/gambarContent.svg",
-    category: "UI/UX Design",
-    rating: "4.7",
-    teacher: "Angela Doe",
-    level: "Intermediate",
-    modul: "10 Modul",
-    waktu: "120 Menit",
-    isPremium: true,
-  },
-  {
-    id: 2,
-    name: "Belajar Web Designer dengan Figma",
-    img: "/konten/gambarContent.svg",
-    category: "UI/UX Design",
-    rating: "4.7",
-    teacher: "Angela Doe",
-    level: "Intermediate",
-    modul: "10 Modul",
-    waktu: "120 Menit",
-    isPremium: false,
-  },
-  {
-    id: 3,
-    name: "Belajar Web Designer dengan Figma",
-    img: "/konten/gambarContent.svg",
-    category: "UI/UX Design",
-    rating: "4.7",
-    teacher: "Angela Doe",
-    level: "Intermediate",
-    modul: "10 Modul",
-    waktu: "120 Menit",
-    isPremium: true,
-  },
-  {
-    id: 4,
-    name: "Belajar Web Designer dengan Figma",
-    img: "/konten/gambarContent.svg",
-    category: "UI/UX Design",
-    rating: "4.7",
-    teacher: "Angela Doe",
-    level: "Intermediate",
-    modul: "10 Modul",
-    waktu: "120 Menit",
-    isPremium: false,
-  },
-  {
-    id: 5,
-    name: "Belajar Web Designer dengan Figma",
-    img: "/konten/gambarContent.svg",
-    category: "UI/UX Design",
-    rating: "4.7",
-    teacher: "Angela Doe",
-    level: "Intermediate",
-    modul: "10 Modul",
-    waktu: "120 Menit",
-    isPremium: true,
-  },
-];
 
 const FilterData = [
   {
@@ -151,6 +92,8 @@ const ButtonData = [
 ]
 
 export default function Courses() {
+  const {isLoading, error, data} = useCoursesData();
+  console.log(data);
   return (
     <div className=" bg-check-fill px-[150px] pt-4 w-full font-montserrat min-h-screen">
       <section className="max-w-7xl m-auto">
@@ -214,17 +157,23 @@ export default function Courses() {
               })
             }
           </div>
-          <div className="flex mx-auto flex-wrap flex-row content-start gap-5 flex-shrink-0">
-            {mockCourses.map((item, index) => {
+          <div className="grid grid-cols-2 max-w-3xl flex-wrap flex-row content-start gap-6">
+            {isLoading ? (
+              array.map((item, index) => {
+                return <ClassCardLoading key={index} />;
+              })
+            ) : error ? (
+              <h1>An Error Occured</h1>
+            ) : data.map((item, index) => {
                     return (
                       <ClassCategoriesCard
                         id={item.id}
                         key={index}
                         name={item.name}
-                        img={item.img}
+                        img={item.image}
                         category={item.category}
                         rating={item.rating}
-                        teacher={item.teacher}
+                        teacher={item.author}
                         level={item.level}
                         modul={item.modul}
                         waktu={item.waktu}

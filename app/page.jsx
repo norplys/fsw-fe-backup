@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import CoursesCard from "@/components/HomePage/CoursesCard";
 import Link from "next/link";
 import ClassCardLoading from "@/components/ClassCardLoading";
-import {useCategoriesData} from "./utils/hooks/useCategoriesData";
+import {useCoursesData} from "./utils/hooks/useCoursesData";
 
 const array = [1, 2, 3, 4, 5, 6];
 
@@ -49,7 +49,7 @@ const mockButton = [
 ];
 
 const Beranda = () => {
-  const { isLoading, error, data } = useCategoriesData();
+  const { isLoading, error, data } = useCoursesData();
   console.log(data);
 
   return (
