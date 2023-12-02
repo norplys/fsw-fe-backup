@@ -78,13 +78,13 @@ export default function ClassCategoriesCard({
             alt="icon"
           />
           <div className="flex">
-            <h2 className="text-xs font-bold">Premium</h2>
+            <h2 className="text-xs font-bold text-white">Premium</h2>
           </div>
         </button>
         :
         <button className="flex justify-center gap-1 mt-1 w-[143px] p-1 bg-DARKBLUE05 rounded-[15px] relative">
           <div className="flex">
-            <h2 className="text-xs font-bold ">Mulai Kelas</h2>
+            <h2 className="text-xs font-bold text-white">Mulai Kelas</h2>
           </div>
         </button>
         }

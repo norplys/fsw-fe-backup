@@ -4,19 +4,21 @@ import Link from "next/link";
 export default function CoursesCard({
   id,
   name,
-  img,
+  image,
   price,
   rating,
   teacher,
   category,
   level,
+  totalModule,
+  totalMinute,
 }) {
   return (
     <Link href={`course/${id}`} className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
       {/* GAMBAR */}
       <div className="w-full h-[80px] ">
         <Image
-          src={img}
+          src={image}
           width={323}
           height={80}
           className="w-full h-full object-cover rounded-t-2xl"
@@ -58,12 +60,12 @@ export default function CoursesCard({
           {/* jumlah modul */}
           <div className="flex gap-[5px] leading-loose">
             <Image src="icon/folder.svg" width={10} height={10} alt="icon" />
-            <p className="text-xs text-black">10 Modul</p>
+            <p className="text-xs text-black">{totalModule} Modul</p>
           </div>
           {/* waktu */}
           <div className="flex gap-[5px] leading-loose">
             <Image src="icon/waktu.svg" width={10} height={10} alt="icon" />
-            <p className="text-xs text-black">120 Menit</p>
+            <p className="text-xs text-black">{totalMinute} Menit</p>
           </div>
         </div>
         {/*Beli button */}
@@ -76,9 +78,9 @@ export default function CoursesCard({
             alt="icon"
           />
           <div className="flex gap-2">
-            <h2 className="text-sm font-bold">Beli</h2>
+            <h2 className="text-sm text-white font-bold">Beli</h2>
             {/* HARGA */}
-            <h2 className="text-sm font-bold">Rp {price}</h2>
+            <h2 className="text-sm font-bold text-white">Rp {price}</h2>
           </div>
         </button>
       </div>

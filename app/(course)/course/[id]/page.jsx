@@ -87,7 +87,7 @@ const rupiah = (number) => {
 
 const DetailKelas = () => {
 	const { id } = useParams();
-	const [isOpen, setIsOpen] = React.useState(false);
+	const [isOpen, setIsOpen] = React.useState(true);
 
 	return (
 		<>
