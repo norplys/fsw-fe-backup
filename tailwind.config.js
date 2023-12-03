@@ -32,6 +32,15 @@ module.exports = {
 					500: '#6148FF',
 				},
 
+				secret : {
+					orange: '#ffa31a',
+					grey1: '#808080',
+					grey2: '#292929',
+					text : '#CCCCCC',
+					black: '#1b1b1b',
+
+				},
+
 				alert: {
 					DEFAULT: '#73CA5C',
 					red: '#FF0000',

@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { PiEye } from "react-icons/pi"
 import { PiEyeSlash } from "react-icons/pi"
+import { BiBrain } from 'react-icons/bi'
 
 
 const LoginPage = () => {
@@ -19,11 +20,6 @@ const LoginPage = () => {
     //handle onchange password
     const handlePass = (event) => {
         setPassValue({ ...passValue, password: event.target.value })
-    }
-
-    //buat ganti dari type password ke type text
-    const toggleVisibility = () => {
-        setPassValue({ ...passValue, showPass: !passValue.showPass })
     }
     // buat nyobain alert validasi
     const Dummy = {
@@ -102,20 +98,20 @@ const LoginPage = () => {
     return (
         <div className=' flex flex-col lg:flex-row w-full min-h-screen'>
             {/* Bagian Kiri */}
-            <div className='p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-white overflow-hidden'>
-                <div className='w-full lg:w-2/3 text-black'>
-                    <h1 className='font-bold text-[28px] text-DARKBLUE05  lg:mb-12 text-left'>Masuk</h1>
+            <div className='p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-black overflow-hidden flex-1'>
+                <div className='w-full lg:w-2/3 text-black flex flex-col'>
+                    <h1 className='font-bold text-[28px] text-secret-text  lg:mb-12 text-left'>Masuk</h1>
 
                     {/* Email/No telp */}
                     <div className='mb-4 lg:mb-8'>
-                        <p className='float-left'>Email/No Telpon</p>
-                        <br />
+                        <p className='font-bold text-secret-text'>Email/No Telpon</p>
+
                         <input
                             type='text'
                             name='Email'
                             placeholder='Contoh: johndoe@gmail.com'
                             id='emailInput'
-                            className='emailInput float-left  border-2 rounded-2xl w-full p-2 text-black'
+                            className='emailInput float-left  border-2 rounded-2xl w-full p-2 text-black mt-4'
                             value={Email}
                             onChange={(e) => {
                                 setEmail(e.target.value)
@@ -125,44 +121,37 @@ const LoginPage = () => {
                     </div>
 
                     {/* PASSWORD */}
-                    <div className='mt-2 relative block mb-4 lg:mb-8'>
-                        <br />
-                        <p className='float-left'>Password</p>
+                    <div className='grid grid-cols-2 mb-4 lg:mb-8 pt'>
+
+                        <p className=' font-bold text-secret-text'>Password</p>
                     
-                        <p className='float-right'>
-                            <a href='Login/ForgotPass' className='text-DARKBLUE05 font-medium'>
+                        <p className='flex justify-end'>
+                            <a href='Login/ForgotPass' className='text-secret-text font-medium'>
                                 Lupa Kata Sandi
                             </a>
                         </p>
-                        <br />
+                        
                         <input
-                            type={passValue.showPass ? 'text' : 'password'}
+                            type='password'
                             name='password'
                             id='passInput'
                             placeholder='Password'
-                            className='float-left border-2 rounded-2xl w-full p-2 text-black'
+                            className='float-left border-2 rounded-2xl w-full p-2 text-black col-span-2 mt-4'
                             value={passValue.password}
                             onChange={handlePass}
                             required
                         />
-
-                        <button className='absolute right-4 top-14' onClick={toggleVisibility}>
-                            {!passValue.showPass ? <PiEye color='grey' size={30}/> : <PiEyeSlash color='grey' size={30}/>}
-                        </button>
                     </div>
-                    <br />
-                    <br />
 
                     {/* Login button */}
                     <button
-                        className='text-white bg-DARKBLUE05 rounded-lg w-full p-2'
+                        className='text-black font-bold bg-secret-orange  rounded-lg w-full p-2'
                         onClick={validasi}
                     >
                         Masuk
                     </button>
-                    <br />
 
-                    <p className='text-black items-center text-center mt-6'>Belum punya akun? <a href="/" className='text-DARKBLUE05 font-bold'>Daftar di sini</a></p>
+                    <p className='text-secret-text items-center text-center mt-6'>Belum punya akun? <a href="/" className='text-secret-text font-bold'>Daftar di sini</a></p>
 
                     {/* div kosong buat tempat alert */}
                     <div className="tempatAlert w-full mt-10 ease-in-out "></div>
@@ -170,8 +159,12 @@ const LoginPage = () => {
             </div>
 
             {/* Bagian Kanan */}
-            <div className='bg-DARKBLUE05 p-8 lg:p-16 lg:w-1/3 flex items-center justify-center'>
-                <Image src='/Belajar_white 3.svg' alt='logo' width={300} height={300} className='mx-auto' />
+            <div className='bg-black p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1'>
+                <BiBrain className='text-9xl text-white' />
+                <div className='flex'>
+				<h1 className='text-7xl text-white flex items-center font-bold px-1'>Skill</h1>
+				<h1 className='text-7xl text-black font-bold bg-orange-400  rounded-xl p-1'>HUB</h1>
+				</div>
             </div>
             
         </div>
