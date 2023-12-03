@@ -57,10 +57,6 @@ const FilterData = [
     category : "Kesulitan",
     card : [
       {
-        name : "Semua Level",
-        value : "semua"
-      },
-      {
         name : "Beginner Level",
         value : "beginner"
       },
@@ -93,12 +89,11 @@ const ButtonData = [
 
 export default function Courses() {
   const {isLoading, error, data} = useCoursesData();
-  console.log(data);
   return (
-    <div className=" bg-check-fill px-[150px] pt-4 w-full font-montserrat min-h-screen">
+    <div className=" bg-secret-grey2 px-[150px] pt-4 w-full font-montserrat min-h-screen">
       <section className="max-w-7xl m-auto">
       <div className="flex justify-between ">
-        <h1 className="text-black mb-10 font-bold text-[24px]">
+        <h1 className="text-secret-text mb-10 font-bold text-[24px]">
           Kelas Berjalan
         </h1>
         {/* SEARCH BUTTON */}
@@ -118,7 +113,7 @@ export default function Courses() {
 
       <div className="flex lg:flex-row gap-[88px] ">
         {/* FORM FILTER */}
-        <form className="bg-white flex flex-col w-64 p-5
+        <form className="bg-secret-grey1 flex flex-col w-64 p-5
          h-auto rounded-[16px] gap-5">
           {
             FilterData.map((item, index) => {
@@ -138,8 +133,6 @@ export default function Courses() {
             </button>
           </div>
         </form>
-
-        {/* CONTENT */}
         {/* SEBELAH KANAN */}
 
         <div className="container">
@@ -163,7 +156,7 @@ export default function Courses() {
                 return <ClassCardLoading key={index} />;
               })
             ) : error ? (
-              <h1>An Error Occured</h1>
+               <h1>An Error Occured</h1>
             ) : data.map((item, index) => {
                     return (
                       <ClassCategoriesCard

@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GiRank3 } from "react-icons/gi";
+import { FaBookBookmark, FaRegClock } from "react-icons/fa6";
+import { FaStar } from "react-icons/fa";
+import { IoDiamond } from "react-icons/io5";
 
 export default function CoursesCard({
   id,
@@ -14,9 +18,9 @@ export default function CoursesCard({
   totalMinute,
 }) {
   return (
-    <Link href={`course/${id}`} className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
+    <Link href={`course/${id}`} className="flex flex-col course hover:scale-105 ease-in-out duration-200 bg-secret-grey2 rounded-[15px] drop-shadow border border-secret-orange shadow-md shadow-secret-orange">
       {/* GAMBAR */}
-      <div className="w-full h-[80px] ">
+      <div className="h-[80px] bg-cover ">
         <Image
           src={image}
           width={323}
@@ -29,58 +33,47 @@ export default function CoursesCard({
       <div className="flex flex-col justify-around p-2 h-full">
         <div className="flex justify-between">
           {/* kategori */}
-          <p className="text-lg font-bold text-DARKBLUE05">{category}</p>
+          <p className="text-lg font-bold text-white">{category}</p>
           {/* bintang */}
-          <div className="flex text-black">
-            <Image
-              src="icon/bintang.svg"
-              width={14}
-              height={14}
-              alt="icon bintang"
-            />
-            <p className="">{rating}</p>
+          <div className="flex gap-1 text-black">
+            <FaStar className="text-yellow-400 text-lg" />
+            <p className="text-slate-50">{rating}</p>
           </div>
         </div>
         {/* keterangan */}
         <div className="text-black">
           {/* judul course */}
-          <h2 className="text-base font-bold">{name}</h2>
+          <h2 className="text-base text-secret-text font-bold">{name}</h2>
           {/* nama pembuat course */}
-          <p className="text-sm">by {teacher}</p>
+          <p className="text-sm text-secret-orange">by {teacher}</p>
         </div>
         {/* level, modul, waktu */}
-        <div className="flex justify-between mr-[10px] mt-1">
+        <div className="flex justify-between items-center mt-1">
           {/* level */}
           <div className="flex gap-[5px] leading-loose">
-            <Image src="icon/perisai.svg" width={14} height={14} alt="icon" />
-            <p className="font-semibold text-xs text-DARKBLUE05">
+            <GiRank3 className="text-secret-text text-lg"/>
+            <p className="font-semibold text-sm text-white">
               {level} Level
             </p>
           </div>
           {/* jumlah modul */}
           <div className="flex gap-[5px] leading-loose">
-            <Image src="icon/folder.svg" width={10} height={10} alt="icon" />
-            <p className="text-xs text-black">{totalModule} Modul</p>
+          <FaBookBookmark className="text-secret-text text-lg"/>
+            <p className="font-semibold text-sm text-white">{totalModule} Modul</p>
           </div>
           {/* waktu */}
           <div className="flex gap-[5px] leading-loose">
-            <Image src="icon/waktu.svg" width={10} height={10} alt="icon" />
-            <p className="text-xs text-black">{totalMinute} Menit</p>
+          <FaRegClock className="text-secret-text text-lg"/>
+            <p className="font-semibold text-sm text-white">{totalMinute} Menit</p>
           </div>
         </div>
         {/*Beli button */}
-        <button className="flex w-fit py-1 px-3 gap-2 bg-DARKBLUE03 rounded-[15px]">
-          <Image
-            src="icon/diamond.svg"
-            width={10}
-            height={10}
-            className=" icon h-full"
-            alt="icon"
-          />
+        <button className="flex items-center w-fit py-1 px-3 gap-2 bg-secret-orange rounded-[15px]">
+          <IoDiamond className="text-base text-black" />
           <div className="flex gap-2">
-            <h2 className="text-sm text-white font-bold">Beli</h2>
+            <h2 className="text-sm text-black font-bold">Beli</h2>
             {/* HARGA */}
-            <h2 className="text-sm font-bold text-white">Rp {price}</h2>
+            <h2 className="text-sm font-bold text-black">Rp {price}</h2>
           </div>
         </button>
       </div>

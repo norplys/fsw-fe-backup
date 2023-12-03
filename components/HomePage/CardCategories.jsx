@@ -6,12 +6,12 @@ export default function CardCategories ({name, img}) {
     <>
         <Link className="flex-col w-full" href='/courses'>
             <Image
-            className='w-full object-cover'
+            className='w-full object-cover hover:scale-105 ease-in-out duration-200'
             src={img}
             width={140}
             height={100}
             alt={name}/>
-            <p className='text-md text-center text-black font-semibold'>{name}</p>
+            <p className='text-md text-center text-secret-text font-semibold'>{name}</p>
         </Link>
     </>
     );

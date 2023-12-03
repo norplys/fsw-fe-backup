@@ -17,12 +17,15 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className='bg-darkblue-500 sticky top-0 z-10'>
+		<div className='bg-black sticky top-0 z-10'>
 			<nav className='container flex items-center justify-between h-20 px-2 mx-auto'>
 				<div className='flex items-center space-x-4'>
 					<Link href='/' className='flex items-center space-x-2'>
 						<BiBrain color='white' size={25} />
-						<h1 className='text-xl text-white'>Belajar</h1>
+						<div className='flex'>
+						<h1 className='text-2xl text-white flex items-center font-bold px-1'>Skill</h1>
+						<h1 className='text-2xl text-black font-bold bg-orange-400  rounded-xl p-1'>HUB</h1>
+						</div>
 					</Link>
 					<form className='relative hidden xl:block' onSubmit={handleSearch}>
 						<input
@@ -32,8 +35,8 @@ const Navbar = () => {
 							onChange={(e) => setKeyword(e.target.value)}
 							className='w-80 px-5 py-3 rounded-xl placeholder:text-sm text-black'
 						/>
-						<button className='absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 bg-darkblue-500 rounded-xl search'>
-							<BiSearchAlt color='white' />
+						<button className='absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 bg-secret-orange rounded-xl search'>
+							<BiSearchAlt className='text-black' />
 						</button>
 					</form>
 				</div>
@@ -62,7 +65,7 @@ const Navbar = () => {
           :
           <li>
             <Link href='/login'>
-              <button className='px-4 py-2 font-semibold text-white rounded-lg bg-darkblue-300 flex gap-4'>
+              <button className='px-4 py-2 font-semibold text-white rounded-lg bg-orange-400 flex gap-4'>
               <CiLogin color='white' size={25} />
                 Masuk
               </button>
