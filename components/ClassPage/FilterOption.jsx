@@ -1,13 +1,12 @@
-export default function FilterOption({ name, value, handleFilter}) {
-
+export default function FilterOption({ name, value, handleFilter, category}) {
   return (
     <div className="grid grid-cols-4 justify-center items-center">
       <input
         type="checkbox"
         id={value}
-        className=" colspan-1 border-check-border active:bg-DARKBLUE05  text-DARKBLUE05 border-2 rounded-[8px] bg-check-fill h-6"
+        className=" colspan-1 h-6"
         value={value}
-        onChange={handleFilter}
+        onChange={() => handleFilter(value, category)}
       />
       <label htmlFor={value} className=" col-span-3 text-black text-sm">
         {name}

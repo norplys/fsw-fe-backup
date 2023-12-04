@@ -10,7 +10,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-const array = [1, 2, 3, 4, 5, 6];
+const array = [1, 2, 3, 4];
 // const filter = {
 //   category: "Filter",
 //   card: [
@@ -29,7 +29,7 @@ const array = [1, 2, 3, 4, 5, 6];
 //   ],
 // };
 const levelFilterButton = {
-  category: "Kesulitan",
+  category: "level",
   card: [
     {
       name: "Beginner Level",
@@ -63,29 +63,61 @@ export default function Courses() {
   const searchParams = useSearchParams();
   const [categoryId, setCategoryId] = useState("");
   const [level, setLevel] = useState("");
+  const [queryCategory, setFilterCategory] = useState([])
+  const [queryLevel, setFilterLevel] = useState([])
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = new URLSearchParams(searchParams)
 
+  const createQueryString = (name, value) => {
+    params.set(name, value)
+    return params.toString()
+}
+
+  const handleChange = (value, category) => {
+    if(category === "Kategori"){
+      const currentIndex = queryCategory.indexOf(value);
+      const newChecked = [...queryCategory];
+      if (currentIndex === -1) {
+        newChecked.push(value);
+      } else {
+        newChecked.splice(currentIndex, 1);
+      }
+      setFilterCategory(newChecked)
+      router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")));
+    }
+    if(category === "level"){
+      const currentIndex = queryLevel.indexOf(value);
+      const newChecked = [...queryLevel];
+      if (currentIndex === -1) {
+        newChecked.push(value);
+      } else {
+        newChecked.splice(currentIndex, 1);
+      }
+      setFilterLevel(newChecked)
+      router.push(pathname + "?" + createQueryString(category, newChecked.join(",")));
+    }
+  }
+ 
 
   useEffect(() => {
     const categoryFilter = searchParams.get("categoryId")
     const levelFilter = searchParams.get("level")
     categoryFilter ? setCategoryId(categoryFilter) : setCategoryId("")
     levelFilter ? setLevel(levelFilter) : setLevel("")
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  const params = new URLSearchParams(searchParams)
+  const removeQuery = (name) => {
+    params.delete(name)
+  }
+
   const { isLoading, error, data } = useCoursesData(categoryId, level);
   const {
     isLoading: isLoadingCategories,
     error: errorCategories,
     data: dataCategories,
   } = useCategoriesData();
-
-  const createQueryString = (name, value) => {
-    params.set(name, value)
-    return params.toString()
-}
-  const router = useRouter();
-  const pathname = usePathname();
 
   const FilterData = [
     // filter,
@@ -121,7 +153,7 @@ export default function Courses() {
           {/* FORM FILTER */}
           <form
             className="bg-secret-grey1 flex flex-col w-64 p-5
-         h-auto rounded-[16px] gap-5"
+            h-[580px] rounded-[16px] gap-5"
           >
             {isLoadingCategories ? 
               <div>Loading</div>
@@ -137,13 +169,14 @@ export default function Courses() {
                     key={index}
                     category={item.category}
                     card={item.card}
+                    handleFilter = {handleChange}
                   />
                 );
               }
             )}
             {/* HAPUS FILTER BUTTON */}
             <div className="w-full text-center">
-              <button type="reset" className="bg-white text-red-600 w-fit">
+              <button type="reset" className="bg-white text-red-600 w-fit" onClick={() => {router.push(pathname)}}>
                 Hapus Filter
               </button>
             </div>
