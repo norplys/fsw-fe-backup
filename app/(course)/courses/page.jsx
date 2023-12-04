@@ -63,8 +63,8 @@ export default function Courses() {
   const searchParams = useSearchParams();
   const [categoryId, setCategoryId] = useState("");
   const [level, setLevel] = useState("");
-  const [queryCategory, setFilterCategory] = useState([])
-  const [queryLevel, setFilterLevel] = useState([])
+  const [queryCategory, setQueryCategory] = useState([])
+  const [queryLevel, setQueryLevel] = useState([])
   const router = useRouter();
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams)
@@ -83,7 +83,7 @@ export default function Courses() {
       } else {
         newChecked.splice(currentIndex, 1);
       }
-      setFilterCategory(newChecked)
+      setQueryCategory(newChecked)
       router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")));
     }
     if(category === "level"){
@@ -94,7 +94,7 @@ export default function Courses() {
       } else {
         newChecked.splice(currentIndex, 1);
       }
-      setFilterLevel(newChecked)
+      setQueryLevel(newChecked)
       router.push(pathname + "?" + createQueryString(category, newChecked.join(",")));
     }
   }
@@ -170,13 +170,19 @@ export default function Courses() {
                     category={item.category}
                     card={item.card}
                     handleFilter = {handleChange}
+                    queryCategory={queryCategory}
+                    queryLevel={queryLevel}
                   />
                 );
               }
             )}
             {/* HAPUS FILTER BUTTON */}
             <div className="w-full text-center">
-              <button type="reset" className="bg-white text-red-600 w-fit" onClick={() => {router.push(pathname)}}>
+              <button type="reset" className="bg-white text-red-600 w-fit" onClick={() => {
+                router.push(pathname)
+                setQueryCategory([])
+                setQueryLevel([])
+                }}>
                 Hapus Filter
               </button>
             </div>

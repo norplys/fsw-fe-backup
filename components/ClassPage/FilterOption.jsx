@@ -1,4 +1,6 @@
-export default function FilterOption({ name, value, handleFilter, category}) {
+export default function FilterOption({ name, value, handleFilter, category,queryCategory, queryLevel}) {
+  queryCategory? queryCategory : queryFilter = []
+  queryLevel? queryLevel : queryLevel = []
   return (
     <div className="grid grid-cols-4 justify-center items-center">
       <input
@@ -7,6 +9,7 @@ export default function FilterOption({ name, value, handleFilter, category}) {
         className=" colspan-1 h-6"
         value={value}
         onChange={() => handleFilter(value, category)}
+        checked={queryLevel.includes(value) || queryCategory.includes(value)}
       />
       <label htmlFor={value} className=" col-span-3 text-black text-sm">
         {name}
