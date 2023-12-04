@@ -1,5 +1,5 @@
 export default function FilterOption({ name, value, handleFilter, category,queryCategory, queryLevel}) {
-  queryCategory? queryCategory : queryFilter = []
+  queryCategory? queryCategory : queryCategory = []
   queryLevel? queryLevel : queryLevel = []
   return (
     <div className="grid grid-cols-4 justify-center items-center">
