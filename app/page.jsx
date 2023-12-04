@@ -10,7 +10,6 @@ import ClassCardLoading from "@/components/ClassCardLoading";
 import { useCoursesData } from "./utils/hooks/useCoursesData";
 import { useCategoriesData } from "./utils/hooks/useCategoriesData";
 import CategoryLoading from "@/components/CategoryLoading";
-import {useState} from "react";
 
 const array = [1, 2, 3, 4, 5, 6];
 

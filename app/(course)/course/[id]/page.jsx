@@ -196,7 +196,7 @@ const DetailKelas = () => {
 								</div>
 							</div>
 
-							{data.courseModule.map((chapter, index) => (
+							{data.courseModules.map((chapter, index) => (
 								<Chapter key={index} name={chapter.name} time={chapter.estimation} modules={chapter.module} index={index} />
 							))}
 						</div>

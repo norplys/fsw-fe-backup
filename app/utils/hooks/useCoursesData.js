@@ -1,12 +1,16 @@
 import {useQuery} from "react-query"
 import axios from "axios"
 
-function coursesQueries() {
+function coursesQueries(category, level) {
+    if(!category && !level)
+{
     return axios.get("https://final-project-online-course.et.r.appspot.com/v1/courses")
+}    
+return axios.get(`https://final-project-online-course.et.r.appspot.com/v1/courses?categoryId=${category}&level=${level}`)
 }
 
-export function useCoursesData() {
-    return useQuery("courses", coursesQueries, {
+export function useCoursesData(category, level) {
+    return useQuery(["courses", category, level ], () => coursesQueries(category, level), {
         select: (data) => {
             return data.data.data
         }
