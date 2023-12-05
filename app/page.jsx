@@ -3,7 +3,7 @@
 import CardCategories from "@/components/HomePage/CardCategories";
 import HomePageButton from "@/components/HomePage/HomePageButton";
 import Navbar from "@/components/Navbar";
-import CoursesCard from "@/components/HomePage/CoursesCard";
+import ClassCategoriesCard from "@/components/ClassCategoriesCard";
 import Link from "next/link";
 import ClassCardLoading from "@/components/ClassCardLoading";
 import { useCoursesData } from "./utils/hooks/useCoursesData";
@@ -60,7 +60,7 @@ const Beranda = () => {
                 Kategori Belajar
               </h1>
               {/* lihat semua tombol */}
-              <Link href="/courses" className="text-secret-text4 font-semibold">
+              <Link href="/courses" className="text-secret-text4 font-semibold hover:text-secret-darkblue">
                 Lihat Semua
               </Link>
             </div>
@@ -78,7 +78,7 @@ const Beranda = () => {
                     <CardCategories
                       key={index}
                       name={item.name}
-                      img={item.image}
+                      image={item.image}
                       categoryId={item.id}
                     />
                   );
@@ -94,7 +94,7 @@ const Beranda = () => {
                 Kursus Populer
               </h1>
               {/* lihat semua tombol */}
-              <Link href="/courses" className="text-secret-text4 font-semibold ">
+              <Link href="/courses" className="text-secret-text4 font-semibold hover:text-secret-darkblue ">
                 Lihat Semua
               </Link>
             </div>
@@ -116,7 +116,7 @@ const Beranda = () => {
               ) : (
                 dataCourses.map((item, index) => {
                   return (
-                    <CoursesCard
+                    <ClassCategoriesCard
                       key={index}
                       name={item.name}
                       image={item.image}

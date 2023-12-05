@@ -2,7 +2,7 @@ export default function FilterOption({ name, value, handleFilter, category ,quer
   queryCategory? queryCategory : queryCategory = []
   queryLevel? queryLevel : queryLevel = []
   return (
-    <div className="grid grid-cols-4 justify-center items-center">
+    <div className="grid grid-cols-4 justify-center items-center accent-secret-cyan">
       <input
         type="checkbox"
         id={value}
@@ -11,7 +11,7 @@ export default function FilterOption({ name, value, handleFilter, category ,quer
         onChange={() => handleFilter(value, category)}
         checked={queryLevel.includes(value) || queryCategory.includes(value)}
       />
-      <label htmlFor={value} className=" col-span-3 text-black text-sm">
+      <label htmlFor={value} className=" col-span-3 text-secret-text text-sm">
         {name}
       </label>
     </div>

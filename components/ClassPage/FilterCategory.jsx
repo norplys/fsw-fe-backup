@@ -5,7 +5,7 @@ import FilterOption from "./FilterOption"
 export default function FilterCategory({ category, card, pathname, router, createQueryString, handleFilter, queryCategory, queryLevel }) {
     return (
     <>
-    <h2 className="text-black font-bold text-base">{category === 'Kategori' ? "Kategori" : category === "level" ? "Kesulitan" : ""}</h2>
+    <h2 className="text-secret-text font-bold text-base">{category === 'Kategori' ? "Kategori" : category === "level" ? "Kesulitan" : ""}</h2>
     {
         card.map((item, i) => (
             <FilterOption key={i} 
