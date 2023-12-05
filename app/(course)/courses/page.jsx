@@ -60,11 +60,11 @@ const ButtonData = [
   },
 ];
 export default function Courses() {
-  const searchParams = useSearchParams();
   const [categoryId, setCategoryId] = useState("");
   const [level, setLevel] = useState("");
   const [queryCategory, setQueryCategory] = useState([])
   const [queryLevel, setQueryLevel] = useState([])
+  const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams)
@@ -73,6 +73,26 @@ export default function Courses() {
     params.set(name, value)
     return params.toString()
 }
+
+useEffect(() => {
+  const categoryFilter = searchParams.get("categoryId")
+  const levelFilter = searchParams.get("level")
+  if(categoryFilter){
+    setCategoryId(categoryFilter)
+    setQueryCategory(categoryFilter.split(",").map((item) => parseInt(item)))
+  }else{
+    setCategoryId("")
+    setQueryCategory([])
+  }
+  if(levelFilter){
+    setLevel(levelFilter)
+    setQueryLevel(levelFilter.split(","))
+  }else{
+    setLevel("")
+    setQueryLevel([])
+  }
+}, [searchParams]);
+
 
   const handleChange = (value, category) => {
     if(category === "Kategori"){
@@ -98,19 +118,6 @@ export default function Courses() {
       router.push(pathname + "?" + createQueryString(category, newChecked.join(",")));
     }
   }
- 
-
-  useEffect(() => {
-    const categoryFilter = searchParams.get("categoryId")
-    const levelFilter = searchParams.get("level")
-    categoryFilter ? setCategoryId(categoryFilter) : setCategoryId("")
-    levelFilter ? setLevel(levelFilter) : setLevel("")
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
-
-  const removeQuery = (name) => {
-    params.delete(name)
-  }
 
   const { isLoading, error, data } = useCoursesData(categoryId, level);
   const {
@@ -120,7 +127,6 @@ export default function Courses() {
   } = useCategoriesData();
 
   const FilterData = [
-    // filter,
     {
       category: "Kategori",
       card: dataCategories,
@@ -163,7 +169,6 @@ export default function Courses() {
               FilterData.map((item, index) => {
                 return (
                   <FilterCategory
-                    createQueryString={createQueryString}
                     pathname={pathname}
                     router={router}
                     key={index}

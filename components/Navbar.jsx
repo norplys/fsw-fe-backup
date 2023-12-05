@@ -7,6 +7,7 @@ import { BiBrain, BiSearchAlt } from 'react-icons/bi';
 import { FiBell, FiList, FiUser } from 'react-icons/fi';
 import { CiLogin } from "react-icons/ci"
 
+
 const Navbar = () => {
 	const [keyword, setKeyword] = useState('');
   const [isLogin, setIsLogin] = useState(false);
@@ -17,17 +18,17 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className='bg-black sticky top-0 z-10'>
+		<div className='bg-secret-background sticky top-0 z-20 shadow-2xl black100/40'>
 			<nav className='container flex items-center justify-between h-20 px-2 mx-auto'>
 				<div className='flex items-center space-x-4'>
 					<Link href='/' className='flex items-center space-x-2'>
-						<BiBrain color='white' size={25} />
+						<BiBrain className='text-black' size={25} />
 						<div className='flex'>
-						<h1 className='text-2xl text-white flex items-center font-bold px-1'>Skill</h1>
-						<h1 className='text-2xl text-black font-bold bg-orange-400  rounded-xl p-1'>HUB</h1>
+						<h1 className='text-2xl text-black flex items-center font-bold px-1'>Skill</h1>
+						<h1 className='text-2xl text-black font-bold'>HUB</h1>
 						</div>
 					</Link>
-					<form className='relative hidden xl:block' onSubmit={handleSearch}>
+					<form className='relative hidden shadow-2xl shadow-black-200/40 xl:block' onSubmit={handleSearch}>
 						<input
 							type='text'
 							value={keyword}
@@ -35,7 +36,7 @@ const Navbar = () => {
 							onChange={(e) => setKeyword(e.target.value)}
 							className='w-80 px-5 py-3 rounded-xl placeholder:text-sm text-black'
 						/>
-						<button className='absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 bg-secret-orange rounded-xl search'>
+						<button className='absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 rounded-xl search'>
 							<BiSearchAlt className='text-black' />
 						</button>
 					</form>
@@ -65,8 +66,8 @@ const Navbar = () => {
           :
           <li>
             <Link href='/login'>
-              <button className='px-4 py-2 font-semibold text-white rounded-lg bg-orange-400 flex gap-4'>
-              <CiLogin color='white' size={25} />
+              <button className='px-4 py-2 font-semibold text-white rounded-lg bg-secret-orange flex gap-4 bg-secret-darkblue'>
+              <CiLogin className='text-white' size={25} />
                 Masuk
               </button>
             </Link>

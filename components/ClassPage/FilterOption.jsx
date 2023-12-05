@@ -1,4 +1,4 @@
-export default function FilterOption({ name, value, handleFilter, category,queryCategory, queryLevel}) {
+export default function FilterOption({ name, value, handleFilter, category ,queryCategory ,queryLevel}) {
   queryCategory? queryCategory : queryCategory = []
   queryLevel? queryLevel : queryLevel = []
   return (
