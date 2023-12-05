@@ -9,7 +9,7 @@ export default function HomePageButton({name}){
     <>
     <button 
         onClick={handleClick}
-        className={`rounded-2xl px-3 p-1 font-bold ${IsActive ? 'bg-secret-orange text-black' : 'bg-secret-grey2 text-secret-text'}`}>
+        className={`rounded-2xl px-3 p-1 font-bold shadow-2xl shadow-black hover:-translate-y-1 ${IsActive ? 'bg-secret-darkblue text-white' : 'bg-secret-cyan text-secret-text3'}`}>
         {name}
     </button>
     </>

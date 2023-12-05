@@ -33,13 +33,20 @@ module.exports = {
 				},
 
 				secret : {
-					orange: '#ffa31a',
+					darkblue:'#14A7A0',
 					grey1: '#808080',
-					grey2: '#292929',
-					text : '#CCCCCC',
-					black: '#1b1b1b',
+					cyan: '#51DACF',
+					text : '#212529',
+					text2: '#808080',
+					text3: '#212529',
+					text4: '#6C757D',
+					background : '#EBF3FC',
 
 				},
+
+		
+
+				
 
 				alert: {
 					DEFAULT: '#73CA5C',
