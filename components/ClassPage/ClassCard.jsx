@@ -12,7 +12,7 @@ export default function ClassPageCards({
   totalProgress,
 }) {
   return (
-    <Link href={`course/${id}`} className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px] drop-shadow ">
+    <Link href={`course/${id}`} className="flex flex-col course w-96 h-[250px] bg-white rounded-[15px]">
       {/* GAMBAR */}
       <div className="w-full h-[80px] ">
         <Image

@@ -41,7 +41,8 @@ module.exports = {
 					text3: '#212529',
 					text4: '#6C757D',
 					background : '#EBF3FC',
-
+					pink : '#FF8696',
+					green : '#73CA5C',
 				},
 
 		

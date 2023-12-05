@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function CardCategories ({name, img, categoryId}) {
+export default function CardCategories ({name, image, categoryId}) {
     return ( 
     <>
         <Link className="flex-col w-full" href={`/courses?categoryId=${categoryId}`}>
             <Image
             className='w-full object-cover hover:scale-105 ease-in-out duration-200'
-            src={img}
+            src={image}
             width={140}
             height={100}
             alt={name}/>
