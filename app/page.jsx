@@ -10,6 +10,9 @@ import { useCoursesData } from "./utils/hooks/useCoursesData";
 import { useCategoriesData } from "./utils/hooks/useCategoriesData";
 import CategoryLoading from "@/components/CategoryLoading";
 import { CiHeadphones } from "react-icons/ci";
+import { useState, useEffect } from "react";
+import { useSearchParams, usePathname, useRouter} from "next/navigation";
+
 
 const array = [1, 2, 3, 4, 5, 6];
 
@@ -23,17 +26,54 @@ const mockButton = [
   "UI/UX Design",
 ];
 
-const Beranda = () => {
+export default function Beranda () {
+  const [queryCategory, setQueryCategory] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = new URLSearchParams(searchParams);
+
   const {
     isLoading: isLoadingCourses,
     error: errorCourses,
     data: dataCourses,
-  } = useCoursesData();
+  } = useCoursesData(queryCategory, "");
   const {
     isLoading: isLoadingCategories,
     error: errorCategories,
     data: dataCategories,
   } = useCategoriesData();
+
+  useEffect(() => {
+    const category = searchParams.get("categoryId");
+    if (category) {
+      setQueryCategory(category);
+    }else {
+      setQueryCategory("");
+    }
+  }, [searchParams]);
+  
+  const createQueryString = (name, value) => {
+    params.set(name, value);
+    return params.toString();
+  };
+
+  const handleChange = (value) => {    
+    const queryCategoryArray = queryCategory.split(",");
+    if (queryCategoryArray[0] === "") {
+      queryCategoryArray.shift();
+    }
+    const newChecked = [...queryCategoryArray];
+    const currentIndex = newChecked.indexOf(value.toString());    
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    setQueryCategory(newChecked.join(","));
+    router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")));
+  };
+
   return (
     <>
       <Navbar />
@@ -94,15 +134,25 @@ const Beranda = () => {
                 Kursus Populer
               </h1>
               {/* lihat semua tombol */}
-              <Link href="/courses" className="text-secret-text4 font-semibold hover:text-secret-darkblue ">
+              <Link href="/courses" className="text-secret-text4 font-semibold ">
                 Lihat Semua
               </Link>
             </div>
             {/* TOMBOL TOMBOL */}
             <div className="flex gap-5  mb-5 justify-around">
-              {mockButton.map((item, index) => {
-                return <HomePageButton key={index} name={item} index={index} />;
-              })}
+            {isLoadingCategories ? (
+                array.map((item, index) => {
+                  return <CategoryLoading key={index} />;
+                })
+              ) : errorCategories ? (
+                <p>Something Went Wrong</p>
+              ) : (
+                dataCategories.map((item, index) => {
+                  return (
+                    <HomePageButton key={index} name={item.name} categoryId={item.id} handleChange={handleChange}/>
+                  );
+                })
+              )}
             </div>
 
             {/* COURSES CONTAINER */}
@@ -140,4 +190,3 @@ const Beranda = () => {
   );
 };
 
-export default Beranda;
