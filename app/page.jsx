@@ -12,6 +12,7 @@ import CategoryLoading from "@/components/CategoryLoading";
 import { CiHeadphones } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import { useSearchParams, usePathname, useRouter} from "next/navigation";
+import ButtonLoading from "@/components/ButtonLoading";
 
 
 const array = [1, 2, 3, 4, 5, 6];
@@ -142,14 +143,14 @@ export default function Beranda () {
             <div className="flex gap-5  mb-5 justify-around">
             {isLoadingCategories ? (
                 array.map((item, index) => {
-                  return <CategoryLoading key={index} />;
+                  return <ButtonLoading key={index} />;
                 })
               ) : errorCategories ? (
                 <p>Something Went Wrong</p>
               ) : (
                 dataCategories.map((item, index) => {
                   return (
-                    <HomePageButton key={index} name={item.name} categoryId={item.id} handleChange={handleChange}/>
+                    <HomePageButton key={index} name={item.name} categoryId={item.id} handleChange={handleChange} queryCategory={queryCategory}/>
                   );
                 })
               )}
