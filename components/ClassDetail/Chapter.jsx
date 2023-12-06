@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { BiPlay } from "react-icons/bi";
 import Module from "./Module";
 
-export default function Chapter({name, time, modules, index}) {
+export default function Chapter({name, time, modules, index, handleVideo}) {
     const [active, setActive] = useState(0);
   return (
     <div key={index}>
@@ -20,6 +19,7 @@ export default function Chapter({name, time, modules, index}) {
             title={section.title}
             link={section.link}
             index={index}
+            handleVideo={handleVideo}
           />
         ))}
       </div>
