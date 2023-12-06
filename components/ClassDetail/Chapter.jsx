@@ -6,10 +6,10 @@ export default function Chapter({name, time, modules, index, handleVideo}) {
   return (
     <div key={index}>
       <div className="flex items-center justify-between mb-2 text-sm font-bold">
-        <h4 className="text-darkblue-500">
-          Chapter {index + 1}
+        <h4 className="text-secret-darkblue">
+          Chapter {index + 1} - {name}
         </h4>
-        <span className="text-blue-500">{time} Menit</span>
+        <span className="text-secret-darkblue">{time} Menit</span>
       </div>
 
       <div className="mb-4 divide-y-2 divide-zinc-100">
