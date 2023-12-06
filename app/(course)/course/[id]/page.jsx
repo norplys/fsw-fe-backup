@@ -164,7 +164,9 @@ const DetailKelas = () => {
           {error}
         </div>
       ) : (
-        <div className="py-10 bg-check-fill xl:h-[300px]">
+
+        <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px] hover:shadow-secret-cyan">
+
           <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
             <div className="xl:col-span-3">
               <Link href="/" className="flex items-center mb-4 space-x-2">
@@ -205,12 +207,14 @@ const DetailKelas = () => {
                 </div>
               </div>
 
-              <button className="flex items-center justify-center px-6 py-2 space-x-2 bg-secret-darkblue rounded-full drop-shadow">
-                <a className="font-bold text-white" href={data.telegram}>
+
+              <a className="flex items-center justify-center px-6 py-2 space-x-2 bg-secret-darkblue rounded-full hover:scale-105 max-w-xs" href={data.telegram}>
+                <a className="font-bold text-white shadow-2xl hover:shadow-none">
                   Telegram Link
                 </a>
                 <BiSolidChat className="text-white" size={20} />
-              </button>
+              </a>
+
             </div>
 
             <div className="xl:col-span-2">
@@ -233,7 +237,9 @@ const DetailKelas = () => {
                 {data.courseModules.map((chapter, index) => (
                   <Chapter
                     key={index}
-                    name={chapter.name}
+
+                    name={chapter.chapter}
+
                     time={chapter.estimation}
                     modules={chapter.module}
                     index={index}
@@ -259,7 +265,9 @@ const DetailKelas = () => {
           <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
             <div className="xl:col-span-3">
               <iframe
-                className="w-full h-full mb-5 rounded-2xl shadow-2xl"
+
+                className="w-full h-full mb-5 rounded-2xl shadow-2xl hover:shadow-secret-cyan"
+
                 src={video}
                 title="YouTube video player"
                 frameborder="0"
