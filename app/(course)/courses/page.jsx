@@ -6,9 +6,9 @@ import { useCoursesData } from "../../utils/hooks/useCoursesData";
 import ClassCardLoading from "@/components/ClassCardLoading";
 import { useCategoriesData } from "@/app/utils/hooks/useCategoriesData";
 import { BiSearchAlt } from "react-icons/bi";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+
 
 const array = [1, 2, 3, 4];
 // const filter = {
