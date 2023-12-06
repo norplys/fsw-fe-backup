@@ -105,7 +105,9 @@ useEffect(() => {
         newChecked.splice(currentIndex, 1);
       }
       setQueryCategory(newChecked)
-      router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")));
+      router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")), {
+        scroll: false,
+      });
     }
     if(category === "level"){
       const currentIndex = queryLevel.indexOf(value);
@@ -116,7 +118,10 @@ useEffect(() => {
         newChecked.splice(currentIndex, 1);
       }
       setQueryLevel(newChecked)
-      router.push(pathname + "?" + createQueryString(category, newChecked.join(",")));
+      router.push(pathname + "?" + createQueryString(category, newChecked.join(",")),
+      {
+        scroll: false,
+      });
     }
   }
 

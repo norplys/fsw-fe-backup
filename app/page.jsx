@@ -72,7 +72,9 @@ export default function Beranda () {
       newChecked.splice(currentIndex, 1);
     }
     setQueryCategory(newChecked.join(","));
-    router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")));
+    router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")), {
+      scroll: false,
+    });
   };
 
   return (
