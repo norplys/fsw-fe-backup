@@ -10,7 +10,6 @@ import { FaChevronDown } from "react-icons/fa"
 import { FaChevronUp } from "react-icons/fa"
 import { FaArrowLeft } from "react-icons/fa6";
 
-import NavbarIn from '@/components/NavbarIn'
 
 const KelasPembayaran = () => {
 
@@ -21,8 +20,6 @@ const KelasPembayaran = () => {
 
   return (
     <div>
-        <NavbarIn/>
-
         {/* KEMBALI DAN NOTIFIKASI BATAS PEMBAYARAN */}
         <div className='md:px-[100px] px-5 py-6 shadow-md'>
             {/* LINK KEMBALI */}

@@ -62,7 +62,7 @@ const DetailKelas = () => {
                 >
                   <Dialog.Panel className="relative w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <button
-                      className="absolute top-0 right-0 p-2 m-4 transition-all duration-200 ease-in-out bg-transparent rounded-full hover:bg-darkblue-500 group"
+                      className="absolute top-0 right-0 p-2 m-4 transition-all duration-200 ease-in-out bg-transparent rounded-full group"
                       onClick={() => setIsOpen(false)}
                     >
                       <BiX
