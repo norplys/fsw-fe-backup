@@ -165,7 +165,7 @@ const DetailKelas = () => {
         </div>
       ) : (
 
-        <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px] hover:shadow-secret-cyan">
+        <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
 
           <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
             <div className="xl:col-span-3">
@@ -266,7 +266,7 @@ const DetailKelas = () => {
             <div className="xl:col-span-3">
               <iframe
 
-                className="w-full h-full mb-5 rounded-2xl shadow-2xl hover:shadow-secret-cyan"
+                className="w-full h-full mb-5 rounded-2xl shadow-2xl"
 
                 src={video}
                 title="YouTube video player"

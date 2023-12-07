@@ -24,8 +24,8 @@ const Navbar = () => {
 					<Link href='/' className='flex items-center space-x-2'>
 						<BiBrain className='text-white bg-secret-pink rounded-full text-5xl p-2' />
 						<div className='flex'>
-						<h1 className='text-2xl text-black flex items-center font-bold'>Skill</h1>
-						<h1 className='text-2xl font-bold text-black'>HUB</h1>
+						<h1 className='text-2xl text-secret-text flex items-center font-bold'>Skill</h1>
+						<h1 className='text-2xl font-bold text-secret-text'>HUB</h1>
 						</div>
 					</Link>
 					<form className='relative hidden shadow-2xl shadow-black-200/40 xl:block' onSubmit={handleSearch}>
