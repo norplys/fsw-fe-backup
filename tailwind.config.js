@@ -25,16 +25,6 @@ module.exports = {
 					green : '#73CA5C',
 					blue : '#E8F1FF',
 				},
-
-		
-
-				
-
-				alert: {
-					DEFAULT: '#73CA5C',
-					red: '#FF0000',
-					green: '#73CA5C',
-				},
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

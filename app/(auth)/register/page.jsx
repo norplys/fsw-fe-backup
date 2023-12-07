@@ -1,8 +1,32 @@
 "use client";
 
-import { useState } from "react";
+
+
 import { BiBrain } from "react-icons/bi";
-import Link from "next/link";
+import AuthInput from "@/components/Auth/AuthInput";
+
+const requiredArray = [{
+  name: "Nama",
+  type: "text",
+  placeholder: "skillHUB",
+  id: "name"
+}, {
+  name: "Email",
+  type: "email",
+  placeholder: "ex: skillHUB@gmail.com",
+  id: "email"
+}, {
+  name: "Nomor Telepon",
+  type: "text",
+  placeholder: "+62",
+  id: "phone"
+}, {
+  name: "Buat Password",
+  type: "password",
+  placeholder: "password",
+  id: "password"
+}];
+
 
 export default function LoginPage() {
   return (
@@ -14,56 +38,11 @@ export default function LoginPage() {
             Daftar
           </h1>
 
-          <div className="mb-4 lg:mb-8">
-            <label htmlFor="emailorphone" className="font-bold text-secret-text">Nama</label>
+          {requiredArray.map((item, index) => (
+            <AuthInput key={index} {...item} />
+          ))}
+          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
 
-            <input
-              type="text"
-              name="name"
-              placeholder="skillHUB"
-              id="name"
-              className=" border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none "
-              required
-            />
-          </div>
-
-          <div className="mb-4 lg:mb-8 pt">
-            <label htmlFor="password" className=" font-bold text-secret-text">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="ex: skillHUB@gmail.com"
-              className="border-2 rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none"
-              required
-            />
-          </div>
-
-          <div className="mb-4 lg:mb-8 pt">
-            <label htmlFor="password" className=" font-bold text-secret-text">Nomor Telepon</label>
-            <input
-              type="text"
-              name="phone"
-              id="phone"
-              placeholder="+62"
-              className="border-2 rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none"
-              required
-            />
-          </div>
-          <div className="mb-4 lg:mb-8 pt">
-            <label htmlFor="password" className=" font-bold text-secret-text">Buat Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-              className="border-2 rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none"
-              required
-            />
-          </div>
-
-          {/* Login button */}
-          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95">
             Masuk
           </button>
         </div>

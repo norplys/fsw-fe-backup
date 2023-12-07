@@ -1,8 +1,20 @@
 "use client";
 
-import { useState } from "react";
+
+import AuthInput from "@/components/Auth/AuthInput";
 import { BiBrain } from "react-icons/bi";
-import Link from "next/link";
+
+const requiredArray = [{
+  name: "Masukkan Password Baru",
+  type: "password",
+  placeholder: "Password123",
+  id: "password1"
+}, {
+  name: "Ulangi Password Baru",
+  type: "password",
+  placeholder: "Password123",
+  id: "password2"
+}];
 
 export default function ResetPassword() {
   return (
@@ -13,32 +25,12 @@ export default function ResetPassword() {
             Reset Password
           </h1>
 
-          <div className="mb-4 lg:mb-8">
-            <label htmlFor="password1" className="font-bold text-secret-text">Masukkan Password Baru</label>
 
-            <input
-              type="password"
-              name="password1"
-              placeholder="Password123"
-              id="password1"
-              className=" border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none "
-              required
-            />
-          </div>
+          {requiredArray.map((item, index) => (
+            <AuthInput key={index} {...item} />
+          ))}
+          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
 
-          <div className="grid grid-cols-2 mb-4 lg:mb-8 pt">
-            <label htmlFor="password2" className=" font-bold text-secret-text">Ulangi Password Baru</label>
-
-            <input
-              type="password"
-              name="password"
-              id="password2"
-              placeholder="Password123"
-              className="border-2 rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none"
-              required
-            />
-          </div>
-          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95">
             Simpan
           </button>
         </div>

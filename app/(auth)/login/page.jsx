@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
 
@@ -28,8 +28,8 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* PASSWORD */}
-          <div className="grid grid-cols-2 mb-4 lg:mb-8 pt">
+          <div className="grid grid-cols-2 mb-4 lg:mb-8">
+
             <label htmlFor="password" className=" font-bold text-secret-text">Password</label>
 
             <Link
@@ -49,8 +49,8 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Login button */}
-          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95">
+          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
+
             Masuk
           </button>
 
