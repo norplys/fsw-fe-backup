@@ -2,7 +2,6 @@
 
 
 import AuthInput from "@/components/Auth/AuthInput";
-
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
 
