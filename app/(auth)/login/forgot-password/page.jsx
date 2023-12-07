@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import AuthInput from "@/components/Auth/AuthInput";
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
 
@@ -12,24 +12,14 @@ export default function ForgotPassword() {
           <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
             Lupa Kata Sandi ?
           </h1>
+          <AuthInput
+            name="Masukkan Email Yang Terdaftar"
+            type="email"
+            placeholder="Ex: skillHUB@gmail.com"
+            id="email"
+          />
 
-          <div className="mb-4 lg:mb-8">
-            <label htmlFor="email" className="font-bold text-secret-text">
-              Masukkan Email Yang Terdaftar 
-            </label>
-
-            <input
-              type="email"
-              name="Email"
-              placeholder="Ex: skillHUB@gmail.com"
-              id="email"
-              className=" border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none "
-              required
-            />
-          </div>
-
-
-          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95">
+          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
             Masuk
           </button>
 
