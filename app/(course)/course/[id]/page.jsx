@@ -62,7 +62,7 @@ const DetailKelas = () => {
                 >
                   <Dialog.Panel className="relative w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <button
-                      className="absolute top-0 right-0 p-2 m-4 transition-all duration-200 ease-in-out bg-transparent rounded-full hover:bg-darkblue-500 group"
+                      className="absolute top-0 right-0 p-2 m-4 transition-all duration-200 ease-in-out bg-transparent rounded-full group"
                       onClick={() => setIsOpen(false)}
                     >
                       <BiX
@@ -165,7 +165,9 @@ const DetailKelas = () => {
         </div>
       ) : (
 
-        <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px] hover:shadow-secret-cyan">
+
+        <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
+
 
           <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
             <div className="xl:col-span-3">
@@ -266,7 +268,9 @@ const DetailKelas = () => {
             <div className="xl:col-span-3">
               <iframe
 
-                className="w-full h-full mb-5 rounded-2xl shadow-2xl hover:shadow-secret-cyan"
+
+                className="w-full h-full mb-5 rounded-2xl shadow-2xl"
+
 
                 src={video}
                 title="YouTube video player"

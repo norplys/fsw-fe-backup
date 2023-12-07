@@ -1,12 +1,10 @@
 
-import NavbarIn from '@/components/NavbarIn'
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 const PembayaranSukses = () => {
   return (
     <div>
-        <NavbarIn/>
 
         {/* NOTIFIKASI BERHASIL PEMBAYARAN */}
         <div className='md:px-[100px] px-5 py-6 shadow-md'>
