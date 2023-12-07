@@ -21,7 +21,7 @@ export default function ClassCategoriesCard({
   return (
     <Link
       href={`course/${id}`}
-      className="flex flex-col course w-full h-[250px] bg-secret-background rounded-[15px] shadow-2xl hover:scale-105"
+      className="flex flex-col course w-full h-[250px] bg-secret-background rounded-[15px] shadow-2xl hover:scale-105 hover:shadow-secret-cyan"
     >
       <div className="w-full h-[80px] ">
         <Image
