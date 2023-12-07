@@ -29,7 +29,7 @@ export default function ForgotPassword() {
           <div className="text-secret-text items-center text-center mt-6">
             Belum punya akun?
             <Link
-              href="/"
+              href="/register"
               className="text-secret-text font-bold hover:underline hover:text-white pl-2"
             >
               Daftar di sini
