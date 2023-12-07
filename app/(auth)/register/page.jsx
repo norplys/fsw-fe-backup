@@ -1,6 +1,7 @@
 "use client";
 
 
+
 import { BiBrain } from "react-icons/bi";
 import AuthInput from "@/components/Auth/AuthInput";
 
@@ -26,6 +27,7 @@ const requiredArray = [{
   id: "password"
 }];
 
+
 export default function LoginPage() {
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
@@ -35,10 +37,12 @@ export default function LoginPage() {
           <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
             Daftar
           </h1>
+
           {requiredArray.map((item, index) => (
             <AuthInput key={index} {...item} />
           ))}
           <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
+
             Masuk
           </button>
         </div>

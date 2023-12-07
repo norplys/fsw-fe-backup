@@ -1,5 +1,6 @@
 "use client";
 
+
 import AuthInput from "@/components/Auth/AuthInput";
 import { BiBrain } from "react-icons/bi";
 
@@ -14,6 +15,7 @@ const requiredArray = [{
   placeholder: "Password123",
   id: "password2"
 }];
+
 export default function ResetPassword() {
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
@@ -23,10 +25,12 @@ export default function ResetPassword() {
             Reset Password
           </h1>
 
+
           {requiredArray.map((item, index) => (
             <AuthInput key={index} {...item} />
           ))}
           <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
+
             Simpan
           </button>
         </div>
