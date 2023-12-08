@@ -7,11 +7,11 @@ export default function ClassButton({text}) {
     }
     return (
         <button
-              className={`rounded-full py-3 px-6
+              className={`rounded-full py-3 px-6 duration-300 font-bold hover:-translate-y-1 hover:shadow-xl
                             ${
                               isActive
-                                ? "text-white bg-DARKBLUE05"
-                                : "text-black bg-white"
+                                ? "text-white bg-secret-darkblue"
+                                : "bg-secret-cyan text-secret-text"
                             }`}
               onClick={changeActive}
             >

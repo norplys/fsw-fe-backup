@@ -135,7 +135,7 @@ export default function Beranda () {
                 Kursus Populer
               </h1>
 
-              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:text-secret-darkblue hover:underline ">
+              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:underline ">
                 Lihat Semua
               </Link>
             </div>
