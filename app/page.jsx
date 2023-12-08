@@ -94,7 +94,6 @@ export default function Beranda () {
             </div>
           </div>
 
-          {/* KANAN */}
         </div>
         <div className="bg-secret-background">
           <div className="max-w-7xl mx-auto">
@@ -102,12 +101,11 @@ export default function Beranda () {
               <h1 className="font-bold text-secret-text4 text-[20px]">
                 Kategori Belajar
               </h1>
-              {/* lihat semua tombol */}
-              <Link href="/courses" className="text-secret-text4 font-semibold hover:text-secret-darkblue">
+              <Link href="/courses" className="text-secret-text4 font-semibold  duration-300 hover:text-secret-darkblue hover:underline">
                 Lihat Semua
               </Link>
             </div>
-            {/* KATEGORI */}
+   
             <div className="flex gap-5 pb-5">
               {isLoadingCategories ? (
                 array.map((item, index) => {
@@ -136,12 +134,12 @@ export default function Beranda () {
               <h1 className="font-bold text-secret-text4 text-[20px]">
                 Kursus Populer
               </h1>
-              {/* lihat semua tombol */}
-              <Link href="/courses" className="text-secret-text4 font-semibold ">
+
+              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:text-secret-darkblue hover:underline ">
                 Lihat Semua
               </Link>
             </div>
-            {/* TOMBOL TOMBOL */}
+
             <div className="flex gap-5  mb-5 justify-around">
             {isLoadingCategories ? (
                 array.map((item, index) => {
@@ -158,7 +156,7 @@ export default function Beranda () {
               )}
             </div>
 
-            {/* COURSES CONTAINER */}
+    
             <div className="grid grid-cols-3 mx-auto  gap-5 items-center h-full">
               {isLoadingCourses ? (
                 array.map((item, index) => {
