@@ -1,4 +1,3 @@
-import { Carattere } from 'next/font/google';
 import {useState} from 'react';
 
 export default function HomePageButton({name, categoryId, handleChange, queryCategory}){
