@@ -1,5 +1,5 @@
 import { BiPlay } from "react-icons/bi"
-export default function Module ({title, link, index}) {
+export default function Module ({title, link, index, handleVideo}) {
     return (
         <div
             className="flex items-center justify-between py-3"
@@ -16,9 +16,9 @@ export default function Module ({title, link, index}) {
             <div
               className={`relative flex-shrink-0 w-8 h-8 rounded-full ${title ? "bg-green-500" : "bg-darkblue-500"}`}
             >
-              <div className="absolute text-xs font-bold transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-                <BiPlay className="text-white" size={12} />
-              </div>
+              <button className="absolute text-xs font-bold transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" onClick={() => handleVideo("https://www.youtube.com/embed/ixOd42SEUF0?si=Md60vtjvCtYoZwrS")}>
+                <BiPlay className="text-white text-lg"/>
+              </button>
             </div>
           </div>
         

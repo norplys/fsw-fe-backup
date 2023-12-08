@@ -105,7 +105,9 @@ useEffect(() => {
         newChecked.splice(currentIndex, 1);
       }
       setQueryCategory(newChecked)
-      router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")));
+      router.push(pathname + "?" + createQueryString('categoryId', newChecked.join(",")), {
+        scroll: false,
+      });
     }
     if(category === "level"){
       const currentIndex = queryLevel.indexOf(value);
@@ -116,7 +118,10 @@ useEffect(() => {
         newChecked.splice(currentIndex, 1);
       }
       setQueryLevel(newChecked)
-      router.push(pathname + "?" + createQueryString(category, newChecked.join(",")));
+      router.push(pathname + "?" + createQueryString(category, newChecked.join(",")),
+      {
+        scroll: false,
+      });
     }
   }
 
@@ -141,7 +146,7 @@ useEffect(() => {
           <h1 className="text-secret-text mb-10 font-bold text-[24px]">
             Kelas Berjalan
           </h1>
-          {/* SEARCH BUTTON */}
+
           <div className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidde shadow-xl">
             <input
               type="text"
@@ -158,7 +163,7 @@ useEffect(() => {
         </div>
 
         <div className="flex lg:flex-row gap-[88px] ">
-          {/* FORM FILTER */}
+
           <form
             className="bg-secret-background border shadow-md flex flex-col w-64 p-5
             h-[580px] rounded-[16px] gap-5"
@@ -193,10 +198,10 @@ useEffect(() => {
               </button>
             </div>
           </form>
-          {/* SEBELAH KANAN */}
+
 
           <div className="container">
-            {/* TOMBOL ATAS */}
+
             <div className="flex  gap-7 mb-5">
               {ButtonData.map((item, index) => {
                 return (
