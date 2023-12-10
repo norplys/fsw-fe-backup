@@ -148,7 +148,7 @@ useEffect(() => {
             Kelas Berjalan
           </h1>
 
-          <div className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidde shadow-xl">
+          <div className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl">
             <input
               type="text"
               placeholder="Cari Kelas..."
