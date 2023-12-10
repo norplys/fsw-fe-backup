@@ -48,10 +48,10 @@ const Content = forwardRef(({ links, current, asDialog, setOpen }, ref) => {
 	return (
 		<aside
 			ref={ref}
-			className={cn(
-				'w-full max-w-[300px] bg-secret-darkblue transition-all duration-300 ease-out',
-				asDialog ? 'absolute inset-y-0 left-0' : 'relative hidden xl:flex xl:flex-col'
-			)}>
+			className={
+				`w-full max-w-[300px] bg-secret-darkblue transition-all duration-300 ease-out
+				${ asDialog ? 'absolute inset-y-0 left-0' : 'relative hidden xl:flex xl:flex-col'}`
+			}>
 			<div className='absolute bottom-0 left-0 m-6 xl:hidden'>
 				<IconButton icon={BiX} onClick={() => setOpen(false)} variants='secondary' />
 			</div>
@@ -63,10 +63,10 @@ const Content = forwardRef(({ links, current, asDialog, setOpen }, ref) => {
 				<Link
 					key={index}
 					href={link.href}
-					className={cn(
-						'w-full block px-10 py-3 transition-all duration-200 ease-out',
-						current === link.href ? 'bg-secret-background text-black' : 'text-white hover:bg-white/10'
-					)}>
+					className={
+						`w-full block px-10 py-3 transition-all duration-200 ease-out'
+						${current === link.href ? 'bg-secret-background text-black' : 'text-white hover:bg-white/10'}`
+					}>
 					<p className='font-semibold'>{link.label}</p>
 				</Link>
 			))}
