@@ -3,7 +3,7 @@
 
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useUsers } from "@/app/context/usersContext";
@@ -29,8 +29,9 @@ export default function LoginPage() {
         error: 'Error'
       }
     )
+    toast.loading('Redirecting Please Wait...')
     console.log(res);
-    // await sleepRedirect();
+    await sleepRedirect();
 
   }
 
@@ -94,6 +95,7 @@ export default function LoginPage() {
               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
               required
             />
+            <Toaster position="relative"/>
           </div>
 
           <button disabled={disabled} type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
