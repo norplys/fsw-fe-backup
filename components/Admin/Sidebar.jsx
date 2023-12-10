@@ -1,22 +1,20 @@
-import * as React from 'react';
 import Link from 'next/link';
 import { BiX } from 'react-icons/bi';
 import { Dialog, Transition } from '@headlessui/react';
-
-import { cn } from '@/utils/utils';
+import { Fragment, forwardRef } from 'react';
 import { IconButton } from '@/components/Admin/IconButton';
 import { AdminLogo } from '@/components/Admin/AdminLogo';
 
 export const Sidebar = ({ links, current, open, setOpen }) => {
 	return (
 		<>
-			<Transition.Root show={open} as={React.Fragment}>
+			<Transition.Root show={open} as={Fragment}>
 				<Dialog
 					as='div'
 					className='fixed inset-0 z-10 overflow-hidden bg-black bg-opacity-50 xl:hidden'
 					onClose={setOpen}>
 					<Transition.Child
-						as={React.Fragment}
+						as={Fragment}
 						enter='transition-opacity ease-linear duration-300'
 						enterFrom='opacity-0'
 						enterTo='opacity-100'
@@ -28,7 +26,7 @@ export const Sidebar = ({ links, current, open, setOpen }) => {
 
 					<Dialog.Panel className='absolute inset-0 overflow-hidden' onClick={() => setOpen(false)}>
 						<Transition.Child
-							as={React.Fragment}
+							as={Fragment}
 							enter='transition ease-in-out duration-300 transform'
 							enterFrom='-translate-x-full'
 							enterTo='translate-x-0'
@@ -46,7 +44,7 @@ export const Sidebar = ({ links, current, open, setOpen }) => {
 	);
 };
 
-const Content = React.forwardRef(({ links, current, asDialog, setOpen }, ref) => {
+const Content = forwardRef(({ links, current, asDialog, setOpen }, ref) => {
 	return (
 		<aside
 			ref={ref}

@@ -1,5 +1,5 @@
 'use client';
-import * as React from 'react';
+import { useState } from 'react';
 import { BiMenu, BiSearchAlt } from 'react-icons/bi';
 import { IconButton } from '@/components/Admin/IconButton';
 
@@ -8,7 +8,7 @@ export const admin = {
 };
 
 export const AdminNavbar = ({ setOpen, open }) => {
-	const [keyword, setKeyword] = React.useState('');
+	const [keyword, setKeyword] = useState('');
 
 	const handleSearch = (e) => {
 		e.preventDefault();

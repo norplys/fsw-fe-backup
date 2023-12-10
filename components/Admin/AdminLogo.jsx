@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BiBrain } from 'react-icons/bi';
 
 export const AdminLogo = () => {
