@@ -1,12 +1,10 @@
 'use client';
 
-import * as React from 'react';
+import {Fragment} from 'react';
 import { useForm } from 'react-hook-form';
 import { Dialog, Transition } from '@headlessui/react';
 import { BiX } from 'react-icons/bi';
-
 import { IconButton } from '@/components/Admin/IconButton';
-import { cn } from '@/utils/utils';
 
 export const CourseForm = ({ isOpen, setIsOpen }) => {
 	const {
@@ -18,10 +16,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 	const onSubmit = (data) => alert(JSON.stringify(data));
 
 	return (
-		<Transition appear show={isOpen} as={React.Fragment}>
+		<Transition appear show={isOpen} as={Fragment}>
 			<Dialog as='div' className='relative z-10' onClose={() => setIsOpen(false)}>
 				<Transition.Child
-					as={React.Fragment}
+					as={Fragment}
 					enter='ease-out duration-300'
 					enterFrom='opacity-0'
 					enterTo='opacity-100'
@@ -34,7 +32,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 				<div className='fixed inset-0 overflow-y-auto'>
 					<div className='flex items-center justify-center min-h-full p-4'>
 						<Transition.Child
-							as={React.Fragment}
+							as={Fragment}
 							enter='ease-out duration-300'
 							enterFrom='opacity-0 scale-95'
 							enterTo='opacity-100 scale-100'
@@ -62,10 +60,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										<input
 											type='text'
 											placeholder='Nama Kelas'
-											className={cn(
-												'w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-input focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring',
-												errors.nama && 'border-red-500 focus:border-red-500'
-											)}
+											className={
+												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-input focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
+												${errors.nama ? 'border-red-500 focus:border-red-500' : ''}`
+											}
 											{...register('nama', {
 												required: 'Nama Kelas harus diisi',
 												minLength: {
@@ -90,10 +88,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 											Kategori
 										</label>
 										<select
-											className={cn(
-												'w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring',
-												errors.kategori && 'border-red-500 focus:border-red-500'
-											)}
+											className={`
+												w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
+												${errors.kategori ? 'border-red-500 focus:border-red-500' : ''}`
+											}
 											{...register('kategori', {
 												required: 'Kategori harus diisi',
 											})}>
@@ -114,10 +112,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 											Tipe
 										</label>
 										<select
-											className={cn(
-												'w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring',
-												errors.tipe && 'border-red-500 focus:border-red-500'
-											)}
+											className={
+												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
+												${errors.tipe ? 'border-red-500 focus:border-red-500' : ''}`
+											}
 											{...register('tipe', {
 												required: 'Tipe harus diisi',
 											})}>
@@ -137,10 +135,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 											Level
 										</label>
 										<select
-											className={cn(
-												'w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring',
-												errors.level && 'border-red-500 focus:border-red-500'
-											)}
+											className={
+												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring',
+												${errors.level ? 'border-red-500 focus:border-red-500' : '' }`
+											}
 											{...register('level', {
 												required: 'Level harus diisi',
 											})}>
@@ -163,10 +161,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										<input
 											type='number'
 											placeholder='Harga'
-											className={cn(
-												'w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-input focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring',
-												errors.harga && 'border-red-500 focus:border-red-500'
-											)}
+											className={
+												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-input focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
+												${errors.harga ? 'border-red-500 focus:border-red-500': ''}`
+											}
 											{...register('harga', {
 												required: 'Harga harus diisi',
 												min: {
@@ -193,10 +191,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										<textarea
 											rows={3}
 											placeholder='Deskripsi'
-											className={cn(
-												'w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-textarea focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring resize-none',
-												errors.deskripsi && 'border-red-500 focus:border-red-500'
-											)}
+											className={
+												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-textarea focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring resize-none'
+												${errors.deskripsi ? 'border-red-500 focus:border-red-500' : ''}`
+											}
 											{...register('deskripsi', {
 												required: 'Deskripsi harus diisi',
 												minLength: {
