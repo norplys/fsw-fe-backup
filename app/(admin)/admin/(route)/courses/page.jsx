@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
+import {useState} from 'react';
 import { BiFilter, BiPlus, BiSearch } from 'react-icons/bi';
 
 import { CourseForm } from '@/components/Admin/Course/CourseForm';
-import { cn } from '@/utils/utils';
+
 
 const courses = [
 	{
@@ -98,7 +98,7 @@ const currency = (number) => {
 };
 
 const CoursesPage = () => {
-	const [isOpen, setIsOpen] = React.useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<>
@@ -148,10 +148,9 @@ const CoursesPage = () => {
 								</td>
 								<td className='px-5 text-start'>
 									<span
-										className={cn(
-											'font-bold uppercase',
-											course.tipe === 'Gratis' ? 'text-secret-darkblue' : 'text-secret-pink'
-										)}>
+										className={
+											`font-bold uppercase ${course.tipe === 'Gratis' ? 'text-secret-darkblue' : 'text-secret-pink'}`
+										}>
 										{course.tipe}
 									</span>
 								</td>

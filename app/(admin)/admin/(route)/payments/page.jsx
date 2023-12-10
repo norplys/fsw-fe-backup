@@ -1,5 +1,3 @@
-import { cn } from '@/utils/utils';
-import * as React from 'react';
 import { BiFilter, BiSearch } from 'react-icons/bi';
 
 const payments = [
@@ -129,12 +127,13 @@ const PaymentsPage = () => {
 								</td>
 								<td className='px-5'>
 									<span
-										className={cn(
-											'font-bold uppercase',
-											payment.status === 'Sudah Bayar'
+										className={`
+											font-bold uppercase
+											${payment.status === 'Sudah Bayar'
 												? 'text-secret-darkblue'
 												: 'text-secret-pink'
-										)}>
+											}
+										`}>
 										{payment.status}
 									</span>
 								</td>
