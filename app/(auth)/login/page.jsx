@@ -1,6 +1,5 @@
 "use client";
 
-
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
@@ -8,40 +7,53 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useUsers } from "@/app/context/usersContext";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
-  const {users, handleUsers} = useUsers();
-  const {push} = useRouter();
+  const { users, handleUsers } = useUsers();
+  const { push } = useRouter();
   const [disabled, setDisabled] = useState(false);
-  
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    // setDisabled(true);
-    const formData = new FormData(e.currentTarget);
-    const formObject = Object.fromEntries(formData);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      user: "",
+      password: "",
+    },
+  });
+
+  const handleLogin = async (data) => {
+    try{
+    setDisabled(true);
     const mock  =  mockLogin();
-    console.log(formObject);
-    handleUsers(formObject);
+    handleUsers(data);
     const res = await toast.promise (
       mock , {
         loading: 'Loading',
-        success: `${formObject.Email} successfully logged in`,
+        success: `${data.user} successfully logged in`,
         error: 'Error'
       }
     )
     toast.loading('Redirecting Please Wait...')
     console.log(res);
     await sleepRedirect();
+    }
+    catch(err){
+      toast.error(err.message);
+      setDisabled(false);
+    }
 
   }
 
   const sleepRedirect = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(push('/'));
+        resolve(push("/"));
       }, 1000);
     });
-  }
+  };
 
   const mockLogin = () => {
     return new Promise((resolve, reject) => {
@@ -49,12 +61,15 @@ export default function LoginPage() {
         resolve(true);
       }, 1000);
     });
-}
+  };
 
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
       {/* Bagian Kiri */}
-      <form onSubmit={handleLogin} className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1">
+      <form
+        onSubmit={handleSubmit(handleLogin)}
+        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1"
+      >
         <div className="w-full lg:w-2/3 text-black flex flex-col">
           <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
             Selamat Datang !
@@ -62,21 +77,35 @@ export default function LoginPage() {
 
           {/* Email/No telp */}
           <div className="mb-4 lg:mb-8">
-            <label htmlFor="emailorphone" className="font-bold text-secret-text">Email/No Telpon</label>
+            <label htmlFor="user" className="font-bold text-secret-text">
+              Email/No Telpon
+            </label>
 
             <input
+              {...register("user", {
+                required: "Please fill this field",
+                pattern: {
+                  value: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{10})+$/,
+                  message: "Please provide a valid Email Address or phone number",
+                },
+              })}
               type="text"
-              name="Email"
+              name="user"
               placeholder="Ex: skillHUB@gmail.com / 081234567890"
-              id="emailorphone"
-              className=" border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none "
-              required
+              id="user"
+              className={` ${
+                errors.user ? "border-red-500" : ""
+              } border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none`}
             />
+            {errors.user && (
+              <p className="text-red-500 text-sm font-bold">{errors.user.message}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 mb-4 lg:mb-8">
-
-            <label htmlFor="password" className=" font-bold text-secret-text">Password</label>
+            <label htmlFor="password" className=" font-bold text-secret-text">
+              Password
+            </label>
 
             <Link
               href="login/forgot-password"
@@ -86,20 +115,36 @@ export default function LoginPage() {
             </Link>
 
             <input
+              {...register("password", {
+                required: "Please fill this field",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+              })}
               type="password"
               name="password"
               id="password"
               placeholder="Password"
-              className="border-2 rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none"
-              pattern=".{8,}" 
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-              required
+              className={`border-2 ${
+                errors.password ? "border-red-500" : ""
+              } rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none`}
             />
-            <Toaster position="relative"/>
+            {errors.password && (
+              <p className="text-red-500 text-sm font-bold">{errors.password.message}</p>
+            )}
+            <Toaster position="bottom-left" toastOptions={{
+              loading : {
+                duration : 1500
+              }
+            }}/>
           </div>
 
-          <button disabled={disabled} type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
-
+          <button
+            disabled={disabled}
+            type="submit"
+            className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300"
+          >
             Masuk
           </button>
 
