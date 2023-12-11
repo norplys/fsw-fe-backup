@@ -1,30 +1,37 @@
-import { createContext,useState, useEffect, useContext } from "react";
+"use client"
+
+import { createContext, useState, useContext } from "react";
 import axios from "axios";
+
 
 const UsersContext = createContext();
 
 const UsersProvider = ({ children }) => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [user, setUser] = useState({});
 
-  const getUsers = async () => {
-    setIsLoading(true);
+
+  const handleUsers = async (user) => {
     try {
-      const { data } = await axios.get("https://jsonplaceholder.typicode.com/users");
-      setUsers(data);
-      
-    } catch (error) {
-      setError(error);
+    const data = {
+      "email": user.user,
+      "password": user.password
     }
+    const res = await axios.post("https://final-project-online-course.et.r.appspot.com/v1/login", data);
+    localStorage.setItem("token", res.data.token);
+    
+    const userData = {
+      
+    }
+    setUser(res.data); 
+  }
+  catch(err){
+    throw new Error(err.response.data.message);
+  }
   };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
 
   return (
-    <UsersContext.Provider value={{ users, isLoading, error }}>
+    <UsersContext.Provider value={{ user, handleUsers}}>
       {children}
     </UsersContext.Provider>
   );

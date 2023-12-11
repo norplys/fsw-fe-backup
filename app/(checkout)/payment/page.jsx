@@ -28,7 +28,7 @@ const KelasPembayaran = () => {
                 <h1 className='font-bold'>Kembali</h1>
             </Link>
 
-            <div className='bg-alert-red mx-auto px-5 py-3 rounded-xl md:w-[800px] mt-2'>
+            <div className='bg-secret-red mx-auto px-5 py-3 rounded-xl md:w-[800px] mt-2'>
                 <h1 className='text-center text-white font-bold md:text-[16px] text-[12px]'>Selesaikan Pembayaran sampai 10 Maret 2023 12:00</h1>
             </div>
         </div>
