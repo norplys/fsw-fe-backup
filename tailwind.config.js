@@ -24,6 +24,7 @@ module.exports = {
 					pink : '#FF8696',
 					green : '#73CA5C',
 					blue : '#E8F1FF',
+					red : "#FF0000",
 				},
 			},
 			backgroundImage: {

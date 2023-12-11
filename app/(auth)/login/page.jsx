@@ -3,20 +3,17 @@
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useUsers } from "@/app/context/usersContext";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
   const { users, handleUsers } = useUsers();
   const { push } = useRouter();
-  const [disabled, setDisabled] = useState(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       user: "",
@@ -26,14 +23,12 @@ export default function LoginPage() {
 
   const handleLogin = async (data) => {
     try{
-    setDisabled(true);
-    const mock  =  mockLogin();
-    handleUsers(data);
+    const login = handleUsers(data);
     const res = await toast.promise (
-      mock , {
+      login , {
         loading: 'Loading',
         success: `${data.user} successfully logged in`,
-        error: 'Error'
+        error: `${data.user} failed to login`
       }
     )
     toast.loading('Redirecting Please Wait...')
@@ -42,7 +37,6 @@ export default function LoginPage() {
     }
     catch(err){
       toast.error(err.message);
-      setDisabled(false);
     }
 
   }
@@ -51,17 +45,10 @@ export default function LoginPage() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(push("/"));
-      }, 1000);
+      }, 1500);
     });
   };
 
-  const mockLogin = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(true);
-      }, 1000);
-    });
-  };
 
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
@@ -133,15 +120,15 @@ export default function LoginPage() {
             {errors.password && (
               <p className="text-red-500 text-sm font-bold">{errors.password.message}</p>
             )}
-            <Toaster position="bottom-left" toastOptions={{
-              loading : {
-                duration : 1500
-              }
+            <Toaster position="relative" toastOptions={{
+              loading: {
+                duration: 2000,
+              },
             }}/>
           </div>
 
           <button
-            disabled={disabled}
+            disabled={isSubmitting}
             type="submit"
             className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300"
           >
