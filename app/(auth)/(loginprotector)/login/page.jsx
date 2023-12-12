@@ -8,7 +8,7 @@ import { useUsers } from "@/app/context/usersContext";
 import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
-  const { users, handleUsers } = useUsers();
+  const { handleUsers } = useUsers();
   const { push } = useRouter();
   const {
     register,

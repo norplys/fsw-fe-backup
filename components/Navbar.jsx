@@ -1,22 +1,37 @@
 'use client';
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Link from 'next/link';
 
 import { BiBrain, BiSearchAlt } from 'react-icons/bi';
 import { FiBell, FiList, FiUser } from 'react-icons/fi';
 import { CiLogin } from "react-icons/ci"
+import { useUsers } from '@/app/context/usersContext';
 
 
 const Navbar = () => {
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if(token && !user){
+			setToken(token);
+			handleToken(token);
+		}else if(token){
+			setToken(token);
+		}
+	}, []);
+	const { user, handleToken, removeUser } = useUsers();
+	const [token, setToken] = useState("");
 	const [keyword, setKeyword] = useState('');
-  const [isLogin, setIsLogin] = useState(false);
+
+	const handleLogOut = () => {
+		setToken("");
+		removeUser();
+	};
 
 	const handleSearch = (e) => {
 		e.preventDefault();
 		console.log(keyword);
 	};
-
 	return (
 		<div className='bg-secret-background sticky top-0 z-20 shadow-2xl black100/40'>
 			<nav className='container flex items-center justify-between h-20 px-2 mx-auto'>
@@ -44,24 +59,28 @@ const Navbar = () => {
 
 				<ul className='flex items-center space-x-4'>
 					{
-            isLogin ?
+            user ?
             <>
-            <li>
-						<Link href='/' className='flex items-center px-4 py-1 space-x-2 rounded-lg bg-darkblue-300'>
-							<FiList color='white' size={16} />
+
+						<span className='font-bold mr-4 text-base'>HI, {user.name}</span>
+						<Link href='/my-courses' className='flex items-center px-4 py-1 space-x-2 rounded-lg bg-secret-darkblue'>
+							<FiList className='text-white' size={16} />
 							<p className='font-semibold text-white'>Kelas</p>
 						</Link>
-					</li>
-					<li>
+					
+					
 						<Link href='#'>
-							<FiBell color='white' size={25} />
+							<FiBell className='text-secret-text' size={25} />
 						</Link>
-					</li>
-					<li>
+					
+					
 						<Link href='#'>
-							<FiUser color='white' size={25} />
+							<FiUser className='text-secret-text' size={25} />
 						</Link>
-					</li>
+				
+					<button className='text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink' onClick={handleLogOut}>
+						LogOut
+					</button>
           </>
           :
           <li>
