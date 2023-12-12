@@ -24,7 +24,7 @@ export default function LoginPage() {
   const handleLogin = async (data) => {
     try{
     const login = handleUsers(data);
-    const res = await toast.promise (
+    await toast.promise (
       login , {
         loading: 'Loading',
         success: `${data.user} successfully logged in`,
@@ -32,7 +32,6 @@ export default function LoginPage() {
       }
     )
     toast.loading('Redirecting Please Wait...')
-    console.log(res);
     await sleepRedirect();
     }
     catch(err){

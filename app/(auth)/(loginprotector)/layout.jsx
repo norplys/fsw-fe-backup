@@ -38,7 +38,7 @@ export default function LoginLayout({ children }) {
   const mockLoading = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(true);
-    }, 500);
+    }, 1000);
   });
 
   if (loading)
