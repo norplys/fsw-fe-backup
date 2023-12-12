@@ -1,23 +1,14 @@
 'use client'
-
-import React, { useState } from 'react'
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import { FaChevronDown } from "react-icons/fa"
-import { FaChevronUp } from "react-icons/fa"
-import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowLeft } from "react-icons/fa6"
+import { FaArrowAltCircleRight } from 'react-icons/fa'
+import { Disclosure } from '@headlessui/react'
 
 
 const KelasPembayaran = () => {
-
-    const handleInputClick = (e) => {
-        e.stopPropagation();
-      };
-   
-
   return (
     <div>
         {/* KEMBALI DAN NOTIFIKASI BATAS PEMBAYARAN */}
@@ -36,61 +27,38 @@ const KelasPembayaran = () => {
         <div className='flex md:flex-row flex-col md:px-[100px] px-5 gap-10 h-[600px]'>
             {/* KIRI */}
         {/* kotak Pembayaran */}
-        <div className='md:w-[600px] '>
-            {/* BANK TRANSFER */}
-            <Menu as="div" className=" inline-block text-left w-full mb-10 mt-10">
-            <div>
-                <Menu.Button className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-[#3c3c3c] px-3 py-2 text-sm font-semibold text-white shadow-sm "
-               >
-                Bank Transfer
-                <FaChevronDown color='white' id='chev' />
-                </Menu.Button>
-            </div>
-
-            <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-            >
-            <Menu.Items className=" w-full right-0 z-10 mt-2 h-[400px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="py-1">
-                <Menu.Item>
-                <Link href='#'>Keterangan Bank</Link>
-                </Menu.Item>
-                
-            </div>
-            </Menu.Items>
-            </Transition>
-            </Menu>
-            {/* CREDIT CARD */}
-            <Menu as="div" className=" inline-block text-left w-full">
-            <div>
-                <Menu.Button className="inline-flex w-full justify-between gap-x-1.5 rounded-md bg-secret-pink px-3 py-2 text-sm font-semibold text-white shadow-sm " 
-                
-                >
-                Credit Card
-                <FaChevronDown color='white' />
-              
-                </Menu.Button>
-            </div>
-
-            <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-            >
-            <Menu.Items className="flex w-full z-10 mt-2 h-[400px]  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="py-1">
-                <Menu.Item>
-                    <div className='p-10  '>
+        <div className="w-full px-4 pt-16">
+      <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
+        <Disclosure className="sm:w-[600px]">
+          {({ open }) => (
+            <>
+              <Disclosure.Button className="flex w-full justify-between rounded-lg bg-[#3c3c3c] px-4 py-2 text-left text-sm font-medium text-white">
+                <span>Bank Transfer</span>
+                <FaChevronDown
+                  className={`${
+                    open ? 'rotate-180 transform' : ''
+                  } h-5 w-5 text-white`}
+                />
+              </Disclosure.Button>
+              <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-black">
+                Keterangan Bank
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
+        <Disclosure as="div" className="mt-2">
+          {({ open }) => (
+            <>
+              <Disclosure.Button className="flex w-full justify-between rounded-lg bg-secret-pink px-4 py-2 text-left text-sm font-medium text-white">
+                <span>Credit Card</span>
+                <FaChevronDown
+                  className={`${
+                    open ? 'rotate-180 transform' : ''
+                  } h-5 w-5 text-white`}
+                />
+              </Disclosure.Button>
+              <Disclosure.Panel className="pt-4 text-sm text-black">
+              <div className='p-2  '>
                         {/* PAYMENT OPTIONS */}
                         <div className='flex gap-5 place-content-center  place-items-center'>
                              <Link href='#'>
@@ -129,7 +97,6 @@ const KelasPembayaran = () => {
                                 <input 
                                 type="text" 
                                 className='border-b-2 border-x-0 border-t-0 active:border-none focus:border-none border-black w-full' 
-                                onClick={handleInputClick}
                                 placeholder='4480 0000 0000 0000'/>
                             </div>
 
@@ -138,7 +105,6 @@ const KelasPembayaran = () => {
                                 <input 
                                 type="text" 
                                 className='border-b-2 border-x-0 border-t-0 active:border-none focus:border-none border-black w-full' 
-                                onClick={handleInputClick}
                                 placeholder='John Doe'/>
                             </div>
 
@@ -148,7 +114,6 @@ const KelasPembayaran = () => {
                                     <input 
                                     type="text" 
                                     className='border-b-2 border-x-0 border-t-0 active:border-none focus:border-none border-black md:w-[250px] w-[140px]' 
-                                    onClick={handleInputClick}
                                     placeholder='000'/>
                                 </div>
 
@@ -156,23 +121,24 @@ const KelasPembayaran = () => {
                                     <h3 className='font-bold'>Expiry Date</h3>
                                     <input 
                                     type="text" 
-                                    className='border-b-2 border-x-0 border-t-0 active:border-none focus:border-none border-black md:w-[132px] w-[100px]' 
-                                    onClick={handleInputClick}
+                                    className='border-b-2 border-x-0 border-t-0 active:border-none focus:border-none border-black md:w-[132px] w-[100px]'
                                     placeholder='07/24'/>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </Menu.Item>
-                
-            </div>
-            </Menu.Items>
-            </Transition>
-            </Menu>
-        </div>
+              </Disclosure.Panel>
+            </>
+          )}
+        </Disclosure>
+      </div>
+    </div>
+
+        
+        
         {/* KANAN */}
         {/* PEMBAYARAN KELAS */}
-        <div className='md:w-[400px] w-[300px] rounded-[16px] shadow-xl p-5 flex-grow-0 flex-shrink-0 h-[372px] '>
+        <div className='md:w-[400px] w-[300px] rounded-[16px] shadow-xl p-5 flex-grow-0 flex-shrink-0 h-[372px] sm:mt-[60px]'>
             <h1 className='font-bold'>Pembayaran Kelas</h1>
             {/* KOTAK COURSE */}
             <div className="md:w-[323px] h-[150px] shadow-md rounded-[15px] mx-auto mt-3 bg-secret-background">
@@ -181,6 +147,7 @@ const KelasPembayaran = () => {
                     src='/pembayaranKelas.svg'
                     height={60}
                     width={323}
+                    alt=''
                 />
                 {/* TEXT KONTEN */}
                     <div className='p-2'>
@@ -209,12 +176,7 @@ const KelasPembayaran = () => {
             {/* TOMBOL BAYAR */}
             <button className=' justify-between flex w-full bg-secret-pink px-5 py-3 rounded-[15px] mt-5 '>
                 <h2 className='font-bold text-white md:text-[16px] text-[12px] '>Bayar dan Ikuti Kelas Selamanya</h2>
-                <Image
-                    src='/icon/carbon_next-filled.svg'
-                    height={20}
-                    width={20}
-                    alt='next'
-                    className='md:w-[20px] md:h-[20px] '/>
+                <FaArrowAltCircleRight className='md:w-[20px] md:h-[20px] text-white'/>
             </button>
             </div>
             
