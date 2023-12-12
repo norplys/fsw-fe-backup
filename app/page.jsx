@@ -17,16 +17,6 @@ import ButtonLoading from "@/components/ButtonLoading";
 
 const array = [1, 2, 3, 4, 5, 6];
 
-const mockButton = [
-  "All",
-  "Data Science",
-  "Android Development",
-  "Web Development",
-  "IOS Development",
-  "Business Intelligence",
-  "UI/UX Design",
-];
-
 export default function Beranda () {
   const [queryCategory, setQueryCategory] = useState("");
   const searchParams = useSearchParams();
@@ -38,7 +28,7 @@ export default function Beranda () {
     isLoading: isLoadingCourses,
     error: errorCourses,
     data: dataCourses,
-  } = useCoursesData(queryCategory, "");
+  } = useCoursesData(queryCategory, "", "", "");
   const {
     isLoading: isLoadingCategories,
     error: errorCategories,
@@ -51,6 +41,10 @@ export default function Beranda () {
       setQueryCategory(category);
     }else {
       setQueryCategory("");
+      params.delete("categoryId");
+      router.push(pathname + "?" + params.toString(), {
+        scroll: false,
+      });
     }
   }, [searchParams]);
   
