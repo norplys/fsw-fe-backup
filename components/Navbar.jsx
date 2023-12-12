@@ -1,6 +1,6 @@
 'use client';
 
-import {useState, useEffect} from 'react';
+import {useState, useEffect, createFactory} from 'react';
 import Link from 'next/link';
 
 import { BiBrain, BiSearchAlt } from 'react-icons/bi';
@@ -12,16 +12,25 @@ import { useUsers } from '@/app/context/usersContext';
 const Navbar = () => {
 	useEffect(() => {
 		const token = localStorage.getItem('token');
-		if(token && !user){
-			setToken(token);
-			handleToken(token);
-		}else if(token){
-			setToken(token);
-		}
+		ifToken(token);
 	}, []);
 	const { user, handleToken, removeUser } = useUsers();
 	const [token, setToken] = useState("");
 	const [keyword, setKeyword] = useState('');
+
+	const ifToken =  async (token) => {
+		try{
+		if(token && !user){
+			setToken(token);
+			await handleToken(token);
+		}else if(token){
+			setToken(token);
+		}
+	}
+	catch(err){
+		setToken("");
+	}
+	}	
 
 	const handleLogOut = () => {
 		setToken("");

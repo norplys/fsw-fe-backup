@@ -45,6 +45,7 @@ const UsersProvider = ({ children }) => {
   }
   catch(err){
       localStorage.removeItem("token");
+      throw new Error(err.response.data.message);
     }
   }
 
