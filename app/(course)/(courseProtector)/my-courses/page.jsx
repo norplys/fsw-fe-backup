@@ -1,34 +1,17 @@
 "use client";
-import ClassCategoriesCard from "@/components/ClassCategoriesCard";
+import MyClassCard from "@/components/ClassPage/MyClassCard";
 import FilterCategory from "@/components/ClassPage/FilterCategory";
 import ClassButton from "@/components/ClassPage/ClassButton";
-import { useCoursesData } from "../../utils/hooks/useCoursesData";
+import { useCoursesData } from "@/app/utils/hooks/useCoursesData";
 import ClassCardLoading from "@/components/ClassCardLoading";
 import { useCategoriesData } from "@/app/utils/hooks/useCategoriesData";
 import { BiSearchAlt } from "react-icons/bi";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import MyClassCard from "@/components/ClassPage/MyClassCard";
+import { useForm } from "react-hook-form";
 
 
 const array = [1, 2, 3, 4];
-// const filter = {
-//   category: "Filter",
-//   card: [
-//     {
-//       name: "Paling Baru",
-//       id: "baru",
-//     },
-//     {
-//       name: "Paling Populer",
-//       id: "populer",
-//     },
-//     {
-//       name: "Promo",
-//       id: "promo",
-//     },
-//   ],
-// };
 const levelFilterButton = {
   category: "level",
   card: [
@@ -49,27 +32,34 @@ const levelFilterButton = {
 const ButtonData = [
   {
     name: "Semua Kelas",
-    value: "semua",
+    value: "",
   },
   {
     name: "Kelas Premium",
-    value: "premium",
+    value: "1",
   },
   {
     name: "Kelas Gratis",
-    value: "gratis",
+    value: "0",
   },
 ];
-export default function Courses() {
-  const [categoryId, setCategoryId] = useState("");
-  const [level, setLevel] = useState("");
-  const [queryCategory, setQueryCategory] = useState([])
-  const [queryLevel, setQueryLevel] = useState([])
+export default function MyCourses() {
+  const [search, setSearch] = useState(); 
+  const [categoryId, setCategoryId] = useState();
+  const [level, setLevel] = useState();
+  const [queryCategory, setQueryCategory] = useState([]);
+  const [queryLevel, setQueryLevel] = useState([]);
+  const [premium, setPremium] = useState();
+  
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams);
-
+  const {register, handleSubmit} = useForm({
+    defaultValues: {
+      search : ''
+    }
+  })
   const createQueryString = (name, value) => {
     params.set(name, value)
     return params.toString()
@@ -79,12 +69,30 @@ export default function Courses() {
 useEffect(() => {
   const categoryFilter = searchParams.get("categoryId")
   const levelFilter = searchParams.get("level")
+  const searchFilter = searchParams.get("search")
+  const premiumFilter = searchParams.get("premium")
+  if(premiumFilter){
+    setPremium(premiumFilter)
+  }else{
+    setPremium("")
+    params.delete("premium");
+    router.push(pathname + "?" + params.toString())
+  }
+  if(searchFilter){
+    setSearch(searchFilter)
+  }else{
+    setSearch("")
+    params.delete("search");
+    router.push(pathname + "?" + params.toString())
+  }
   if(categoryFilter){
     setCategoryId(categoryFilter)
     setQueryCategory(categoryFilter.split(",").map((item) => parseInt(item)))
   }else{
     setCategoryId("")
     setQueryCategory([])
+    params.delete("categoryId");
+    router.push(pathname + "?" + params.toString())
   }
   if(levelFilter){
     setLevel(levelFilter)
@@ -92,8 +100,17 @@ useEffect(() => {
   }else{
     setLevel("")
     setQueryLevel([])
+    params.delete("level");
+    router.push(pathname + "?" + params.toString())
   }
 }, [searchParams]);
+
+  const handlePremium = (value) => {
+    setPremium(value);
+    router.push(pathname + "?" + createQueryString('premium', value), {
+      scroll: false,
+    });
+  };
 
 
   const handleChange = (value, category) => {
@@ -126,7 +143,14 @@ useEffect(() => {
     }
   }
 
-  const { isLoading, error, data } = useCoursesData(categoryId, level);
+  const handleSearch = (data) => {
+    router.push(pathname + "?" + createQueryString('search', data.search), {
+      scroll: false,
+    });
+  }
+
+
+  const { isLoading, error, data } = useCoursesData(categoryId, level, search, premium);
   const {
     isLoading: isLoadingCategories,
     error: errorCategories,
@@ -148,8 +172,9 @@ useEffect(() => {
             Kelas Berjalan
           </h1>
 
-          <div className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl">
+          <form className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl" onSubmit={handleSubmit(handleSearch)}>
             <input
+              {...register("search")}
               type="text"
               placeholder="Cari Kelas..."
               name="search"
@@ -157,10 +182,10 @@ useEffect(() => {
               id="search-class"
             />
 
-            <label htmlFor="search-class" className="flex justify-center items-center p-2 bg-secret-darkblue">
+            <button htmlFor="search-class" className="flex justify-center items-center p-2 bg-secret-darkblue hover:scale-110 duration-300" >
               <BiSearchAlt className="text-secret-background text-xl"/>
-            </label>
-          </div>
+            </button>
+          </form>
         </div>
 
         <div className="flex lg:flex-row gap-[88px] ">
@@ -207,9 +232,11 @@ useEffect(() => {
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton
+                    handlePremium={handlePremium}
                     key={index}
                     text={item.name}
                     value={item.value}
+                    active={premium}
                   />
                 );
               })}

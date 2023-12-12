@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ClassButton({text}) {
+export default function ClassButton({text, handlePremium, value, active}) {
     const [isActive, setIsActive] = useState(false);
     function changeActive () {
         setIsActive(!isActive);
@@ -9,11 +9,14 @@ export default function ClassButton({text}) {
         <button
               className={`rounded-full py-3 px-6 duration-300 font-bold hover:-translate-y-1 hover:shadow-xl
                             ${
-                              isActive
+                              active === value
                                 ? "text-white bg-secret-darkblue"
                                 : "bg-secret-cyan text-secret-text"
                             }`}
-              onClick={changeActive}
+              onClick={() => {
+                changeActive();
+                handlePremium(value);
+              }}
             >
               {text}
         </button>

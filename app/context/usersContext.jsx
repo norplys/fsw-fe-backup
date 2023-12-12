@@ -18,10 +18,6 @@ const UsersProvider = ({ children }) => {
     }
     const res = await axios.post("https://final-project-online-course.et.r.appspot.com/v1/login", data);
     localStorage.setItem("token", res.data.token);
-    const userData = {
-      name : res.data.name,
-      email : res.data.email,
-    }
     setUser(res.data); 
   }
   catch(err){
@@ -41,7 +37,7 @@ const UsersProvider = ({ children }) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    setUser({name: "test", email: "test@gmail.com"});
+    setUser(res.data.data);
   }
   catch(err){
       localStorage.removeItem("token");

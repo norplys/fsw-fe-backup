@@ -20,18 +20,18 @@ export default function LoginLayout({ children }) {
       if (token && !user) {
         await handleToken(token);
         await mockLoading;
-        router.push("/");
+        setLoading(false);
       } else if (token && user) {
         await mockLoading;
-        router.push("/");
+        setLoading(false);
       } else {
         await mockLoading;
-        setLoading(false);
+        router.push("/login");
       }
     }
     catch(err){
       await mockLoading;
-      setLoading(false);
+      router.push("/login");
     }
   };
   const mockLoading = new Promise((resolve, reject) => {
@@ -40,10 +40,11 @@ export default function LoginLayout({ children }) {
     }, 1000);
   });
 
-  if (loading)
+if (loading)
     return (
-      <Guard />
-    );
+        <Guard/>
+    )
+ 
 
   return <section>{children}</section>;
 }
