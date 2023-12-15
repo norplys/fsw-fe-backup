@@ -17,8 +17,10 @@ export default function OtpPage() {
   const email = params.get("email");
 
   const [otp, setOtp] = useState(new Array(6).fill(0));
+
   const [time, setTime] = useState(60);
   const reference = useRef([]);
+
   function handleChange(value,index){
     let newArr = [...otp];
     newArr[index] = value;
