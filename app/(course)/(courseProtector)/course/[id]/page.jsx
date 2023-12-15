@@ -24,11 +24,11 @@ const DetailKelas = () => {
   const handleVideo = (video) => {
 	setVideo(video);
   }
-
   return (
     <>
     { isLoading ? <ClassDetailLoading /> :
     <>
+
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"

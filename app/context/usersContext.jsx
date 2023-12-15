@@ -17,8 +17,8 @@ const UsersProvider = ({ children }) => {
       "password": user.password
     }
     const res = await axios.post("https://final-project-online-course.et.r.appspot.com/v1/login", data);
-    localStorage.setItem("token", res.data.token);
-    setUser(res.data); 
+    localStorage.setItem("token", res.data.data.token);
+    setUser(res.data.data); 
   }
   catch(err){
     throw new Error(err.response.data.message);
