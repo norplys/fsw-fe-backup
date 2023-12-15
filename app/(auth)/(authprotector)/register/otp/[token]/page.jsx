@@ -3,13 +3,12 @@
 
 import { BiBrain } from "react-icons/bi";
 import Otp from "@/components/Auth/Otp";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast , { Toaster } from "react-hot-toast";
 import {useParams, useSearchParams, useRouter} from "next/navigation";
 
-const mockArray = Array(6).fill(0);
 export default function OtpPage() {
   const [timer, setTimer] = useState(60);
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,6 +17,22 @@ export default function OtpPage() {
   const { token } = useParams();
   const email = params.get("email");
 
+  const [otp, setOtp] = useState(new Array(6).fill(0));
+  const reference = useRef([]);
+
+  function handleChange(value,index){
+    let newArr = [...otp];
+    newArr[index] = value;
+    setOtp(newArr);
+    if(value && index < 6 - 1){
+      reference.current[index + 1].focus();
+    }
+  }
+  function handleBackspace(index,e){{
+    if(e.key === "Backspace" && index > 0){
+      reference.current[index - 1].focus();
+    }
+  }}
 
   const sleepRedirect = () => {
     return new Promise((resolve, reject) => {
@@ -70,12 +85,17 @@ export default function OtpPage() {
 
         <p className="text-base text-secret-text mb-4">Ketik 6 digit kode yang dikirimkan ke <span className="font-bold">{email}</span></p>
           <div className="mb-4 lg:mb-8 flex gap-6">
-            { mockArray.map((_, index) => 
+
+            { otp.map((_, index) => 
                 <Otp
                   key={index}
                   index={index}
                   register={register}
                   errors={errors}
+                  reference={reference}
+                  handleChange={handleChange}
+                  handleBackspace={handleBackspace}
+
                 />
             )}  
           </div>
