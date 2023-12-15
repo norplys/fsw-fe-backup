@@ -7,14 +7,18 @@ export default function Otp({
   handleBackspace,
   reference,
 }) {
+
   const {ref} = register(`Otp${index}`)
+
   return (
     <input
       {...register(`Otp${index}`, {
         required: true,
         maxLength: 1,
         pattern: { value: /[0-9]/, message: "Kode OTP harus berupa angka" },
+
         onChange : (e) => handleChange(e.target.value, index),
+
       })}
       type="text"
       placeholder="0"
@@ -26,6 +30,7 @@ export default function Otp({
         reference.current[index] = e
       }}
       onKeyUp = {(e) => handleBackspace(index, e)}
+
     />
   );
 }
