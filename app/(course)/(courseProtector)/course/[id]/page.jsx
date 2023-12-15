@@ -1,6 +1,6 @@
 "use client";
-
-import { Fragment, useState, useEffect } from "react";
+import ClassDetailLoading from "@/components/CLassDetailLoading";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { BiSolidChat, BiSolidStar, BiX } from "react-icons/bi";
@@ -27,6 +27,8 @@ const DetailKelas = () => {
 
   return (
     <>
+    { isLoading ? <ClassDetailLoading /> :
+    <>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -45,11 +47,6 @@ const DetailKelas = () => {
             <div className="fixed inset-0 bg-black/80"></div>
           </Transition.Child>
 
-          {isLoading ? (
-            <div className="flex items-center justify-center h-screen text-black">
-              Loading...
-            </div>
-          ) : (
             <div className="fixed inset-0 overflow-y-auto">
               <div className="flex items-center justify-center min-h-full p-4 text-center">
                 <Transition.Child
@@ -152,19 +149,12 @@ const DetailKelas = () => {
                 </Transition.Child>
               </div>
             </div>
-          )}
         </Dialog>
       </Transition>
 
-      {isLoading ? (
-        <div className="flex items-center justify-center h-screen text-white">
-          Loading...
-        </div>
-      ) : error ? (
-        <div className="flex items-center justify-center h-screen text-white">
-          {error}
-        </div>
-      ) : (
+ 
+     
+   
 
 
         <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
@@ -253,17 +243,8 @@ const DetailKelas = () => {
             </div>
           </div>
         </div>
-      )}
 
-      {isLoading ? (
-        <div className="flex items-center justify-center h-screen text-white">
-          Loading...
-        </div>
-      ) : error ? (
-        <div className="flex items-center justify-center h-screen text-white">
-          {error}
-        </div>
-      ) : (
+
         <div className="py-10">
           <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
             <div className="xl:col-span-3">
@@ -301,7 +282,8 @@ const DetailKelas = () => {
             </div>
           </div>
         </div>
-      )}
+      </>
+        }
     </>
   );
 };
