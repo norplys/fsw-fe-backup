@@ -1,3 +1,4 @@
+
 export default function Otp({
   register,
   errors,
@@ -28,3 +29,4 @@ export default function Otp({
     />
   );
 }
+
