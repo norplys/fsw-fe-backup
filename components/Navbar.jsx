@@ -40,7 +40,6 @@ const Navbar = () => {
 
 		
 	};
-
 	return (
 		<div className='bg-secret-background sticky top-0 z-20 shadow-2xl black100/40'>
 			<nav className='container flex items-center justify-between h-20 px-2 mx-auto'>
