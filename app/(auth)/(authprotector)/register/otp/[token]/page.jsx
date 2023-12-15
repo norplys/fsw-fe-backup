@@ -63,7 +63,6 @@ export default function OtpPage() {
       success: "OTP successfully verified",
       error: "OTP failed to verify",
     });
-    toast.success("Otp successfully verified");
     toast.loading("Redirecting Please Wait...");
     await sleepRedirect();
   }
