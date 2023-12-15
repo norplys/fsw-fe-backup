@@ -16,6 +16,7 @@ export default function OtpPage() {
   const params = useSearchParams();
   const { token } = useParams();
   const email = params.get("email");
+
   const [otp, setOtp] = useState(new Array(6).fill(0));
   const reference = useRef([]);
 
@@ -84,6 +85,7 @@ export default function OtpPage() {
 
         <p className="text-base text-secret-text mb-4">Ketik 6 digit kode yang dikirimkan ke <span className="font-bold">{email}</span></p>
           <div className="mb-4 lg:mb-8 flex gap-6">
+
             { otp.map((_, index) => 
                 <Otp
                   key={index}
@@ -93,6 +95,7 @@ export default function OtpPage() {
                   reference={reference}
                   handleChange={handleChange}
                   handleBackspace={handleBackspace}
+
                 />
             )}  
           </div>
