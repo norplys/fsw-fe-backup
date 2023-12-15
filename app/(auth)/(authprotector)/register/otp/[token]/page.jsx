@@ -10,15 +10,14 @@ import toast , { Toaster } from "react-hot-toast";
 import {useParams, useSearchParams, useRouter} from "next/navigation";
 
 export default function OtpPage() {
-  const [timer, setTimer] = useState(60);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const {push} = useRouter();
   const params = useSearchParams();
   const { token } = useParams();
   const email = params.get("email");
   const [otp, setOtp] = useState(new Array(6).fill(0));
+  const [time, setTime] = useState(60);
   const reference = useRef([]);
-
   function handleChange(value,index){
     let newArr = [...otp];
     newArr[index] = value;
@@ -42,27 +41,28 @@ export default function OtpPage() {
   };
   useEffect(() => {
     const interval = setInterval(() => {
-      if (timer === 0) {
+      if (time === 0) {
         clearInterval(interval);
         return;
       }
-      setTimer((prev) => prev - 1);
+      setTime((prev) => prev - 1);
     }
     , 1000);
     return () => clearInterval(interval);
   }
-  , [timer]);
+  , [time]);
   const handleOtp = async (data) => {
     try{
     const otp = Object.values(data).join("");
     const register = axios.post("https://final-project-online-course.et.r.appspot.com/v1/validate-register", { otp }, {headers : {
       Authorization: `Bearer ${token}`,
     }});
-    const res = await toast.promise(register, {
+    await toast.promise(register, {
       loading: "Loading...",
       success: "OTP successfully verified",
       error: "OTP failed to verify",
     });
+    toast.success("Otp successfully verified");
     toast.loading("Redirecting Please Wait...");
     await sleepRedirect();
   }
@@ -97,8 +97,8 @@ export default function OtpPage() {
             )}  
           </div>
           {
-            timer > 0 ?
-          <p className="text-base text-secret-text mb-4 text-center">Kirim Ulang OTP dalam <span className="font-bold">{timer}</span> Detik</p>
+             time > 0 ?
+          <p className="text-base text-secret-text mb-4 text-center">Kirim Ulang OTP dalam <span className="font-bold">{time}</span> Detik</p>
           :
           <p className="text-base text-secret-text mb-4 text-center">Kirim Ulang <span className="font-bold">OTP</span></p>
           }
