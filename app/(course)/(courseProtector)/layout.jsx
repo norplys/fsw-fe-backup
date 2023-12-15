@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-import { BiBrain } from "react-icons/bi";
 import { useUsers } from "@/app/context/usersContext";
+import Guard from "@/components/Guard";
 
 export default function LoginLayout({ children }) {
   const router = useRouter();
@@ -21,18 +20,18 @@ export default function LoginLayout({ children }) {
       if (token && !user) {
         await handleToken(token);
         await mockLoading;
-        router.push("/");
-      } else if (token) {
-        await mockLoading;
-        router.push("/");
-      } else {
+        setLoading(false);
+      } else if (token && user) {
         await mockLoading;
         setLoading(false);
+      } else {
+        await mockLoading;
+        router.push("/login");
       }
     }
     catch(err){
-        await mockLoading;
-      setLoading(false);
+      await mockLoading;
+      router.push("/login");
     }
   };
   const mockLoading = new Promise((resolve, reject) => {
@@ -41,20 +40,11 @@ export default function LoginLayout({ children }) {
     }, 1000);
   });
 
-  if (loading)
+if (loading)
     return (
-      <div className="bg-secret-pink flex items-center justify-center min-h-screen min-w-full">
-        <BiBrain className="text-9xl text-white" />
-        <div className="flex">
-          <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
-          </h1>
-        </div>
-      </div>
-    );
+        <Guard/>
+    )
+ 
 
   return <section>{children}</section>;
 }

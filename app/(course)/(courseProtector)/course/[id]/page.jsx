@@ -1,5 +1,5 @@
 "use client";
-
+import ClassDetailLoading from "@/components/CLassDetailLoading";
 import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -13,18 +13,21 @@ import { useClassDetails } from "@/app/utils/hooks/useClassDetails";
 import Chapter from "@/components/ClassDetail/Chapter";
 import Image from "next/image";
 
-const mockArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 const DetailKelas = () => {
+
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
-  const { data, isLoading, error } = useClassDetails(id);
-  const [video, setVideo] = useState("https://www.youtube.com/embed/na80LQCX1KU?si=vW40wfhV5NkcsA2S");
+  const { data, isLoading, error } = useClassDetails(id, token);
+  const [video, setVideo] = useState("");
 
   const handleVideo = (video) => {
 	setVideo(video);
   }
+
   return (
+    <>
+    { isLoading ? <ClassDetailLoading /> :
     <>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
@@ -44,11 +47,6 @@ const DetailKelas = () => {
             <div className="fixed inset-0 bg-black/80"></div>
           </Transition.Child>
 
-          {isLoading ? (
-            <div className="flex items-center justify-center h-screen text-white">
-              Loading...
-            </div>
-          ) : (
             <div className="fixed inset-0 overflow-y-auto">
               <div className="flex items-center justify-center min-h-full p-4 text-center">
                 <Transition.Child
@@ -151,19 +149,12 @@ const DetailKelas = () => {
                 </Transition.Child>
               </div>
             </div>
-          )}
         </Dialog>
       </Transition>
 
-      {isLoading ? (
-        <div className="flex items-center justify-center h-screen text-white">
-          Loading...
-        </div>
-      ) : error ? (
-        <div className="flex items-center justify-center h-screen text-white">
-          {error}
-        </div>
-      ) : (
+ 
+     
+   
 
 
         <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
@@ -171,11 +162,11 @@ const DetailKelas = () => {
 
           <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
             <div className="xl:col-span-3">
-              <Link href="/" className="flex items-center mb-4 space-x-2">
+              <Link className="flex items-center mb-4 space-x-2" href={"/courses"}>
                 <FiArrowLeft color="black" size={16} />
-                <Link className="font-bold text-black" href={"/courses"}>
+                <div className="font-bold text-black">
                   Kelas Lainnya
-                </Link>
+                </div>
               </Link>
 
               <div className="flex flex-col mb-3">
@@ -211,9 +202,9 @@ const DetailKelas = () => {
 
 
               <a className="flex items-center justify-center px-6 py-2 space-x-2 bg-secret-darkblue rounded-full hover:scale-105 max-w-xs" href={data.telegram}>
-                <a className="font-bold text-white shadow-2xl hover:shadow-none">
+                <div className="font-bold text-white shadow-2xl hover:shadow-none">
                   Telegram Link
-                </a>
+                </div>
                 <BiSolidChat className="text-white" size={20} />
               </a>
 
@@ -252,32 +243,28 @@ const DetailKelas = () => {
             </div>
           </div>
         </div>
-      )}
 
-      {isLoading ? (
-        <div className="flex items-center justify-center h-screen text-white">
-          Loading...
-        </div>
-      ) : error ? (
-        <div className="flex items-center justify-center h-screen text-white">
-          {error}
-        </div>
-      ) : (
+
         <div className="py-10">
           <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
             <div className="xl:col-span-3">
-              <iframe
-
-
+              {video ? <iframe
                 className="w-full h-full mb-5 rounded-2xl shadow-2xl"
-
-
                 src={video}
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen="true"
+                allowFullScreen= {true}
+              ></iframe> : 
+              <iframe
+                className="w-full h-full mb-5 rounded-2xl shadow-2xl"
+                src={data.introVideo}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen= {true}
               ></iframe>
+              }
 
               <h2 className="mb-3 text-2xl font-bold">Tentang Kelas</h2>
               <p className="mb-5 leading-relaxed text-gray-500">
@@ -295,7 +282,8 @@ const DetailKelas = () => {
             </div>
           </div>
         </div>
-      )}
+      </>
+        }
     </>
   );
 };
