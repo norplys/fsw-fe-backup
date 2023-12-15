@@ -4,8 +4,10 @@
 import AuthInput from "@/components/Auth/AuthInput";
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 
 export default function ForgotPassword() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
       <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1">
@@ -19,6 +21,8 @@ export default function ForgotPassword() {
             type="email"
             placeholder="Ex: skillHUB@gmail.com"
             id="email"
+            register={register}
+            errors={errors}
           />
 
           <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">

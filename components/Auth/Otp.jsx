@@ -1,11 +1,10 @@
-export default function Otp(
+export default function Otp({register, errors, index}
 ) {
-    return <input
+    return (<input
+    {...register(`Otp${index}`, { required: true , maxLength: 1, pattern : {value: /[0-9]/, message: "Kode OTP harus berupa angka"}})}
     type="text"
-    name="otp"
     placeholder="0"
-    id="otp"
-    className=" border-2 rounded-2xl w-full text-center p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none placeholder:text-center "
-    required
+    className= {`${errors[`Otp${index}`] ? 'border-red-500' : ''} border-2 rounded-2xl w-full text-center p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none placeholder:text-center`}
 />
+    );
 }

@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
 import { useUsers } from "@/app/context/usersContext";
 import Guard from "@/components/Guard";
-
 
 export default function LoginLayout({ children }) {
   const router = useRouter();
@@ -23,9 +21,7 @@ export default function LoginLayout({ children }) {
         await handleToken(token);
         await mockLoading;
         router.push("/");
-
       } else if (token && user) {
-
         await mockLoading;
         router.push("/");
       } else {
@@ -34,9 +30,7 @@ export default function LoginLayout({ children }) {
       }
     }
     catch(err){
-
       await mockLoading;
-
       setLoading(false);
     }
   };
@@ -48,9 +42,7 @@ export default function LoginLayout({ children }) {
 
   if (loading)
     return (
-
       <Guard />
-
     );
 
   return <section>{children}</section>;

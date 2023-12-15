@@ -18,8 +18,6 @@ const UsersProvider = ({ children }) => {
     }
     const res = await axios.post("https://final-project-online-course.et.r.appspot.com/v1/login", data);
     localStorage.setItem("token", res.data.token);
-
-
     setUser(res.data); 
   }
   catch(err){
@@ -39,9 +37,7 @@ const UsersProvider = ({ children }) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
     setUser(res.data.data);
-
   }
   catch(err){
       localStorage.removeItem("token");

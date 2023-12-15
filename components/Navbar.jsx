@@ -1,17 +1,13 @@
 'use client';
 
-
 import {useState, useEffect} from 'react';
-
 import Link from 'next/link';
 
 import { BiBrain, BiSearchAlt } from 'react-icons/bi';
 import { FiBell, FiList, FiUser } from 'react-icons/fi';
 import { CiLogin } from "react-icons/ci"
 import { useUsers } from '@/app/context/usersContext';
-
 import { useRouter } from 'next/navigation';
-
 
 
 const Navbar = () => {
@@ -20,27 +16,21 @@ const Navbar = () => {
 		ifToken(token);
 	}, []);
 	const { user, handleToken, removeUser } = useUsers();
-
 	const [keyword, setKeyword] = useState('');
 	const {push} = useRouter();
-
 
 	const ifToken =  async (token) => {
 		try{
 		if(token && !user){
-
 			await handleToken(token);
 		}
 	}
 	catch(err){
 		localStorage.removeItem('token');
-
 	}
 	}	
 
 	const handleLogOut = () => {
-
-
 		removeUser();
 	};
 

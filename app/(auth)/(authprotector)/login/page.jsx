@@ -119,7 +119,7 @@ export default function LoginPage() {
             {errors.password && (
               <p className="text-red-500 text-sm font-bold">{errors.password.message}</p>
             )}
-            <Toaster position="relative" toastOptions={{
+            <Toaster position="bottom-left" toastOptions={{
               loading: {
                 duration: 2000,
               },
