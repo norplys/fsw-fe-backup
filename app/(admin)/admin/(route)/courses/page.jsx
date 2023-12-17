@@ -1,105 +1,44 @@
 'use client';
 
-import {useState} from 'react';
+import {useEffect, useState } from 'react';
 import { BiFilter, BiPlus, BiSearch } from 'react-icons/bi';
 
 import { CourseForm } from '@/components/Admin/Course/CourseForm';
-
-
-const courses = [
-	{
-		id: 1,
-		kode: 'KLS-001',
-		kategori: 'UI/UX Design',
-		nama: 'Belajar UI/UX Design dengan Figma',
-		tipe: 'Gratis',
-		level: 'Beginner',
-		harga: 0,
-	},
-	{
-		id: 2,
-		kode: 'KLS-002',
-		kategori: 'Data Science',
-		nama: 'Data Cleaning untuk Pemula',
-		tipe: 'Premium',
-		level: 'Beginner',
-		harga: 100000,
-	},
-	{
-		id: 3,
-		kode: 'KLS-003',
-		kategori: 'Data Science',
-		nama: 'Data Visualization untuk Pemula',
-		tipe: 'Premium',
-		level: 'Beginner',
-		harga: 100000,
-	},
-	{
-		id: 4,
-		kode: 'KLS-004',
-		kategori: 'Data Science',
-		nama: 'Data Analysis untuk Pemula',
-		tipe: 'Premium',
-		level: 'Beginner',
-		harga: 100000,
-	},
-	{
-		id: 5,
-		kode: 'KLS-005',
-		kategori: 'Data Science',
-		nama: 'Machine Learning untuk Pemula',
-		tipe: 'Premium',
-		level: 'Beginner',
-		harga: 100000,
-	},
-	{
-		id: 6,
-		kode: 'KLS-006',
-		kategori: 'Data Science',
-		nama: 'Natural Language Processing untuk Pemula',
-		tipe: 'Premium',
-		level: 'Beginner',
-		harga: 100000,
-	},
-	{
-		id: 7,
-		kode: 'KLS-007',
-		kategori: 'Data Science',
-		nama: 'Deep Learning untuk Pemula',
-		tipe: 'Premium',
-		level: 'Beginner',
-		harga: 100000,
-	},
-	{
-		id: 8,
-		kode: 'KLS-008',
-		kategori: 'Data Science',
-		nama: 'Time Series untuk Pemula',
-		tipe: 'Premium',
-		level: 'Beginner',
-		harga: 100000,
-	},
-	{
-		id: 9,
-		kode: 'KLS-009',
-		kategori: 'Data Science',
-		nama: 'Recommender System untuk Pemula',
-		tipe: 'Premium',
-		level: 'Beginner',
-		harga: 100000,
-	},
-];
-
-const currency = (number) => {
-	return new Intl.NumberFormat('id-ID', {
-		style: 'currency',
-		currency: 'IDR',
-	}).format(number);
-};
+import { useAdminCourses } from '@/app/utils/hooks/useAdminCourses';
+import { useRouter } from 'next/navigation';
+import AdminCourses from '@/components/Admin/AdminCourses';
+import axios from 'axios';
 
 const CoursesPage = () => {
-	const [isOpen, setIsOpen] = useState(false);
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		validateAdmin(token);
+		setToken(token);
+	}, []);
+	const {push} = useRouter();
+	const validateAdmin = async (token) => {
+		try {
+			const res = await axios.get('https://api.learnify.risalamin.com/users/me', {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			if (
+				!res.data.data.admin) {
+				throw new Error('You are not admin');
+			}
+		} catch (error) {
+			localStorage.removeItem('token');
+			push('/admin/login');
+		}
+	};
 
+
+	const [token, setToken] = useState('');
+	const [isOpen, setIsOpen] = useState(false);
+	const {data, isLoading, isError, error} = useAdminCourses(token);
+	if(isLoading) return <div>Loading...</div>
+	if(isError) return <div>{error.message}</div>
 	return (
 		<>
 			<div className='flex items-center justify-between mb-5'>
@@ -135,46 +74,11 @@ const CoursesPage = () => {
 						</tr>
 					</thead>
 					<tbody className='w-full'>
-						{courses?.map((course) => (
-							<tr
-								key={course.id}
-								className='w-full h-16 text-sm leading-none text-gray-800 bg-white border-t border-b border-gray-100 hover:bg-gray-100'>
-								<td className='px-5 text-start'>
-									<span className='font-semibold'>{course.kode}</span>
-								</td>
-								<td className='px-5 text-start'>{course.kategori}</td>
-								<td className='px-5 text-start'>
-									<span className='font-semibold'>{course.nama}</span>
-								</td>
-								<td className='px-5 text-start'>
-									<span
-										className={
-											`font-bold uppercase ${course.tipe === 'Gratis' ? 'text-secret-darkblue' : 'text-secret-pink'}`
-										}>
-										{course.tipe}
-									</span>
-								</td>
-								<td className='px-5 text-start'>{course.level}</td>
-								<td className='px-5 text-start'>{currency(course.harga)}</td>
-								<td className='px-5 text-start'>
-									<div className='inline-flex items-center justify-center space-x-2'>
-										<button className='px-4 py-1 text-sm font-semibold text-white rounded-full bg-secret-darkblue'>
-											Ubah
-										</button>
-										<button className='px-4 py-1 text-sm font-semibold text-white rounded-full bg-secret-pink'>
-											Hapus
-										</button>
-									</div>
-								</td>
-							</tr>
+						{
+					
+						data?.map((data) => (
+							<AdminCourses data={data} key={data.id} />
 						))}
-						{courses?.length === 0 && (
-							<tr className='w-full h-16 text-sm leading-none text-gray-800 bg-white border-t border-b border-gray-100'>
-								<td colSpan={7} className='px-5 text-center'>
-									Belum ada data
-								</td>
-							</tr>
-						)}
 					</tbody>
 				</table>
 			</div>
@@ -182,6 +86,7 @@ const CoursesPage = () => {
 			<CourseForm isOpen={isOpen} setIsOpen={setIsOpen} />
 		</>
 	);
+
 };
 
 export default CoursesPage;

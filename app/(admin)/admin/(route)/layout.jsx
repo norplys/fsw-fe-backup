@@ -32,7 +32,7 @@ const dashboard = [
 	{
 		label: 'Premium Course',
 		count: '20',
-		color: 'bg-darkblue-500',
+		color: 'bg-secret-cyan',
 	},
 ];
 

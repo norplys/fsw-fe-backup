@@ -1,19 +1,53 @@
 'use client';
 
 import {Fragment} from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useFieldArray } from 'react-hook-form';
 import { Dialog, Transition } from '@headlessui/react';
 import { BiX } from 'react-icons/bi';
 import { IconButton } from '@/components/Admin/IconButton';
+import {useState} from 'react';
+import Module from './ChapterModule';
+
 
 export const CourseForm = ({ isOpen, setIsOpen }) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
+		control,
+	} = useForm({
+		defaultValues: {
+			nama: '',
+			kategori: '',
+			tipe: '',
+			level: '',
+			harga: '',
+			targetKelas: [' '],
+			chapter: [{
+				name : '',
+				module : [{ title : '', video : ''}],
+			}],
+			deskripsi: '',
+		},
+	});
 
-	const onSubmit = (data) => alert(JSON.stringify(data));
+	const { fields, append, remove } = useFieldArray({
+		name: 'targetKelas',
+		control,
+		rules : {
+			required: 'Target Kelas harus diisi',
+		}
+	});
+
+	const {fields: fields2, append: append2, remove: remove2} = useFieldArray({
+		name : 'chapter',
+		control,
+		rules : {
+			required: 'Chapter harus diisi',
+		}
+	});
+	
+	const onSubmit = (data) => console.log(data);
 
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
@@ -26,7 +60,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 					leave='ease-in duration-200'
 					leaveFrom='opacity-100'
 					leaveTo='opacity-0'>
-					<div className='fixed inset-0 bg-black/80 backdrop-blur-sm' />
+					<div className='fixed inset-0 bg-black/80 backdrop-blur-base' />
 				</Transition.Child>
 
 				<div className='fixed inset-0 overflow-y-auto'>
@@ -54,15 +88,15 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 									<div className='mb-4'>
 										<label
 											htmlFor='nama'
-											className='block mb-2 text-sm font-semibold text-gray-700 '>
+											className='block mb-2 text-base font-semibold text-gray-700 '>
 											Nama Kelas
 										</label>
 										<input
 											type='text'
 											placeholder='Nama Kelas'
 											className={
-												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-input focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
-												${errors.nama ? 'border-red-500 focus:border-red-500' : ''}`
+												`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none bg-slate-50'
+												${errors.nama ? 'border-red-500 ' : ''}`
 											}
 											{...register('nama', {
 												required: 'Nama Kelas harus diisi',
@@ -84,13 +118,13 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 									<div className='mb-4'>
 										<label
 											htmlFor='kategori'
-											className='block mb-2 text-sm font-semibold text-gray-700 '>
+											className='block mb-2 text-base font-semibold text-gray-700 '>
 											Kategori
 										</label>
 										<select
 											className={`
-												w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
-												${errors.kategori ? 'border-red-500 focus:border-red-500' : ''}`
+												w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none'
+												${errors.kategori ? 'border-red-500 ': ''}`
 											}
 											{...register('kategori', {
 												required: 'Kategori harus diisi',
@@ -108,13 +142,13 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 									<div className='mb-4'>
 										<label
 											htmlFor='tipe'
-											className='block mb-2 text-sm font-semibold text-gray-700 '>
+											className='block mb-2 text-base font-semibold text-gray-700 '>
 											Tipe
 										</label>
 										<select
 											className={
-												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
-												${errors.tipe ? 'border-red-500 focus:border-red-500' : ''}`
+												`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+												${errors.tipe ? 'border-red-500' : ''}`
 											}
 											{...register('tipe', {
 												required: 'Tipe harus diisi',
@@ -131,13 +165,13 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 									<div className='mb-4'>
 										<label
 											htmlFor='level'
-											className='block mb-2 text-sm font-semibold text-gray-700 '>
+											className='block mb-2 text-base font-semibold text-gray-700 '>
 											Level
 										</label>
 										<select
 											className={
-												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-select focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring',
-												${errors.level ? 'border-red-500 focus:border-red-500' : '' }`
+												`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none ',
+												${errors.level ? 'border-red-500' : '' }`
 											}
 											{...register('level', {
 												required: 'Level harus diisi',
@@ -155,15 +189,15 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 									<div className='mb-4'>
 										<label
 											htmlFor='harga'
-											className='block mb-2 text-sm font-semibold text-gray-700 '>
+											className='block mb-2 text-base font-semibold text-gray-700 '>
 											Harga
 										</label>
 										<input
 											type='number'
 											placeholder='Harga'
 											className={
-												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-input focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
-												${errors.harga ? 'border-red-500 focus:border-red-500': ''}`
+												`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+												${errors.harga ? 'border-red-500': ''}`
 											}
 											{...register('harga', {
 												required: 'Harga harus diisi',
@@ -184,16 +218,85 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 
 									<div className='mb-6'>
 										<label
+											htmlFor='targetKelas'
+											className='block mb-2 text-base font-semibold text-gray-700 '>
+											Target Kelas
+										</label>
+										<button type='button' className='text-base font-bold text-white bg-secret-darkblue p-1 rounded-lg' onClick={() => append(" ")}>Tambah Target Kelas</button>
+										{
+											fields.map((field, index) => (
+												<div key={field.id} className='flex items-center space-x-2 my-2'>
+													<input
+														type='text'
+														placeholder='Target Kelas'
+														className={
+															`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+															${errors.targetKelas ? 'border-red-500' : ''}`
+														}
+														{...register(`targetKelas.${index}`, {
+															required: 'Target Kelas harus diisi',
+															minLength: {
+																value: 3,
+																message: 'Target Kelas minimal 3 karakter',
+															},
+															maxLength: {
+																value: 50,
+																message: 'Target Kelas maksimal 50 karakter',
+															},
+														})}
+													/>
+													<button type='button' className='text-base font-bold text-white bg-red-500 p-1 rounded-lg' onClick={() => remove(index)}>Hapus</button>
+												</div>
+											))
+										}
+										<div className='text-red-500 text-xs mt-1'>{errors.targetKelas?.root?.message}</div>
+									</div>
+
+
+
+
+
+
+									<div className='mb-6'>
+										<label
+											htmlFor='targetKelas'
+											className='block mb-2 text-base font-semibold text-gray-700 '>
+											Chapter
+										</label>
+										<button type='button' className='text-base font-bold text-white bg-secret-darkblue p-1 rounded-lg' onClick={() => append2(" ")}>Tambah Chapter</button>
+										{
+											fields2.map((field, index) => (
+												<div key={field.id} className='flex flex-col w-full  space-x-2 my-2'>
+												<p>Chapter {index+1}</p>
+												<div className='flex gap-2'>
+												<input {...register(`chapter.${index}.name`)} type='text' placeholder='Nama Chapter' className='w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none' />
+												<button type='button' className='text-base font-bold text-white bg-red-500 p-1 rounded-lg' onClick={() => remove2(index)}>Hapus</button>
+												</div>
+												<div key={field.id} className='flex items-center space-x-2 my-2'>
+													<Module moduleIndex={index} control={control} register={register} />
+												</div>
+												</div>
+											))
+										}
+										<div className='text-red-500 text-xs mt-1'>{errors.chapter?.root?.message}</div>
+									</div>
+
+
+
+
+
+									<div className='mb-6'>
+										<label
 											htmlFor='deskripsi'
-											className='block mb-2 text-sm font-semibold text-gray-700 '>
+											className='block mb-2 text-base font-semibold text-gray-700 '>
 											Deskripsi
 										</label>
 										<textarea
 											rows={3}
 											placeholder='Deskripsi'
 											className={
-												`w-full px-4 py-2 text-sm border border-gray-300 rounded-xl focus:outline-none form-textarea focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring resize-none'
-												${errors.deskripsi ? 'border-red-500 focus:border-red-500' : ''}`
+												`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+												${errors.deskripsi ? 'border-red-500' : ''}`
 											}
 											{...register('deskripsi', {
 												required: 'Deskripsi harus diisi',
@@ -215,12 +318,12 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 									<div className='flex items-center space-x-2'>
 										<button
 											type='reset'
-											className='w-full px-4 py-2 space-x-2 text-sm font-semibold text-center border border-gray-300 rounded-full text-secret-darkblue'>
+											className='w-full px-4 py-2 space-x-2 text-base font-semibold text-center border border-gray-300 rounded-full text-secret-darkblue'>
 											Reset
 										</button>
 										<button
 											type='submit'
-											className='w-full px-4 py-2 space-x-2 text-sm font-semibold text-center text-white rounded-full bg-secret-darkblue'>
+											className='w-full px-4 py-2 space-x-2 text-base font-semibold text-center text-white rounded-full bg-secret-darkblue'>
 											Simpan
 										</button>
 									</div>
