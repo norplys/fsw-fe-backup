@@ -1,4 +1,5 @@
 import { BiFilter, BiSearch } from 'react-icons/bi';
+import { AdminCard } from '@/components/Admin/AdminCard';
 
 const payments = [
 	{
@@ -85,9 +86,34 @@ const formatTanggal = (date) => {
 	return new Date(date).toLocaleDateString('en-US', options);
 };
 
+const dashboard = [
+	{
+	  label: "Active User",
+	  count: "450",
+	  color: "bg-secret-pink",
+	},
+	{
+	  label: "Total Course",
+	  count: "25",
+	  color: "bg-secret-darkblue",
+	},
+	{
+	  label: "Premium Course",
+	  count: "20",
+	  color: "bg-secret-cyan",
+	},
+  ];
+
 const PaymentsPage = () => {
 	return (
 		<>
+		<section className="py-5 xl:py-20">
+        <div className="grid items-center grid-cols-1 gap-8 xl:grid-cols-3 mx-5">
+          {dashboard?.map((item, index) => (
+            <AdminCard statistic={item} key={index} />
+          ))}
+        </div>
+      </section>
 			<div className='flex items-center justify-between mb-5'>
 				<h1 className='text-xl font-bold text-black'>Status Pembayaran</h1>
 				<div className='flex items-center space-x-3'>

@@ -16,7 +16,7 @@ export const AdminNavbar = ({ setOpen, open }) => {
 	};
 
 	return (
-		<nav className='sticky top-0 left-0 h-20 bg-secret-background'>
+		<nav className='sticky top-0 left-0 h-20 bg-secret-background z-10'>
 			<div className='container flex items-center justify-between h-full px-2 mx-auto xl:px-10'>
 				<h2 className='text-lg font-bold text-secret-darkblue'>Hi, {admin?.name}</h2>
 				<div className='flex items-center w-full max-w-[300px] space-x-4'>

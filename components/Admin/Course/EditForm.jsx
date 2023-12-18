@@ -1,33 +1,66 @@
 'use client';
 
-import {Fragment} from 'react';
+import {Fragment } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { Dialog, Transition } from '@headlessui/react';
 import { BiX } from 'react-icons/bi';
 import { IconButton } from '@/components/Admin/IconButton';
 import Module from './ChapterModule';
+import axios from 'axios';
+import {useQuery} from 'react-query';
+import PinkCircleLoading from '@/components/PinkCircleLoading';
 
 
-export const CourseForm = ({ isOpen, setIsOpen }) => {
+export const EditForm = ({ isOpen, setIsOpen, id }) => {
+    const {data, isLoading, isError, error} = useQuery(['course', id], async () => {
+        const res = await axios.get(`https://api.learnify.risalamin.com/courses/${id.current}`);
+        return res.data.data;
+    } );
+
+    const newData = {
+        nama: '',
+        kategori: ' ',
+        tipe: '',
+        level: '',
+        harga: '',
+        targetKelas: [' '],
+        chapter: [{
+            name : '',
+            module : [{ title : '', video : ''}],
+        }],
+        deskripsi: '',
+    }
+    if(!isLoading && data){
+        const newChapter = data.course_chapter.map(chapter => {
+            const newModule = chapter.course_material.map(module => {
+                return {
+                    title : module.name,
+                    video : module.video,
+                }
+            })
+            return {
+                name : chapter.name,
+                module : newModule,
+            }
+        })
+        newData.nama = data.name;
+        newData.kategori = data.course_category.name;
+        newData.tipe = data.premium ? 'Premium' : 'Gratis';
+        newData.level = data.difficulty;
+        newData.harga = data.price;
+        newData.targetKelas = data.target_audience;
+        newData.chapter = newChapter;
+        newData.deskripsi = data.description;
+    }
+    
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		control,
 	} = useForm({
-		defaultValues: {
-			nama: '',
-			kategori: '',
-			tipe: '',
-			level: '',
-			harga: '',
-			targetKelas: [' '],
-			chapter: [{
-				name : '',
-				module : [{ title : '', video : ''}],
-			}],
-			deskripsi: '',
-		},
+		defaultValues: newData,
+        values : newData,
 	});
 
 	const { fields, append, remove } = useFieldArray({
@@ -76,12 +109,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 								<Dialog.Title
 									as='h3'
 									className='mb-5 text-xl font-bold text-center text-secret-darkblue'>
-									Tambah Kelas
+									Update Kelas
 								</Dialog.Title>
-
+                    
 								<div className='absolute top-0 right-0 m-5'>
 									<IconButton icon={BiX} variants='secondary' onClick={() => setIsOpen(false)} />
 								</div>
+
+                            {isLoading ?  <PinkCircleLoading /> : isError ? <div>{error.message}</div> :
 
 								<form className='w-full max-w-lg mx-auto' onSubmit={handleSubmit(onSubmit)}>
 									<div className='mb-4'>
@@ -269,7 +304,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										{
 											fields2.map((field, index) => (
 												<div key={field.id} className='flex flex-col w-full  space-x-2 my-2'>
-												<p className='font-semibold mb-2'>Chapter {index+1}</p>
+												<p className='font-semibold mb-2' >Chapter {index+1}</p>
 												<div className='flex gap-2'>
 												<input {...register(`chapter.${index}.name`)} type='text' placeholder='Nama Chapter' className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none ${errors.chapter ? 'border-red-500' : ''} `} />
 												{index !== 0 ? <button type='button' className='text-base font-bold text-white bg-red-500 p-1 rounded-lg' onClick={() => remove2(index)}>Hapus</button> : ''}
@@ -330,6 +365,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										</button>
 									</div>
 								</form>
+                            }
 							</Dialog.Panel>
 						</Transition.Child>
 					</div>

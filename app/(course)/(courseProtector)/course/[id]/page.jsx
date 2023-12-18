@@ -1,5 +1,5 @@
 "use client";
-import ClassDetailLoading from "@/components/CLassDetailLoading";
+import CircleLoading from "@/components/CircleLoading";
 import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -26,7 +26,7 @@ const DetailKelas = () => {
   }
   return (
     <>
-    { isLoading ? <ClassDetailLoading /> :
+    { isLoading ? <CircleLoading /> :
     <>
 
       <Transition appear show={isOpen} as={Fragment}>
