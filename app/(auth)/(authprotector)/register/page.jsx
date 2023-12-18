@@ -52,7 +52,7 @@ export default function RegisterPage() {
     });
     toast.loading("Redirecting Please Wait...");
     await mockLoading();
-    push(`/register/otp/${res.data}?email=${data.email}`);
+    push(`/register/otp/${res.data.data.token}?email=${data.email}`);
 
   } catch (error) {
     toast.error(error.response.data.message);

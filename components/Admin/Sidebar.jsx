@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, forwardRef } from 'react';
 import { IconButton } from '@/components/Admin/IconButton';
 import { AdminLogo } from '@/components/Admin/AdminLogo';
+import { useRouter } from 'next/navigation';
 
 export const Sidebar = ({ links, current, open, setOpen }) => {
 	return (
@@ -45,6 +46,11 @@ export const Sidebar = ({ links, current, open, setOpen }) => {
 };
 
 const Content = forwardRef(({ links, current, asDialog, setOpen }, ref) => {
+	const {push} = useRouter();
+	const handleLogOut = () => {
+		localStorage.removeItem('token');
+		push('/admin/login');
+	}
 	return (
 		<aside
 			ref={ref}
@@ -70,7 +76,7 @@ const Content = forwardRef(({ links, current, asDialog, setOpen }, ref) => {
 					<p className='font-semibold'>{link.label}</p>
 				</Link>
 			))}
-			<button className='w-full px-10 py-3 text-white hover:bg-white/10 text-start'>
+			<button className='w-full px-10 py-3 text-white hover:bg-white/10 text-start' onClick={handleLogOut}>
 				<p className='font-semibold'>Keluar</p>
 			</button>
 		</aside>

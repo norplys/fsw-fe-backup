@@ -1,11 +1,9 @@
 'use client';
 
-import * as React from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { AdminCard } from '@/components/Admin/AdminCard';
-
 import { Sidebar } from '@/components/Admin/Sidebar';
-import { AdminNavbar } from '../../../../components/Admin/AdminNavbar';
+import { AdminNavbar } from '@/components/Admin/AdminNavbar';
 
 const links = [
 	{
@@ -32,14 +30,14 @@ const dashboard = [
 	{
 		label: 'Premium Course',
 		count: '20',
-		color: 'bg-darkblue-500',
+		color: 'bg-secret-cyan',
 	},
 ];
 
 const AdminLayout = ({ children }) => {
 	const current = usePathname();
-	const [keyword, setKeyword] = React.useState('');
-	const [open, setOpen] = React.useState(false);
+	const [keyword, setKeyword] = useState('');
+	const [open, setOpen] = useState(false);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
@@ -52,17 +50,6 @@ const AdminLayout = ({ children }) => {
 
 			<section className='relative w-full'>
 				<AdminNavbar setOpen={setOpen} open={open} />
-
-				<section className='py-5 xl:py-20'>
-					<div className='container px-2 mx-auto xl:px-10'>
-						<div className='grid items-center grid-cols-1 gap-8 xl:grid-cols-3'>
-							{dashboard?.map((item, index) => (
-								<AdminCard statistic={item} key={index} />
-							))}
-						</div>
-					</div>
-				</section>
-
 				<section>
 					<div className='container px-2 mx-auto xl:px-10'>{children}</div>
 				</section>

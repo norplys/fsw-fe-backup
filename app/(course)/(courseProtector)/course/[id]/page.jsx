@@ -1,5 +1,5 @@
 "use client";
-import ClassDetailLoading from "@/components/CLassDetailLoading";
+import CircleLoading from "@/components/CircleLoading";
 import { Fragment, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -24,11 +24,11 @@ const DetailKelas = () => {
   const handleVideo = (video) => {
 	setVideo(video);
   }
-
   return (
     <>
-    { isLoading ? <ClassDetailLoading /> :
+    { isLoading ? <CircleLoading /> :
     <>
+
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
