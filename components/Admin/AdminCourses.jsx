@@ -1,4 +1,4 @@
-export default function AdminCourses({data}) {
+export default function AdminCourses({data, handleEdit}) {
     const currency = (number) => {
         return new Intl.NumberFormat('id-ID', {
             style: 'currency',
@@ -30,7 +30,7 @@ export default function AdminCourses({data}) {
       <td className="px-5 text-start">{currency(data.price)}</td>
       <td className="px-5 text-start">
         <div className="inline-flex items-center justify-center space-x-2">
-          <button className="px-4 py-1 text-sm font-semibold text-white rounded-full bg-secret-darkblue">
+          <button className="px-4 py-1 text-sm font-semibold text-white rounded-full bg-secret-darkblue" onClick={() => handleEdit(data.id)}>
             Ubah
           </button>
           <button className="px-4 py-1 text-sm font-semibold text-white rounded-full bg-secret-pink">
