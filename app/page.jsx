@@ -46,6 +46,7 @@ export default function Beranda () {
         scroll: false,
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
   
   const createQueryString = (name, value) => {
@@ -83,7 +84,7 @@ export default function Beranda () {
               </div>
               <div className="flex gap-3">
               <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md animate-pulse hover:scale-105" href={"/courses"}>Mulai Sekarang</Link>
-              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md flex items-center hover:scale-105" href={"/"}> <CiHeadphones/> Tanya Kami</Link>
+              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md flex items-center hover:scale-105" href={"https://wa.me/6282284134328?text=Saya%20ingin%20bertanya%20perihal%20course%20di%20skillHUB"}> <CiHeadphones/> Tanya Kami</Link>
               </div>
             </div>
           </div>
@@ -140,7 +141,7 @@ export default function Beranda () {
                   return <ButtonLoading key={index} />;
                 })
               ) : errorCategories ? (
-                <p>Something Went Wrong</p>
+                <p>Something Went Wrong, Please Try Again</p>
               ) : (
                 dataCategories.map((item, index) => {
                   return (
@@ -173,6 +174,7 @@ export default function Beranda () {
                       totalMinute={item.totalMinute}
                       price={item.price}
                       id={item.id}
+                      isPremium={item.isPremium}
                     />
                   );
                 })
