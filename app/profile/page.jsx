@@ -36,7 +36,7 @@ export default function Profile (){
                     <div className="flex flex-row">
                         <div>
                             <div className="flex flex-row justify-start px-8 gap-2 my-5">
-                                <FiEdit3 className="text-4xl text-4xl w-6 h-6" />
+                                <FiEdit3 className="text-4xl w-6 h-6" />
                                 <div className="flex justify-between">
                                     <p className="font-bold text-blue-700 text-sm">Profile Saya</p>
                                 </div>

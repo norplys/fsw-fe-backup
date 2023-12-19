@@ -57,7 +57,7 @@ const DetailKelas = () => {
           <Transition appear show={isOpen} as={Fragment}>
             <Dialog
               as="div"
-              className="relative z-10"
+              className="relative z-30"
               onClose={() => setIsOpen(false)}
             >
               <Transition.Child
@@ -69,7 +69,7 @@ const DetailKelas = () => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <div className="fixed inset-0 bg-black/80"></div>
+                <div className="fixed inset-0 bg-sectext-secret-text/80"></div>
               </Transition.Child>
 
               <div className="fixed inset-0 overflow-y-auto">
@@ -129,26 +129,26 @@ const DetailKelas = () => {
                                 <span className="font-bold">{data.rating}</span>
                               </div>
                             </div>
-                            <h2 className="font-bold">{data.name}</h2>
+                            <h2 className="font-bold text-secret-pink">{data.name}</h2>
                             <p className="text-gray-500">by {data.author}</p>
                           </div>
 
                           <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center space-x-2 font-semibold">
                               <GiRank3 className="text-green-400 text-lg" />
-                              <span className="text-black">{data.level}</span>
+                              <span className="text-secret-text">{data.level}</span>
                             </div>
 
                             <div className="flex items-center space-x-2 font-semibold">
                               <FaBookBookmark className="text-green-400 text-base" />
-                              <span className="text-black">
+                              <span className="text-secret-text">
                                 {data.totalModule} Modul
                               </span>
                             </div>
 
                             <div className="flex items-center space-x-2 font-semibold">
                               <FaRegClock className="text-green-400 text-base" />
-                              <span className="text-black">
+                              <span className="text-secret-text">
                                 {data.totalMinute} Menit
                               </span>
                             </div>
@@ -161,14 +161,15 @@ const DetailKelas = () => {
                       </div>
 
                       <div className="flex items-center justify-center">
-                        <button
+                        <Link
                           type="button"
                           className="flex items-center px-6 py-2 space-x-2 font-bold text-white rounded-full bg-secret-pink hover:scale-105 duration-300"
+                          href={`/payment/${data.id}`}  
                           onClick={() => setIsOpen(false)}
                         >
                           <span>Beli Sekarang</span>
                           <FiArrowRight className="text-white text-lg" />
-                        </button>
+                        </Link>
                       </div>
                     </Dialog.Panel>
                   </Transition.Child>
@@ -184,8 +185,8 @@ const DetailKelas = () => {
                   className="flex items-center mb-4 space-x-2"
                   href={"/courses"}
                 >
-                  <FiArrowLeft color="black" size={16} />
-                  <div className="font-bold text-black">Kelas Lainnya</div>
+                  <FiArrowLeft color="sectext-secret-text" size={16} />
+                  <div className="font-bold text-secret-text">Kelas Lainnya</div>
                 </Link>
 
                 <div className="flex flex-col mb-3">
@@ -195,7 +196,7 @@ const DetailKelas = () => {
                     </h1>
                     <div className="flex items-center space-x-1">
                       <FaStar className="text-yellow-400 text-base" />
-                      <span className="font-bold text-black">
+                      <span className="font-bold text-secret-text">
                         {data.rating}
                       </span>
                     </div>
@@ -209,21 +210,21 @@ const DetailKelas = () => {
                 <div className="flex items-center justify-between mb-4 max-w-[400px]">
                   <div className="flex items-center space-x-2 font-semibold">
                     <GiRank3 className="text-secret-green text-lg" />
-                    <span className="text-black">{data.level}</span>
+                    <span className="text-secret-text">{data.level}</span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
                     <FaBookBookmark className="text-secret-green text-base" />
-                    <span className="text-black">{data.totalModule} Modul</span>
+                    <span className="text-secret-text">{data.totalModule} Modul</span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
                     <FaRegClock className="text-secret-green text-base" />
-                    <span className="text-black">{data.totalMinute} Menit</span>
+                    <span className="text-secret-text">{data.totalMinute} Menit</span>
                   </div>
                 </div>
 
-                <a
+                <Link
                   className="flex items-center justify-center px-6 py-2 space-x-2 bg-secret-darkblue rounded-full hover:scale-105 max-w-xs"
                   href={data.telegram}
                 >
@@ -231,7 +232,7 @@ const DetailKelas = () => {
                     Telegram Link
                   </div>
                   <BiSolidChat className="text-white" size={20} />
-                </a>
+                </Link>
               </div>
 
               <div className="xl:col-span-2">
