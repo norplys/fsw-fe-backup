@@ -1,15 +1,28 @@
+"use client"
 import Link from "next/link"
 import { BiExit } from "react-icons/bi"
 import { FaArrowLeft } from "react-icons/fa"
 import { CgProfile } from "react-icons/cg"
 import { FiEdit3, FiSettings, FiShoppingCart } from "react-icons/fi"
+import {useUsers} from "@/app/context/usersContext"
+import { useForm } from "react-hook-form"
 
 
-const profile = () => {
+export default function Profile (){
+    const {user} = useUsers();
+    const {register, handleSubmit, formState: { errors }} = useForm({
+        defaultValues: {
+            name: user?.name,
+            email: user?.email,
+            phone: user?.phone,
+            country: user?.country,
+            city: user?.city
+        }
+    });
     return (
         <> 
         <div className='h-36 p-6 bg-secret-blue '>
-            <Link href='#' className="flex justify-start px-72 gap-5 mb-8">
+            <Link href='/' className="flex justify-start px-72 gap-5 mb-8">
                 <FaArrowLeft />
                  <h1 className='font-bold'>Kembali Ke Beranda</h1>
             </Link>
@@ -57,8 +70,9 @@ const profile = () => {
                             </div>
                             {/* <div className="flex p-1 gap-2"> */}
                                 <div className="flex flex-col w-[14rem]">
-                                    <label for="name" className="text-gray-800  font-bold leading-tight tracking-normal">Nama</label>
-                                    <input 
+                                    <label htmlFor="name" className="text-gray-800  font-bold leading-tight tracking-normal">Nama</label>
+                                    <input
+                                        {...register('name', { required: true })} 
                                         type="text"
                                         id="name" 
                                         className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3  border-gray-300 rounded-xl border" 
@@ -66,32 +80,36 @@ const profile = () => {
                                 </div>
                             {/* </div> */}
                             <div className="flex flex-col w-[14rem]">
-                                <label for="name" className="text-gray-800 font-bold leading-tight tracking-normal">Email</label>
+                                <label htmlFor="name" className="text-gray-800 font-bold leading-tight tracking-normal">Email</label>
                                 <input 
+                                    {...register('email', { required: true })}
                                     type="text"
                                     id="name" 
                                     className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700  h-8 flex items-center pl-3  border-gray-300 rounded-xl border" 
                                     placeholder="Text" />
                             </div>
                             <div className="flex flex-col w-[14rem]">
-                                <label for="name" className="text-gray-800  font-bold leading-tight tracking-normal">Nomor Telepon</label>
+                                <label htmlFor="name" className="text-gray-800  font-bold leading-tight tracking-normal">Nomor Telepon</label>
                                 <input 
+                                    {...register('phone', { required: true })}
                                     type="text"
                                     id="name" 
                                     className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 h-8 flex items-center pl-3  border-gray-300 rounded-xl border" 
                                     placeholder="Text" />
                             </div>
                             <div className="flex flex-col w-[14rem]">
-                                <label for="name" className="text-gray-800  font-bold leading-tight tracking-normal">Negara</label>
+                                <label htmlFor="name" className="text-gray-800  font-bold leading-tight tracking-normal">Negara</label>
                                 <input 
+                                    {...register('country', { required: true })}
                                     type="text"
                                     id="name" 
                                     className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 h-8 flex items-center pl-3  border-gray-300 rounded-xl border" 
                                     placeholder="Text" />
                             </div>
                             <div className="flex flex-col w-[14rem]">
-                                <label for="name" className="text-gray-800  font-bold leading-tight tracking-normal">Kota</label>
+                                <label htmlFor="name" className="text-gray-800  font-bold leading-tight tracking-normal">Kota</label>
                                 <input 
+                                    {...register('city', { required: true })}
                                     type="text"
                                     id="name" 
                                     className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 h-8 flex items-center pl-3  border-gray-300 rounded-xl border" 
@@ -116,4 +134,3 @@ const profile = () => {
         </>
     )
 }
-export default profile

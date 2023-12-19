@@ -172,7 +172,7 @@ useEffect(() => {
             Kelas Berjalan
           </h1>
 
-          <form className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl" onSubmit={handleSubmit(handleSearch)}>
+          <form className="flex h-fit  border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl" onSubmit={handleSubmit(handleSearch)}>
             <input
               {...register("search")}
               type="text"

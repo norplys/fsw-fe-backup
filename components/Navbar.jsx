@@ -32,6 +32,7 @@ const Navbar = () => {
 
 	const handleLogOut = () => {
 		removeUser();
+		push('/');
 	};
 
 	const handleSearch = (e) => {
@@ -77,12 +78,12 @@ const Navbar = () => {
 						</Link>
 					
 					
-						<Link href='#'>
+						<Link href='/profile/notification'>
 							<FiBell className='text-secret-text' size={25} />
 						</Link>
 					
 					
-						<Link href='#'>
+						<Link href='/profile'>
 							<FiUser className='text-secret-text' size={25} />
 						</Link>
 				

@@ -6,7 +6,7 @@ const notification = () => {
     return (
         <> 
         <div className='h-36 p-6 bg-secret-blue '>
-            <Link href='#' className="flex justify-start px-72 gap-6 mb-8">
+            <Link href='/' className="flex justify-start px-72 gap-6 mb-8">
                 <FaArrowLeft />
                  <h1 className='font-bold'>Kembali Ke Beranda</h1>
             </Link> 
