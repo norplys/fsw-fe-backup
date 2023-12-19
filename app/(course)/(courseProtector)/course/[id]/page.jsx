@@ -1,6 +1,8 @@
 "use client";
 import CircleLoading from "@/components/CircleLoading";
+
 import { Fragment, useState, useEffect } from "react";
+
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { BiSolidChat, BiSolidStar, BiX } from "react-icons/bi";
@@ -28,8 +30,10 @@ const DetailKelas = () => {
   const [video, setVideo] = useState("");
 
   const handleVideo = (video) => {
+
     setVideo(video);
   };
+
 
 
   const handleModal = () => {
