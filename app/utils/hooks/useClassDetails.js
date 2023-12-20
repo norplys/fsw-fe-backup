@@ -8,9 +8,8 @@ function classDetailsQueries(id, token) {
         }  
     })
 }
-
 export function useClassDetails(id, token){
-    return useQuery(["classDetails" , id], () => classDetailsQueries(id, token), {
+    return useQuery(["classDetails" , id, token], () => classDetailsQueries(id, token), {
         select: (data) => {
             return data.data.data
         }

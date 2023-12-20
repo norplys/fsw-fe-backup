@@ -30,11 +30,8 @@ const DetailKelas = () => {
   const [video, setVideo] = useState("");
 
   const handleVideo = (video) => {
-
     setVideo(video);
   };
-
-
 
   const handleModal = () => {
     setIsOpen(true);
