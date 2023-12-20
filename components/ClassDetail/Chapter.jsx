@@ -1,9 +1,18 @@
 import { useState } from "react";
 import Module from "./Module";
 
-export default function Chapter({name, time, modules, index, handleVideo, isPremium, handleModal}) {
-    const [active, setActive] = useState(0);
-    const chapterIndex = index;
+export default function Chapter({
+  name,
+  time,
+  modules,
+  index,
+  handleVideo,
+  isPremium,
+  handleModal,
+  isPaid,
+}) {
+  const [active, setActive] = useState(0);
+  const chapterIndex = index;
   return (
     <div key={index}>
       <div className="flex items-center justify-between mb-2 text-sm font-bold">
@@ -24,6 +33,7 @@ export default function Chapter({name, time, modules, index, handleVideo, isPrem
             isPremium={isPremium}
             chapterIndex={chapterIndex}
             handleModal={handleModal}
+            isPaid={isPaid}
           />
         ))}
       </div>

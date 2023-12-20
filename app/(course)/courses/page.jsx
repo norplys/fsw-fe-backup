@@ -103,6 +103,7 @@ useEffect(() => {
     params.delete("level");
     router.push(pathname + "?" + params.toString())
   }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [searchParams]);
 
   const handlePremium = (value) => {

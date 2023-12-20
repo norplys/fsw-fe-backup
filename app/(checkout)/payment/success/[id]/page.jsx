@@ -1,11 +1,27 @@
-
+"use client"
 import React from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect } from 'react'
+import { useRouter, useParams } from 'next/navigation'
+
 const PembayaranSukses = () => {
+    const {id} = useParams();
+    const {push} = useRouter();
+    useEffect(() => {
+        success();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    const success = async () => {
+        await mockLoading;
+        push(`/course/${id}`);
+    }
+    const mockLoading = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(true);
+        }, 4000);
+      });
   return (
     <div>
-
         {/* NOTIFIKASI BERHASIL PEMBAYARAN */}
         <div className='md:px-[100px] px-5 py-6 shadow-md'>
             {/* LINK KEMBALI */}
@@ -16,7 +32,7 @@ const PembayaranSukses = () => {
         </div>
 
         {/* MAIN */}
-        <div className=' items-center w-full text-center mb-10'>
+        <div className='grid justify-center items-center w-full text-center mb-10'>
             <h1 className='font-bold text-secret-pink text-[64px]'>Selamat!</h1>
             <Image
                 src='/shopSukses.svg'
@@ -27,11 +43,7 @@ const PembayaranSukses = () => {
             
             <h2 className='font-bold mt-3 md:text-[16px] text-[14px]'>Transaksi pembayaran kelas premium berhasil!</h2>
             <p className='mb-10 md:text-[14px] text-[12px]'>E-receipt telah dikirimkan ke email.</p>
-
-            <button href='' className='bg-secret-pink text-white px-[100px] py-2 mb-10 rounded-[15px]'>
-                <h2 className='font-bold'> Mulai Belajar</h2>
-            </button>
-            <Link href='' className='font-semibold text-DARKBLUE03'><h3>Kembali Ke Beranda</h3></Link>
+            <h2 className='font-bold bg-secret-darkblue p-2 rounded-full shadow-xl text-white w-fit'> Kamu akan dialihkan ke halaman detail course, mohon tunggu...</h2>
         </div>
     </div>
   )

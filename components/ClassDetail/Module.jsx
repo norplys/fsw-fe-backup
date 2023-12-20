@@ -1,3 +1,4 @@
+
 import { BiPlay } from "react-icons/bi";
 import { FaLock } from "react-icons/fa";
 export default function Module({
@@ -7,6 +8,7 @@ export default function Module({
   isPremium,
   chapterIndex,
   handleModal,
+  isPaid,
 }) {
   return (
     <div className="flex items-center justify-between py-3" key={index}>
@@ -18,7 +20,7 @@ export default function Module({
         </div>
         <p className="text-sm text-zinc-500">{title}</p>
       </div>
-        {isPremium && chapterIndex !== 0 ? (
+        {isPremium && chapterIndex  !== 0 && !isPaid ? (
           <button
             className="flex text-xs font-bold bg-secret-pink rounded-full p-2 "
             onClick={handleModal
