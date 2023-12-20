@@ -14,6 +14,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { useClassDetails } from "@/app/utils/hooks/useClassDetails";
 import Chapter from "@/components/ClassDetail/Chapter";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const DetailKelas = () => {
   useEffect(() => {
@@ -23,19 +24,34 @@ const DetailKelas = () => {
     }
   }, []);
 
+  const { push } = useRouter();
   const [token, setToken] = useState("");
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading, isError, error } = useClassDetails(id, token);
   const [video, setVideo] = useState("");
 
+
   const handleVideo = (video) => {
+    if(!token){
+      push(`/login?redirect=/courses/${id}`)
+      return
+    }
     setVideo(video);
   };
 
   const handleModal = () => {
+    if(!token){
+      push(`/login?redirect=/courses/${id}`)
+      return
+    }
     setIsOpen(true);
   };
+
+  const handleCourses = (e) => {
+    e.preventDefault();
+    push("/courses")
+  }
 
   if (isError) {
     return (
@@ -259,6 +275,7 @@ const DetailKelas = () => {
                       handleVideo={handleVideo}
                       isPremium={data.isPremium}
                       handleModal = {handleModal}
+                      isPaid = {data?.isPaid}
                     />
                   ))}
                 </div>
@@ -288,6 +305,10 @@ const DetailKelas = () => {
                     allowFullScreen={true}
                   ></iframe>
                 )}
+                <div className="flex gap-2 relative -top-16 left-4">
+                <button className="bg-secret-pink text-white font-bold px-2 rounded-lg text-lg hover:scale-105 duration-300 " onClick={handleCourses}>Kelas Lainnya</button>
+                <button className="bg-secret-darkblue text-white font-bold px-2 rounded-lg text-lg hover:scale-105 duration-300">Next Video</button>
+                </div>
 
                 <h2 className="mb-3 text-2xl font-bold">Tentang Kelas</h2>
                 <p className="mb-5 leading-relaxed text-gray-500">

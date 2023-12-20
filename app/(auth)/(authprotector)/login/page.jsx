@@ -3,13 +3,14 @@
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useUsers } from "@/app/context/usersContext";
 import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
   const { handleUsers } = useUsers();
   const { push } = useRouter();
+  const searchParams = useSearchParams();
   const {
     register,
     handleSubmit,
@@ -21,8 +22,10 @@ export default function LoginPage() {
     },
   });
 
+
   const handleLogin = async (data) => {
     try{
+    const redirect = searchParams.get("redirect");
     const login = handleUsers(data);
     await toast.promise (
       login , {
@@ -33,6 +36,11 @@ export default function LoginPage() {
     )
     toast.loading('Redirecting Please Wait...')
     await sleepRedirect();
+    if(!redirect){
+      push('/');
+      return;
+    }
+    push(redirect);
     }
     catch(err){
       toast.error(err.message);
@@ -43,7 +51,7 @@ export default function LoginPage() {
   const sleepRedirect = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(push("/"));
+        resolve(true);
       }, 1500);
     });
   };
