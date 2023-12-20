@@ -6,14 +6,14 @@ const notification = () => {
     return (
         <> 
         <div className='h-36 p-6 bg-secret-blue '>
-            <Link href='#' className="flex justify-start px-72 gap-6 mb-8">
+            <Link href='#' className="flex justify-start xl:px-72 md:px-32 gap-2 items-center mb-8">
                 <FaArrowLeft />
                  <h1 className='font-bold'>Kembali Ke Beranda</h1>
             </Link> 
             <div className="flex justify-center items-center ">
-            <div className="card bg-white w-3/6 h-96 rounded-xl border border-secret-pink">
+            <div className="card bg-white w-auto h-auto rounded-xl border border-secret-pink">
                 <h1 className='flex justify-center font-bold px-5 py-5 bg-secret-pink rounded-t-xl'>Notification</h1>
-                <div className="flex flex-row justify-start px-14 gap-5 my-5">
+                <div className="flex flex-row justify-start xl:px-14 px-5 gap-5 my-5">
                     <IoNotificationsCircleSharp className="text-4xl w-7 h-7" />
                     <div className="w-full">
                         <div className="flex justify-between">
@@ -29,7 +29,7 @@ const notification = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-row justify-start px-14 gap-5 my-5">
+                <div className="flex flex-row justify-start xl:px-14 px-5 gap-5 my-5">
                     <IoNotificationsCircleSharp className="text-4xl w-7 h-7" />
                     <div className="w-full">
                         <div className="flex justify-between">
@@ -43,7 +43,7 @@ const notification = () => {
                         <h2 className="font-bold text-xs">Password berhasil diubah</h2>
                     </div>
                 </div>
-                <div className="flex flex-row justify-start px-14 gap-5 my-5">
+                <div className="flex flex-row justify-start xl:px-14 px-5 gap-5 my-5">
                     <IoNotificationsCircleSharp className="text-4xl w-7 h-7" />
                     <div className="w-full">
                         <div className="flex justify-between">

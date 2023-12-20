@@ -9,21 +9,21 @@ const profile = () => {
     return (
         <> 
         <div className='h-36 p-6 bg-secret-blue '>
-            <Link href='#' className="flex justify-start px-72 gap-5 mb-8">
-                <FaArrowLeft />
+            <Link href='#' className="flex justify-start xl:px-72 md:px-32 md:gap-5 gap-2 items-center mb-8">
+                <FaArrowLeft color="black"/>
                  <h1 className='font-bold'>Kembali Ke Beranda</h1>
             </Link>
             <div>
                 
             </div>
             <div className="flex justify-center items-center ">
-                <div className="card bg-white w-3/6 h-[30rem] rounded-xl border border-secret-pink mb-8">
+                <div className="card bg-white w-auto h-auto rounded-xl border border-secret-pink mb-8">
                     <h1 className='flex justify-center font-bold px-5 py-5 bg-secret-pink rounded-t-xl'>Akun</h1>
                     
-                    <div className="flex flex-row">
+                    <div className="flex md:flex-row flex-col">
                         <div>
                             <div className="flex flex-row justify-start px-8 gap-2 my-5">
-                                <FiEdit3 className="text-4xl text-4xl w-6 h-6" />
+                                <FiEdit3 className="text-4xl w-6 h-6" />
                                 <div className="flex justify-between">
                                     <p className="font-bold text-blue-700 text-sm">Profile Saya</p>
                                 </div>
@@ -50,7 +50,7 @@ const profile = () => {
                                 </div>
                             </div>
                         </div>
-                        <div>
+                    <div>
                         <form className="items-center justify-between px-12 w-[20rem] text-[0.625rem] ">
                             <div className="flex flex-row justify-center px-8 gap-10 my-6">
                                 <CgProfile className=" w-14 h-14" />
