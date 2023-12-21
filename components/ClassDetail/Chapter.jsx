@@ -26,8 +26,9 @@ export default function Chapter({
         {modules.map((section, index) => (
           <Module
             key={index}
+            name = {section.name}
             title={section.title}
-            link={section.link}
+            link={section.courseLink}
             index={index}
             handleVideo={handleVideo}
             isPremium={isPremium}
