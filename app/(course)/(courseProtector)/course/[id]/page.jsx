@@ -24,6 +24,7 @@ const DetailKelas = () => {
   }, []);  
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
+
   const { push } = useRouter();
   const [token, setToken] = useState("");
   const { id } = useParams();
@@ -31,6 +32,7 @@ const DetailKelas = () => {
   const { data, isLoading, isError, error } = useClassDetails(id, token);
   const [video, setVideo] = useState("");
   const pathname = usePathname();
+
 
   useEffect(() => {
     let chapterIndex = searchParams.get("chapter");
@@ -90,6 +92,7 @@ const DetailKelas = () => {
     e.preventDefault();
     push("/courses");
   };
+
 
   if (isError) {
     return (
@@ -327,6 +330,7 @@ const DetailKelas = () => {
                       isPremium={data.isPremium}
                       handleModal={handleModal}
                       isPaid={data?.isPaid}
+
                     />
                   ))}
                 </div>
@@ -366,6 +370,7 @@ const DetailKelas = () => {
                   <button className="bg-secret-darkblue text-white font-bold px-2 rounded-lg text-lg hover:scale-105 duration-300 shadow-2xl" onClick={handleNextVideo}>
                     Next Video
                   </button>
+
                 </div>
 
                 <h2 className="mb-3 text-2xl font-bold">Tentang Kelas</h2>
