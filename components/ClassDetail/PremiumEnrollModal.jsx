@@ -1,14 +1,43 @@
-import { Fragment} from "react";
-import Link from "next/link";
+
+import { Fragment } from "react";
 import { BiSolidStar, BiX } from "react-icons/bi";
 import { FiArrowRight } from "react-icons/fi";
 import { FaBookBookmark, FaRegClock } from "react-icons/fa6";
 import { GiRank3 } from "react-icons/gi";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
-
-
-export default function PremiumEnrollModal({ data, isOpen, setIsOpen }) {
+import axios from "axios";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { VscLoading } from "react-icons/vsc";
+export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
+  const { push } = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+    const handleEnroll = async (id, token) => {
+      try {
+        setIsLoading(true);
+        const res = await axios.post(
+          "https://final-project-online-course.et.r.appspot.com/v1/courses/enrollment",
+          {
+            course_uuid: id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        push(`/payment/${res.data.data.paymentUuid}`);
+        setIsOpen(false);
+        setIsLoading(false);
+      }
+      catch (err) {
+        console.log(err);
+        toast.error("Gagal membeli kelas mohon coba lagi");
+        setIsLoading(false);
+      }
+    }
     return (
         <Transition appear show={isOpen} as={Fragment}>
             <Dialog
@@ -123,15 +152,14 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen }) {
                       </div>
 
                       <div className="flex items-center justify-center">
-                        <Link
+                        <button
                           type="button"
-                          className="flex items-center px-6 py-2 space-x-2 font-bold text-white rounded-full bg-secret-pink hover:scale-105 duration-300"
-                          href={`/payment/${data.id}`}
-                          onClick={() => setIsOpen(false)}
+                          className={`flex items-center px-6 py-2 space-x-2 font-bold text-white rounded-full bg-secret-pink hover:scale-105 duration-300 ${isLoading ? "cursor-wait" : "cursor-pointer"}`}
+                          onClick={() => handleEnroll(data.id, token)}
                         >
-                          <span>Beli Sekarang</span>
-                          <FiArrowRight className="text-white text-lg" />
-                        </Link>
+                          {isLoading ? <VscLoading className="animate-spin font-bold text-lg mx-11"/>  : <><span>Beli Sekarang</span><FiArrowRight className="text-white text-lg" /></>}
+                          
+                        </button>
                       </div>
                     </Dialog.Panel>
                   </Transition.Child>

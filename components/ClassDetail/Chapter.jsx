@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Module from "./Module";
 
 export default function Chapter({
@@ -11,7 +10,6 @@ export default function Chapter({
   handleModal,
   isPaid,
 }) {
-  const [active, setActive] = useState(0);
   const chapterIndex = index;
   return (
     <div key={index}>
@@ -28,13 +26,14 @@ export default function Chapter({
             key={index}
             name = {section.name}
             title={section.title}
-            link={section.courseLink}
+            uuid= {section.chapterModuleUuid}
             index={index}
             handleVideo={handleVideo}
             isPremium={isPremium}
             chapterIndex={chapterIndex}
             handleModal={handleModal}
             isPaid={isPaid}
+            isCompleted={section.isCompleted}
           />
         ))}
       </div>

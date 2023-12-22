@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUsers } from "@/app/context/usersContext";
 import Guard from "@/components/Guard";
+import {Toaster} from "react-hot-toast";
 
 export default function LoginLayout({ children }) {
   const router = useRouter();
@@ -46,5 +47,5 @@ if (loading)
     )
  
 
-  return <section>{children}</section>;
+  return <section>{children} <Toaster position="bottom-left"/> </section>;
 }
