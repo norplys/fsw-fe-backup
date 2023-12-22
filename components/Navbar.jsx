@@ -56,7 +56,7 @@ const Navbar = () => {
 						<input
 							type='text'
 							value={keyword}
-							placeholder='Cari Kursus Terbaik....'
+							placeholder='Cari Kursus...'
 							onChange={(e) => setKeyword(e.target.value)}
 							className='w-80 px-5 py-3 rounded-xl placeholder:text-sm text-black'
 						/>

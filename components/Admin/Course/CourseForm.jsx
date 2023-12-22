@@ -18,6 +18,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 		defaultValues: {
 			nama: '',
 			kategori: '',
+			kode: '',
 			tipe: '',
 			level: '',
 			harga: '',
@@ -50,7 +51,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
-			<Dialog as='div' className='relative z-10' onClose={() => setIsOpen(false)}>
+			<Dialog as='div' className='relative z-30' onClose={() => setIsOpen(false)}>
 				<Transition.Child
 					as={Fragment}
 					enter='ease-out duration-300'
@@ -135,6 +136,28 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										</select>
 										<span className='block mt-1 text-xs text-red-500' role='alert'>
 											{errors.kategori?.message}
+										</span>
+									</div>
+
+									<div className='mb-4'>
+										<label
+											htmlFor='kode'
+											className='block mb-2 text-base font-semibold text-gray-700 '>
+											Kode Kelas
+										</label>
+										<input
+											type='text'
+											placeholder='Kode'
+											className={
+												`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+												${errors.kode ? 'border-red-500': ''}`
+											}
+											{...register('kode', {
+												required: 'kode harus diisi',
+											})}
+										/>
+										<span className='block mt-1 text-xs text-red-500' role='alert'>
+											{errors.kode?.message}
 										</span>
 									</div>
 

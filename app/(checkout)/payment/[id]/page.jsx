@@ -39,39 +39,31 @@ export default function KelasPembayaran () {
     setLoading(false);
     }
     catch(err){
-      toast.error(err.response.data.message);
       push('/')
     }
   };
-  const courseId = id;
-
   const handlePayment = async (paymentId) => {
     try{
     const token = localStorage.getItem("token");
     setLoading(true);
-    // const res = await axios.put(
-    //   `https://final-project-online-course.et.r.appspot.com/v1/courses/payment/${paymentId}`,
-    //   {
-    //     payment_method : "credit_card",
-    //   },
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   }
-    // );
-    // push('payment/success');
-    mockSuccess(courseId);
+    const res = await axios.put(
+      `https://final-project-online-course.et.r.appspot.com/v1/courses/payment/${paymentId}`,
+      {
+        payment_method : "credit card",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    push('/payment/success');
     }
     catch(err){
       toast.error(err.response.data.message);
       setLoading(false);
     }
   };
-
-  const mockSuccess = (courseId) => {
-    push(`/payment/success/${courseId}`);
-  }
   if (loading) return <CircleLoading />;
 
   const formatDate = () => {
