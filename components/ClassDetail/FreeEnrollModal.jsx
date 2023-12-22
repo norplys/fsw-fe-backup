@@ -1,3 +1,4 @@
+
 import { Fragment } from "react";
 import { BiSolidStar, BiX } from "react-icons/bi";
 import { FiArrowRight } from "react-icons/fi";
@@ -152,7 +153,7 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
                           onClick={() => handleEnroll(data.id, token)}
                         >
                           {isLoading ? <VscLoading className="animate-spin font-bold text-lg mx-11"/>  : <><span>Ikuti Sekarang</span><FiArrowRight className="text-white text-lg" /></>}
-                          
+                        
                         </button>
                       </div>
                     </Dialog.Panel>
@@ -163,3 +164,4 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
           </Transition>
     );
 }
+
