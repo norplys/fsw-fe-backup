@@ -60,7 +60,7 @@ export default function LoginAdmin() {
         className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1"
       >
         <div className="w-full lg:w-2/3 text-black flex flex-col">
-          <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
+          <h1 className="font-bold text-3xl text-white lg:mb-12 text-left">
             Selamat Datang !
           </h1>
 

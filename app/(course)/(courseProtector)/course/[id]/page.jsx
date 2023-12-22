@@ -2,6 +2,8 @@
 import CircleLoading from "@/components/CircleLoading";
 import { useParams, useSearchParams, usePathname } from "next/navigation";
 import {useState, useEffect } from "react";
+
+import Onboarding from "@/components/Onboarding";
 import Link from "next/link";
 import { BiSolidChat} from "react-icons/bi";
 import { FiArrowLeft} from "react-icons/fi";
@@ -31,8 +33,6 @@ const DetailKelas = () => {
   const pathname = usePathname();
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
-
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
