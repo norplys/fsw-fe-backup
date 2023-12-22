@@ -56,7 +56,7 @@ const Navbar = () => {
 						<input
 							type='text'
 							value={keyword}
-							placeholder='Cari Kursus Terbaik....'
+							placeholder='Cari Kursus...'
 							onChange={(e) => setKeyword(e.target.value)}
 							className='w-80 px-5 py-3 rounded-xl placeholder:text-sm text-black'
 						/>
@@ -79,12 +79,12 @@ const Navbar = () => {
 					
 					
 						<Link href='/profile/notification'>
-							<FiBell className='text-secret-text' size={25} />
+							<FiBell className='text-secret-text hover:text-secret-text4' size={25} />
 						</Link>
 					
 					
 						<Link href='/profile'>
-							<FiUser className='text-secret-text' size={25} />
+							<FiUser className='text-secret-text hover:text-secret-text4' size={25} />
 						</Link>
 				
 					<button className='text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink' onClick={handleLogOut}>

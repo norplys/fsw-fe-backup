@@ -1,31 +1,14 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { BiFilter, BiPlus, BiSearch } from "react-icons/bi";
+import {  BiPlus } from "react-icons/bi";
 import { EditForm } from "@/components/Admin/Course/EditForm";
 import { CourseForm } from "@/components/Admin/Course/CourseForm";
 import { useAdminCourses } from "@/app/utils/hooks/useAdminCourses";
 import AdminCourses from "@/components/Admin/AdminCourses";
 import PinkCircleLoading from "@/components/PinkCircleLoading";
-import { AdminCard } from "@/components/Admin/AdminCard";
-
-const dashboard = [
-  {
-    label: "Active User",
-    count: "450",
-    color: "bg-secret-pink",
-  },
-  {
-    label: "Total Course",
-    count: "25",
-    color: "bg-secret-darkblue",
-  },
-  {
-    label: "Premium Course",
-    count: "20",
-    color: "bg-secret-cyan",
-  },
-];
+import DeleteModal from "@/components/Admin/Course/DeleteModal";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 const CoursesPage = () => {
   useEffect(() => {
@@ -33,7 +16,28 @@ const CoursesPage = () => {
     setToken(token);
   }, []);
 
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
+  const search = searchParams.get("search");
   const editId = useRef(null);
+  const deleteId = useRef(null);
+  const { push } = useRouter();
+  
+  useEffect(() => {
+    if(!search){
+      params.delete("search");
+      push(pathname + "?" + params.toString());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  const handleDelete = (id) => {
+    setIsDelete(true);
+    deleteId.current = id;
+  };
+
   const handleEdit = (id) => {
     setIsEdit(true);
     editId.current = id;
@@ -42,18 +46,12 @@ const CoursesPage = () => {
   const [token, setToken] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const { data, isLoading, isError, error } = useAdminCourses(token);
+  const [isDelete, setIsDelete] = useState(false);
+  const { data, isLoading, isError, error } = useAdminCourses(search);
   if (isLoading) return <PinkCircleLoading />;
   if (isError) return <div>{error.message}</div>;
   return (
     <>
-      <section className="py-5 xl:py-20">
-        <div className="grid items-center grid-cols-1 gap-8 xl:grid-cols-3 mx-5">
-          {dashboard?.map((item, index) => (
-            <AdminCard statistic={item} key={index} />
-          ))}
-        </div>
-      </section>
       <div className="flex items-center justify-between mb-5">
         <h1 className="text-xl font-bold text-black">Kelola Kelas</h1>
         <div className="flex items-center space-x-3">
@@ -63,13 +61,6 @@ const CoursesPage = () => {
           >
             <BiPlus className="w-5 h-5 mr-2" />
             Tambah Kelas
-          </button>
-          <button className="flex items-center px-4 py-2 space-x-2 text-sm font-semibold border rounded-full text-secret-darkblue border-secret-darkblue">
-            <BiFilter className="w-5 h-5 mr-2" />
-            Filter
-          </button>
-          <button className="relative w-10 h-10 rounded-full hover:bg-secret-darkblue group">
-            <BiSearch className="absolute w-5 h-5 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 text-secret-darkblue group-hover:text-white" />
           </button>
         </div>
       </div>
@@ -91,13 +82,14 @@ const CoursesPage = () => {
           </thead>
           <tbody className="w-full">
             {data?.map((data) => (
-              <AdminCourses data={data} key={data.id} handleEdit={handleEdit} />
+              <AdminCourses data={data} key={data.id} handleEdit={handleEdit} handleDelete={handleDelete} />
             ))}
           </tbody>
         </table>
       </div>
-      <EditForm isOpen={isEdit} setIsOpen={setIsEdit} id={editId} />
+      <EditForm isOpen={isEdit} setIsOpen={setIsEdit} id={editId} token={token} />
       <CourseForm isOpen={isOpen} setIsOpen={setIsOpen} />
+      <DeleteModal isOpen={isDelete} setIsOpen={setIsDelete} id={deleteId} token={token} />
     </>
   );
 };
