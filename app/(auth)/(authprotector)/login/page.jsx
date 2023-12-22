@@ -102,7 +102,7 @@ export default function LoginPage() {
             </label>
 
             <Link
-              href="login/forgot-password"
+              href="/forgot-password"
               className="text-secret-text font-bold text-base hover:underline hover:text-white text-right"
             >
               Lupa Kata Sandi ?
