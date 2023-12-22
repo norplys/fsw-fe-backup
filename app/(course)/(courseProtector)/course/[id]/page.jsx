@@ -15,6 +15,7 @@ import PremiumEnrollModal  from "@/components/ClassDetail/PremiumEnrollModal";
 import FreeEnrollModal from "@/components/ClassDetail/FreeEnrollModal";
 
 
+
 const DetailKelas = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
