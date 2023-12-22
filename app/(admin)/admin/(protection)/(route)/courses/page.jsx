@@ -52,11 +52,23 @@ const CoursesPage = () => {
   if (isError) return <div>{error.message}</div>;
   return (
     <>
+<<<<<<< Updated upstream
       <div className="flex items-center justify-between mb-5">
         <h1 className="text-xl font-bold text-black">Kelola Kelas</h1>
+=======
+      <section className="py-5 xl:py-20">
+        <div className="grid items-center grid-cols-1 gap-8 xl:grid-cols-3 mx-5">
+          {dashboard?.map((item, index) => (
+            <AdminCard statistic={item} key={index} />
+          ))}
+        </div>
+      </section>
+      <div className="flex flex-col md:flex-row items-center justify-between mb-5">
+        <h1 className="text-xl font-bold text-black mb-2 md:mb-0">Kelola Kelas</h1>
+>>>>>>> Stashed changes
         <div className="flex items-center space-x-3">
           <button
-            className="flex items-center px-4 py-2 space-x-2 text-sm font-semibold text-white rounded-full bg-secret-darkblue"
+            className="flex items-center px-4 py-2 space-x-2 text-sm font-semibold border rounded-full text-secret-darkblue border-secret-darkblue"
             onClick={() => setIsOpen(true)}
           >
             <BiPlus className="w-5 h-5 mr-2" />

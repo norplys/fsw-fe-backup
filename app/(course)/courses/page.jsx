@@ -166,20 +166,20 @@ useEffect(() => {
     levelFilterButton,
   ];
   return (
-    <div className=" bg-secret-grey2 px-[150px] pt-4 w-full font-montserrat min-h-screen">
-      <section className="max-w-7xl m-auto">
-        <div className="flex justify-between ">
-          <h1 className="text-secret-text mb-10 font-bold text-[24px]">
+    <div className="bg-secret-grey2 px-3 md:px-[150px] pt-4 w-full font-montserrat">
+      <section className="md:max-w-7xl m-auto mb-60 md:mb-0">
+        <div className="flex justify-between md:flex-row flex-col mb-10 gap-2">
+          <h1 className="text-secret-text font-bold text-[24px]">
             Kelas Berjalan
           </h1>
 
-          <form className="flex h-fit  border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl" onSubmit={handleSubmit(handleSearch)}>
+          <form className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl" onSubmit={handleSubmit(handleSearch)}>
             <input
               {...register("search")}
               type="text"
               placeholder="Cari Kelas..."
               name="search"
-              className="text-black text-sm focus:outline-none"
+              className="text-black text-sm focus:outline-none w-full"
               id="search-class"
             />
 
@@ -189,11 +189,10 @@ useEffect(() => {
           </form>
         </div>
 
-        <div className="flex lg:flex-row gap-[88px] ">
-
+        <div className="flex lg:flex-row gap-3 md:gap-[88px]">
           <form
             className="bg-secret-background border shadow-md flex flex-col w-64 p-5
-            h-[580px] rounded-[16px] gap-5"
+            md:h-[580px] h-[680px] rounded-[16px] gap-5"
           >
             {isLoadingCategories ? 
               <div>Loading</div>
@@ -216,7 +215,7 @@ useEffect(() => {
               }
             )}
             <div className="w-full text-center">
-              <button type="reset" className="bg-secret-pink text-white px-3 rounded-xl text-base hover:scale-105" onClick={() => {
+              <button type="reset" className="bg-secret-pink text-white px-3 rounded-xl text-sm md:text-base hover:scale-105" onClick={() => {
                 router.push(pathname)
                 setQueryCategory([])
                 setQueryLevel([])
@@ -229,7 +228,7 @@ useEffect(() => {
 
           <div className="container">
 
-            <div className="flex  gap-7 mb-5">
+            <div className="flex gap-2 md:gap-7 mb-5 text-sm">
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton
@@ -242,7 +241,7 @@ useEffect(() => {
                 );
               })}
             </div>
-            <div className="grid grid-cols-2 max-w-3xl flex-wrap flex-row content-start gap-6">
+            <div className="flex flex-col overflow-x-scroll min-h-screen gap-3 p-2 md:grid md:grid-cols-2 md:max-w-3xl md:overflow-x-hidden content-start md:gap-6 hide-scroll-bar">
               {isLoading ? 
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;

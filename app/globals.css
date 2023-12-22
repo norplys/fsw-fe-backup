@@ -14,3 +14,10 @@
 body {
   background-color: rgb(#F8F9FA);
 }
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
