@@ -9,7 +9,9 @@ export default function Module({
   chapterIndex,
   handleModal,
   isPaid,
+
   link
+
 }) {
   return (
     <div className="flex items-center justify-between py-3" key={index}>
