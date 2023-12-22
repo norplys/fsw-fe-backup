@@ -33,21 +33,12 @@ export default function Profile (){
                 <div className="card bg-white w-full md:w-[50rem] h-auto md:h-[37rem] rounded-xl border border-secret-pink mb-8">
                     <h1 className='flex justify-center font-bold px-5 py-5 bg-secret-pink rounded-t-xl text-2xl'>Akun</h1>
                     
-<<<<<<< Updated upstream
-                    <div className="flex flex-row">
-                        <div>
-                            <div className="flex flex-row justify-start px-8 gap-2 my-5">
-                                <FiEdit3 className="text-4xl w-6 h-6" />
-                                <div className="flex justify-between">
-                                    <p className="font-bold text-blue-700 text-sm">Profile Saya</p>
-=======
                     <div className="flex flex-col md:flex-row">
                         <div className="md:w-1/2">
                             <div className="flex flex-row justify-start px-4 md:px-8 gap-5 my-2 md:my-5 hover:text-blue-600">
                                 <FiEdit3 className="text-4xl w-7 h-7" />
                                 <div className="flex flex-col justify-between">
                                     <a href="/profile" className="font-bold text-lg">Profile Saya</a>
->>>>>>> Stashed changes
                                 </div>
                             </div>
 
