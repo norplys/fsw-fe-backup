@@ -11,15 +11,21 @@ import {useQuery} from 'react-query';
 import PinkCircleLoading from '@/components/PinkCircleLoading';
 
 
-export const EditForm = ({ isOpen, setIsOpen, id }) => {
-    const {data, isLoading, isError, error} = useQuery(['course', id], async () => {
-        const res = await axios.get(`https://api.learnify.risalamin.com/courses/${id.current}`);
+export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
+    const {data, isLoading, isError, error} = useQuery(['course', id, token], async () => {
+        const res = await axios.get(`https://final-project-online-course.et.r.appspot.com/v1/course/${id.current}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }  
+    })
         return res.data.data;
     } );
+	console.log(data);
 
     const newData = {
         nama: '',
         kategori: ' ',
+		kode: '',
         tipe: '',
         level: '',
         harga: '',
@@ -31,24 +37,25 @@ export const EditForm = ({ isOpen, setIsOpen, id }) => {
         deskripsi: '',
     }
     if(!isLoading && data){
-        const newChapter = data.course_chapter.map(chapter => {
-            const newModule = chapter.course_material.map(module => {
+        const newChapter = data.courseModules.map(chapter => {
+            const newModule = chapter.module.map(module => {
                 return {
-                    title : module.name,
-                    video : module.video,
+                    title : module.title,
+                    video : module.courseLink,
                 }
             })
             return {
-                name : chapter.name,
+                name : chapter.chapter,
                 module : newModule,
             }
         })
         newData.nama = data.name;
-        newData.kategori = data.course_category.name;
-        newData.tipe = data.premium ? 'Premium' : 'Gratis';
-        newData.level = data.difficulty;
+        newData.kategori = data.category;
+		newData.kode = data.courseCode;
+        newData.tipe = data.isPremium ? 'Premium' : 'Gratis';
+        newData.level = data.level;
         newData.harga = data.price;
-        newData.targetKelas = data.target_audience;
+        newData.targetKelas = data.classTarget;
         newData.chapter = newChapter;
         newData.deskripsi = data.description;
     }
@@ -175,6 +182,28 @@ export const EditForm = ({ isOpen, setIsOpen, id }) => {
 
 									<div className='mb-4'>
 										<label
+											htmlFor='kode'
+											className='block mb-2 text-base font-semibold text-gray-700 '>
+											Kode Kelas
+										</label>
+										<input
+											type='text'
+											placeholder='Kode'
+											className={
+												`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+												${errors.kode ? 'border-red-500': ''}`
+											}
+											{...register('kode', {
+												required: 'kode harus diisi',
+											})}
+										/>
+										<span className='block mt-1 text-xs text-red-500' role='alert'>
+											{errors.kode?.message}
+										</span>
+									</div>
+
+									<div className='mb-4'>
+										<label
 											htmlFor='tipe'
 											className='block mb-2 text-base font-semibold text-gray-700 '>
 											Tipe
@@ -211,9 +240,9 @@ export const EditForm = ({ isOpen, setIsOpen, id }) => {
 												required: 'Level harus diisi',
 											})}>
 											<option value=''>Pilih Level</option>
-											<option value='Beginner'>Beginner</option>
-											<option value='Intermediate'>Intermediate</option>
-											<option value='Advanced'>Advanced</option>
+											<option value='beginner'>Beginner</option>
+											<option value='intermediate'>Intermediate</option>
+											<option value='advanced'>Advanced</option>
 										</select>
 										<span className='block mt-1 text-xs text-red-500' role='alert'>
 											{errors.level?.message}

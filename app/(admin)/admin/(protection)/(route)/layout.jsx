@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Sidebar } from '@/components/Admin/Sidebar';
 import { AdminNavbar } from '@/components/Admin/AdminNavbar';
+import {Toaster} from "react-hot-toast";
+import { AdminCard } from '@/components/Admin/AdminCard';
 
 const links = [
 	{
@@ -46,11 +48,20 @@ const AdminLayout = ({ children }) => {
 
 	return (
 		<main className='flex min-h-screen'>
+			<Toaster position='bottom-left'/>
 			<Sidebar links={links} current={current} open={open} setOpen={setOpen} />
 
 			<section className='relative w-full'>
+				
 				<AdminNavbar setOpen={setOpen} open={open} />
 				<section>
+				<section className="py-5 xl:py-20">
+        <div className="grid items-center grid-cols-1 gap-8 xl:grid-cols-3 mx-5">
+          {dashboard?.map((item, index) => (
+            <AdminCard statistic={item} key={index} />
+          ))}
+        </div>
+      </section>
 					<div className='container px-2 mx-auto xl:px-10'>{children}</div>
 				</section>
 			</section>
