@@ -24,11 +24,8 @@ export default function KelasPembayaran () {
   }, []);
   const getData = async (token) => {
     try{
-    const res = await axios.post(
-      "https://final-project-online-course.et.r.appspot.com/v1/courses/enrollment",
-      {
-        course_uuid: id,
-      },
+    const res = await axios.get(
+      `https://final-project-online-course.et.r.appspot.com/v1/courses/invoice/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -39,7 +36,7 @@ export default function KelasPembayaran () {
     setLoading(false);
     }
     catch(err){
-      push('/')
+      push('/');
     }
   };
   const handlePayment = async (paymentId) => {
@@ -57,7 +54,7 @@ export default function KelasPembayaran () {
         },
       }
     );
-    push('/payment/success');
+    push(`/payment/success/${res.data.data.courseUuid}`);
     }
     catch(err){
       toast.error(err.response.data.message);
@@ -88,11 +85,11 @@ export default function KelasPembayaran () {
           </h1>
         </div>
       </div>
-      <div className="flex md:flex-row flex-col md:px-[100px] px-5 gap-10 h-[600px]">
+      <div className="flex md:flex-row flex-col md:px-[100px] h-[600px] mt-10 justify-center gap-5">
         {/* KIRI */}
         {/* kotak Pembayaran */}
-        <div className="w-full px-4 pt-16">
-          <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
+        <div className="w-[417px]">
+          <div className= "max-w-md rounded-2xl bg-white p-2">
             <Disclosure className="sm:w-[600px]">
               {({ open }) => (
                 <>
@@ -104,7 +101,7 @@ export default function KelasPembayaran () {
                       } h-5 w-5 text-white`}
                     />
                   </Disclosure.Button>
-                  <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-black">
+                  <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm text-black w-full">
                     This Feature Currently Unavailable
                   </Disclosure.Panel>
                 </>
@@ -121,7 +118,7 @@ export default function KelasPembayaran () {
                       } h-5 w-5 text-white`}
                     />
                   </Disclosure.Button>
-                  <Disclosure.Panel className="pt-4 text-sm text-black">
+                  <Disclosure.Panel className="pt-4 text-sm text-black w-full">
                     <div className="p-2  ">
                       {/* PAYMENT OPTIONS */}
                       <div className="flex gap-5 place-content-center  place-items-center">
@@ -208,10 +205,10 @@ export default function KelasPembayaran () {
 
         {/* KANAN */}
         {/* PEMBAYARAN KELAS */}
-        <div className="md:w-[400px] w-[300px] rounded-[16px] shadow-xl p-5 flex-grow-0 flex-shrink-0 h-[372px] sm:mt-[60px]">
-          <h1 className="font-bold">Pembayaran Kelas</h1>
+        <div className="md:w-[400px] w-[300px] rounded-[16px] shadow-xl flex-grow-0 flex-shrink-0 h-[372px] bg-secret-blue pt-2">
+          <h1 className="font-bold text-center">Pembayaran Kelas</h1>
           {/* KOTAK COURSE */}
-          <div className="md:w-[323px] h-[150px] shadow-md rounded-[15px] mx-auto mt-3 bg-secret-background">
+          <div className="md:w-[323px] h-[150px] shadow-md rounded-[15px] mx-auto mt-3 bg-white">
             <div className="">
               <div className="h-20">
               <Image src={data.image} width={323} height={80} alt="course-image" className="w-full h-full object-cover rounded-t-2xl" />
@@ -241,13 +238,13 @@ export default function KelasPembayaran () {
               {/* TOTAL BAYAR */}
               <div className="flex flex-col gap-2">
                 <h4 className="font-bold">Total Bayar</h4>
-                <p className="font-bold text-secret-pink md:text-[14px] text-[12px]">
+                <p className="font-bold text-secret-text md:text-[14px] text-[12px]">
                   Rp {data.total}
                 </p>
               </div>
             </div>
             {/* TOMBOL BAYAR */}
-            <button className=" justify-between flex w-full bg-secret-pink px-5 py-3 rounded-[15px] mt-5 " onClick={(e) => {e.preventDefault(), handlePayment(data.paymentUuid)}}>
+            <button className=" justify-between flex w-full bg-secret-pink px-5 py-3 rounded-[15px] mt-5 hover:scale-x-105 duration-300" onClick={(e) => {e.preventDefault(), handlePayment(data.paymentUuid)}}>
               <h2 className="font-bold text-white md:text-[16px] text-[12px] ">
                 Bayar dan Ikuti Kelas Selamanya
               </h2>

@@ -3,6 +3,7 @@
 
 import AuthInput from "@/components/Auth/AuthInput";
 import { BiBrain } from "react-icons/bi";
+import { useForm } from "react-hook-form";
 
 const requiredArray = [{
   name: "Masukkan Password Baru",
@@ -17,6 +18,17 @@ const requiredArray = [{
 }];
 
 export default function ResetPassword() {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      password1: "",
+      password2: "",
+    },
+  });
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
       <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1">
@@ -27,7 +39,7 @@ export default function ResetPassword() {
 
 
           {requiredArray.map((item, index) => (
-            <AuthInput key={index} {...item} />
+            <AuthInput key={index} {...item} register={register} errors={errors}/>
           ))}
           <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
 

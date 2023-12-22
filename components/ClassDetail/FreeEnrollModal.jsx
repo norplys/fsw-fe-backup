@@ -1,17 +1,41 @@
-import { Fragment} from "react";
-import Link from "next/link";
+import { Fragment } from "react";
 import { BiSolidStar, BiX } from "react-icons/bi";
 import { FiArrowRight } from "react-icons/fi";
 import { FaBookBookmark, FaRegClock } from "react-icons/fa6";
 import { GiRank3 } from "react-icons/gi";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
+import axios from "axios";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { VscLoading } from "react-icons/vsc";
 
-export default function FreeEnrollModal({ data, isOpen, setIsOpen }) {
-  const handleClick = () => {
-    setIsOpen(false);
-  }
-
+export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
+  const { push } = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+    const handleEnroll = async (id, token) => {
+      try {
+        setIsLoading(true);
+        const res = await axios.post(
+          "https://final-project-online-course.et.r.appspot.com/v1/courses/enrollment",
+          {
+            course_uuid: id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setIsOpen(false);
+        setIsLoading(false);
+      }
+      catch (err) {
+        toast.error("Gagal mendaftar kelas mohon coba lagi");
+        setIsLoading(false);
+      }
+    }
     return (
         <Transition appear show={isOpen} as={Fragment}>
             <Dialog
@@ -57,7 +81,7 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen }) {
                         as="h3"
                         className="mb-5 text-xl font-bold text-center"
                       >
-                        Selangkah Lagi Mengikuti
+                        Selangkah lagi menuju
                         <br />
                         <span className="text-secret-darkblue">
                           Kelas Gratis
@@ -124,11 +148,11 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen }) {
                       <div className="flex items-center justify-center">
                         <button
                           type="button"
-                          className="flex items-center px-6 py-2 space-x-2 font-bold text-white rounded-full bg-secret-pink hover:scale-105 duration-300"
-                          onClick={handleClick}
+                          className={`flex items-center px-6 py-2 space-x-2 font-bold text-white rounded-full bg-secret-pink hover:scale-105 duration-300 ${isLoading ? "cursor-wait" : "cursor-pointer"}`}
+                          onClick={() => handleEnroll(data.id, token)}
                         >
-                          <span>Ikuti Sekarang</span>
-                          <FiArrowRight className="text-white text-lg" />
+                          {isLoading ? <VscLoading className="animate-spin font-bold text-lg mx-11"/>  : <><span>Ikuti Sekarang</span><FiArrowRight className="text-white text-lg" /></>}
+                          
                         </button>
                       </div>
                     </Dialog.Panel>

@@ -13,19 +13,14 @@ import Chapter from "@/components/ClassDetail/Chapter";
 import { useRouter } from "next/navigation";
 import PremiumEnrollModal  from "@/components/ClassDetail/PremiumEnrollModal";
 import FreeEnrollModal from "@/components/ClassDetail/FreeEnrollModal";
+import { useVideoData } from "@/app/utils/hooks/useVideoCourse";
+import VideoLoading from "@/components/VideoLoading";
 
 
 
-const DetailKelas = () => {
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setToken(token);
-    }
-  }, []);  
+const DetailKelas = () => {  
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
-
   const { push } = useRouter();
   const [token, setToken] = useState("");
   const { id } = useParams();
@@ -33,25 +28,33 @@ const DetailKelas = () => {
   const { data, isLoading, isError, error } = useClassDetails(id, token);
   const [video, setVideo] = useState("");
   const pathname = usePathname();
+  const [uuid, setUUID] = useState("")
+  const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
 
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setToken(token);
+    }
+  }, []);
   useEffect(() => {
     let chapterIndex = searchParams.get("chapter");
     let index = searchParams.get("module");
     if (chapterIndex === null || index === null) {
-      setVideo("");
+      setUUID("");
       return;
     }  
     if (chapterIndex !== null || index !== null) {
       chapterIndex = Number(chapterIndex);
       index = Number(index);
-      const video = data?.courseModules[chapterIndex].module[index].courseLink;
-      setVideo(video);
+      const uuid = data?.courseModules[chapterIndex].module[index].chapterModuleUuid;
+      setUUID(uuid);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  const handleVideo = (video, chapterIndex, index) => {
+  const handleVideo = (uuid, chapterIndex, index) => {
     if(!data.isPremium && !data.isPaid && chapterIndex !== 0){
       handleModal();
       return;
@@ -65,7 +68,7 @@ const DetailKelas = () => {
     push(`${pathname}?${params.toString()}`, {
       scroll : false
     });
-    setVideo(video);
+    setUUID(uuid);
   };
 
   const handleNextVideo = () => {
@@ -73,16 +76,16 @@ const DetailKelas = () => {
     let currentModule = Number(searchParams.get("module"));
     const chapterLength = data.courseModules.length;
     const moduleLength = data.courseModules[currentChapter].module.length;
-    const nextVideo = data.courseModules[currentChapter].module[currentModule + 1];
+    const nextUuid = data.courseModules[currentChapter].module[currentModule + 1];
 
     if (currentModule < moduleLength - 1) {
-      handleVideo(nextVideo.courseLink, currentChapter, currentModule + 1);
+      handleVideo(nextUuid.chapterModuleUuid, currentChapter, currentModule + 1);
     } else if (currentChapter < chapterLength - 1) {
       if(!data.isPaid){
         handleModal();
         return;
       }
-      handleVideo(data.courseModules[currentChapter + 1].module[0].courseLink, currentChapter + 1, 0);
+      handleVideo(data.courseModules[currentChapter + 1].module[0].chapterModuleUuid, currentChapter + 1, 0);
     }
   };
 
@@ -115,7 +118,7 @@ const DetailKelas = () => {
       ) : (
         <>
         {
-          data.isPremium ? <PremiumEnrollModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} /> : <FreeEnrollModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} />
+          data.isPremium ? <PremiumEnrollModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} token={token} /> : <FreeEnrollModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} token={token} />
         }
           <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
             <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
@@ -209,7 +212,6 @@ const DetailKelas = () => {
                       isPremium={data.isPremium}
                       handleModal={handleModal}
                       isPaid={data?.isPaid}
-
                     />
                   ))}
                 </div>
@@ -220,15 +222,20 @@ const DetailKelas = () => {
           <div className="py-10">
             <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
               <div className="xl:col-span-3">
-                {video ? (
+                {videoLoading ? (
+                  < VideoLoading/>
+                ) :
+                
+                videoData ? (
                   <iframe
                     className="w-full h-full mb-5 rounded-2xl shadow-2xl"
-                    src={video}
+                    src={videoData}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen={true}
                   ></iframe>
+                  
                 ) : (
                   <iframe
                     className="w-full h-full mb-5 rounded-2xl shadow-2xl"
@@ -238,6 +245,7 @@ const DetailKelas = () => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen={true}
                   ></iframe>
+                  
                 )}
                 <div className="flex gap-2 mb-3">
                   <button

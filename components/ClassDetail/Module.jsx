@@ -9,9 +9,8 @@ export default function Module({
   chapterIndex,
   handleModal,
   isPaid,
-
-  link
-
+  uuid,
+  isCompleted,
 }) {
   return (
     <div className="flex items-center justify-between py-3" key={index}>
@@ -33,10 +32,10 @@ export default function Module({
           </button>
         ) : (
           <button
-            className="text-xs font-bold bg-secret-darkblue rounded-full p-2 "
+            className={`text-xs font-bold rounded-full p-2 ${isCompleted ? 'bg-secret-green' : 'bg-secret-darkblue'} `}
             onClick={() =>
               handleVideo(
-                link,
+                uuid,
                 chapterIndex,
                 index
               )
