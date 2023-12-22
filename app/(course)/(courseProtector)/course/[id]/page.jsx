@@ -2,6 +2,8 @@
 import CircleLoading from "@/components/CircleLoading";
 import { useParams, useSearchParams, usePathname } from "next/navigation";
 import {useState, useEffect } from "react";
+
+import Onboarding from "@/components/Onboarding";
 import Link from "next/link";
 import { BiSolidChat} from "react-icons/bi";
 import { FiArrowLeft} from "react-icons/fi";
@@ -53,7 +55,6 @@ const DetailKelas = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-
   const handleVideo = (uuid, chapterIndex, index) => {
     if(!data.isPremium && !data.isPaid && chapterIndex !== 0){
       handleModal();

@@ -1,3 +1,4 @@
+
 import { Fragment } from "react";
 import { BiSolidStar, BiX } from "react-icons/bi";
 import { FiArrowRight } from "react-icons/fi";
@@ -10,7 +11,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { VscLoading } from "react-icons/vsc";
-
 export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
   const { push } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
