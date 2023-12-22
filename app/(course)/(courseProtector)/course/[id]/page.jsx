@@ -15,10 +15,6 @@ import PremiumEnrollModal  from "@/components/ClassDetail/PremiumEnrollModal";
 import FreeEnrollModal from "@/components/ClassDetail/FreeEnrollModal";
 import { useVideoData } from "@/app/utils/hooks/useVideoCourse";
 import VideoLoading from "@/components/VideoLoading";
-
-
-
-
 const DetailKelas = () => {  
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);

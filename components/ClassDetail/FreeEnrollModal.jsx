@@ -13,7 +13,6 @@ import toast from "react-hot-toast";
 import { VscLoading } from "react-icons/vsc";
 
 export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
-  const { push } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
     const handleEnroll = async (id, token) => {
       try {
