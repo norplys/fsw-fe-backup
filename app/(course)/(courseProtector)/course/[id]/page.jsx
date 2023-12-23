@@ -2,8 +2,6 @@
 import CircleLoading from "@/components/CircleLoading";
 import { useParams, useSearchParams, usePathname } from "next/navigation";
 import {useState, useEffect } from "react";
-
-import Onboarding from "@/components/Onboarding";
 import Link from "next/link";
 import { BiSolidChat} from "react-icons/bi";
 import { FiArrowLeft} from "react-icons/fi";
@@ -17,6 +15,7 @@ import PremiumEnrollModal  from "@/components/ClassDetail/PremiumEnrollModal";
 import FreeEnrollModal from "@/components/ClassDetail/FreeEnrollModal";
 import { useVideoData } from "@/app/utils/hooks/useVideoCourse";
 import VideoLoading from "@/components/VideoLoading";
+import OnBoardingModals from "@/components/ClassDetail/Onboarding";
 
 
 
@@ -28,12 +27,9 @@ const DetailKelas = () => {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading, isError, error } = useClassDetails(id, token);
-  const [video, setVideo] = useState("");
   const pathname = usePathname();
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
-
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -121,7 +117,9 @@ const DetailKelas = () => {
         {
           data.isPremium ? <PremiumEnrollModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} token={token} /> : <FreeEnrollModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} token={token} />
         }
+        
           <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
+            {data?.onboarding && <OnBoardingModals data={data} token={token} />}
             <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
               <div className="xl:col-span-3">
                 <Link
@@ -189,7 +187,7 @@ const DetailKelas = () => {
                   <div className="flex items-center justify-between mb-4">
                     <h1 className="text-xl font-bold">Materi Belajar</h1>
                     {/* progress bar here */}
-                    {data.progress && <div className="relative py-2 rounded-full bg-secret-pink w-[200px] overflow-hidden">
+                    {data.isPaid && <div className="relative py-2 rounded-full bg-secret-pink w-[200px] overflow-hidden">
                       <div
                         style={{
                           width: `${data.progress}%`,
@@ -197,7 +195,7 @@ const DetailKelas = () => {
                         className="absolute top-0 left-0 py-2 rounded-full bg-secret-darkblue"
                       ></div>
                       <div className="absolute text-xs text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 font-bold">
-                        50% Complete
+                        {data?.progress ? data.progress : 0}%
                       </div>
                     </div>}
                   </div>
