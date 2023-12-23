@@ -5,12 +5,43 @@ import AuthInput from "@/components/Auth/AuthInput";
 import { BiBrain } from "react-icons/bi";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import toast , {Toaster} from "react-hot-toast";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function ForgotPassword() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
+  const { push } = useRouter();
+
+  const handleForgotPassword = async (data) => {
+    try{
+    const newData = {
+      email: data.email,
+    }
+    
+    const res =  axios.post("https://final-project-online-course.et.r.appspot.com/v1/forget-password", newData);
+    await toast.promise(res, {
+      loading: "Loading...",
+      success: `Link untuk reset password telah dikirim ke ${data.email}`,
+      error: "Gagal mengirim link reset password",
+    });
+    toast.loading("Redirecting...", { duration: 2000 });
+    await sleepRedirect();
+  } catch (err) {
+    toast.error(err.response.data.message);
+  }
+  }
+  const sleepRedirect = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(push("/login"));
+      }, 2000);
+    });
+  }
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
-      <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1">
+      <Toaster position="bottom-left"/>
+      <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1" onSubmit={handleSubmit(handleForgotPassword)}>
         <div className="w-full lg:w-2/3 text-black flex flex-col">
           <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
             Lupa Kata Sandi ?
@@ -23,6 +54,7 @@ export default function ForgotPassword() {
             id="email"
             register={register}
             errors={errors}
+            isSubmitting={isSubmitting}
           />
 
           <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
