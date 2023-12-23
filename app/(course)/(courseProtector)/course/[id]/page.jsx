@@ -18,6 +18,7 @@ import VideoLoading from "@/components/VideoLoading";
 import OnBoardingModals from "@/components/ClassDetail/Onboarding";
 
 
+
 const DetailKelas = () => {  
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
