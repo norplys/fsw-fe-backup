@@ -34,7 +34,9 @@ export default function LoginPage() {
         error: `${data.user} failed to login`
       }
     )
-    toast.loading('Redirecting Please Wait...')
+    toast.loading('Redirecting Please Wait...', {
+      duration: 2000,
+    })
     await sleepRedirect();
     if(!redirect){
       push('/');
