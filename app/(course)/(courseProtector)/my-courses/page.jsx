@@ -35,11 +35,11 @@ const ButtonData = [
     value: "",
   },
   {
-    name: "Kelas Premium",
+    name: " In Progress",
     value: "1",
   },
   {
-    name: "Kelas Gratis",
+    name: "Completed",
     value: "0",
   },
 ];

@@ -7,12 +7,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import axios from "axios";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { VscLoading } from "react-icons/vsc";
 
 export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
-  const { push } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
     const handleEnroll = async (id, token) => {
       try {
@@ -91,12 +89,12 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
                       <div className="mb-5 overflow-hidden border border-secret-darkblue rounded-2xl">
                         <div className="h-[100px] relative overflow-hidden">
                           <Image
-                            src="/orangKetawa.svg"
+                            src={data.image}
                             width={500}
                             height={500}
                             layout="responsive"
                             alt="Video Preview"
-                            className="object-cover object-center"
+                            className="h-full w-full object-cover"
                           />
                         </div>
 
