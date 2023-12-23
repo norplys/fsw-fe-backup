@@ -20,7 +20,6 @@ import VideoLoading from "@/components/VideoLoading";
 
 
 
-
 const DetailKelas = () => {  
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);
@@ -119,7 +118,6 @@ const DetailKelas = () => {
         <>
         {
           data.isPremium ? <PremiumEnrollModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} token={token} /> : <FreeEnrollModal isOpen={isOpen} setIsOpen={setIsOpen} data={data} token={token} />
-
         }
           <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
             <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
