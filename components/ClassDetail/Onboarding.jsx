@@ -3,12 +3,33 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { BiX } from "react-icons/bi";
 import { useState } from "react";
+import axios from "axios";
+import { VscLoading } from "react-icons/vsc";
+import toast  from "react-hot-toast";
 
 export default function OnBoardingModals({
   data,
   token
 }) {
   const [isOpen, setIsOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const handleOnboarding = async (token, uuid) => {
+    setIsLoading(true);
+    try{
+      await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/courses/onboarding/${uuid}`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Berhasil mengupdate onboarding");
+      setIsOpen(false);
+    }
+    catch(err){
+      console.log(err);
+      toast.error("Gagal memulai kelas mohon coba lagi");
+      setIsLoading(false);
+    }
+  }
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -74,11 +95,9 @@ export default function OnBoardingModals({
                     </p>
                   </div>
 
-                  <button className="flex justify-center gap-1 mt-1 w-full py-2 bg-secret-pink rounded-[15px] relative hover:scale-105 duration-300">
+                  <button className="flex justify-center gap-1 mt-1 w-full py-2 bg-secret-pink rounded-[15px] relative hover:scale-105 duration-300 text-white font-bold" onClick={() => handleOnboarding(token, data?.id)}>
                     <div className="flex">
-                      <h2 className="text-base font-bold text-white ">
-                        Saya Sudah Siap Belajar !
-                      </h2>
+                      {isLoading ? <VscLoading className="animate-spin font-bold text-lg mx-11"/>  : <><span>Saya Sudah Siap Belajar</span></>}
                     </div>
                   </button>
               </Dialog.Panel>
