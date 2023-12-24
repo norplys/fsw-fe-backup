@@ -5,10 +5,10 @@ export default function Guard(){
         <div className="bg-secret-pink flex items-center justify-center min-h-screen min-w-full z-30 absolute top-0">
         <BiBrain className="text-9xl text-white" />
         <div className="flex">
-          <h1 className="text-5xl md:text-7xl text-secret-text flex items-center font-bold">
+          <h1 className="text-7xl text-secret-text flex items-center font-bold">
             Skill
           </h1>
-          <h1 className="text-5xl md:text-7xl text-secret-text font-bold rounded-xl">
+          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
             HUB
           </h1>
         </div>

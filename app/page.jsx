@@ -46,6 +46,7 @@ export default function Beranda () {
         scroll: false,
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
   
   const createQueryString = (name, value) => {
@@ -77,13 +78,13 @@ export default function Beranda () {
       <div className="font-montserrat min-h-screen">
         <div className="flex w-full">
           <div className="before:bg-gradient-to-t from-transparent to-[#2FB5BF] before:w-full before:h-full before:absolute relative col-span-12 flex-2 w-full">
-            <div className="bg-[url('/homeImage.svg')] bg-cover h-96 flex justify-center items-center flex-col md:flex-row">
-              <div className="z-10  flex items-center text-white font-bold text-5xl md:w-96  drop-shadow-[0_3px_1.2px_rgba(0,0,0,0.8)] flex-shrink-0 ml-5 md:ml-0">
+            <div className="bg-[url('/homeImage.svg')] bg-cover h-96 flex justify-center items-center">
+              <div className="z-10  flex items-center text-white font-bold text-5xl w-96 drop-shadow-[0_3px_1.2px_rgba(0,0,0,0.8)]">
                   Ready To Upgrade Your Skill ?
               </div>
-              <div className="flex gap-3 ml-5 md:ml-0 mt-5 md:mt-0">
-              <Link className="text-white font-bold md:text-2xl text-xl z-10 border border-white h-min p-2 rounded-md animate-pulse hover:scale-105 flex-shrink-0" href={"/courses"}>Mulai Sekarang</Link>
-              <Link className="text-white font-bold md:text-2xl text-xl z-10 border border-white h-min p-2 rounded-md flex items-center hover:scale-105" href={"https://wa.me/6282284134328?text=Saya%20ingin%20bertanya%20perihal%20course%20di%20skillHUB"}> <CiHeadphones/> Tanya Kami</Link>
+              <div className="flex gap-3">
+              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md animate-pulse hover:scale-105" href={"/courses"}>Mulai Sekarang</Link>
+              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md flex items-center hover:scale-105" href={"https://wa.me/6282284134328?text=Saya%20ingin%20bertanya%20perihal%20course%20di%20skillHUB"}> <CiHeadphones/> Tanya Kami</Link>
               </div>
             </div>
           </div>
@@ -100,7 +101,7 @@ export default function Beranda () {
               </Link>
             </div>
    
-            <div className="flex gap-5 p-5 w-[100vw] md:w-auto overflow-x-auto ">
+            <div className="flex gap-5 pb-5">
               {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <CategoryLoading key={index} />;
@@ -110,15 +111,12 @@ export default function Beranda () {
               ) : (
                 dataCategories.map((item, index) => {
                   return (
-                  
-                      <CardCategories
+                    <CardCategories
                       key={index}
                       name={item.name}
                       image={item.image}
                       categoryId={item.id}
-        
                     />
-                  
                   );
                 })
               )}
@@ -137,13 +135,13 @@ export default function Beranda () {
               </Link>
             </div>
 
-            <div className="flex gap-5  mb-5 p-5  w-[100vw] overflow-x-auto">
+            <div className="flex gap-5  mb-5 justify-around">
             {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <ButtonLoading key={index} />;
                 })
               ) : errorCategories ? (
-                <p>Something Went Wrong</p>
+                <p>Something Went Wrong, Please Try Again</p>
               ) : (
                 dataCategories.map((item, index) => {
                   return (
@@ -154,7 +152,7 @@ export default function Beranda () {
             </div>
 
     
-            <div className="grid grid-cols-1 p-5 md:grid-cols-3 mx-auto   gap-5 items-center h-full">
+            <div className="grid grid-cols-3 mx-auto  gap-5 items-center h-full">
               {isLoadingCourses ? (
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;
@@ -176,6 +174,7 @@ export default function Beranda () {
                       totalMinute={item.totalMinute}
                       price={item.price}
                       id={item.id}
+                      isPremium={item.isPremium}
                     />
                   );
                 })

@@ -160,8 +160,11 @@ export default function LoginPage() {
       <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1">
         <BiBrain className="text-9xl text-white" />
         <div className="flex">
-        <h1 className="text-5xl md:text-7xl text-secret-text flex items-center font-bold">
-            SkillHUB
+          <h1 className="text-7xl text-secret-text flex items-center font-bold">
+            Skill
+          </h1>
+          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
+            HUB
           </h1>
         </div>
       </div>

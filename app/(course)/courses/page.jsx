@@ -189,10 +189,10 @@ useEffect(() => {
           </form>
         </div>
 
-        <div className="flex lg:flex-row flex-col gap-3 md:gap-[88px]">
+        <div className="flex lg:flex-row gap-3 md:gap-[88px]">
           <form
             className="bg-secret-background border shadow-md flex flex-col w-64 p-5
-            md:h-[580px] h-[580px] rounded-[16px] gap-5 mx-auto mb-5"
+            md:h-[580px] h-[680px] rounded-[16px] gap-5"
           >
             {isLoadingCategories ? 
               <div>Loading</div>
