@@ -68,7 +68,7 @@ export default function Profile() {
                   </div>
                 </button>
               </div>
-              <div className="md:w-1/2">
+              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[500px]">
                 {currentTab === "Profile" && <ProfileSaya register={register}/>}
                 {currentTab === "Password" && <Password />}
                 {currentTab === "Pembayaran" && <RiwayatPembayaran />}
