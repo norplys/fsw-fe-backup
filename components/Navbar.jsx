@@ -67,7 +67,6 @@ const Navbar = () => {
 						</button>
 					</form>
 				</div>
-<<<<<<< HEAD
 
 				<ul className='flex items-center space-x-4'>
 					{
@@ -96,54 +95,6 @@ const Navbar = () => {
 				
 					<button className='text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink' onClick={handleLogOut}>
 						LogOut
-=======
-			  </Link>
-			  <form
-				className="relative hidden shadow-2xl shadow-black-200/40 xl:block"
-				onSubmit={handleSearch}
-			  >
-				<input
-				  type="text"
-				  value={keyword}
-				  placeholder="Cari Kursus..."
-				  onChange={(e) => setKeyword(e.target.value)}
-				  className="w-80 px-5 py-3 rounded-xl placeholder:text-sm text-black"
-				/>
-				<button className="absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 rounded-xl search">
-				  <BiSearchAlt className="text-black" />
-				</button>
-			  </form>
-			</div>
-	
-			<ul className="flex items-center space-x-4">
-			  {user ? (
-				<div className="flex flex-col md:flex-row gap-5">
-				  <div className="flex gap-2">
-					<span className="font-bold mr-0 md:mr-4 text-base">
-					  HI, {user.name}
-					</span>
-					<Link
-					  href="/my-courses"
-					  className="flex items-center px-4 py-1 space-x-2 rounded-lg bg-secret-darkblue hover:scale-105 duration-300"
-					>
-					  <FiList className="text-white" size={16} />
-					  <p className="font-semibold text-white">Kelas</p>
-					</Link>
-	
-					<Link href="/profile/notification">
-					  <FiBell className="text-secret-text hover:text-secret-text4" size={25} />
-					</Link>
-	
-					<Link href="/profile">
-					  <FiUser className="text-secret-text hover:text-secret-text4" size={25} />
-					</Link>
-	
-					<button
-					  className="text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink hover:scale-105 duration-300"
-					  onClick={handleLogOut}
-					>
-					  LogOut
->>>>>>> ad4b26efc604b708389cc13d5d8e8b72bf83242e
 					</button>
           </>
           :
