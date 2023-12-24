@@ -93,7 +93,7 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
                       <div className="mb-5 overflow-hidden border border-secret-darkblue rounded-2xl">
                         <div className="h-[100px] relative overflow-hidden">
                           <Image
-                            src="/orangKetawa.svg"
+                            src={data.image}
                             width={500}
                             height={500}
                             layout="responsive"

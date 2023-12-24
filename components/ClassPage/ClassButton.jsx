@@ -7,7 +7,7 @@ export default function ClassButton({text, handlePremium, value, active}) {
     }
     return (
         <button
-              className={`rounded-full py-3 px-6 duration-300 font-bold hover:-translate-y-1 hover:shadow-xl
+              className={`rounded-full py-3 px-6 text-sm duration-300 font-bold hover:-translate-y-1 hover:shadow-xl
                             ${
                               active === value
                                 ? "text-white bg-secret-darkblue"

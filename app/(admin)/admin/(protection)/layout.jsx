@@ -28,7 +28,7 @@ export default function Index({children}) {
               },
             }
           );
-          if (!res.data.data.role === "admin") {
+          if (res.data.data.role !== "admin") {
             throw new Error("You are not admin");
           }
         } catch (error) {
