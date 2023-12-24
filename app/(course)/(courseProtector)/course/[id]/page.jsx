@@ -16,6 +16,9 @@ import FreeEnrollModal from "@/components/ClassDetail/FreeEnrollModal";
 import { useVideoData } from "@/app/utils/hooks/useVideoCourse";
 import VideoLoading from "@/components/VideoLoading";
 import OnBoardingModals from "@/components/ClassDetail/Onboarding";
+import axios from "axios";
+import toast from "react-hot-toast";
+import {useQueryClient} from "react-query";
 
 
 
@@ -30,7 +33,7 @@ const DetailKelas = () => {
   const pathname = usePathname();
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
-
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -53,7 +56,8 @@ const DetailKelas = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-  const handleVideo = (uuid, chapterIndex, index) => {
+  const handleVideo = async (uuid, chapterIndex, index) => {
+    try{
     if(!data.isPremium && !data.isPaid && chapterIndex !== 0){
       handleModal();
       return;
@@ -68,6 +72,18 @@ const DetailKelas = () => {
       scroll : false
     });
     setUUID(uuid);
+    await axios.post(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed`, {
+      chapter_module_uuid: uuid,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    queryClient.invalidateQueries(["classDetails", id]);
+  }
+  catch(err){
+    setUUID(uuid);
+  };
   };
 
   const handleNextVideo = () => {
@@ -121,7 +137,7 @@ const DetailKelas = () => {
         }
         
           <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
-            {data?.onboarding && <OnBoardingModals data={data} token={token} />}
+            {data?.onboarding && data?.isPaid ?  <OnBoardingModals data={data} token={token} /> : ''}
             <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
               <div className="xl:col-span-3">
                 <Link
