@@ -33,7 +33,6 @@ const DetailKelas = () => {
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
   const queryClient = useQueryClient();
-  console.log(data);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -106,7 +105,7 @@ const DetailKelas = () => {
 
   const handleModal = () => {
     if (!token) {
-      push(`/login?redirect=/courses/${id}`);
+      push(`/login?redirect=/course/${id}`);
       return;
     }
     setIsOpen(true);
