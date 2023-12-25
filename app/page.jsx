@@ -83,8 +83,8 @@ export default function Beranda () {
                   Ready To Upgrade Your Skill ?
               </div>
               <div className="flex gap-3 ml-5 md:ml-0 mt-5 md:mt-0">
-              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md animate-pulse hover:scale-105 flex-shrink-0" href={"/courses"}>Mulai Sekarang</Link>
-              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md flex items-center hover:scale-105 flex-shrink-0" href={"https://wa.me/6282284134328?text=Saya%20ingin%20bertanya%20perihal%20course%20di%20skillHUB"}> <CiHeadphones/> Tanya Kami</Link>
+              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md animate-pulse hover:scale-105" href={"/courses"}>Mulai Sekarang</Link>
+              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md flex items-center hover:scale-105" href={"https://wa.me/6282284134328?text=Saya%20ingin%20bertanya%20perihal%20course%20di%20skillHUB"}> <CiHeadphones/> Tanya Kami</Link>
               </div>
             </div>
           </div>
