@@ -3,9 +3,11 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
 import Guard from "@/components/Guard"
+import { useUsers } from "@/app/context/usersContext"
 export default function LoginProtect({children}) {
     const [isLoading, setIsLoading] = useState(true);
     const { push } = useRouter();
+    const {removeUser } = useUsers();
     useEffect(() => {
         const token = localStorage.getItem("token");
         if(!token){
@@ -29,7 +31,7 @@ export default function LoginProtect({children}) {
           }
           push("/admin/courses");
         } catch (error) {
-          localStorage.removeItem("token");
+          removeUser();
           setIsLoading(false);
         }
       };
