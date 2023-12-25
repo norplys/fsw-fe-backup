@@ -43,15 +43,15 @@ const Navbar = () => {
 	};
 	return (
 		<div className="bg-secret-background sticky top-0 z-20 shadow-2xl black100/40">
-		  <nav className="container flex flex-col gap-2 md:flex-row items-center justify-between h-50 md:h-20 py-2 mx-auto">
+		  <nav className="container flex items-center justify-between h-20 px-2 mx-auto">
 			<div className="flex items-center space-x-4">
 			  <Link href="/" className="flex items-center space-x-2">
 				<BiBrain className="text-white bg-secret-pink rounded-full text-5xl p-2" />
 				<div className="flex">
-				  <h1 className="text-2xl text-secret-text flex items-center font-bold">
+				  <h1 className="md:text-2xl text-secret-text flex items-center font-bold">
 					Skill
 				  </h1>
-				  <h1 className="text-2xl font-bold text-secret-text">HUB</h1>
+				  <h1 className="md:text-2xl font-bold text-secret-text">HUB</h1>
 				</div>
 			  </Link>
 			  <form
@@ -73,9 +73,9 @@ const Navbar = () => {
 	
 			<ul className="flex items-center space-x-4">
 			  {user ? (
-				<div className="flex flex-col md:flex-row gap-5">
+				<div className="flex md:flex-row sm:flex-row flex-col">
 				  <div className="flex gap-2">
-					<span className="font-bold mr-0 md:mr-4 text-base">
+					<span className="font-bold md:mr-4 sm:mr-4 text-sm">
 					  HI, {user.name}
 					</span>
 					<Link
