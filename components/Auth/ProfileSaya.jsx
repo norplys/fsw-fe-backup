@@ -1,6 +1,23 @@
 import { CgProfile } from "react-icons/cg";
+import { useUsers } from "@/app/context/usersContext";
+import { useForm } from "react-hook-form";
 
-export default function ProfileSaya ({register, handleSubmit}){
+
+export default function ProfileSaya (){
+  const { user } = useUsers();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    values:{
+      name: user?.name,
+      email: user?.email,
+      phone: user?.phone,
+      country: user?.country,
+      city: user?.city,
+    }
+  });
     return (
         <form className="items-center justify-between px-4 md:px-12 w-full md:w-[20rem] text-[0.625rem]">
                   <div className="flex flex-row justify-center px-8 gap-10 my-6">

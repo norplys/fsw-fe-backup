@@ -8,7 +8,7 @@ import Link from "next/link"
 export default function HistoryCard({ data }) {
   return (
     <Link
-      className="flex flex-col course md:max-w-full h-[300px] md:h-[250px] bg-secret-background rounded-[15px] shadow-md hover:border hover:border-secret-cyan"
+      className="flex flex-col course md:max-w-full h-[300px] md:h-[250px] bg-secret-background rounded-[15px] shadow-md"
       href={`/course/${data?.courseUuid}`}
     >
       <div className="w-full h-[80px] ">

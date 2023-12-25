@@ -22,7 +22,7 @@ module.exports = {
 					text4: '#6C757D',
 					background : '#EBF3FC',
 					pink : '#FF8696',
-					green : '#73CA5C',
+					green : '#15803D',
 					blue : '#E8F1FF',
 					red : "#FF0000",
 				},
