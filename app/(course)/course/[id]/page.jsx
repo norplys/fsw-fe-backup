@@ -105,7 +105,7 @@ const DetailKelas = () => {
 
   const handleModal = () => {
     if (!token) {
-      push(`/login?redirect=/courses/${id}`);
+      push(`/login?redirect=/course/${id}`);
       return;
     }
     setIsOpen(true);

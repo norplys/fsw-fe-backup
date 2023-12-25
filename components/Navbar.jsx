@@ -14,6 +14,7 @@ const Navbar = () => {
 	useEffect(() => {
 		const token = localStorage.getItem('token');
 		ifToken(token);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	const { user, handleToken, removeUser } = useUsers();
 	const [keyword, setKeyword] = useState('');
@@ -38,8 +39,6 @@ const Navbar = () => {
 	const handleSearch = (e) => {
 		e.preventDefault();
 		push(`/courses?search=${keyword}`);
-
-		
 	};
 	return (
 		<div className="bg-secret-background sticky top-0 z-20 shadow-2xl black100/40">

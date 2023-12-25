@@ -33,10 +33,10 @@ export default function Profile() {
       <div className="h-auto md:h-40 p-6 bg-secret-blue ">
         <Link
           href="/"
-          className="flex justify-start px-4 md:px-12 gap-2 md:gap-5 mb-4 md:mb-8"
+          className="flex justify-start px-4 md:px-12 gap-2 md:gap-5 mb-4 md:mb-8 text-xl items-center"
         >
-          <FaArrowLeft className="text-4xl w-6 h-6" />
-          <h1 className="font-bold text-xl">Kembali Ke Beranda</h1>
+          <FaArrowLeft className=" w-6 h-6" />
+          <h1 className="font-bold">Kembali Ke Beranda</h1>
         </Link>
         <div></div>
         <div className="flex flex-col items-center">

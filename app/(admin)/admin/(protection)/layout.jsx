@@ -3,10 +3,12 @@ import Guard from "@/components/Guard";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useUsers } from "@/app/context/usersContext";
 
 export default function Index({children}) {
     const [isLoading, setIsLoading] = useState(true);
     const { push } = useRouter();
+    const { removeUser } = useUsers();
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token === null) {
@@ -32,7 +34,7 @@ export default function Index({children}) {
             throw new Error("You are not admin");
           }
         } catch (error) {
-          localStorage.removeItem("token");
+          removeUser();
           push("/admin/login");
         }
       };
