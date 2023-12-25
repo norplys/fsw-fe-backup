@@ -17,7 +17,6 @@ import { useVideoData } from "@/app/utils/hooks/useVideoCourse";
 import VideoLoading from "@/components/VideoLoading";
 import OnBoardingModals from "@/components/ClassDetail/Onboarding";
 import axios from "axios";
-import toast from "react-hot-toast";
 import {useQueryClient} from "react-query";
 
 
@@ -34,6 +33,7 @@ const DetailKelas = () => {
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
   const queryClient = useQueryClient();
+  console.log(data);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -137,7 +137,7 @@ const DetailKelas = () => {
         }
         
           <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
-            {data?.onboarding && data?.isPaid ?  <OnBoardingModals data={data} token={token} /> : ''}
+            {data?.isOnboarding && data?.isPaid ?  <OnBoardingModals data={data} token={token} /> : ''}
             <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
               <div className="xl:col-span-3">
                 <Link
