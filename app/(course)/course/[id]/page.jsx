@@ -33,7 +33,6 @@ const DetailKelas = () => {
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
   const queryClient = useQueryClient();
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -81,6 +80,7 @@ const DetailKelas = () => {
     queryClient.invalidateQueries(["classDetails", id]);
   }
   catch(err){
+    queryClient.invalidateQueries(["classDetails", id]);
     setUUID(uuid);
   };
   };
@@ -169,19 +169,19 @@ const DetailKelas = () => {
 
                 <div className="flex items-center justify-between mb-4 max-w-[400px]">
                   <div className="flex items-center space-x-2 font-semibold">
-                    <GiRank3 className="text-secret-green text-lg" />
+                    <GiRank3 className="text-green-700 text-lg" />
                     <span className="text-secret-text">{data.level}</span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
-                    <FaBookBookmark className="text-secret-green text-base" />
+                    <FaBookBookmark className="text-green-700 text-base" />
                     <span className="text-secret-text">
                       {data.totalModule} Modul
                     </span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
-                    <FaRegClock className="text-secret-green text-base" />
+                    <FaRegClock className="text-green-700 text-base" />
                     <span className="text-secret-text">
                       {data.totalMinute} Menit
                     </span>
@@ -207,12 +207,12 @@ const DetailKelas = () => {
                     {data.isPaid && <div className="relative py-2 rounded-full bg-secret-pink w-[200px] overflow-hidden">
                       <div
                         style={{
-                          width: `${data.progress}%`,
+                          width: `${data.progressBar}%`,
                         }}
                         className="absolute top-0 left-0 py-2 rounded-full bg-secret-darkblue"
                       ></div>
                       <div className="absolute text-xs text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 font-bold">
-                        {data?.progress ? data.progress : 0}%
+                        {data?.progressBar ? data.progressBar : 0}%
                       </div>
                     </div>}
                   </div>

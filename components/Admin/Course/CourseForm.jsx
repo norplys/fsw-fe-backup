@@ -41,7 +41,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 			return;
 		}
 		if (imageFile) {
-			const newUrl = URL.createObjectURL([imageFile[0]]);
+			const newUrl = URL.createObjectURL(imageFile[0]);
 			if(newUrl !== image) {
 				setImage(newUrl);
 			}
@@ -73,7 +73,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 		setImage(null);
 	}
 	
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = (data) => console.log({...data , image : imageFile[0]});
 
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
@@ -158,7 +158,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 											<option value=''>Pilih Kategori</option>
 											<option value='UI/UX Design'>UI/UX Design</option>
 											<option value='Data Science'>Data Science</option>
-											<option value='Digital Marketing'>Digital Marketing</option>
+											<option value='Web Development'>Web Development</option>
+											<option value='Product Management'>Product Management</option>
+											<option value='Android Development'>Android Development</option>
+											<option value='IOS Development'>IOS Development</option>
 										</select>
 										<span className='block mt-1 text-xs text-red-500' role='alert'>
 											{errors.kategori?.message}
