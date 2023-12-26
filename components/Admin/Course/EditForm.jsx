@@ -3,12 +3,15 @@
 import {Fragment } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { Dialog, Transition } from '@headlessui/react';
-import { BiX } from 'react-icons/bi';
+import { BiX, BiSolidTrash } from 'react-icons/bi';
 import { IconButton } from '@/components/Admin/IconButton';
 import Module from './ChapterModule';
 import axios from 'axios';
 import {useQuery} from 'react-query';
 import PinkCircleLoading from '@/components/PinkCircleLoading';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+
 
 
 export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
@@ -20,8 +23,6 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     })
         return res.data.data;
     } );
-	console.log(data);
-
     const newData = {
         nama: '',
         kategori: ' ',
@@ -59,16 +60,33 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
         newData.chapter = newChapter;
         newData.deskripsi = data.description;
     }
-    
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		control,
+		watch,
 	} = useForm({
 		defaultValues: newData,
         values : newData,
 	});
+
+	const [image, setImage] = useState(null);
+	const imageFile = watch('image');
+	useEffect(() => {
+		if(imageFile?.length === 0){
+			setImage(null);
+			return;
+		}
+		if (imageFile) {
+			const blob = new Blob([imageFile[0]]);
+			const newUrl = URL.createObjectURL(blob);
+			if(newUrl !== image) {
+				setImage(newUrl);
+			}
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [imageFile]);
 
 	const { fields, append, remove } = useFieldArray({
 		name: 'targetKelas',
@@ -85,9 +103,12 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 			required: 'Chapter harus diisi',
 		}
 	});
+
+	const removeImage = () => {
+		setImage(null);
+	};
 	
 	const onSubmit = (data) => console.log(data);
-
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
 			<Dialog as='div' className='relative z-10' onClose={() => setIsOpen(false)}>
@@ -173,7 +194,10 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 											<option value=''>Pilih Kategori</option>
 											<option value='UI/UX Design'>UI/UX Design</option>
 											<option value='Data Science'>Data Science</option>
-											<option value='Digital Marketing'>Digital Marketing</option>
+											<option value='Web Development'>Web Development</option>
+											<option value='Product Management'>Product Management</option>
+											<option value='Android Development'>Android Development</option>
+											<option value='IOS Development'>IOS Development</option>
 										</select>
 										<span className='block mt-1 text-xs text-red-500' role='alert'>
 											{errors.kategori?.message}
@@ -378,6 +402,33 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 										/>
 										<span className='block mt-1 text-xs text-red-500' role='alert'>
 											{errors.deskripsi?.message}
+										</span>
+									</div>
+									<div className='mb-6 '>
+										<label
+											htmlFor='image'
+											className='block mb-2 text-base font-semibold text-gray-700 '>
+											Image
+										</label>
+										<div className={`border border-gray-300 grid rounded-xl p-2 ${errors.image ? 'border-red-500': ''}`}>
+										<div className='mb-2 flex gap-2'>
+										<label for="image" className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl">Browse...</label>
+										{image && <button onClick={removeImage} className='text-secret-pink text-xl'><BiSolidTrash/></button>}
+										</div>
+										<input
+											type='file'
+											id='image'
+											placeholder='image'
+											className='hidden'
+											{...register('image', {
+												required: 'Gambar harus diisi',
+											})}
+										/>
+										{image && <Image src={image} alt='image' width={500} height={500} className='rounded-xl object-cover' />}
+										{!image && data.image ? <Image src={data.image} alt='image' width={500} height={500} className='rounded-xl object-cover' /> : ''}
+										</div>
+										<span className='block mt-1 text-xs text-red-500' role='alert'>
+											{errors.image?.message}
 										</span>
 									</div>
 
