@@ -205,7 +205,7 @@ export default function KelasPembayaran () {
 
         {/* KANAN */}
         {/* PEMBAYARAN KELAS */}
-        <div className="md:w-[400px] w-[300px] rounded-[16px] shadow-xl flex-grow-0 flex-shrink-0 h-[372px] bg-secret-blue pt-2">
+        <div className="md:w-[400px] w-[300px] rounded-[16px] shadow-xl flex-grow-0 flex-shrink-0 h-[372px] bg-secret-blue pt-2 mx-auto">
           <h1 className="font-bold text-center">Pembayaran Kelas</h1>
           {/* KOTAK COURSE */}
           <div className="md:w-[323px] h-[150px] shadow-md rounded-[15px] mx-auto mt-3 bg-white">
