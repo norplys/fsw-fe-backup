@@ -33,13 +33,14 @@ const DetailKelas = () => {
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
   const queryClient = useQueryClient();
-
+  console.log(data);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setToken(token);
     }
   }, []);
+
   useEffect(() => {
     let chapterIndex = searchParams.get("chapter");
     let index = searchParams.get("module");
@@ -55,14 +56,15 @@ const DetailKelas = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-  const handleVideo = async (uuid, chapterIndex, index) => {
+
+  const handleVideo = async (uuid, chapterIndex, index, userChapterModuleUuid) => {
     try{
     if(!data.isPremium && !data.isPaid && chapterIndex !== 0){
       handleModal();
       return;
     }
     if (!token) {
-      push(`/login?redirect=/courses/${id}`);
+      push(`/login?redirect=/course/${id}`);
       return;
     }
     params.set("chapter", chapterIndex);
@@ -71,9 +73,8 @@ const DetailKelas = () => {
       scroll : false
     });
     setUUID(uuid);
-    await axios.post(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed`, {
-      chapter_module_uuid: uuid,
-    }, {
+    console.log(userChapterModuleUuid);
+    await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed/${userChapterModuleUuid}`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -81,6 +82,7 @@ const DetailKelas = () => {
     queryClient.invalidateQueries(["classDetails", id]);
   }
   catch(err){
+    queryClient.invalidateQueries(["classDetails", id]);
     setUUID(uuid);
   };
   };
@@ -93,13 +95,14 @@ const DetailKelas = () => {
     const nextUuid = data.courseModules[currentChapter].module[currentModule + 1];
 
     if (currentModule < moduleLength - 1) {
-      handleVideo(nextUuid.chapterModuleUuid, currentChapter, currentModule + 1);
+      handleVideo(nextUuid.chapterModuleUuid, currentChapter, currentModule + 1, nextUuid.userChapterModuleUuid);
     } else if (currentChapter < chapterLength - 1) {
       if(!data.isPaid){
         handleModal();
         return;
       }
-      handleVideo(data.courseModules[currentChapter + 1].module[0].chapterModuleUuid, currentChapter + 1, 0);
+      const nextChapter = data.courseModules[currentChapter + 1].module[0];
+      handleVideo(nextChapter.chapterModuleUuid, currentChapter + 1, 0, nextChapter.userChapterModuleUuid);
     }
   };
 
@@ -169,19 +172,19 @@ const DetailKelas = () => {
 
                 <div className="flex items-center justify-between mb-4 max-w-[400px]">
                   <div className="flex items-center space-x-2 font-semibold">
-                    <GiRank3 className="text-secret-green text-lg" />
+                    <GiRank3 className="text-green-700 text-lg" />
                     <span className="text-secret-text">{data.level}</span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
-                    <FaBookBookmark className="text-secret-green text-base" />
+                    <FaBookBookmark className="text-green-700 text-base" />
                     <span className="text-secret-text">
                       {data.totalModule} Modul
                     </span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
-                    <FaRegClock className="text-secret-green text-base" />
+                    <FaRegClock className="text-green-700 text-base" />
                     <span className="text-secret-text">
                       {data.totalMinute} Menit
                     </span>
@@ -207,12 +210,12 @@ const DetailKelas = () => {
                     {data.isPaid && <div className="relative py-2 rounded-full bg-secret-pink w-[200px] overflow-hidden">
                       <div
                         style={{
-                          width: `${data.progress}%`,
+                          width: `${data.progressBar}%`,
                         }}
                         className="absolute top-0 left-0 py-2 rounded-full bg-secret-darkblue"
                       ></div>
                       <div className="absolute text-xs text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 font-bold">
-                        {data?.progress ? data.progress : 0}%
+                        {data?.progressBar ? data.progressBar : 0}%
                       </div>
                     </div>}
                   </div>
