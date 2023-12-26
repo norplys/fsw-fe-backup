@@ -80,11 +80,13 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 		}
 		if (imageFile) {
 			const newUrl = URL.createObjectURL(imageFile[0]);
+
 			if(newUrl !== image) {
 				setImage(newUrl);
 			}
 		}
 	return () => URL.revokeObjectURL(imageFile)
+
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [imageFile]);
 

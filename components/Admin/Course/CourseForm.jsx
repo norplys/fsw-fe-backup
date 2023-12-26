@@ -46,8 +46,8 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 				setImage(newUrl);
 			}
 		}
-
 		return () => URL.revokeObjectURL(imageFile);
+
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [imageFile]);
 	
