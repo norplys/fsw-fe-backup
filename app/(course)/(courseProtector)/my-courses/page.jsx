@@ -178,11 +178,11 @@ useEffect(() => {
               type="text"
               placeholder="Cari Kelas..."
               name="search"
-              className="text-black md:text-xl focus:outline-none"
+              className="text-black md:text-xl text-3xl focus:outline-none"
               id="search-class"
             />
 
-            <button htmlFor="search-class" className="flex md:static absolute right-2 top-[3px] right-[0.5px] justify-center items-center md:p-2 p-1 top-[1px] rounded-md bg-secret-darkblue hover:scale-110 duration-300" >
+            <button htmlFor="search-class" className="flex md:static absolute right-1 top-[3px] justify-center items-center p-2 rounded-md bg-secret-darkblue hover:scale-110 duration-300" >
             <BiSearchAlt className="text-secret-background text-sm"/>
             </button>
           </form>
