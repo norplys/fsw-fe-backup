@@ -165,34 +165,34 @@ useEffect(() => {
     levelFilterButton,
   ];
   return (
-    <div className=" bg-secret-grey2 px-[150px] pt-4 w-full font-montserrat min-h-screen">
+    <div className="bg-secret-grey2 md:px-[150px] pt-4 w-full font-montserrat min-h-screen">
       <section className="max-w-7xl m-auto">
-        <div className="flex justify-between ">
-          <h1 className="text-secret-text mb-10 font-bold text-[24px]">
+        <div className="flex justify-between md:flex-row flex-col p-2 md:p-0">
+          <h1 className="text-secret-text md:mb-10 mb-5 font-bold text-[24px]">
             Kelas Berjalan
           </h1>
 
-          <form className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl" onSubmit={handleSubmit(handleSearch)}>
+          <form className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl relative md:mb-0 mb-5" onSubmit={handleSubmit(handleSearch)}>
             <input
               {...register("search")}
               type="text"
               placeholder="Cari Kelas..."
               name="search"
-              className="text-black text-sm focus:outline-none"
+              className="text-black md:text-xl focus:outline-none"
               id="search-class"
             />
 
-            <button htmlFor="search-class" className="flex justify-center items-center p-2 bg-secret-darkblue hover:scale-110 duration-300" >
-              <BiSearchAlt className="text-secret-background text-xl"/>
+            <button htmlFor="search-class" className="flex md:static absolute right-2 top-[3px] right-[0.5px] justify-center items-center md:p-2 p-1 top-[1px] rounded-md bg-secret-darkblue hover:scale-110 duration-300" >
+            <BiSearchAlt className="text-secret-background text-sm"/>
             </button>
           </form>
         </div>
 
-        <div className="flex lg:flex-row gap-[88px] ">
+        <div className="flex lg:flex-row flex-col gap-[88px] ">
 
           <form
             className="bg-secret-background border shadow-md flex flex-col w-64 p-5
-            h-[580px] rounded-[16px] gap-5"
+            h-[580px] rounded-[16px] gap-5 mx-auto"
           >
             {isLoadingCategories ? 
               <div>Loading</div>
@@ -228,7 +228,7 @@ useEffect(() => {
 
           <div className="container">
 
-            <div className="flex  gap-7 mb-5">
+            <div className="flex  md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 mb-5">
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton
@@ -241,7 +241,7 @@ useEffect(() => {
                 );
               })}
             </div>
-            <div className="grid grid-cols-2 max-w-3xl flex-wrap flex-row content-start gap-6">
+            <div className="grid md:grid-cols-2 grid-flow-cols-1 max-w-3xl flex-wrap flex-row content-start gap-6">
               {isLoading ? 
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;
