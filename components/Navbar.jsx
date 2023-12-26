@@ -42,15 +42,15 @@ const Navbar = () => {
 	};
 	return (
 		<div className="bg-secret-background sticky top-0 z-20 shadow-2xl black100/40">
-		  <nav className="container flex items-center justify-between h-20 px-2 mx-auto">
+		  <nav className="container flex flex-col gap-2 md:flex-row items-center justify-between h-50 md:h-20 py-2 mx-auto">
 			<div className="flex items-center space-x-4">
 			  <Link href="/" className="flex items-center space-x-2">
 				<BiBrain className="text-white bg-secret-pink rounded-full text-5xl p-2" />
 				<div className="flex">
-				  <h1 className="md:text-2xl text-secret-text flex items-center font-bold">
+				  <h1 className="text-2xl text-secret-text flex items-center font-bold">
 					Skill
 				  </h1>
-				  <h1 className="md:text-2xl font-bold text-secret-text">HUB</h1>
+				  <h1 className="text-2xl font-bold text-secret-text">HUB</h1>
 				</div>
 			  </Link>
 			  <form
@@ -72,14 +72,14 @@ const Navbar = () => {
 	
 			<ul className="flex items-center space-x-4">
 			  {user ? (
-				<div className="flex md:flex-row sm:flex-row flex-col">
+				<div className="flex flex-col md:flex-row gap-5">
 				  <div className="flex gap-2">
-					<span className="font-bold md:mr-4 sm:mr-4 text-sm">
+					<span className="font-bold mr-0 md:mr-4 text-base">
 					  HI, {user.name}
 					</span>
 					<Link
 					  href="/my-courses"
-					  className="flex items-center px-4 py-1 space-x-2 rounded-lg bg-secret-darkblue hover:scale-105 duration-300"
+					  className="flex items-center px-4 py-1 space-x-2 rounded-lg bg-secret-darkblue"
 					>
 					  <FiList className="text-white" size={16} />
 					  <p className="font-semibold text-white">Kelas</p>
@@ -94,7 +94,7 @@ const Navbar = () => {
 					</Link>
 	
 					<button
-					  className="text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink hover:scale-105 duration-300"
+					  className="text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink"
 					  onClick={handleLogOut}
 					>
 					  LogOut
