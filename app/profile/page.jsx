@@ -2,28 +2,12 @@
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import { FiEdit3, FiSettings, FiShoppingCart } from "react-icons/fi";
-import { useUsers } from "@/app/context/usersContext";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 import ProfileSaya from "@/components/Auth/ProfileSaya";
 import Password from "@/components/Auth/Password";
 import RiwayatPembayaran from "@/components/Auth/RiwayatPembayaran";
 
 export default function Profile() {
-  const { user } = useUsers();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    values:{
-      name: user?.name,
-      email: user?.email,
-      phone: user?.phone,
-      country: user?.country,
-      city: user?.city,
-    }
-  });
   const [currentTab, setCurrentTab] = useState("Profile");
   const handleTab = (tab) => {
     setCurrentTab(tab);
@@ -33,10 +17,10 @@ export default function Profile() {
       <div className="h-auto md:h-40 p-6 bg-secret-blue ">
         <Link
           href="/"
-          className="flex justify-start px-4 md:px-12 gap-2 md:gap-5 mb-4 md:mb-8"
+          className="flex justify-start px-4 md:px-12 gap-2 md:gap-5 mb-4 md:mb-8 text-xl items-center"
         >
-          <FaArrowLeft className="text-4xl w-6 h-6" />
-          <h1 className="font-bold text-xl">Kembali Ke Beranda</h1>
+          <FaArrowLeft className=" w-6 h-6" />
+          <h1 className="font-bold">Kembali Ke Beranda</h1>
         </Link>
         <div></div>
         <div className="flex flex-col items-center">
@@ -68,8 +52,8 @@ export default function Profile() {
                   </div>
                 </button>
               </div>
-              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[500px]">
-                {currentTab === "Profile" && <ProfileSaya register={register}/>}
+              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[510px] border-l-2 border-dashed pl-2">
+                {currentTab === "Profile" && <ProfileSaya/>}
                 {currentTab === "Password" && <Password />}
                 {currentTab === "Pembayaran" && <RiwayatPembayaran />}
               </div>

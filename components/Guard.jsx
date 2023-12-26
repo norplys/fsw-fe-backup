@@ -6,10 +6,7 @@ export default function Guard(){
         <BiBrain className="text-9xl text-white" />
         <div className="flex">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
         </div>
       </div>
