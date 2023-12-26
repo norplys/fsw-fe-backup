@@ -11,12 +11,11 @@ export default function Index({children}) {
     const { removeUser } = useUsers();
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if (token === null) {
+        if (!token) {
             push("/admin/login");
             return;
         }
         validateAdmin(token);
-        setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
@@ -33,6 +32,7 @@ export default function Index({children}) {
           if (res.data.data.role !== "admin") {
             throw new Error("You are not admin");
           }
+          setIsLoading(false);
         } catch (error) {
           removeUser();
           push("/admin/login");

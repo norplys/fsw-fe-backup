@@ -11,7 +11,15 @@ export default function RiwayatPembayaran() {
     setToken(token);
   }, []);
   const [token , setToken] = useState(null);
-  const { data, isLoading, error } = usePaymentHistory(token);
+  let { data, isLoading, error } = usePaymentHistory(token);
+
+  if(!data && !isLoading){
+    return (
+    <div className="bg-secret-red rounded-xl text-lg text-center font-bold text-white mt-5">There Is No Payment Data</div>
+    
+    )
+  }
+
   return (
     <div className="flex flex-col min-h-full course md:max-w-full md:h-[250px] rounded-[15px] duration-300 shadow-xl gap-5 pt-2 pr-3">
       {isLoading? mockArray.map((item, index) => <ClassCardLoading key={index} />) : data?.map((item, index) => <HistoryCard key={index} data={item} />)}
