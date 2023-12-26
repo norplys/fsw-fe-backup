@@ -33,12 +33,14 @@ const DetailKelas = () => {
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
   const queryClient = useQueryClient();
+  console.log(data);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setToken(token);
     }
   }, []);
+
   useEffect(() => {
     let chapterIndex = searchParams.get("chapter");
     let index = searchParams.get("module");
@@ -54,14 +56,15 @@ const DetailKelas = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
-  const handleVideo = async (uuid, chapterIndex, index) => {
+
+  const handleVideo = async (uuid, chapterIndex, index, userChapterModuleUuid) => {
     try{
     if(!data.isPremium && !data.isPaid && chapterIndex !== 0){
       handleModal();
       return;
     }
     if (!token) {
-      push(`/login?redirect=/courses/${id}`);
+      push(`/login?redirect=/course/${id}`);
       return;
     }
     params.set("chapter", chapterIndex);
@@ -70,9 +73,8 @@ const DetailKelas = () => {
       scroll : false
     });
     setUUID(uuid);
-    await axios.post(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed`, {
-      chapter_module_uuid: uuid,
-    }, {
+    console.log(userChapterModuleUuid);
+    await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed/${userChapterModuleUuid}`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -93,13 +95,14 @@ const DetailKelas = () => {
     const nextUuid = data.courseModules[currentChapter].module[currentModule + 1];
 
     if (currentModule < moduleLength - 1) {
-      handleVideo(nextUuid.chapterModuleUuid, currentChapter, currentModule + 1);
+      handleVideo(nextUuid.chapterModuleUuid, currentChapter, currentModule + 1, nextUuid.userChapterModuleUuid);
     } else if (currentChapter < chapterLength - 1) {
       if(!data.isPaid){
         handleModal();
         return;
       }
-      handleVideo(data.courseModules[currentChapter + 1].module[0].chapterModuleUuid, currentChapter + 1, 0);
+      const nextChapter = data.courseModules[currentChapter + 1].module[0];
+      handleVideo(nextChapter.chapterModuleUuid, currentChapter + 1, 0, nextChapter.userChapterModuleUuid);
     }
   };
 
