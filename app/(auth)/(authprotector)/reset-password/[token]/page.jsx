@@ -59,7 +59,7 @@ export default function ResetPassword() {
   const handleResetPassword = async (data) => {
     try{
       const newData = {
-        password: data.password1,
+        new_password : data.password1,
       }
       const res = axios.put(`https://final-project-online-course.et.r.appspot.com/v1/reset-password/${token}`, newData);
       await toast.promise(res, {
