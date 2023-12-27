@@ -42,6 +42,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 		}
 		if (imageFile) {
 			const newUrl = URL.createObjectURL(imageFile[0]);
+
 			if(newUrl !== image) {
 				setImage(newUrl);
 			}
