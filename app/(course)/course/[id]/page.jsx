@@ -41,6 +41,7 @@ const DetailKelas = () => {
       setToken(token);
     }
   }, []);
+
   useEffect(() => {
     let chapterIndex = searchParams.get("chapter");
     let index = searchParams.get("module");
