@@ -17,7 +17,8 @@ import { useVideoData } from "@/app/utils/hooks/useVideoCourse";
 import VideoLoading from "@/components/VideoLoading";
 import OnBoardingModals from "@/components/ClassDetail/Onboarding";
 import axios from "axios";
-import {useQueryClient} from "react-query";
+import { useQueryClient } from "react-query";
+import {Toaster} from "react-hot-toast";
 
 
 
@@ -73,12 +74,12 @@ const DetailKelas = () => {
       scroll : false
     });
     setUUID(uuid);
-    console.log(userChapterModuleUuid);
-    await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed/${userChapterModuleUuid}`, {}, {
+    if(userChapterModuleUuid){
+      await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed/${userChapterModuleUuid}`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    });}
     queryClient.invalidateQueries(["classDetails", id]);
   }
   catch(err){
@@ -139,7 +140,7 @@ const DetailKelas = () => {
         }
         
           <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
-            {data?.isOnboarding && data?.isPaid ?  <OnBoardingModals data={data} token={token} /> : ''}
+            { !data?.isOnboarding && data?.isPaid ?  <OnBoardingModals data={data} token={token} /> : ''}
             <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
               <div className="xl:col-span-3">
                 <Link
@@ -297,6 +298,7 @@ const DetailKelas = () => {
           </div>
         </>
       )}
+      <Toaster position="bottom-left" />
     </>
   );
 };

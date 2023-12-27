@@ -33,7 +33,6 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
         setIsLoading(false);
       }
       catch (err) {
-        console.log(err);
         toast.error("Gagal membeli kelas mohon coba lagi");
         setIsLoading(false);
       }
