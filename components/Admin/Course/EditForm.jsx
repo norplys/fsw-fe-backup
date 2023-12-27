@@ -110,7 +110,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 		setImage(null);
 	};
 	
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = (data) => console.log({...data , image : imageFile[0]});
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
 			<Dialog as='div' className='relative z-10' onClose={() => setIsOpen(false)}>

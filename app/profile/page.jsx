@@ -6,6 +6,7 @@ import { useState } from "react";
 import ProfileSaya from "@/components/Auth/ProfileSaya";
 import Password from "@/components/Auth/Password";
 import RiwayatPembayaran from "@/components/Auth/RiwayatPembayaran";
+import {Toaster} from "react-hot-toast";
 
 export default function Profile() {
   const [currentTab, setCurrentTab] = useState("Profile");
@@ -14,10 +15,10 @@ export default function Profile() {
   };
   return (
     <>
-      <div className="h-auto md:h-40 p-6 bg-secret-blue ">
+      <div className="h-auto md:h-40 p-6 bg-secret-blue">
         <Link
           href="/"
-          className="flex justify-start px-4 md:px-12 gap-2 md:gap-5 mb-4 md:mb-8 text-xl items-center"
+          className="flex justify-start px-4 md:px-12 gap-2 md:gap-5 mb-4 md:mb-8 text-xl items-center hover:text-secret-darkblue"
         >
           <FaArrowLeft className=" w-6 h-6" />
           <h1 className="font-bold">Kembali Ke Beranda</h1>
@@ -52,7 +53,7 @@ export default function Profile() {
                   </div>
                 </button>
               </div>
-              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[510px] border-l-2 border-dashed pl-2">
+              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[510px] border-l-2 border-dashed pl-2 hide-scroll-bar">
                 {currentTab === "Profile" && <ProfileSaya/>}
                 {currentTab === "Password" && <Password />}
                 {currentTab === "Pembayaran" && <RiwayatPembayaran />}
@@ -61,6 +62,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      <Toaster position="bottom-left"/>
     </>
   );
 }

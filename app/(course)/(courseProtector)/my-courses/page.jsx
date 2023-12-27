@@ -49,7 +49,7 @@ export default function MyCourses() {
   const [level, setLevel] = useState();
   const [queryCategory, setQueryCategory] = useState([]);
   const [queryLevel, setQueryLevel] = useState([]);
-  const [premium, setPremium] = useState();
+  const [progress, setProgress] = useState();
   
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -70,12 +70,12 @@ useEffect(() => {
   const categoryFilter = searchParams.get("categoryId")
   const levelFilter = searchParams.get("level")
   const searchFilter = searchParams.get("search")
-  const premiumFilter = searchParams.get("premium")
-  if(premiumFilter){
-    setPremium(premiumFilter)
+  const progressFilter = searchParams.get("progress")
+  if(progressFilter){
+    setProgress(progressFilter)
   }else{
-    setPremium("")
-    params.delete("premium");
+    setProgress("")
+    params.delete("progress");
     router.push(pathname + "?" + params.toString())
   }
   if(searchFilter){
@@ -103,11 +103,12 @@ useEffect(() => {
     params.delete("level");
     router.push(pathname + "?" + params.toString())
   }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [searchParams]);
 
-  const handlePremium = (value) => {
-    setPremium(value);
-    router.push(pathname + "?" + createQueryString('premium', value), {
+  const handleProgress = (value) => {
+    setProgress(value);
+    router.push(pathname + "?" + createQueryString('progress', value), {
       scroll: false,
     });
   };
@@ -150,7 +151,7 @@ useEffect(() => {
   }
 
 
-  const { isLoading, error, data } = useCoursesData(categoryId, level, search, premium);
+  const { isLoading, error, data } = useCoursesData(categoryId, level, search, progress);
   const {
     isLoading: isLoadingCategories,
     error: errorCategories,
@@ -195,9 +196,9 @@ useEffect(() => {
             h-[580px] rounded-[16px] gap-5 mx-auto"
           >
             {isLoadingCategories ? 
-              <div>Loading</div>
+              <div>Loading...</div>
              : errorCategories ? 
-              <div>Error</div>
+              <div>Error, Please Try Again</div>
              : 
               FilterData.map((item, index) => {
                 return (
@@ -232,11 +233,11 @@ useEffect(() => {
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton
-                    handlePremium={handlePremium}
+                    handleProgress={handleProgress}
                     key={index}
                     text={item.name}
                     value={item.value}
-                    active={premium}
+                    active={progress}
                   />
                 );
               })}
@@ -263,7 +264,7 @@ useEffect(() => {
                       level={item.level}
                       modul={item.modul}
                       waktu={item.waktu}
-                      isPremium={item.isPremium}
+                      isprogress={item.isprogress}
                       totalMinute={item.totalMinute}
                       totalModule={item.totalModule}
                       price={item.price}
