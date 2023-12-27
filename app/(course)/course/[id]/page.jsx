@@ -33,7 +33,6 @@ const DetailKelas = () => {
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
   const queryClient = useQueryClient();
-  console.log(data);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -73,12 +72,12 @@ const DetailKelas = () => {
       scroll : false
     });
     setUUID(uuid);
-    console.log(userChapterModuleUuid);
-    await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed/${userChapterModuleUuid}`, {}, {
+    if(userChapterModuleUuid){
+      await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed/${userChapterModuleUuid}`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    });}
     queryClient.invalidateQueries(["classDetails", id]);
   }
   catch(err){

@@ -18,8 +18,9 @@ export default function ProfileSaya (){
       city: user?.city,
     }
   });
+  const onSubmit = (data) => console.log(data);
     return (
-        <form className="items-center justify-between px-4 md:px-12 w-full md:w-[20rem] text-[0.625rem]">
+        <form className="items-center justify-between px-4 md:px-12 w-full md:w-[20rem] text-[0.625rem]" onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex flex-row justify-center px-8 gap-10 my-6">
                     <CgProfile className=" w-16 h-16" />
                   </div>
@@ -34,7 +35,7 @@ export default function ProfileSaya (){
                       {...register("name", { required: true })}
                       type="text"
                       id="name"
-                      className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm"
+                      className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm ${errors.name ? 'border-red-500' : ''}`}
                       placeholder="Text"
                     />
                   </div>
@@ -47,10 +48,10 @@ export default function ProfileSaya (){
                       Email
                     </label>
                     <input
-                      {...register("email", { required: true })}
+                      {...register("email", { required: true, validate : /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/ })}
                       type="text"
                       id="name"
-                      className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm"
+                      className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm ${errors.email ? 'border-red-500' : ''}`}
                       placeholder="Text"
                     />
                   </div>
@@ -62,10 +63,10 @@ export default function ProfileSaya (){
                       Nomor Telepon
                     </label>
                     <input
-                      {...register("phone", { required: true })}
+                      {...register("phone", { required: true, validate : /^[0-9]+$/ })}
                       type="text"
                       id="name"
-                      className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm"
+                      className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm ${errors.phone ? 'border-red-500' : ''}`}
                       placeholder="Text"
                     />
                   </div>
@@ -80,7 +81,7 @@ export default function ProfileSaya (){
                       {...register("country", { required: true })}
                       type="text"
                       id="name"
-                      className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm"
+                      className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm ${errors.country ? 'border-red-500' : ''}`}
                       placeholder="Text"
                     />
                   </div>
@@ -95,13 +96,13 @@ export default function ProfileSaya (){
                       {...register("city", { required: true })}
                       type="text"
                       id="name"
-                      className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm"
+                      className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-sm ${errors.city ? 'border-red-500' : ''}`}
                       placeholder="Text"
                     />
                   </div>
                   <div className="flex items-center justify-center md:w-[16rem] p-5 mb-8">
                     <button
-                      type="button"
+                      type="submit"
                       className="bg-[#6148FF] text-white active:bg-indigo-500 font-bold text-[0.625rem] py-2 px-6 rounded-2xl hover:bg-indigo-400 mr-1 mb-1 ease-linear transition-all duration-150 text-sm"
                     >
                       Simpan Profil Saya
