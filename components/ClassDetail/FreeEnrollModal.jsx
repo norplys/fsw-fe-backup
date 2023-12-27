@@ -8,14 +8,16 @@ import Image from "next/image";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { VscLoading } from "react-icons/vsc";
+import { VscLoading } from "react-icons/vsc"; 
+import { useQueryClient } from "react-query";
 
 export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
     const handleEnroll = async (id, token) => {
       try {
         setIsLoading(true);
-        const res = await axios.post(
+        await axios.post(
           "https://final-project-online-course.et.r.appspot.com/v1/courses/enrollment",
           {
             course_uuid: id,
@@ -26,6 +28,8 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
             },
           }
         );
+        toast.success("Berhasil mendaftar kelas");
+        queryClient.invalidateQueries(["classDetails", id]);
         setIsOpen(false);
         setIsLoading(false);
       }
