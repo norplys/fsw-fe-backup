@@ -124,6 +124,7 @@ export default function ProfileSaya (){
                     <button
                       type="submit"
                       className="bg-[#6148FF] text-white active:bg-indigo-500 font-bold text-[0.625rem] py-2 px-6 rounded-2xl hover:bg-indigo-400 mr-1 mb-1 ease-linear transition-all duration-300 text-sm w-full flex justify-center"
+
                     >
                       {isSubmitting ? <VscLoading className="animate-spin text-xl"/> :  "Simpan Profil Saya"}
                     </button>

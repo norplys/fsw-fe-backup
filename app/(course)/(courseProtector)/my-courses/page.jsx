@@ -69,6 +69,7 @@ useEffect(() => {
   const categoryFilter = searchParams.get("categoryId")
   const levelFilter = searchParams.get("level")
   const searchFilter = searchParams.get("search")
+
   const isCompleteFilter = searchParams.get("isComplete")
   if(isCompleteFilter){
     setisComplete(isCompleteFilter)
@@ -104,6 +105,7 @@ useEffect(() => {
   }
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [searchParams]);
+
 
   const handleisComplete = (value) => {
     setisComplete(value);
