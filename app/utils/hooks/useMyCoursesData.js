@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 
-function myCoursesQueries(category, level, search, progress, token) {
-  if (!category && !level && !progress && !search) {
+function myCoursesQueries(category, level, search, isComplete, token) {
+  if (!category && !level && !isComplete && !search) {
     return axios.get(
-      "https://final-project-online-course.et.r.appspot.com/v1/courses", {
+      "https://final-project-online-course.et.r.appspot.com/v1/courses/my-courses", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -12,7 +12,7 @@ function myCoursesQueries(category, level, search, progress, token) {
     );
   }
   return axios.get(
-    `https://final-project-online-course.et.r.appspot.com/v1/courses?categoryId=${category}&level=${level}&progress=${progress}&search=${search}`, {
+    `https://final-project-online-course.et.r.appspot.com/v1/courses/my-courses?categoryId=${category}&level=${level}&isComplete=${isComplete}&search=${search}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -20,10 +20,10 @@ function myCoursesQueries(category, level, search, progress, token) {
   );
 }
 
-export function useMyCourses(category, level, search, progress, token) {
+export function useMyCourses(category, level, search, isComplete, token) {
   return useQuery(
-    ["my-courses", category, level, search, progress, token],
-    () => myCoursesQueries(category, level, search, progress, token),
+    ["my-courses", category, level, search, isComplete, token],
+    () => myCoursesQueries(category, level, search, isComplete, token),
     {
       select: (data) => {
         return data.data.data;

@@ -6,7 +6,7 @@ export default function AuthInput({
   register,
   errors,
   isSubmitting,
-    watch,
+  watch,
 }) {
   const validation = {
     required: `Please Fill This Form`,
