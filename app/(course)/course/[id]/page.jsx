@@ -34,7 +34,6 @@ const DetailKelas = () => {
   const [uuid, setUUID] = useState("")
   const { data: videoData, isLoading : videoLoading, error : videoError } = useVideoData(token, uuid);
   const queryClient = useQueryClient();
-  console.log(data);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
