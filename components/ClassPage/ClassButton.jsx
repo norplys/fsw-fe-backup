@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ClassButton({text, handlePremium, value, active}) {
+export default function ClassButton({text, handleProgress, value, active}) {
     const [isActive, setIsActive] = useState(false);
     function changeActive () {
         setIsActive(!isActive);
@@ -15,7 +15,7 @@ export default function ClassButton({text, handlePremium, value, active}) {
                             }`}
               onClick={() => {
                 changeActive();
-                handlePremium(value);
+                handleProgress(value);
               }}
             >
               {text}
