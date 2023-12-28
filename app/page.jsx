@@ -101,7 +101,7 @@ export default function Beranda () {
               </Link>
             </div>
    
-            <div className="flex gap-5 p-5 w-[100vw] md:w-auto overflow-x-auto">
+            <div className="flex gap-5 pb-5 overflow-x-auto">
               {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <CategoryLoading key={index} />;
@@ -135,7 +135,7 @@ export default function Beranda () {
               </Link>
             </div>
 
-            <div className="flex gap-5  mb-5 p-5  w-[100vw] overflow-x-auto">
+            <div className="flex gap-5  mb-5 justify-around overflow-x-auto">
             {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <ButtonLoading key={index} />;
@@ -152,7 +152,7 @@ export default function Beranda () {
             </div>
 
     
-            <div className="grid grid-cols-1 p-5 md:grid-cols-3 mx-auto   gap-5 items-center h-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 mx-auto   gap-5 items-center h-full">
               {isLoadingCourses ? (
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;
