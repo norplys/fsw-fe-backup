@@ -109,7 +109,7 @@ export default function Beranda () {
               ) : errorCategories ? (
                 <p>Something Went Wrong</p>
               ) : (
-                dataCategories.map((item, index) => {
+                dataCategories?.map((item, index) => {
                   return (
                     <CardCategories
                       key={index}
@@ -143,7 +143,7 @@ export default function Beranda () {
               ) : errorCategories ? (
                 <p>Something Went Wrong, Please Try Again</p>
               ) : (
-                dataCategories.map((item, index) => {
+                dataCategories?.map((item, index) => {
                   return (
                     <HomePageButton key={index} name={item.name} categoryId={item.id} handleChange={handleChange} queryCategory={queryCategory}/>
                   );
@@ -160,7 +160,8 @@ export default function Beranda () {
               ) : errorCourses ? (
                 <p>Something Went Wrong</p>
               ) : (
-                dataCourses.map((item, index) => {
+                dataCourses ? 
+                dataCourses?.map((item, index) => {
                   return (
                     <ClassCategoriesCard
                       key={index}
@@ -176,8 +177,11 @@ export default function Beranda () {
                       id={item.id}
                       isPremium={item.isPremium}
                     />
+                    
                   );
                 })
+                :
+                    <h1>No data</h1>
               )}
             </div>
           </div>

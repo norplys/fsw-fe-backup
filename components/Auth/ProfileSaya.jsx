@@ -1,6 +1,9 @@
 import { CgProfile } from "react-icons/cg";
 import { useUsers } from "@/app/context/usersContext";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { VscLoading } from "react-icons/vsc";
 
 
 export default function ProfileSaya (){
@@ -8,7 +11,7 @@ export default function ProfileSaya (){
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     values:{
       name: user?.name,
@@ -18,7 +21,24 @@ export default function ProfileSaya (){
       city: user?.city,
     }
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async(data) => {
+    try {
+      const token = localStorage.getItem("token");
+      const res = axios.put(`https://final-project-online-course.et.r.appspot.com/v1/profile`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      await toast.promise(res, {
+        loading: "Loading...",
+        success: "Berhasil mengubah profil",
+        error: "Gagal mengubah profil",
+      });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+
+  };
     return (
         <form className="items-center justify-between px-4 md:px-12 w-full md:w-[20rem] text-[0.625rem]" onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex flex-row justify-center px-8 gap-10 my-6">
@@ -103,9 +123,10 @@ export default function ProfileSaya (){
                   <div className="flex items-center justify-center md:w-[16rem] p-5 mb-8">
                     <button
                       type="submit"
-                      className="bg-[#6148FF] text-white active:bg-indigo-500 font-bold text-[0.625rem] py-2 px-6 rounded-2xl hover:bg-indigo-400 mr-1 mb-1 ease-linear transition-all duration-150 text-sm"
+                      className="bg-[#6148FF] text-white active:bg-indigo-500 font-bold text-[0.625rem] py-2 px-6 rounded-2xl hover:bg-indigo-400 mr-1 mb-1 ease-linear transition-all duration-300 text-sm w-full flex justify-center"
+
                     >
-                      Simpan Profil Saya
+                      {isSubmitting ? <VscLoading className="animate-spin text-xl"/> :  "Simpan Profil Saya"}
                     </button>
                   </div>
                 </form>
