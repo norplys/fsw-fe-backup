@@ -50,7 +50,7 @@ export default function Courses() {
   const [queryCategory, setQueryCategory] = useState([]);
   const [queryLevel, setQueryLevel] = useState([]);
   const [premium, setPremium] = useState();
-  
+  const [searchValue, setSearchValue] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -80,6 +80,7 @@ useEffect(() => {
   }
   if(searchFilter){
     setSearch(searchFilter)
+    setSearchValue(searchFilter)
   }else{
     setSearch("")
     params.delete("search");
@@ -150,6 +151,16 @@ useEffect(() => {
     });
   }
 
+  const onChange = (e) => {
+    e.preventDefault();
+    if(e.target.value === ""){
+      setSearch("");
+      params.delete("search");
+      router.push(pathname + "?" + params.toString())
+    }
+    setSearchValue(e.target.value);
+  };
+
 
   const { isLoading, error, data } = useCoursesData(categoryId, level, search, premium);
   const {
@@ -175,12 +186,15 @@ useEffect(() => {
 
           <form className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl" onSubmit={handleSubmit(handleSearch)}>
             <input
-              {...register("search")}
+              {...register("search", {
+                onChange: (e) => onChange(e),
+              })}
               type="text"
               placeholder="Cari Kelas..."
               name="search"
               className="text-black text-sm focus:outline-none w-full"
               id="search-class"
+              value={searchValue}
             />
 
             <button htmlFor="search-class" className="flex justify-center items-center p-2 bg-secret-darkblue hover:scale-110 duration-300" >
@@ -247,9 +261,9 @@ useEffect(() => {
                   return <ClassCardLoading key={index} />;
                 })
                : error ? 
-                <h1>An Error Occured</h1>
+                <h1 className="font-bold">Ada kesalahan, coba kembali beberapa saat lagi</h1>
                : 
-                data ? 
+                data.length ? 
                 data.map((item, index) => {
                   return (
                     <ClassCategoriesCard
@@ -269,7 +283,9 @@ useEffect(() => {
                       price={item.price}
                     />
                   )}) : 
-                  <h1>No Data</h1>    
+                  
+                    <h1 className="font-bold" >Tidak ada kelas yang ditemukan</h1>
+                       
             }
             </div>
           </div>

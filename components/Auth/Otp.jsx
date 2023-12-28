@@ -20,7 +20,8 @@ export default function Otp({
         onChange : (e) => handleChange(e.target.value, index),
 
       })}
-      type="text"
+      maxLength={1}
+      type="telephone"
       placeholder="0"
       className={`${
         errors[`Otp${index}`] ? "border-red-500" : ""
