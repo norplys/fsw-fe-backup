@@ -7,17 +7,17 @@ import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import axios from "axios";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { VscLoading } from "react-icons/vsc";
+import { VscLoading } from "react-icons/vsc"; 
+import { useQueryClient } from "react-query";
 
 export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
-  const { push } = useRouter();
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
     const handleEnroll = async (id, token) => {
       try {
         setIsLoading(true);
-        const res = await axios.post(
+        await axios.post(
           "https://final-project-online-course.et.r.appspot.com/v1/courses/enrollment",
           {
             course_uuid: id,
@@ -28,6 +28,8 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
             },
           }
         );
+        toast.success("Berhasil mendaftar kelas");
+        queryClient.invalidateQueries(["classDetails", id]);
         setIsOpen(false);
         setIsLoading(false);
       }
@@ -91,12 +93,12 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
                       <div className="mb-5 overflow-hidden border border-secret-darkblue rounded-2xl">
                         <div className="h-[100px] relative overflow-hidden">
                           <Image
-                            src="/orangKetawa.svg"
+                            src={data.image}
                             width={500}
                             height={500}
                             layout="responsive"
                             alt="Video Preview"
-                            className="object-cover object-center"
+                            className="h-full w-full object-cover"
                           />
                         </div>
 
@@ -122,21 +124,21 @@ export default function FreeEnrollModal({ data, isOpen, setIsOpen, token }) {
 
                           <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center space-x-2 font-semibold">
-                              <GiRank3 className="text-green-400 text-lg" />
+                              <GiRank3 className="text-green-700 text-lg" />
                               <span className="text-secret-text">
                                 {data.level}
                               </span>
                             </div>
 
                             <div className="flex items-center space-x-2 font-semibold">
-                              <FaBookBookmark className="text-green-400 text-base" />
+                              <FaBookBookmark className="text-green-700 text-base" />
                               <span className="text-secret-text">
                                 {data.totalModule} Modul
                               </span>
                             </div>
 
                             <div className="flex items-center space-x-2 font-semibold">
-                              <FaRegClock className="text-green-400 text-base" />
+                              <FaRegClock className="text-green-700 text-base" />
                               <span className="text-secret-text">
                                 {data.totalMinute} Menit
                               </span>

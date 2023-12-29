@@ -14,6 +14,7 @@ const Navbar = () => {
 	useEffect(() => {
 		const token = localStorage.getItem('token');
 		ifToken(token);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	const { user, handleToken, removeUser } = useUsers();
 	const [keyword, setKeyword] = useState('');
@@ -38,8 +39,6 @@ const Navbar = () => {
 	const handleSearch = (e) => {
 		e.preventDefault();
 		push(`/courses?search=${keyword}`);
-
-		
 	};
 	return (
 		<div className="bg-secret-background sticky top-0 z-20 shadow-2xl black100/40">
@@ -80,7 +79,7 @@ const Navbar = () => {
 					</span>
 					<Link
 					  href="/my-courses"
-					  className="flex items-center px-4 py-1 space-x-2 rounded-lg bg-secret-darkblue"
+					  className="flex items-center px-4 py-1 space-x-2 rounded-lg bg-secret-darkblue hover:scale-105 duration-300"
 					>
 					  <FiList className="text-white" size={16} />
 					  <p className="font-semibold text-white">Kelas</p>
@@ -95,7 +94,7 @@ const Navbar = () => {
 					</Link>
 	
 					<button
-					  className="text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink"
+					  className="text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink hover:scale-105 duration-300"
 					  onClick={handleLogOut}
 					>
 					  LogOut

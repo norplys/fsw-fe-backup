@@ -34,6 +34,7 @@ export default function Chapter({
             handleModal={handleModal}
             isPaid={isPaid}
             isCompleted={section.isCompleted}
+            userChapterModuleUuid={section.userChapterModuleUuid}
           />
         ))}
       </div>

@@ -3,18 +3,19 @@ import Guard from "@/components/Guard";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useUsers } from "@/app/context/usersContext";
 
 export default function Index({children}) {
     const [isLoading, setIsLoading] = useState(true);
     const { push } = useRouter();
+    const { removeUser } = useUsers();
     useEffect(() => {
         const token = localStorage.getItem("token");
-        if (token === null) {
+        if (!token) {
             push("/admin/login");
             return;
         }
         validateAdmin(token);
-        setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
@@ -28,11 +29,12 @@ export default function Index({children}) {
               },
             }
           );
-          if (!res.data.data.role === "admin") {
+          if (res.data.data.role !== "admin") {
             throw new Error("You are not admin");
           }
+          setIsLoading(false);
         } catch (error) {
-          localStorage.removeItem("token");
+          removeUser();
           push("/admin/login");
         }
       };

@@ -33,7 +33,6 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
         setIsLoading(false);
       }
       catch (err) {
-        console.log(err);
         toast.error("Gagal membeli kelas mohon coba lagi");
         setIsLoading(false);
       }
@@ -93,7 +92,7 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
                       <div className="mb-5 overflow-hidden border border-secret-darkblue rounded-2xl">
                         <div className="h-[100px] relative overflow-hidden">
                           <Image
-                            src="/orangKetawa.svg"
+                            src={data.image}
                             width={500}
                             height={500}
                             layout="responsive"
@@ -124,21 +123,21 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
 
                           <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center space-x-2 font-semibold">
-                              <GiRank3 className="text-green-400 text-lg" />
+                              <GiRank3 className="text-green-700 text-lg" />
                               <span className="text-secret-text">
                                 {data.level}
                               </span>
                             </div>
 
                             <div className="flex items-center space-x-2 font-semibold">
-                              <FaBookBookmark className="text-green-400 text-base" />
+                              <FaBookBookmark className="text-green-700 text-base" />
                               <span className="text-secret-text">
                                 {data.totalModule} Modul
                               </span>
                             </div>
 
                             <div className="flex items-center space-x-2 font-semibold">
-                              <FaRegClock className="text-green-400 text-base" />
+                              <FaRegClock className="text-green-700 text-base" />
                               <span className="text-secret-text">
                                 {data.totalMinute} Menit
                               </span>

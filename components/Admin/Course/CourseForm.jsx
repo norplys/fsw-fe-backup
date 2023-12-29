@@ -1,11 +1,12 @@
 'use client';
 
-import {Fragment} from 'react';
+import {Fragment, useState, useEffect} from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { Dialog, Transition } from '@headlessui/react';
-import { BiX } from 'react-icons/bi';
+import { BiX, BiSolidTrash } from 'react-icons/bi';
 import { IconButton } from '@/components/Admin/IconButton';
 import Module from './ChapterModule';
+import Image from 'next/image';
 
 
 export const CourseForm = ({ isOpen, setIsOpen }) => {
@@ -14,6 +15,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 		handleSubmit,
 		formState: { errors },
 		control,
+		watch,
 	} = useForm({
 		defaultValues: {
 			nama: '',
@@ -28,8 +30,29 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 				module : [{ title : '', video : ''}],
 			}],
 			deskripsi: '',
+			image: '',
 		},
 	});
+	const [image, setImage] = useState(null);
+	const imageFile = watch('image');
+	useEffect(() => {
+		if(imageFile?.length === 0){
+			setImage(null);
+			return;
+		}
+		if (imageFile) {
+			const newUrl = URL.createObjectURL(imageFile[0]);
+
+			if(newUrl !== image) {
+				setImage(newUrl);
+			}
+		}
+		return () => URL.revokeObjectURL(imageFile);
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [imageFile]);
+	
+	
 
 	const { fields, append, remove } = useFieldArray({
 		name: 'targetKelas',
@@ -46,8 +69,12 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 			required: 'Chapter harus diisi',
 		}
 	});
+
+	const removeImage = () => {
+		setImage(null);
+	}
 	
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = (data) => console.log({...data , image : imageFile[0]});
 
 	return (
 		<Transition appear show={isOpen} as={Fragment}>
@@ -84,7 +111,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 									<IconButton icon={BiX} variants='secondary' onClick={() => setIsOpen(false)} />
 								</div>
 
-								<form className='w-full max-w-lg mx-auto' onSubmit={handleSubmit(onSubmit)}>
+								<form className='w-full max-w-lg mx-auto flex flex-col justify-center' onSubmit={handleSubmit(onSubmit)}>
 									<div className='mb-4'>
 										<label
 											htmlFor='nama'
@@ -132,7 +159,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 											<option value=''>Pilih Kategori</option>
 											<option value='UI/UX Design'>UI/UX Design</option>
 											<option value='Data Science'>Data Science</option>
-											<option value='Digital Marketing'>Digital Marketing</option>
+											<option value='Web Development'>Web Development</option>
+											<option value='Product Management'>Product Management</option>
+											<option value='Android Development'>Android Development</option>
+											<option value='IOS Development'>IOS Development</option>
 										</select>
 										<span className='block mt-1 text-xs text-red-500' role='alert'>
 											{errors.kategori?.message}
@@ -274,11 +304,6 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										<div className='text-red-500 text-xs mt-1'>{errors.targetKelas?.root?.message}</div>
 									</div>
 
-
-
-
-
-
 									<div className='mb-6'>
 										<label
 											htmlFor='chapter'
@@ -305,10 +330,6 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										}
 										<div className='text-red-500 text-xs mt-1'>{errors.chapter?.root?.message}</div>
 									</div>
-
-
-
-
 
 									<div className='mb-6'>
 										<label
@@ -339,6 +360,34 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 											{errors.deskripsi?.message}
 										</span>
 									</div>
+
+									<div className='mb-6 '>
+										<label
+											htmlFor='image'
+											className='block mb-2 text-base font-semibold text-gray-700 '>
+											Image
+										</label>
+										<div className={`border border-gray-300 grid rounded-xl p-2 ${errors.image ? 'border-red-500': ''}`}>
+										<div className='mb-2 flex gap-2'>
+										<label for="image" className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl">Browse...</label>
+										{image && <button onClick={removeImage} className='text-secret-pink text-xl'><BiSolidTrash/></button>}
+										</div>
+										<input
+											type='file'
+											id='image'
+											placeholder='image'
+											className='hidden'
+											{...register('image', {
+												required: 'Gambar harus diisi',
+											})}
+										/>
+										{image && <Image src={image} alt='image' width={500} height={500} className='rounded-xl object-cover' />}
+										</div>
+										<span className='block mt-1 text-xs text-red-500' role='alert'>
+											{errors.image?.message}
+										</span>
+									</div>
+									
 
 									<div className='flex items-center space-x-2'>
 										<button

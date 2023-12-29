@@ -11,6 +11,7 @@ export default function Module({
   isPaid,
   uuid,
   isCompleted,
+  userChapterModuleUuid,
 }) {
   return (
     <div className="flex items-center justify-between py-3" key={index}>
@@ -37,7 +38,8 @@ export default function Module({
               handleVideo(
                 uuid,
                 chapterIndex,
-                index
+                index,
+                userChapterModuleUuid
               )
             }
           >
