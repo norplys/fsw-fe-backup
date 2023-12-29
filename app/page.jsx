@@ -101,7 +101,7 @@ export default function Beranda () {
               </Link>
             </div>
    
-            <div className="flex gap-5 pb-5 overflow-x-auto">
+            <div className="flex gap-5 pb-5 overflow-x-auto md:overflow-hidden-x-auto lg:overflow-x-auto xl:overflow-hidden 2xl:overflow-hidden">
               {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <CategoryLoading key={index} />;
@@ -111,12 +111,14 @@ export default function Beranda () {
               ) : (
                 dataCategories?.map((item, index) => {
                   return (
-                    <CardCategories
+                    <div key={index} className="flex-shrink-0 flex-grow w-[25%] xl:w-[10%]">
+                        <CardCategories
                       key={index}
                       name={item.name}
                       image={item.image}
                       categoryId={item.id}
                     />
+                    </div>
                   );
                 })
               )}
