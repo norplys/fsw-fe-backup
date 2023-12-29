@@ -36,6 +36,13 @@ const Navbar = () => {
 		push('/');
 	};
 
+	const onChange = (e) => {
+		e.preventDefault();
+		e.target.value === '' ? 
+		push(`/courses`) : ""
+		setKeyword(e.target.value)
+	}
+
 	const handleSearch = (e) => {
 		e.preventDefault();
 		push(`/courses?search=${keyword}`);
@@ -61,7 +68,7 @@ const Navbar = () => {
 				  type="text"
 				  value={keyword}
 				  placeholder="Cari Kursus..."
-				  onChange={(e) => setKeyword(e.target.value)}
+				  onChange={onChange}
 				  className="w-80 px-5 py-3 rounded-xl placeholder:text-sm text-black"
 				/>
 				<button className="absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 rounded-xl search">
