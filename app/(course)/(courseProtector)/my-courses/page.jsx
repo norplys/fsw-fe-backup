@@ -82,6 +82,7 @@ useEffect(() => {
   if(searchFilter){
     setSearch(searchFilter);
     setSearchValue(searchFilter);
+
   }else{
     setSearch("");
     params.delete("search");
@@ -108,6 +109,7 @@ useEffect(() => {
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [searchParams]);
 
+
 const onChange = (e) => {
   e.preventDefault();
   if(e.target.value === ""){
@@ -117,6 +119,7 @@ const onChange = (e) => {
   }
   setSearchValue(e.target.value);
 };
+
 
 
   const handleisComplete = (value) => {
