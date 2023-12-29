@@ -26,6 +26,8 @@ export default function DeleteModal({ isOpen, setIsOpen, id, token }) {
         error: "Gagal menghapus kelas",
       });
       queryClient.invalidateQueries("adminCourses");
+      queryClient.invalidateQueries("paymentStatus");
+      queryClient.invalidateQueries("adminStatistic");
       setLoading(false);
       setIsOpen(false);
     } catch (error) {
