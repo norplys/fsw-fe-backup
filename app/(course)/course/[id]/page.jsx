@@ -88,8 +88,14 @@ const DetailKelas = () => {
   };
 
   const handleNextVideo = () => {
-    let currentChapter = Number(searchParams.get("chapter"));
-    let currentModule = Number(searchParams.get("module"));
+    let currentChapter = searchParams.get("chapter");
+    let currentModule = searchParams.get("module");
+    if (currentChapter === null || currentModule === null) {
+      handleVideo(data.courseModules[0].module[0].chapterModuleUuid, 0, 0, data.courseModules[0].module[0].userChapterModuleUuid);
+      return;
+    }
+    currentChapter = Number(currentChapter);
+    currentModule = Number(currentModule);
     const chapterLength = data.courseModules.length;
     const moduleLength = data.courseModules[currentChapter].module.length;
     const nextUuid = data.courseModules[currentChapter].module[currentModule + 1];
