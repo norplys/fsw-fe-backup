@@ -52,9 +52,17 @@ const CoursesPage = () => {
   if (isError) return <div>{error.message}</div>;
   return (
     <>
-      <div className="flex items-center justify-between mb-5">
-        <h1 className="text-xl font-bold text-black">Kelola Kelas</h1>
-        <div className="flex items-center space-x-3">
+    <div className="container mx-auto p-5">
+      <section className="py-5 xl:py-20">
+        <div className="grid grid-cols-3 gap-8 md:grid-cols-3 lg:grid-cols-3 ">
+          {/* {dashboard?.map((item, index) => (
+            <AdminCard statistic={item} key={index} />
+          ))} */}
+        </div>
+      </section>
+      <div className="flex flex-col md:flex-row items-center justify-between mb-5">
+        <h1 className="text-xl font-bold text-black mb-4 md:mb-0">Kelola Kelas</h1>
+        <div className="flex items-center space-x-0 md:space-x-3 mb-3 md:mb-0">
           <button
             className="flex items-center px-4 py-2 space-x-2 text-sm font-semibold border rounded-full text-secret-darkblue border-secret-darkblue"
             onClick={() => setIsOpen(true)}
@@ -80,7 +88,7 @@ const CoursesPage = () => {
               <th className="w-1/7 min-w-[12rem] text-start px-5">Action</th>
             </tr>
           </thead>
-          <tbody className="w-full">
+          <tbody>
             {data?.map((data) => (
               <AdminCourses data={data} key={data.id} handleEdit={handleEdit} handleDelete={handleDelete} />
             ))}
@@ -90,6 +98,7 @@ const CoursesPage = () => {
       <EditForm isOpen={isEdit} setIsOpen={setIsEdit} id={editId} token={token} />
       <CourseForm isOpen={isOpen} setIsOpen={setIsOpen} />
       <DeleteModal isOpen={isDelete} setIsOpen={setIsDelete} id={deleteId} token={token} />
+      </div>
     </>
   );
 };

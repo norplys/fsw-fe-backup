@@ -77,7 +77,7 @@ export default function ForgotPassword() {
 
       <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1">
         <BiBrain className="text-9xl text-white" />
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
             Skill
           </h1>
