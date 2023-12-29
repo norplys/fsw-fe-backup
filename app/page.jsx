@@ -137,7 +137,7 @@ export default function Beranda () {
               </Link>
             </div>
 
-            <div className="flex gap-5  mb-5 justify-around overflow-x-auto">
+            <div className="flex gap-5  mb-5 justify-around overflow-x-auto p-1">
             {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <ButtonLoading key={index} />;
