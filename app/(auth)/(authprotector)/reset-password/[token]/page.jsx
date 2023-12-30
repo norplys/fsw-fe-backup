@@ -67,12 +67,13 @@ export default function ResetPassword() {
         success: "Password berhasil diubah",
         error: "Gagal mengubah password, Mohon coba lagi",
       });
-      toast.loading("Redirecting...", { duration: 2000 });
+      toast.loading("Mengalihkan...", { duration: 2000 });
       await sleepRedirect();
     }
     catch(err){
       toast.error(err.response.data.message);
       if(err.response.data.message === "TokenExpiredError: jwt expired"){
+        toast.error("Sesi Anda Telah Habis Silahkan Reset Password Ulang");
         push("/forgot-password");
       }
     }
@@ -116,10 +117,7 @@ export default function ResetPassword() {
         <BiBrain className="text-9xl text-white" />
         <div className="flex">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
         </div>
       </div>

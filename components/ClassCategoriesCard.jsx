@@ -18,6 +18,16 @@ export default function ClassCategoriesCard({
   id,
   price
 }) {
+  const priceFormat = (price) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(price);
+  }
+  const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
   return (
     <Link
       href={`course/${id}`}
@@ -53,7 +63,7 @@ export default function ClassCategoriesCard({
           <div className="flex gap-1 leading-loose">
             <GiRank3 className="text-green-700 text-lg"/>
             <p className="font-semibold text-xs text-secret-text3">
-              {level} Level
+              {capitalize(level)} Level
             </p>
           </div>
           <div className="flex gap-1 leading-loose">
@@ -70,7 +80,7 @@ export default function ClassCategoriesCard({
             <IoDiamond className="text-xs text-secret-background" />
             <div className="flex gap-2">
             <h2 className="text-xs text-secret-background font-bold">Beli</h2>
-            <h2 className="text-xs font-bold text-secret-background">Rp {price}</h2>
+            <h2 className="text-xs font-bold text-secret-background">{priceFormat(price)}</h2>
           </div>
         </button>
         ) : (

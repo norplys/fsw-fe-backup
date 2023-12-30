@@ -84,15 +84,16 @@ export default function OtpPage() {
       );
       await toast.promise(register, {
         loading: "Loading...",
-        success: "OTP successfully verified",
-        error: "OTP failed to verify",
+        success: "OTP Berhasil Diverifikasi",
+        error: "OTP Gagal Diverifikasi",
       });
-      toast.success("Otp successfully verified");
-      toast.loading("Redirecting Please Wait...");
+      toast.loading("Mengalihkan...");
       await sleepRedirect();
     } catch (err) {
       if (err.response.data.message === "jwt expired") {
+        toast.error("Sesi Anda Telah Habis Silahkan Register Ulang");
         push("/register");
+        return;
       }
       toast.error(err.response.data.message);
     }
@@ -143,10 +144,7 @@ export default function OtpPage() {
         <BiBrain className="text-9xl text-white" />
         <div className="flex">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
         </div>
       </div>

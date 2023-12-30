@@ -14,6 +14,7 @@ export default function LoginLayout({ children }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     ifToken(token);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ifToken = async (token) => {
