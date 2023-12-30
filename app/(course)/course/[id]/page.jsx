@@ -218,7 +218,7 @@ const DetailKelas = () => {
                         style={{
                           width: `${data.progressBar}%`,
                         }}
-                        className="absolute top-0 left-0 py-2 rounded-full bg-secret-darkblue"
+                        className="absolute top-0 left-0 py-2 rounded-full bg-secret-darkblue transition-all duration-500"
                       ></div>
                       <div className="absolute text-xs text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 font-bold">
                         {data?.progressBar ? data.progressBar : 0}%

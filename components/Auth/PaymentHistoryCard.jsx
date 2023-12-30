@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { GiRank3 } from "react-icons/gi";
@@ -7,10 +8,17 @@ import Link from "next/link"
 import { RxCross2 } from "react-icons/rx";
 
 export default function HistoryCard({ data }) {
+  const formatedDate = (date) => {
+    const newDate = new Date(date);
+    const format = new Intl.DateTimeFormat("id-ID", { dateStyle: "medium", timeStyle: "short" }).format(newDate);
+    return format;
+  }
+  const today = Date.now();
+  const isExpired = formatedDate(data?.expiredAt) < formatedDate(today);
   return (
     <Link
       className="flex flex-col course md:max-w-full h-[300px] md:h-[250px] bg-secret-background rounded-[15px] shadow-md"
-      href={`/course/${data?.courseUuid}`}
+      href={data?.is_paid ? `/course/${data?.courseUuid}` : isExpired ? `/course/${data?.courseUuid}` : `/payment/${data?.paymentUuid}`}
     >
       <div className="w-full h-[80px] ">
         <Image
@@ -62,16 +70,25 @@ export default function HistoryCard({ data }) {
           <div className="flex justify-center gap-1 mt-1 w-full md:w-[143px] p-1 bg-secret-darkblue rounded-[15px] relative">
             <div className="flex gap-3 justify-center items-center">
               <IoDiamond className="text-white text-lg" />
-              <h2 className="text-xs font-bold text-white">Paid</h2>
+              <h2 className="text-xs font-bold text-white">Sudah Dibayar</h2>
             </div>
           </div>
         ) : (
-          <div className="flex justify-center gap-1 mt-1 w-full md:w-[143px] p-1 bg-secret-pink rounded-[15px] relative">
-            <div className="flex gap-3 justify-center items-center">
-              <RxCross2 className="text-white text-xl font-extrabold" />
-              <h2 className="text-xs font-bold text-white">Failed</h2>
+          isExpired ? (
+            <div className="flex justify-center gap-1 mt-1 w-full md:w-[143px] p-1 bg-red-500 rounded-[15px] relative">
+              <div className="flex gap-3 justify-center items-center">
+                <RxCross2 className="text-white text-lg" />
+                <h2 className="text-xs font-bold text-white">Expired</h2>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="flex justify-center gap-1 mt-1 w-full md:w-[143px] p-1 bg-yellow-500 rounded-[15px] relative">
+              <div className="flex gap-3 justify-center items-center">
+                <IoDiamond className="text-white text-lg" />
+                <h2 className="text-xs font-bold text-white">Belum Dibayar</h2>
+              </div>
+            </div>
+          )
         )}
       </div>
     </Link>

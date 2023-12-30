@@ -70,7 +70,7 @@ export default function MyClassCard({
         <div className="w-[150px] bg-secret-pink rounded-[25px] max-h-4">
           <div
             className="bg-secret-darkblue rounded-[25px]"
-            style={{ width: totalProgress }}
+            style={{ width: `${totalProgress}%` }}
           >
             <p className="text-xs font-bold text-secret-background pl-3">
               {totalProgress}%
