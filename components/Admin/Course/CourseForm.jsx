@@ -123,7 +123,8 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       isPremium: data.tipe,
       code: data.kode,
       intro_video: data.intro,
-      courseDetails: {
+      courseDetail: {
+
         description: data.deskripsi,
         telegram: data.telegram,
         onboarding: data.onboarding,
