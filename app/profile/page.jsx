@@ -53,7 +53,7 @@ export default function Profile() {
                   </div>
                 </button>
               </div>
-              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[510px] border-l-2 border-dashed pl-2 hide-scroll-bar">
+              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[510px] border-l-2 border-dashed pl-2 hide-scroll-bar ">
                 {currentTab === "Profile" && <ProfileSaya/>}
                 {currentTab === "Password" && <Password />}
                 {currentTab === "Pembayaran" && <RiwayatPembayaran />}

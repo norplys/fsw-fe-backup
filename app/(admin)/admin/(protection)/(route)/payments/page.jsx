@@ -1,95 +1,14 @@
 "use client"
+import PaymentLoading from "@/components/Admin/PaymentLoading";
 import { usePaymentStatus } from "@/app/utils/hooks/useAdminPayment";
-const payments = [
-	{
-		id: 1,
-		username: 'johndoe',
-		course: {
-			kategori: 'UI/UX Design',
-			nama: 'Belajar UI/UX Design dengan Figma',
-		},
-		status: 'Sudah Bayar',
-		metode: 'Credit Card',
-		tanggal: new Date('2021-08-01').toISOString(),
-	},
-	{
-		id: 2,
-		username: 'johndoe',
-		course: {
-			kategori: 'Data Science',
-			nama: 'Data Cleaning untuk Pemula',
-		},
-		status: 'Belum Bayar',
-		metode: 'Credit Card',
-		tanggal: new Date('2021-08-01').toISOString(),
-	},
-	{
-		id: 3,
-		username: 'johndoe',
-		course: {
-			kategori: 'Data Science',
-			nama: 'Data Visualization untuk Pemula',
-		},
-		status: 'Belum Bayar',
-		metode: 'Credit Card',
-		tanggal: new Date('2021-08-01').toISOString(),
-	},
-	{
-		id: 4,
-		username: 'johndoe',
-		course: {
-			kategori: 'Data Science',
-			nama: 'Data Analysis untuk Pemula',
-		},
-		status: 'Sudah Bayar',
-		metode: '-',
-		tanggal: new Date('2021-08-01').toISOString(),
-	},
-	{
-		id: 5,
-		username: 'johndoe',
-		course: {
-			kategori: 'Data Science',
-			nama: 'Machine Learning untuk Pemula',
-		},
-		status: 'Sudah Bayar',
-		metode: '-',
-		tanggal: new Date('2021-08-01').toISOString(),
-	},
-	{
-		id: 6,
-		username: 'johndoe',
-		course: {
-			kategori: 'Data Science',
-			nama: 'Natural Language Processing untuk Pemula',
-		},
-		status: 'Sudah Bayar',
-		metode: 'Credit Card',
-		tanggal: new Date('2021-08-01').toISOString(),
-	},
-	{
-		id: 7,
-		username: 'johndoe',
-		course: {
-			kategori: 'Data Science',
-			nama: 'Deep Learning untuk Pemula',
-		},
-		status: 'Sudah Bayar',
-		metode: 'Credit Card',
-		tanggal: new Date('2021-08-01').toISOString(),
-	},
-];
-
 const formatTanggal = (date) => {
 	const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
 	return new Date(date).toLocaleDateString('en-US', options);
 };
-
-
+const mockArray = [1, 2, 3, 4, 5, 6];
 const PaymentsPage = () => {
 	const token = localStorage.getItem('token');
 	const { data, isLoading, isError } = usePaymentStatus(token);
-	console.log(data)
 	return (
 		<>
 			<div className='flex items-center justify-between mb-5'>
@@ -109,7 +28,7 @@ const PaymentsPage = () => {
 						</tr>
 					</thead>
 					<tbody className='w-full'>
-						{isLoading ? "Loading...": 
+						{isLoading ? mockArray.map((item) => <PaymentLoading key={item} />): 
 						data?.map((payment) => (
 							<tr
 								key={payment.id}

@@ -16,6 +16,7 @@ import { useState, useEffect } from 'react';
 
 export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     const {data, isLoading, isError, error} = useQuery(['course', id, token], async () => {
+		if(!id.current)  return false;
         const res = await axios.get(`https://final-project-online-course.et.r.appspot.com/v1/course/${id.current}`, {
         headers: {
             Authorization: `Bearer ${token}`
@@ -414,7 +415,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 										</label>
 										<div className={`border border-gray-300 grid rounded-xl p-2 ${errors.image ? 'border-red-500': ''}`}>
 										<div className='mb-2 flex gap-2'>
-										<label for="image" className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl">Browse...</label>
+										<label htmlFor="image" className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl">Browse...</label>
 										{image && <button onClick={removeImage} className='text-secret-pink text-xl'><BiSolidTrash/></button>}
 										</div>
 										<input

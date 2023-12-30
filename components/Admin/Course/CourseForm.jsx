@@ -369,7 +369,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 										</label>
 										<div className={`border border-gray-300 grid rounded-xl p-2 ${errors.image ? 'border-red-500': ''}`}>
 										<div className='mb-2 flex gap-2'>
-										<label for="image" className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl">Browse...</label>
+										<label htmlFor="image" className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl">Browse...</label>
 										{image && <button onClick={removeImage} className='text-secret-pink text-xl'><BiSolidTrash/></button>}
 										</div>
 										<input
