@@ -662,7 +662,6 @@ catch(err){
                         {errors.deskripsi?.message}
                       </span>
                     </div>
-
                     <div className="mb-6 ">
                       <label
                         htmlFor="image"
@@ -717,6 +716,7 @@ catch(err){
                         {errors.image?.message}
                       </span>
                     </div>
+
 
                     <div className="flex items-center space-x-2">
                       <button
