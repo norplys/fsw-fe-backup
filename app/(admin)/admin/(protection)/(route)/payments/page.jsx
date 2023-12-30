@@ -1,6 +1,7 @@
 "use client"
 import PaymentLoading from "@/components/Admin/PaymentLoading";
 import { usePaymentStatus } from "@/app/utils/hooks/useAdminPayment";
+
 const formatTanggal = (date) => {
 	const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
 	return new Date(date).toLocaleDateString('en-US', options);
@@ -9,6 +10,7 @@ const mockArray = [1, 2, 3, 4, 5, 6];
 const PaymentsPage = () => {
 	const token = localStorage.getItem('token');
 	const { data, isLoading, isError } = usePaymentStatus(token);
+
 	return (
 		<>
 			<div className='flex items-center justify-between mb-5'>
@@ -29,6 +31,7 @@ const PaymentsPage = () => {
 					</thead>
 					<tbody className='w-full'>
 						{isLoading ? mockArray.map((item) => <PaymentLoading key={item} />): 
+
 						data?.map((payment) => (
 							<tr
 								key={payment.id}
