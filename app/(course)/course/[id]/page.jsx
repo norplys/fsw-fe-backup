@@ -125,6 +125,10 @@ const DetailKelas = () => {
     push("/courses");
   };
 
+  const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
 
   if (isError) {
     return (
@@ -161,45 +165,45 @@ const DetailKelas = () => {
                 <div className="flex flex-col mb-3">
                   <div className="flex items-center justify-between ">
                     <h1 className="text-2xl font-bold text-secret-text">
-                      {data.category}
+                      {data?.category}
                     </h1>
                     <div className="flex items-center space-x-1">
                       <FaStar className="text-yellow-400 text-base" />
                       <span className="font-bold text-secret-text">
-                        {data.rating}
+                        {data?.rating}
                       </span>
                     </div>
                   </div>
                   <h2 className="text-xl font-bold text-secret-pink">
-                    {data.name}
+                    {data?.name}
                   </h2>
-                  <p className="text-sm text-gray-500 ">by {data.author}</p>
+                  <p className="text-sm text-gray-500 ">by {data?.author}</p>
                 </div>
 
                 <div className="flex items-center justify-between mb-4 max-w-[400px]">
                   <div className="flex items-center space-x-2 font-semibold">
                     <GiRank3 className="text-green-700 text-lg" />
-                    <span className="text-secret-text">{data.level}</span>
+                    <span className="text-secret-text">{capitalize(data?.level)}</span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
                     <FaBookBookmark className="text-green-700 text-base" />
                     <span className="text-secret-text">
-                      {data.totalModule} Modul
+                      {data?.totalModule} Modul
                     </span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
                     <FaRegClock className="text-green-700 text-base" />
                     <span className="text-secret-text">
-                      {data.totalMinute} Menit
+                      {data?.totalMinute} Menit
                     </span>
                   </div>
                 </div>
 
                 <Link
                   className="flex items-center justify-center px-6 py-2 space-x-2 bg-secret-darkblue rounded-full hover:scale-105 max-w-xs"
-                  href={data.telegram}
+                  href={data?.telegram}
                 >
                   <div className="font-bold text-white shadow-2xl hover:shadow-none">
                     Telegram Link
@@ -213,20 +217,20 @@ const DetailKelas = () => {
                   <div className="flex items-center justify-between mb-4">
                     <h1 className="text-xl font-bold">Materi Belajar</h1>
                     {/* progress bar here */}
-                    {data.isPaid && <div className="relative py-2 rounded-full bg-secret-pink w-[200px] overflow-hidden">
+                    {data?.isPaid && <div className="relative py-2 rounded-full bg-secret-pink w-[200px] overflow-hidden">
                       <div
                         style={{
-                          width: `${data.progressBar}%`,
+                          width: `${data?.progressBar}%`,
                         }}
                         className="absolute top-0 left-0 py-2 rounded-full bg-secret-darkblue transition-all duration-500"
                       ></div>
                       <div className="absolute text-xs text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 font-bold">
-                        {data?.progressBar ? data.progressBar : 0}%
+                        {data?.progressBar ? data?.progressBar : 0}%
                       </div>
                     </div>}
                   </div>
 
-                  {data.courseModules.map((chapter, index) => (
+                  {data?.courseModules.map((chapter, index) => (
                     <Chapter
                       key={index}
                       name={chapter.chapter}
@@ -234,7 +238,7 @@ const DetailKelas = () => {
                       modules={chapter.module}
                       index={index}
                       handleVideo={handleVideo}
-                      isPremium={data.isPremium}
+                      isPremium={data?.isPremium}
                       handleModal={handleModal}
                       isPaid={data?.isPaid}
                     />
@@ -264,7 +268,7 @@ const DetailKelas = () => {
                 ) : (
                   <iframe
                     className="w-full h-full mb-5 rounded-2xl shadow-2xl"
-                    src={data.introVideo}
+                    src={data?.introVideo}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -280,21 +284,21 @@ const DetailKelas = () => {
                     Kelas Lainnya
                   </button>
                   <button className="bg-secret-darkblue text-white font-bold px-2 rounded-lg text-lg hover:scale-105 duration-300 shadow-2xl" onClick={handleNextVideo}>
-                    Next Video
+                    Video Selanjutnya
                   </button>
 
                 </div>
 
                 <h2 className="mb-3 text-2xl font-bold">Tentang Kelas</h2>
                 <p className="mb-5 leading-relaxed text-gray-500">
-                  {data.description}
+                  {data?.description}
                 </p>
 
                 <h2 className="mb-3 text-xl font-bold">
                   Kelas Ini Ditujukan Untuk
                 </h2>
                 <ol className="mb-5 leading-relaxed text-gray-500 list-decimal list-inside">
-                  {data.classTarget.map((item, index) => (
+                  {data?.classTarget.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ol>
