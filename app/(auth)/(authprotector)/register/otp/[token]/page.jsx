@@ -101,7 +101,7 @@ export default function OtpPage() {
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
       <form
-        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1"
+        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1"
         onSubmit={handleSubmit(handleOtp)}
       >
         <div className="w-full lg:w-2/3 text-black flex flex-col">
@@ -140,9 +140,9 @@ export default function OtpPage() {
         </div>
       </form>
 
-      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1">
+      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
         <BiBrain className="text-9xl text-white" />
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
             SkillHUB
           </h1>

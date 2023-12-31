@@ -56,7 +56,7 @@ const AdminLayout = ({ children }) => {
 				<AdminNavbar setOpen={setOpen} open={open}/>
 				<section>
 				<section className="py-5 xl:py-20">
-        <div className="grid items-center grid-cols-1 gap-8 xl:grid-cols-3 mx-5">
+        <div className="grid items-center grid-cols- gap-8 xl:grid-cols-3 mx-5">
           {dashboard?.map((item, index) => (
             <AdminCard statistic={item} key={index} data={data} isLoading={isLoading} value={item.value} isError={isError} />
           ))}

@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
 *{
   box-sizing: border-box;
+  scrollbar-gutter: stable;
 }
 :root {
   --foreground-rgb: 0, 0, 0;
