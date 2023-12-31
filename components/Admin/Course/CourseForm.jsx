@@ -13,15 +13,16 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "react-query";
+import { VscLoading } from "react-icons/vsc";
 
 export const CourseForm = ({ isOpen, setIsOpen }) => {
   const { push } = useRouter();
-  const { data, isLoading, isError } = useCategoriesData();
+  const { data : categoryData, isLoading, isError } = useCategoriesData();
   const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     control,
     watch,
   } = useForm({
@@ -104,7 +105,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
   };
 
   const formatData = (data) => {
-    data = { ...data, image: imageFile[0] };
+    const defaultImage = categoryData.find((item) => item.id === Number(data.kategori)).image;
     const newCourseChapter = data.chapter.map((item) => {
       return {
         duration: item.duration,
@@ -117,10 +118,11 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
         }),
       };
     });
+    console.log(categoryData);
     const newData = {
       course_category_id: data.kategori,
       image:
-        "https://res.cloudinary.com/dpg0tbbot/image/upload/v1701180735/b4zuplewxgtb5yxvw1gx.png",
+        imageFile?.length === 0 ? defaultImage : defaultImage, 
       name: data.nama,
       author: data.author,
       price: data.harga,
@@ -160,6 +162,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       queryClient.invalidateQueries("adminCourses");
       queryClient.invalidateQueries("paymentStatus");
       queryClient.invalidateQueries("adminStatistic");
+      setIsOpen(false);
     } catch (err) {
       if (err.response.status === 401) {
         toast.error("Token Kadaluarsa, Mohon Login Kembali");
@@ -274,8 +277,8 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                           required: "Kategori harus diisi",
                         })}
                       >
-                        <option value="">Pilih Kategori</option>
-                        {data?.map((item) => (
+                        <option value="" disabled>Pilih Kategori</option>
+                        {categoryData?.map((item) => (
                           <option value={item.id} key={item.id}>
                             {item.name}
                           </option>
@@ -706,9 +709,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                         Gambar
                       </label>
                       <div
-                        className={`border border-gray-300 grid rounded-xl p-2 ${
-                          errors.image ? "border-red-500" : ""
-                        }`}
+                        className={`border border-gray-300 grid rounded-xl p-2`}
                       >
                         <div className="mb-2 flex gap-2">
                           <label
@@ -731,9 +732,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                           id="image"
                           placeholder="image"
                           className="hidden"
-                          {...register("image", {
-                            required: "Gambar harus diisi",
-                          })}
+                          {...register("image")}
                         />
                         {image && (
                           <Image
@@ -745,26 +744,23 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                           />
                         )}
                       </div>
-                      <span
-                        className="block mt-1 text-xs text-red-500"
-                        role="alert"
-                      >
-                        {errors.image?.message}
-                      </span>
+                      
                     </div>
 
                     <div className="flex items-center space-x-2">
                       <button
                         type="reset"
-                        className="w-full px-4 py-2 space-x-2 text-base font-semibold text-center border border-gray-300 rounded-full text-secret-darkblue"
+                        className={`w-full px-4 py-2 space-x-2 text-base font-semibold text-center border border-gray-300 rounded-full text-secret-darkblue ${isSubmitting ? "cursor-progress" : ""}`}
+                        disabled={isSubmitting}
                       >
-                        Reset
+                        {isSubmitting ? <VscLoading className="animate-spin w-full text-xl font-bold"/> :  "Reset"}
                       </button>
                       <button
                         type="submit"
-                        className="w-full px-4 py-2 space-x-2 text-base font-semibold text-center text-white rounded-full bg-secret-darkblue"
+                        className={`w-full px-4 py-2 space-x-2 text-base font-semibold text-center text-white rounded-full bg-secret-darkblue ${isSubmitting ? "cursor-progress" : ""}`}
+                        disabled={isSubmitting}
                       >
-                        Simpan
+                        {isSubmitting ? <VscLoading className="animate-spin w-full text-xl font-bold"/> :  "Simpan"}
                       </button>
                     </div>
                   </form>
