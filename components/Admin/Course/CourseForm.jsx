@@ -36,6 +36,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       level: "",
       harga: 0,
       targetKelas: [""],
+
       chapter: [
         {
           name: "",
@@ -476,6 +477,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                       ""
                     )}
 
+
                     <div className="mb-6">
                       <label
                         htmlFor="targetKelas"
@@ -598,6 +600,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                                 errors.chapter?.[index]?.duration
                                   ? "border-red-500"
                                   : ""
+
                               } `}
                             />
                             {errors.chapter?.[index]?.duration && (

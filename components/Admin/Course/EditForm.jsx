@@ -48,6 +48,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     level: "",
     harga: 0,
     targetKelas: [""],
+
     chapter: [
       {
         name: "",
@@ -158,6 +159,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
       url = new URL(string);
     } catch (_) {
       return "URL tidak valid";
+
     }
 
     return url.protocol === "http:" || url.protocol === "https:";
@@ -351,6 +353,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 												${errors.kode ? "border-red-500" : ""}`}
                         {...register("kode", {
                           required: "Kode harus diisi",
+
                         })}
                       />
                       <span
@@ -400,6 +403,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 												${errors.intro ? "border-red-500" : ""}`}
                         {...register("intro", {
                           required: "Intro harus diisi",
+
                           validate: validateUrl,
                         })}
                       />
@@ -764,6 +768,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                             className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl"
                           >
                             Cari File...
+
                           </label>
                           {image && (
                             <button
