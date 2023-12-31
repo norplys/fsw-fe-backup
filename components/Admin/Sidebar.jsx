@@ -12,7 +12,7 @@ export const Sidebar = ({ links, current, open, setOpen }) => {
 			<Transition.Root show={open} as={Fragment}>
 				<Dialog
 					as='div'
-					className='fixed inset-0 z-10 overflow-hidden bg-black bg-opacity-50 xl:hidden'
+					className='fixed inset-0 z-10 overflow-hidden bg-black bg-opacity-50 lg:hidden'
 					onClose={setOpen}>
 					<Transition.Child
 						as={Fragment}
@@ -55,8 +55,8 @@ const Content = forwardRef(({ links, current, asDialog, setOpen }, ref) => {
 		<aside
 			ref={ref}
 			className={
-				`w-full max-w-[300px] bg-secret-darkblue transition-all duration-300 ease-out
-				${ asDialog ? 'absolute inset-y-0 left-0' : 'relative'}`
+				`w-full max-w-[200px] bg-secret-darkblue transition-all duration-300 ease-out
+				${ asDialog ? 'absolute inset-y-0 left-0' : 'relative hidden lg:flex lg:flex-col'}`
 			}>
 			<div className='absolute bottom-0 left-0 m-6 xl:hidden'>
 				<IconButton icon={BiX} onClick={() => setOpen(false)} variants='secondary' />
