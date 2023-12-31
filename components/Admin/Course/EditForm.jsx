@@ -47,7 +47,8 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     tipe: "",
     level: "",
     harga: 0,
-    targetKelas: [" "],
+    targetKelas: [""],
+
     chapter: [
       {
         name: "",
@@ -157,7 +158,8 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     try {
       url = new URL(string);
     } catch (_) {
-      return "URL Tidak Valid";
+      return "URL tidak valid";
+
     }
 
     return url.protocol === "http:" || url.protocol === "https:";
@@ -350,7 +352,8 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.kode ? "border-red-500" : ""}`}
                         {...register("kode", {
-                          required: "kode harus diisi",
+                          required: "Kode harus diisi",
+
                         })}
                       />
                       <span
@@ -374,7 +377,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.telegram ? "border-red-500" : ""}`}
                         {...register("telegram", {
-                          required: "telegram harus diisi",
+                          required: "Telegram harus diisi",
                           validate: validateUrl,
                         })}
                       />
@@ -399,7 +402,8 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.intro ? "border-red-500" : ""}`}
                         {...register("intro", {
-                          required: "intro harus diisi",
+                          required: "Intro harus diisi",
+
                           validate: validateUrl,
                         })}
                       />
@@ -424,7 +428,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.author ? "border-red-500" : ""}`}
                         {...register("author", {
-                          required: "author harus diisi",
+                          required: "Author harus diisi",
                         })}
                       />
                       <span
@@ -616,7 +620,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                             <label>Nama Chapter</label>
                             <input
                               {...register(`chapter.${index}.name`, {
-                                required: "Nama Chapter Wajib Diisi",
+                                required: "Nama chapter wajib diisi",
                               })}
                               type="text"
                               placeholder="Nama Chapter"
@@ -751,7 +755,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                         htmlFor="image"
                         className="block mb-2 text-base font-semibold text-gray-700 "
                       >
-                        Image
+                        Gambar
                       </label>
                       <div
                         className={`border border-gray-300 grid rounded-xl p-2 ${
@@ -763,7 +767,8 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                             htmlFor="image"
                             className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl"
                           >
-                            Browse...
+                            Cari File...
+
                           </label>
                           {image && (
                             <button

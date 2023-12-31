@@ -3,7 +3,11 @@ export default function AdminCourses({data, handleEdit, handleDelete}) {
         return new Intl.NumberFormat('id-ID', {
             style: 'currency',
             currency: 'IDR',
+            minimumFractionDigits: 0,
         }).format(number);
+    };
+    const capitalize = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     };
   return (
     <tr
@@ -26,7 +30,7 @@ export default function AdminCourses({data, handleEdit, handleDelete}) {
           {data.isPremium ? "Premium" : "Gratis"}
         </span>
       </td>
-      <td className="px-5 text-start">{data.level}</td>
+      <td className="px-5 text-start">{capitalize(data.level)}</td>
       <td className="px-5 text-start">{currency(data.price)}</td>
       <td className="px-5 text-start">
         <div className="inline-flex items-center justify-center space-x-2">

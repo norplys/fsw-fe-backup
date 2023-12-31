@@ -11,7 +11,7 @@ export default function Module ({ moduleIndex, control, register, errors}) {
     try {
       url = new URL(string);
     } catch (_) {
-      return "URL Tidak Valid";  
+      return "URL tidak valid";  
     }
     
     return url.protocol === "http:" || url.protocol === "https:";
@@ -25,16 +25,23 @@ export default function Module ({ moduleIndex, control, register, errors}) {
             <label>Judul Modul</label>
             <input
               {...register(`chapter.${moduleIndex}.module.${k}.title`, {
-                required: "Judul Modul Tidak Boleh Kosong"
+                required: "Judul modul tidak boleh kosong"
               })}
+
+              placeholder="Judul Modul"
+
               className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.title ? 'border-red-500' : 'border-gray-300'}`}
             />
             {errors?.chapter?.[moduleIndex]?.module?.[k]?.title && <p className='text-red-500 text-xs'>{errors?.chapter?.[moduleIndex]?.module?.[k]?.title?.message}</p>}
             <label>Video</label>
             <input {...register(`chapter.${moduleIndex}.module.${k}.video`, {
-              required: "URL Video Tidak Boleh Kosong",
+              required: "URL video tidak boleh kosong",
               validate: validateUrl
-            }) } className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.video ? 'border-red-500' : 'border-gray-300'}`}/>
+
+            }) } 
+            placeholder="URL Video"
+            className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.video ? 'border-red-500' : 'border-gray-300'}`}/>
+
             {errors?.chapter?.[moduleIndex]?.module?.[k]?.video && <p className='text-red-500 text-xs'>{errors?.chapter?.[moduleIndex]?.module?.[k]?.video?.message}</p>}
             {k !== 0 ? <button type="button" onClick={() => remove(k)} className='text-base font-bold text-white bg-red-500 p-1 rounded-lg'>
               Hapus Modul

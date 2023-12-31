@@ -10,10 +10,14 @@ import Image from "next/image";
 import { useCategoriesData } from "@/app/utils/hooks/useCategoriesData";
 import PinkCircleLoading from "@/components/PinkCircleLoading";
 import axios from "axios";
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useQueryClient } from "react-query";
 
 export const CourseForm = ({ isOpen, setIsOpen }) => {
+  const { push } = useRouter();
   const { data, isLoading, isError } = useCategoriesData();
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
@@ -31,7 +35,8 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       tipe: "",
       level: "",
       harga: 0,
-      targetKelas: [" "],
+      targetKelas: [""],
+
       chapter: [
         {
           name: "",
@@ -73,15 +78,15 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
   });
 
   function validateUrl(string) {
-	let url;
-	
-	try {
-	  url = new URL(string);
-	} catch (_) {
-	  return "URL Tidak Valid";  
-	}
-  
-	return url.protocol === "http:" || url.protocol === "https:";
+    let url;
+
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return "URL tidak valid";
+    }
+
+    return url.protocol === "http:" || url.protocol === "https:";
   }
   const {
     fields: fields2,
@@ -126,7 +131,6 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       code: data.kode,
       intro_video: data.intro,
       courseDetail: {
-
         description: data.deskripsi,
         telegram: data.telegram,
         onboarding: data.onboarding,
@@ -137,26 +141,37 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
     return newData;
   };
 
-  const onSubmit = async(data) => {
-	try{
-	const newData = formatData(data);
-	const res = axios.post('https://final-project-online-course.et.r.appspot.com/v1/admin/courses', newData, {
-		headers: {
-			Authorization: `Bearer ${localStorage.getItem("token")}`,
-		},
-	});
-	await toast.promise(res, {
-		loading : "Loading...",
-		error : "Gagal Menambah Kelas, Mohon Coba Lagi",
-		success : "Berhasil Menambah Kelas"
-	})
-}
-catch(err){
-	console.log(err);
-	toast.error(err.response.data.message)
-}
-
-};
+  const onSubmit = async (data) => {
+    try {
+      const newData = formatData(data);
+      const res = axios.post(
+        "https://final-project-online-course.et.r.appspot.com/v1/admin/courses",
+        newData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      await toast.promise(res, {
+        loading: "Loading...",
+        error: "Gagal Menambah Kelas, Mohon Coba Lagi",
+        success: "Berhasil Menambah Kelas",
+      });
+      queryClient.invalidateQueries("adminCourses");
+      queryClient.invalidateQueries("paymentStatus");
+      queryClient.invalidateQueries("adminStatistic");
+    } catch (err) {
+      if (err.response.status === 400) {
+        toast.error("Kesalahan Inputan, Mohon Cek Kembali");
+      } else if (err.response.status === 401) {
+        toast.error("Token Kadaluarsa, Mohon Login Kembali");
+        push("/admin/login");
+      } else if (err.response.status >= 500) {
+        toast.error("Server Error, Mohon Coba Lagi");
+      }
+    }
+  };
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -288,7 +303,7 @@ catch(err){
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.kode ? "border-red-500" : ""}`}
                         {...register("kode", {
-                          required: "kode harus diisi",
+                          required: "Kode harus diisi",
                         })}
                       />
                       <span
@@ -312,8 +327,8 @@ catch(err){
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.telegram ? "border-red-500" : ""}`}
                         {...register("telegram", {
-                          required: "telegram harus diisi",
-						  validate : validateUrl
+                          required: "Telegram harus diisi",
+                          validate: validateUrl,
                         })}
                       />
                       <span
@@ -337,9 +352,8 @@ catch(err){
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.intro ? "border-red-500" : ""}`}
                         {...register("intro", {
-                          required: "intro harus diisi",
-						  validate : validateUrl
-
+                          required: "Intro harus diisi",
+                          validate: validateUrl,
                         })}
                       />
                       <span
@@ -363,7 +377,7 @@ catch(err){
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.author ? "border-red-500" : ""}`}
                         {...register("author", {
-                          required: "author harus diisi",
+                          required: "Author harus diisi",
                         })}
                       />
                       <span
@@ -427,37 +441,42 @@ catch(err){
                       </span>
                     </div>
 
-                    { premium === "true" ?  <div className="mb-4">
-                      <label
-                        htmlFor="harga"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
-                      >
-                        Harga
-                      </label>
-                      <input
-                        type="number"
-                        placeholder="Harga"
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                    {premium === "true" ? (
+                      <div className="mb-4">
+                        <label
+                          htmlFor="harga"
+                          className="block mb-2 text-base font-semibold text-gray-700 "
+                        >
+                          Harga
+                        </label>
+                        <input
+                          type="number"
+                          placeholder="Harga"
+                          className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.harga ? "border-red-500" : ""}`}
-                        {...register("harga", {
-                          required: "Harga harus diisi",
-                          min: {
-                            value: 0,
-                            message: "Harga minimal 0",
-                          },
-                          max: {
-                            value: 1000000000,
-                            message: "Harga maksimal 1000000000",
-                          },
-                        })}
-                      />
-                      <span
-                        className="block mt-1 text-xs text-red-500"
-                        role="alert"
-                      >
-                        {errors.harga?.message}
-                      </span>
-                    </div> : ""}
+                          {...register("harga", {
+                            required: "Harga harus diisi",
+                            min: {
+                              value: 20000,
+                              message: "Harga minimal 20000",
+                            },
+                            max: {
+                              value: 1000000000,
+                              message: "Harga maksimal 1000000000",
+                            },
+                          })}
+                        />
+                        <span
+                          className="block mt-1 text-xs text-red-500"
+                          role="alert"
+                        >
+                          {errors.harga?.message}
+                        </span>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
 
                     <div className="mb-6">
                       <label
@@ -495,7 +514,11 @@ catch(err){
                               },
                             })}
                           />
-						  {errors?.targetKelas?.[index] && <p className='text-red-500 text-xs'>{errors.targetKelas?.[index]?.message}</p>}
+                          {errors?.targetKelas?.[index] && (
+                            <p className="text-red-500 text-xs">
+                              {errors.targetKelas?.[index]?.message}
+                            </p>
+                          )}
                           {index !== 0 ? (
                             <button
                               type="button"
@@ -547,31 +570,44 @@ catch(err){
                             <label>Nama Chapter</label>
                             <input
                               {...register(`chapter.${index}.name`, {
-								required : "Nama Chapter Wajib Diisi"
-							  })}
+                                required: "Nama chapter wajib diisi",
+                              })}
                               type="text"
                               placeholder="Nama Chapter"
                               className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none ${
-                                errors.chapter?.[index]?.name ? "border-red-500" : ""
+                                errors.chapter?.[index]?.name
+                                  ? "border-red-500"
+                                  : ""
                               } `}
                             />
-							{errors.chapter?.[index]?.name && <p className='text-red-500 text-xs'>{errors.chapter?.[index]?.name?.message}</p>}
+                            {errors.chapter?.[index]?.name && (
+                              <p className="text-red-500 text-xs">
+                                {errors.chapter?.[index]?.name?.message}
+                              </p>
+                            )}
                             <label>Durasi</label>
                             <input
                               {...register(`chapter.${index}.duration`, {
-								required : "Durasi Wajib Diisi",
-								min : {
-									value : 1,
-									message : "Durasi Minimal 1 Menit"
-								}
-							  })}
+                                required: "Durasi Wajib Diisi",
+                                min: {
+                                  value: 1,
+                                  message: "Durasi Minimal 1 Menit",
+                                },
+                              })}
                               type="number"
                               placeholder="60 Menit"
                               className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none ${
-                                errors.chapter?.[index]?.duration ? "border-red-500" : ""
+                                errors.chapter?.[index]?.duration
+                                  ? "border-red-500"
+                                  : ""
+
                               } `}
                             />
-							{errors.chapter?.[index]?.duration && <p className='text-red-500 text-xs'>{errors.chapter?.[index]?.duration?.message}</p>}
+                            {errors.chapter?.[index]?.duration && (
+                              <p className="text-red-500 text-xs">
+                                {errors.chapter?.[index]?.duration?.message}
+                              </p>
+                            )}
                             {index !== 0 ? (
                               <button
                                 type="button"
@@ -670,7 +706,7 @@ catch(err){
                         htmlFor="image"
                         className="block mb-2 text-base font-semibold text-gray-700 "
                       >
-                        Image
+                        Gambar
                       </label>
                       <div
                         className={`border border-gray-300 grid rounded-xl p-2 ${
@@ -682,7 +718,7 @@ catch(err){
                             htmlFor="image"
                             className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl"
                           >
-                            Browse...
+                            Cari File...
                           </label>
                           {image && (
                             <button
@@ -719,7 +755,6 @@ catch(err){
                         {errors.image?.message}
                       </span>
                     </div>
-
 
                     <div className="flex items-center space-x-2">
                       <button
