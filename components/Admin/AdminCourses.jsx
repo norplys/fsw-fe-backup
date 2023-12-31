@@ -24,10 +24,10 @@ export default function AdminCourses({data, handleEdit, handleDelete}) {
       <td className="px-5 text-start">
         <span
           className={`font-bold uppercase ${
-            data.premium ? "text-secret-darkblue" : "text-secret-pink"
+            data?.isPremium ? "text-secret-darkblue" : "text-secret-pink"
           }`}
         >
-          {data.isPremium ? "Premium" : "Gratis"}
+          {data?.isPremium ? "Premium" : "Gratis"}
         </span>
       </td>
       <td className="px-5 text-start">{capitalize(data.level)}</td>

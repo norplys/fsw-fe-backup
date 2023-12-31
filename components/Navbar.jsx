@@ -2,7 +2,6 @@
 
 import {useState, useEffect} from 'react';
 import Link from 'next/link';
-
 import { BiBrain, BiSearchAlt } from 'react-icons/bi';
 import { FiBell, FiList, FiUser } from 'react-icons/fi';
 import { CiLogin } from "react-icons/ci"
@@ -55,9 +54,8 @@ const Navbar = () => {
 				<BiBrain className="text-white bg-secret-pink rounded-full text-5xl p-2" />
 				<div className="flex">
 				  <h1 className="text-2xl text-secret-text flex items-center font-bold">
-					Skill
+					SkillHUB
 				  </h1>
-				  <h1 className="text-2xl font-bold text-secret-text">HUB</h1>
 				</div>
 			  </Link>
 			  <form

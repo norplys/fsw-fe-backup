@@ -76,7 +76,7 @@ const CoursesPage = () => {
       <div className="w-full mb-5 overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
-            <tr className="text-sm font-semibold leading-none tracking-wide text-gray-800 bg-secret-background">
+            <tr className="text-sm font-semibold leading-none tracking-wide text-gray-800 bg-secret-background h-10">
               <th className="w-1/7 min-w-[5rem] text-start px-5">Kode Kelas</th>
               <th className="w-1/7 min-w-[7rem] text-start px-5">Kategori</th>
               <th className="w-1/7 min-w-[12rem] text-start px-5">

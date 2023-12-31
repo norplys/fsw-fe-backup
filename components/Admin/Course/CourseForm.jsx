@@ -35,7 +35,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       tipe: "",
       level: "",
       harga: 0,
-      targetKelas: [""],
+      targetKelas: [" "],
       chapter: [
         {
           name: "",
@@ -401,7 +401,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                           required: "Tipe harus diisi",
                         })}
                       >
-                        <option value="">Pilih Tipe</option>
+                        <option value="" disabled>Pilih Tipe</option>
                         <option value="false">Gratis</option>
                         <option value="true">Premium</option>
                       </select>

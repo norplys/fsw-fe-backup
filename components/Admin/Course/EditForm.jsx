@@ -47,12 +47,13 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     tipe: "",
     level: "",
     harga: 0,
-    targetKelas: [""],
+    targetKelas: [" "],
     chapter: [
       {
+        id: "",
         name: "",
         duration: 0,
-        module: [{ title: "", video: "" }],
+        module: [{ uuid: "",title: "", video: "" }],
       },
     ],
     deskripsi: "",
@@ -63,6 +64,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     const newChapter = data.courseModules.map((chapter) => {
       const newModule = chapter.module.map((module) => {
         return {
+          uuid: module?.chapterModuleUuid,
           title: module.title,
           video: module.courseLink,
         };
@@ -71,6 +73,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
         name: chapter.chapter,
         module: newModule,
         duration: chapter.estimation,
+        id: chapter?.id,
       };
     });
     newData.nama = data.name;
@@ -90,7 +93,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
   const {
     data: categories,
     isLoading: loadingCategories,
-    isError: errorCartegories,
+    isError: errorCategories,
   } = useCategoriesData();
   const {
     register,
@@ -112,9 +115,10 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
       targetKelas: [" "],
       chapter: [
         {
+          id: "",
           name: "",
           duration: 0,
-          module: [{ title: "", video: "" }],
+          module: [{ uuid:"", title: "", video: "" }],
         },
       ],
       deskripsi: "",
@@ -182,10 +186,12 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     data = { ...data, image: imageFile[0] };
     const newCourseChapter = data.chapter.map((item) => {
       return {
+        id : item?.id || null,
         duration: item.duration,
         chapter: item.name,
         chapterModules: item.module.map((item2) => {
           return {
+            uuid : item2?.uuid || null,
             title: item2.title,
             course_link: item2.video,
           };
@@ -444,21 +450,13 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                       </label>
                       <select
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
-												${errors.tipe ? "border-red-500" : ""}`}
-                        {...register("tipe", {
-                          required: "Tipe harus diisi",
-                        })}
+												`}
+                        {...register("tipe")}
                       >
-                        <option value="">Pilih Tipe</option>
+                        <option value="" disabled>Pilih Tipe</option>
                         <option value="false">Gratis</option>
                         <option value="true">Premium</option>
                       </select>
-                      <span
-                        className="block mt-1 text-xs text-red-500"
-                        role="alert"
-                      >
-                        {errors.tipe?.message}
-                      </span>
                     </div>
 
                     <div className="mb-4">
@@ -754,9 +752,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                         Gambar
                       </label>
                       <div
-                        className={`border border-gray-300 grid rounded-xl p-2 ${
-                          errors.image ? "border-red-500" : ""
-                        }`}
+                        className={`border border-gray-300 grid rounded-xl p-2`}
                       >
                         <div className="mb-2 flex gap-2">
                           <label
@@ -779,9 +775,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                           id="image"
                           placeholder="image"
                           className="hidden"
-                          {...register("image", {
-                            required: "Gambar harus diisi",
-                          })}
+                          {...register("image")}
                         />
                         {image && (
                           <Image
@@ -804,12 +798,6 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                           ""
                         )}
                       </div>
-                      <span
-                        className="block mt-1 text-xs text-red-500"
-                        role="alert"
-                      >
-                        {errors.image?.message}
-                      </span>
                     </div>
 
                     <div className="flex items-center space-x-2">
