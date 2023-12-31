@@ -34,26 +34,26 @@ export default function Profile() {
               <div className="md:w-1/2">
                 <button className={`flex flex-row justify-start px-4 md:px-8 gap-5 my-2 md:my-5 hover:text-secret-darkblue ${currentTab === "Profile" ? 'text-blue-600' : ''}`} onClick={() => handleTab("Profile")}>
                   <FiEdit3 className="text-4xl w-7 h-7" />
-                  <div className="flex flex-col justify-between font-bold text-lg">
+                  <div className="flex flex-col justify-between font-bold text-sm lg:text-lg">
                       Profile Saya
                   </div>
                 </button>
 
                 <button className={`flex flex-row justify-start px-4 md:px-8 gap-5 my-2 md:my-5 hover:text-secret-darkblue ${currentTab === "Password" ? 'text-blue-600' : ''}`} onClick={() => handleTab("Password")}>
                   <FiSettings className="text-4xl w-7 h-7" />
-                  <div className="flex flex-col justify-between font-bold text-lg">
+                  <div className="flex flex-col justify-between font-bold text-sm lg:text-lg">
                       Ubah Password
                   </div>
                 </button>
 
                 <button className={`flex flex-row justify-start px-4 md:px-8 gap-5 my-2 md:my-5 hover:text-secret-darkblue ${currentTab === "Pembayaran" ? 'text-blue-600' : ''}`} onClick={() => handleTab("Pembayaran")}>
                   <FiShoppingCart className="text-4xl w-7 h-7" />
-                  <div className="flex flex-col justify-between font-bold text-lg">
+                  <div className="flex flex-col justify-between font-bold text-sm lg:text-lg">
                       Riwayat Pembayaran
                   </div>
                 </button>
               </div>
-              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[510px] border-l-2 border-dashed pl-2 hide-scroll-bar">
+              <div className="md:w-1/2 min-h-full overflow-y-scroll h-[510px] border-l-2 border-dashed pl-2 hide-scroll-bar ">
                 {currentTab === "Profile" && <ProfileSaya/>}
                 {currentTab === "Password" && <Password />}
                 {currentTab === "Pembayaran" && <RiwayatPembayaran />}

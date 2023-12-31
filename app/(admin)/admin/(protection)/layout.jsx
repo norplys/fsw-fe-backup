@@ -30,6 +30,7 @@ export default function Index({children}) {
             }
           );
           if (res.data.data.role !== "admin") {
+            console.log("masuk");
             throw new Error("You are not admin");
           }
           setIsLoading(false);

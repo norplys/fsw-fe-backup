@@ -69,6 +69,13 @@ export default function KelasPembayaran () {
     const date = newDate.slice(0, 3).join("-");
     return `${date} ${time}`;
   };
+  const priceFormat = (price) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(price);
+  }
   return (
     <div>
       {/* KEMBALI DAN NOTIFIKASI BATAS PEMBAYARAN */}
@@ -228,18 +235,18 @@ export default function KelasPembayaran () {
               {/* HARGA */}
               <div className="flex flex-col gap-2">
                 <h4 className="font-bold md:text-[16px]">Harga</h4>
-                <p className="md:text-[14px] text-[12px]">Rp {data.price}</p>
+                <p className="md:text-[14px] text-[12px]">{priceFormat(data.price)}</p>
               </div>
               {/* PPN */}
               <div className="flex flex-col gap-2">
                 <h4 className="font-bold">PPN 11%</h4>
-                <p className="md:text-[14px] text-[12px]">Rp {data.tax}</p>
+                <p className="md:text-[14px] text-[12px]">{priceFormat(data.tax)}</p>
               </div>
               {/* TOTAL BAYAR */}
               <div className="flex flex-col gap-2">
                 <h4 className="font-bold">Total Bayar</h4>
                 <p className="font-bold text-secret-text md:text-[14px] text-[12px]">
-                  Rp {data.total}
+                  {priceFormat(data.total)}
                 </p>
               </div>
             </div>

@@ -2,7 +2,6 @@
 
 import {useState, useEffect} from 'react';
 import Link from 'next/link';
-
 import { BiBrain, BiSearchAlt } from 'react-icons/bi';
 import { FiBell, FiList, FiUser } from 'react-icons/fi';
 import { CiLogin } from "react-icons/ci"
@@ -36,6 +35,13 @@ const Navbar = () => {
 		push('/');
 	};
 
+	const onChange = (e) => {
+		e.preventDefault();
+		e.target.value === '' ? 
+		push(`/courses`) : ""
+		setKeyword(e.target.value)
+	}
+
 	const handleSearch = (e) => {
 		e.preventDefault();
 		push(`/courses?search=${keyword}`);
@@ -48,9 +54,8 @@ const Navbar = () => {
 				<BiBrain className="text-white bg-secret-pink rounded-full text-5xl p-2" />
 				<div className="flex">
 				  <h1 className="text-2xl text-secret-text flex items-center font-bold">
-					Skill
+					SkillHUB
 				  </h1>
-				  <h1 className="text-2xl font-bold text-secret-text">HUB</h1>
 				</div>
 			  </Link>
 			  <form
@@ -61,7 +66,7 @@ const Navbar = () => {
 				  type="text"
 				  value={keyword}
 				  placeholder="Cari Kursus..."
-				  onChange={(e) => setKeyword(e.target.value)}
+				  onChange={onChange}
 				  className="w-80 px-5 py-3 rounded-xl placeholder:text-sm text-black"
 				/>
 				<button className="absolute right-0 p-2 mr-2 transform -translate-y-1/2 top-1/2 rounded-xl search">
@@ -97,7 +102,7 @@ const Navbar = () => {
 					  className="text-center  px-4 py-1 space-x-2 text-white font-bold rounded-lg bg-secret-pink"
 					  onClick={handleLogOut}
 					>
-					  LogOut
+					  Keluar
 					</button>
 				  </div>
 				</div>

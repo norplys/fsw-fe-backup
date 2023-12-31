@@ -35,14 +35,15 @@ const ButtonData = [
   },
   {
     name: " In Progress",
-    value: "1",
+    value: "0",
   },
   {
     name: "Completed",
-    value: "0",
+    value: "1",
   },
 ];
 export default function MyCourses() {
+  const [searchValue, setSearchValue] = useState("");
   const [search, setSearch] = useState(); 
   const [categoryId, setCategoryId] = useState();
   const [level, setLevel] = useState();
@@ -80,6 +81,8 @@ useEffect(() => {
   }
   if(searchFilter){
     setSearch(searchFilter);
+    setSearchValue(searchFilter);
+
   }else{
     setSearch("");
     params.delete("search");
@@ -105,6 +108,18 @@ useEffect(() => {
   }
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [searchParams]);
+
+
+const onChange = (e) => {
+  e.preventDefault();
+  if(e.target.value === ""){
+    setSearch("");
+    params.delete("search");
+    router.push(pathname + "?" + params.toString())
+  }
+  setSearchValue(e.target.value);
+};
+
 
 
   const handleisComplete = (value) => {
@@ -174,12 +189,15 @@ useEffect(() => {
 
           <form className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl relative md:mb-0 mb-5" onSubmit={handleSubmit(handleSearch)}>
             <input
-              {...register("search")}
+              {...register("search", {
+                onChange : (e) => onChange(e),
+              })}
               type="text"
               placeholder="Cari Kelas..."
               name="search"
               className="text-black md:text-xl text-3xl focus:outline-none"
               id="search-class"
+              value={searchValue}
             />
 
             <button htmlFor="search-class" className="flex md:static absolute right-1 top-[3px] justify-center items-center p-2 rounded-md bg-secret-darkblue hover:scale-110 duration-300" >
