@@ -35,8 +35,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       tipe: "",
       level: "",
       harga: 0,
-      targetKelas: [""],
-
+      targetKelas: [" "],
       chapter: [
         {
           name: "",
@@ -162,13 +161,13 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       queryClient.invalidateQueries("paymentStatus");
       queryClient.invalidateQueries("adminStatistic");
     } catch (err) {
-      if (err.response.status === 400) {
-        toast.error("Kesalahan Inputan, Mohon Cek Kembali");
-      } else if (err.response.status === 401) {
+      if (err.response.status === 401) {
         toast.error("Token Kadaluarsa, Mohon Login Kembali");
         push("/admin/login");
       } else if (err.response.status >= 500) {
         toast.error("Server Error, Mohon Coba Lagi");
+      } else {
+        toast.error(err.response.data.message);
       }
     }
   };
@@ -402,7 +401,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                           required: "Tipe harus diisi",
                         })}
                       >
-                        <option value="">Pilih Tipe</option>
+                        <option value="" disabled>Pilih Tipe</option>
                         <option value="false">Gratis</option>
                         <option value="true">Premium</option>
                       </select>
@@ -476,7 +475,6 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     ) : (
                       ""
                     )}
-
 
                     <div className="mb-6">
                       <label
@@ -600,7 +598,6 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                                 errors.chapter?.[index]?.duration
                                   ? "border-red-500"
                                   : ""
-
                               } `}
                             />
                             {errors.chapter?.[index]?.duration && (
