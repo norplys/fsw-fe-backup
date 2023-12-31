@@ -47,10 +47,10 @@ export default function RegisterPage() {
     const register = axios.post("https://final-project-online-course.et.r.appspot.com/v1/register", data);
     const res = await toast.promise(register, {
       loading: "Loading...",
-      success: `${data.name} Registered Successfully`,
-      error: "Register Failed"
+      success: `${data.name} Berhasil Diregister`,
+      error: "Register Gagal"
     });
-    toast.loading("Redirecting Please Wait...");
+    toast.loading("Mengalihkan...");
     await mockLoading();
     push(`/register/otp/${res.data.data.token}?email=${data.email}`);
 

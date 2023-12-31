@@ -2,7 +2,7 @@ export const IconButton = ({ icon, variants, ...props }) => {
 	const Icon = icon;
 
 	return (
-		<button
+		<div
 			className={
 				`relative w-8 h-8 rounded-xl transition-all duration-200 ease-in-out group
 				${variants === 'primary' ? 'bg-secret-darkblue hover:bg-secret-background' : 
@@ -20,6 +20,6 @@ export const IconButton = ({ icon, variants, ...props }) => {
 					`
 				}
 			/>
-		</button>
+		</div>
 	);
 };

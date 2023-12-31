@@ -28,13 +28,13 @@ export default function LoginAdmin() {
 		  }
 		const login = axios.post("https://final-project-online-course.et.r.appspot.com/v1/login/admin", data);
 		const res = await toast.promise(login, {
-			success: "Login Success",
+			success: "Login Berhasil",
 			loading: "Loading...",
-			error: "Login Failed",
+			error: "Login Gagal",
 			duration: 2000,
 		})
 		localStorage.setItem("token", res.data.data.token);
-		toast.loading("Redirecting...", { duration: 2000 });
+		toast.loading("Sedang Mengalihkan...", { duration: 2000 });
 		await sleepRedirect();
 		} catch (error) {
 		toast.error(error.response.data.message);
@@ -150,10 +150,7 @@ export default function LoginAdmin() {
         <BiBrain className="text-9xl text-white" />
         <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
 		  <h1 className="text-xl text-secret-text3 font-bold rounded-xl">
             Admin

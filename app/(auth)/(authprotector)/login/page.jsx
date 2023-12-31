@@ -29,9 +29,9 @@ export default function LoginPage() {
     const login = handleUsers(data);
     await toast.promise (
       login , {
-        loading: 'Loading',
-        success: `${data.user} successfully logged in`,
-        error: `${data.user} failed to login`
+        loading: 'Memuat...',
+        success: `${data.user} Berhasil Login`,
+        error: `${data.user} Gagal Login`,
       }
     )
     toast.loading('Redirecting Please Wait...', {
@@ -161,10 +161,7 @@ export default function LoginPage() {
         <BiBrain className="text-9xl text-white" />
         <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
         </div>
       </div>

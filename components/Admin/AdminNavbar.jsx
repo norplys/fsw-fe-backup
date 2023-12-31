@@ -16,6 +16,11 @@ export const AdminNavbar = ({ setOpen, open }) => {
 		push(`/admin/courses?search=${data.keyword}`);
 	};
 
+	const onChange = (e) => {
+		e.preventDefault();
+		e.target.value === '' ? push(`/admin/courses`) : '';
+	};
+
 	return (
 		<nav className='sticky top-0 left-0 h-20 bg-secret-background z-10'>
 			<div className='container flex items-center justify-between h-full px-2 mx-auto xl:px-10'>
@@ -24,7 +29,9 @@ export const AdminNavbar = ({ setOpen, open }) => {
 					<form className='relative w-full' onSubmit={handleSubmit(handleSearch)}>
 						<input
 							{
-								...register('keyword')
+								...register('keyword', {
+									onChange: (e) => onChange(e),
+								})
 							}
 							type='text'
 							placeholder='Cari Kursus...'
