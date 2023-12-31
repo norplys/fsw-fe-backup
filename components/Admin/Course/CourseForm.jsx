@@ -126,6 +126,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       code: data.kode,
       intro_video: data.intro,
       courseDetail: {
+
         description: data.deskripsi,
         telegram: data.telegram,
         onboarding: data.onboarding,
