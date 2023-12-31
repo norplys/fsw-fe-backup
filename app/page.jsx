@@ -111,7 +111,7 @@ export default function Beranda () {
               ) : (
                 dataCategories?.map((item, index) => {
                   return (
-                    <div key={index} className="flex-shrink-0 flex-grow w-[25%] xl:w-[10%]">
+                    <div key={index} className="flex-shrink-0 flex-grow w-[25%] xl:w-[10%] p-1">
                         <CardCategories
                       key={index}
                       name={item.name}
@@ -137,7 +137,7 @@ export default function Beranda () {
               </Link>
             </div>
 
-            <div className="flex gap-5  mb-5 justify-around overflow-x-auto p-1">
+            <div className="flex gap-5  mb-5 justify-around overflow-x-auto pb-5 pt-2">
             {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <ButtonLoading key={index} />;
@@ -154,7 +154,7 @@ export default function Beranda () {
             </div>
 
     
-            <div className="grid grid-cols-1 md:grid-cols-3 mx-auto   gap-5 items-center h-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 mx-auto   gap-5 items-center h-full p-2">
               {isLoadingCourses ? (
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;
