@@ -41,7 +41,7 @@ export default function ForgotPassword() {
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
       <Toaster position="bottom-left"/>
-      <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1" onSubmit={handleSubmit(handleForgotPassword)}>
+      <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1" onSubmit={handleSubmit(handleForgotPassword)}>
         <div className="w-full lg:w-2/3 text-black flex flex-col">
           <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
             Lupa Kata Sandi ?
@@ -75,7 +75,7 @@ export default function ForgotPassword() {
         </div>
       </form>
 
-      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1">
+      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
         <BiBrain className="text-9xl text-white" />
         <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
