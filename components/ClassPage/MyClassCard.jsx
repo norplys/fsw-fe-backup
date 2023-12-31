@@ -19,7 +19,7 @@ export default function MyClassCard({
   return (
     <Link
       href={`course/${id}`}
-      className="flex flex-col course w-full h-[250px] bg-secret-background rounded-[15px] duration-300 shadow-lg hover:shadow-2xl"
+      className="flex flex-col course w-full h-[250px] bg-secret-background rounded-[15px] duration-300 shadow-lg hover:shadow-2xl scale-95 hover:scale-100"
     >
       <div className="w-full h-[80px] ">
         <Image

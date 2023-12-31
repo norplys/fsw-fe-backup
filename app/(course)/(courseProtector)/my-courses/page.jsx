@@ -9,6 +9,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import FilterLoading from "@/components/FilterLoading";
 import Link from "next/link";
 const array = [1, 2, 3, 4];
 const levelFilterButton = {
@@ -195,7 +196,7 @@ const onChange = (e) => {
               type="text"
               placeholder="Cari Kelas..."
               name="search"
-              className="text-black md:text-xl text-3xl focus:outline-none"
+              className="text-black text-sm focus:outline-none"
               id="search-class"
               value={searchValue}
             />
@@ -213,10 +214,11 @@ const onChange = (e) => {
             h-[580px] rounded-[16px] gap-5 mx-auto"
           >
             {isLoadingCategories ? 
-              <div>Loading...</div>
+              <FilterLoading/>
              : errorCategories ? 
               <div>Error, Please Try Again</div>
-             : 
+             :
+           
               FilterData.map((item, index) => {
                 return (
                   <FilterCategory
@@ -231,7 +233,8 @@ const onChange = (e) => {
                   />
                 );
               }
-            )}
+            )
+          }
             <div className="w-full text-center">
               <button type="reset" className="bg-secret-pink text-white px-3 rounded-xl text-base hover:scale-105" onClick={() => {
                 router.push(pathname)

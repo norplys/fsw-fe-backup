@@ -9,6 +9,7 @@ import { BiSearchAlt } from "react-icons/bi";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import FilterLoading from "@/components/FilterLoading";
 
 
 const array = [1, 2, 3, 4];
@@ -209,7 +210,7 @@ useEffect(() => {
             md:h-[580px] h-[680px] rounded-[16px] gap-5"
           >
             {isLoadingCategories ? 
-              <div>Loading</div>
+              <FilterLoading/>
              : errorCategories ? 
               <div>Error</div>
              : 
@@ -255,7 +256,7 @@ useEffect(() => {
                 );
               })}
             </div>
-            <div className="flex flex-col overflow-x-scroll min-h-screen gap-3 p-2 md:grid md:grid-cols-2 md:max-w-3xl md:overflow-x-hidden content-start md:gap-6 hide-scroll-bar">
+            <div className="flex flex-col overflow-x-scroll min-h-screen gap-3 p-3 md:grid md:grid-cols-2 md:max-w-3xl md:overflow-x-hidden content-start md:gap-6 hide-scroll-bar">
               {isLoading ? 
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;
