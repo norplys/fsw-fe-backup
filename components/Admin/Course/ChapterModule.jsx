@@ -27,14 +27,14 @@ export default function Module ({ moduleIndex, control, register, errors}) {
               {...register(`chapter.${moduleIndex}.module.${k}.title`, {
                 required: "Judul Modul Tidak Boleh Kosong"
               })}
-              className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.title ? 'border-red-500' : 'border-gray-500'}`}
+              className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.title ? 'border-red-500' : 'border-gray-300'}`}
             />
             {errors?.chapter?.[moduleIndex]?.module?.[k]?.title && <p className='text-red-500 text-xs'>{errors?.chapter?.[moduleIndex]?.module?.[k]?.title?.message}</p>}
             <label>Video</label>
             <input {...register(`chapter.${moduleIndex}.module.${k}.video`, {
               required: "URL Video Tidak Boleh Kosong",
               validate: validateUrl
-            }) } className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.video ? 'border-red-500' : 'border-gray-500'}`}/>
+            }) } className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.video ? 'border-red-500' : 'border-gray-300'}`}/>
             {errors?.chapter?.[moduleIndex]?.module?.[k]?.video && <p className='text-red-500 text-xs'>{errors?.chapter?.[moduleIndex]?.module?.[k]?.video?.message}</p>}
             {k !== 0 ? <button type="button" onClick={() => remove(k)} className='text-base font-bold text-white bg-red-500 p-1 rounded-lg'>
               Hapus Modul

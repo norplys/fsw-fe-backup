@@ -30,7 +30,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       author: "",
       tipe: "",
       level: "",
-      harga: "",
+      harga: 0,
       targetKelas: [" "],
       chapter: [
         {
@@ -41,10 +41,12 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       ],
       deskripsi: "",
       image: "",
+      onboarding: "",
     },
   });
   const [image, setImage] = useState(null);
   const imageFile = watch("image");
+  const premium = watch("tipe");
   useEffect(() => {
     if (imageFile?.length === 0) {
       setImage(null);
@@ -306,7 +308,7 @@ catch(err){
                       </label>
                       <input
                         type="text"
-                        placeholder="www.telegram.com"
+                        placeholder="https://www.tele.com/"
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.telegram ? "border-red-500" : ""}`}
                         {...register("telegram", {
@@ -331,7 +333,7 @@ catch(err){
                       </label>
                       <input
                         type="text"
-                        placeholder="www.youtube.com"
+                        placeholder="https://www.youtube.com/"
                         className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.intro ? "border-red-500" : ""}`}
                         {...register("intro", {
@@ -425,7 +427,7 @@ catch(err){
                       </span>
                     </div>
 
-                    <div className="mb-4">
+                    { premium === "true" ?  <div className="mb-4">
                       <label
                         htmlFor="harga"
                         className="block mb-2 text-base font-semibold text-gray-700 "
@@ -455,7 +457,7 @@ catch(err){
                       >
                         {errors.harga?.message}
                       </span>
-                    </div>
+                    </div> : ""}
 
                     <div className="mb-6">
                       <label
@@ -474,7 +476,7 @@ catch(err){
                       {fields.map((field, index) => (
                         <div
                           key={field.id}
-                          className="flex space-x-2 my-2 flex-col"
+                          className="flex space-x-2 my-2 flex-col gap-2"
                         >
                           <input
                             type="text"
@@ -500,7 +502,7 @@ catch(err){
                               className="text-base font-bold text-white bg-red-500 p-1 rounded-lg"
                               onClick={() => remove(index)}
                             >
-                              Hapus
+                              Hapus Target Kelas
                             </button>
                           ) : (
                             ""
@@ -566,7 +568,7 @@ catch(err){
                               type="number"
                               placeholder="60 Menit"
                               className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none ${
-                                errors.chapter?.[index].duration ? "border-red-500" : ""
+                                errors.chapter?.[index]?.duration ? "border-red-500" : ""
                               } `}
                             />
 							{errors.chapter?.[index]?.duration && <p className='text-red-500 text-xs'>{errors.chapter?.[index]?.duration?.message}</p>}
@@ -576,7 +578,7 @@ catch(err){
                                 className="text-base font-bold text-white bg-red-500 p-1 rounded-lg"
                                 onClick={() => remove2(index)}
                               >
-                                Hapus
+                                Hapus Chapter
                               </button>
                             ) : (
                               ""
