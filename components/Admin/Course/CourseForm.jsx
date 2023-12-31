@@ -161,13 +161,13 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
       queryClient.invalidateQueries("paymentStatus");
       queryClient.invalidateQueries("adminStatistic");
     } catch (err) {
-      if (err.response.status === 400) {
-        toast.error("Kesalahan Inputan, Mohon Cek Kembali");
-      } else if (err.response.status === 401) {
+      if (err.response.status === 401) {
         toast.error("Token Kadaluarsa, Mohon Login Kembali");
         push("/admin/login");
       } else if (err.response.status >= 500) {
         toast.error("Server Error, Mohon Coba Lagi");
+      } else {
+        toast.error(err.response.data.message);
       }
     }
   };

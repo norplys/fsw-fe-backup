@@ -33,7 +33,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 		"UI/UX Design" : 1,
 		"Product Management" : 2,
 		"Web Development" : 3,
-		"Andriod Development" : 4,
+		"Android Development" : 4,
 		"IOS Development" : 5,
 		"Data Science" : 6,
   }
