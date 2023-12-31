@@ -45,7 +45,7 @@ export default function ClassCategoriesCard({
 
       <div className="flex flex-col justify-around p-2 h-full">
         <div className="flex justify-between">
-          <p className="text-lg font-bold text-secret-pink">{category}</p>
+          <p className="text-lg md:text-base lg:text-lg xl:text-lg 2xl:text-lg font-bold text-secret-pink">{category}</p>
 
           <div className="flex gap-1 text-black items-center">
             <FaStar className="text-yellow-400 text-lg" />
@@ -54,7 +54,7 @@ export default function ClassCategoriesCard({
         </div>
 
         <div className="text-black">
-          <h2 className="text-base font-bold">{name}</h2>
+          <h2 className="text-base md:text-sm lg:text-base xl:text-base 2xl:text-base font-bold">{name}</h2>
 
           <p className="text-sm">by {teacher}</p>
         </div>
