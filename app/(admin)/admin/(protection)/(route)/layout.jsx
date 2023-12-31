@@ -21,19 +21,19 @@ const links = [
 
 const dashboard = [
 	{
-		label: 'Active User',
+		label: 'User Aktif',
 		count: '450',
 		color: 'bg-secret-pink',
 		value : 'activeUsersItem'
 	},
 	{
-		label: 'Active Course',
+		label: 'Kelas Aktif',
 		count: '25',
 		color: 'bg-secret-darkblue',
 		value : 'activeClassItem'
 	},
 	{
-		label: 'Premium Course',
+		label: 'Kelas Premium',
 		count: '20',
 		color: 'bg-secret-cyan',
 		value : 'premiumClassItem'
