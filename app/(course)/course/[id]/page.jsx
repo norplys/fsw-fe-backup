@@ -152,6 +152,7 @@ const DetailKelas = () => {
             { !data?.isOnboarding && data?.isPaid ?  <OnBoardingModals data={data} token={token} /> : ''}
             <div className="container grid gap-10 px-1 md:px-2 mx-auto xl:grid-cols-5">
               <div className="xl:col-span-3 p-1">
+
                 <Link
                   className="flex items-center mb-4 space-x-2"
                   href={"/courses"}
@@ -215,6 +216,7 @@ const DetailKelas = () => {
               <div className="xl:col-span-2">
                 <div className="p-4 pb-0 md:p-8 bg-white drop-shadow rounded-2xl">
                   <div className="flex items-center justify-between mb-3">
+
                     <h1 className="font-bold text-sm md:text-xl">Materi Belajar</h1>
                     {/* progress bar here */}
                     {data?.isPaid && <div className="relative py-2 rounded-full bg-secret-pink w-[150px] md:w-[200px] overflow-hidden">
@@ -258,6 +260,7 @@ const DetailKelas = () => {
                 videoData ? (
                   <iframe
                     className="w-full h-44 mb-5 rounded-2xl shadow-2xl md:h-full"
+
                     src={videoData}
                     title="YouTube video player"
                     frameBorder="0"
@@ -268,6 +271,7 @@ const DetailKelas = () => {
                 ) : (
                   <iframe
                     className="w-full h-44 mb-5 rounded-2xl shadow-2xl md:h-full"
+
                     src={data?.introVideo}
                     title="YouTube video player"
                     frameBorder="0"
