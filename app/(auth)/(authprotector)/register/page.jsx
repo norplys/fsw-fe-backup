@@ -19,8 +19,8 @@ const requiredArray = [{
   id: "email"
 }, {
   name: "Nomor Telepon",
-  type: "text",
-  placeholder: "+62",
+  type: "tel",
+  placeholder: "0812345678",
   id: "phone"
 }, {
   name: "Buat Password",
@@ -81,10 +81,7 @@ export default function RegisterPage() {
         <BiBrain className="text-9xl text-white" />
         <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl ">
-            HUB
+            SkillHUB
           </h1>
         </div>
       </div>

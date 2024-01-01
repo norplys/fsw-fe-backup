@@ -21,7 +21,7 @@ export default function RiwayatPembayaran() {
   }
 
   return (
-    <div className="flex flex-col min-h-full course md:max-w-full md:h-[250px] rounded-[15px] duration-300 shadow-xl gap-5 pt-2 pr-3">
+    <div className="grid min-h-full gap-5 pt-2">
       {isLoading? mockArray.map((item, index) => <ClassCardLoading key={index} />) : !data?.length ? <h1 className="m-auto bg-secret-red font-bold text-xl text-white px-2 rounded-lg">Tidak Ada Riwayat Pembayaran</h1> : data?.map((item, index) => <HistoryCard key={index} data={item} />)}
     </div>
   );

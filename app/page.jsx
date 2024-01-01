@@ -101,7 +101,8 @@ export default function Beranda () {
               </Link>
             </div>
    
-            <div className="flex gap-5 pb-5 overflow-x-auto pt-3 ">
+            <div className="flex md:justify-around gap-5 pb-5 overflow-x-auto pt-3 lg:overflow-visible ">
+
               {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <CategoryLoading key={index} />;
@@ -113,7 +114,6 @@ export default function Beranda () {
                   return (
               
                       <CardCategories
-
                       key={index}
                       name={item.name}
                       image={item.image}
@@ -138,7 +138,7 @@ export default function Beranda () {
               </Link>
             </div>
 
-            <div className="flex gap-5  mb-5 justify-around overflow-x-auto pb-5 pt-2">
+            <div className="flex gap-5  mb-5 md:justify-around pb-5 pt-2 overflow-x-auto lg:overflow-x-visible">
             {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <ButtonLoading key={index} />;

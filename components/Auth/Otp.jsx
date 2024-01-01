@@ -21,7 +21,7 @@ export default function Otp({
 
       })}
       maxLength={1}
-      type="telephone"
+      type="tel"
       placeholder="0"
       className={`${
         errors[`Otp${index}`] ? "border-red-500" : ""
