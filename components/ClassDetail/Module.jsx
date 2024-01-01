@@ -29,7 +29,7 @@ export default function Module({
             onClick={handleModal
             }
           >
-            <FaLock className="text-white text-lg" />
+            <FaLock className="text-white text-xs md:text-lg" />
           </button>
         ) : (
           <button
