@@ -204,10 +204,10 @@ useEffect(() => {
           </form>
         </div>
 
-        <div className="flex lg:flex-row gap-3 md:gap-[88px]">
+        <div className="flex flex-col lg:flex-row gap-10 md:gap-[88px] justify-center items-center md:justify-start md:items-start mt-4">
           <form
             className="bg-secret-background border shadow-md flex flex-col w-64 p-5
-            md:h-[580px] h-[680px] rounded-[16px] gap-5"
+            h-[580px] rounded-[16px] gap-5"
           >
             {isLoadingCategories ? 
               <FilterLoading/>
@@ -243,7 +243,7 @@ useEffect(() => {
 
           <div className="container">
 
-            <div className="flex gap-2 md:gap-7 mb-5 text-sm">
+            <div className="flex gap-2 md:gap-7 mb-5 text-sm overflow-x-scroll hide-scroll-bar">
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton
