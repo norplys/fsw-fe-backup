@@ -21,7 +21,7 @@ export default function Module({
             {index + 1}
           </span>
         </div>
-        <p className="text-sm text-zinc-500">{title}</p>
+        <p className="text-xs md:text-sm text-zinc-500">{title}</p>
       </div>
         {isPremium && chapterIndex  !== 0 && !isPaid ? (
           <button
@@ -43,7 +43,7 @@ export default function Module({
               )
             }
           >
-            <BiPlay className="text-white text-lg"/>
+            <BiPlay className="text-white text-xs md:text-lg"/>
           </button>
         )}
     </div>

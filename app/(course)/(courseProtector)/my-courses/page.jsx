@@ -207,7 +207,7 @@ const onChange = (e) => {
           </form>
         </div>
 
-        <div className="flex lg:flex-row flex-col gap-[88px] ">
+        <div className="flex lg:flex-row flex-col gap-10 ">
 
           <form
             className="bg-secret-background border shadow-md flex flex-col w-64 p-5
@@ -249,7 +249,7 @@ const onChange = (e) => {
 
           <div className="container">
 
-            <div className="flex pb-2 overflow-x-scroll text-sm md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 md:text-base md:pb-0 ">
+            <div className="flex pb-2 overflow-x-scroll mb-4 text-sm md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 md:text-base md:pb-0 ">
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton
