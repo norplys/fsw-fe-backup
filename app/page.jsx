@@ -113,6 +113,7 @@ export default function Beranda () {
                   return (
                     <div key={index} className="flex-shrink-0 flex-grow w-[25%] xl:w-[10%] p-1">
                       <CardCategories
+
                       key={index}
                       name={item.name}
                       image={item.image}
@@ -153,8 +154,9 @@ export default function Beranda () {
               )}
             </div>
 
-    
+   
             <div className="grid grid-cols-1 md:grid-cols-3 mx-auto gap-5 items-center h-full p-2">
+
               {isLoadingCourses ? (
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;
