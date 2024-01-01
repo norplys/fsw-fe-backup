@@ -43,7 +43,7 @@ export default function ForgotPassword() {
       <Toaster position="bottom-left"/>
       <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1" onSubmit={handleSubmit(handleForgotPassword)}>
         <div className="w-full lg:w-2/3 text-black flex flex-col">
-          <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
+          <h1 className="font-bold text-xl md:text-3xl text-whit  lg:mb-12 text-left">
             Lupa Kata Sandi ?
           </h1>
 
@@ -57,16 +57,16 @@ export default function ForgotPassword() {
             isSubmitting={isSubmitting}
           />
 
-          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
+          <button type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300 text-sm md:text-base">
 
             Masuk
           </button>
 
-          <div className="text-secret-text items-center text-center mt-6">
+          <div className="text-secret-text items-center text-center mt-6 text-sm md:text-base">
             Belum punya akun?
             <Link
               href="/register"
-              className="text-secret-text font-bold hover:underline hover:text-white pl-2"
+              className="text-secret-text font-bold hover:underline hover:text-white pl-2 text-sm md:text-base"
             >
               Daftar di sini
             </Link>

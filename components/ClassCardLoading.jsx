@@ -1,6 +1,6 @@
 export default function ClassCardLoading() {
   return (
-    <div className="animate-pulse grid gap-3 w-96 flex-1 shadow-2xl scale-90">
+    <div className="animate-pulse grid gap-3 md:w-96 h-60 flex-1 shadow-2xl scale-90">
       <div className="flex-1">
         <div className="h-20 bg-secret-cyan rounded "></div>
       </div>

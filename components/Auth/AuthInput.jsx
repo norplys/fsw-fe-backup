@@ -33,7 +33,7 @@ export default function AuthInput({
   }
   return (
     <div className="mb-4 lg:mb-8">
-      <label htmlFor={id} className=" font-bold text-secret-text">
+      <label htmlFor={id} className=" font-bold text-secret-text text-sm md:text-base">
         {name}
       </label>
       <input
@@ -42,7 +42,7 @@ export default function AuthInput({
         name={id}
         id={id}
         placeholder={placeholder}
-        className={`border-2 rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl ${
+        className={`border-2 rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 text-sm md:text-base shadow-2xl ${
           errors[id] ? "border border-red-500" : ""
         } focus:shadow-none focus:outline-none`}
         disabled={isSubmitting}

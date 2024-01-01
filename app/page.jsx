@@ -92,16 +92,16 @@ export default function Beranda () {
         </div>
         <div className="bg-secret-background">
           <div className="max-w-7xl mx-auto">
-            <div className="flex leading-loose justify-between p-5">
-              <h1 className="font-bold text-secret-text4  text-base md:text-[20px] ">
+            <div className="flex leading-loose justify-between px-1 pt-3 pb-2 md:p-5">
+              <h1 className="font-bold text-secret-text4  text-sm md:text-[20px] ">
                 Kategori Belajar
               </h1>
-              <Link href="/courses" className="text-secret-text4 font-semibold  duration-300 hover:text-secret-darkblue hover:underline text-base md:text-[20px]">
+              <Link href="/courses" className="text-secret-text4 font-semibold  duration-300 hover:text-secret-darkblue hover:underline text-sm md:text-[20px]">
                 Lihat Semua
               </Link>
             </div>
    
-            <div className="flex gap-5 pb-5 overflow-x-auto md:overflow-x-auto">
+            <div className="flex gap-5 pb-5 overflow-x-auto pt-3 ">
               {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <CategoryLoading key={index} />;
@@ -111,7 +111,7 @@ export default function Beranda () {
               ) : (
                 dataCategories?.map((item, index) => {
                   return (
-                    <div key={index} className="flex-shrink-0 flex-grow w-[25%] xl:w-[10%] p-1">
+              
                       <CardCategories
 
                       key={index}
@@ -119,7 +119,7 @@ export default function Beranda () {
                       image={item.image}
                       categoryId={item.id}
                     />
-                    </div>
+                  
                   );
                 })
               )}
@@ -128,12 +128,12 @@ export default function Beranda () {
         </div>
         <div className="bg-white pb-5">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between leading-loose p-5">
-              <h1 className="font-bold text-secret-text4 text-base md:text-[20px]">
+            <div className="flex justify-between leading-loose px-1 pt-3 pb-2 md:p-5">
+              <h1 className="font-bold text-secret-text4 text-sm md:text-[20px]">
                 Kursus Populer
               </h1>
 
-              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:text-secret-darkblue hover:underline text-base md:text-[20px]">
+              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:text-secret-darkblue hover:underline text-sm md:text-[20px]">
                 Lihat Semua
               </Link>
             </div>
@@ -155,7 +155,7 @@ export default function Beranda () {
             </div>
 
    
-            <div className="grid grid-cols-1 md:grid-cols-3 mx-auto gap-5 items-center h-full p-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-5 items-center h-full p-2">
 
               {isLoadingCourses ? (
                 array.map((item, index) => {

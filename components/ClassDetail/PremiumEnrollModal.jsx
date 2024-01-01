@@ -77,7 +77,7 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
                     leaveFrom="opacity-100 scale-100"
                     leaveTo="opacity-0 scale-95"
                   >
-                    <Dialog.Panel className="relative w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                    <Dialog.Panel className="relative w-full max-w-lg p-1 md:p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                       <button
                         className="absolute top-0 right-0 p-2 m-4 transition-all duration-200 ease-in-out bg-transparent rounded-full group"
                         onClick={() => setIsOpen(false)}
@@ -90,7 +90,7 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
 
                       <Dialog.Title
                         as="h3"
-                        className="mb-5 text-xl font-bold text-center"
+                        className="mb-5 md:text-xl font-bold text-center"
                       >
                         Selangkah lagi menuju
                         <br />
@@ -107,11 +107,11 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
                             height={500}
                             layout="responsive"
                             alt="Video Preview"
-                            className="object-cover object-center"
+                            className="object-cover object-center h-full"
                           />
                         </div>
 
-                        <div className="p-5 text-sm">
+                        <div className="p-1 md:p-5 text-sm">
                           <div className="flex flex-col mb-3">
                             <div className="flex items-center justify-between ">
                               <h1 className="font-bold text-secret-darkblue">
@@ -131,24 +131,24 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
                             <p className="text-gray-500">by {data?.author}</p>
                           </div>
 
-                          <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
                             <div className="flex items-center space-x-2 font-semibold">
-                              <GiRank3 className="text-green-700 text-lg" />
-                              <span className="text-secret-text">
+                              <GiRank3 className="text-green-700 text-sm md:text-lg" />
+                              <span className="text-secret-text text-xs md:text-base">
                                 {capitalize(data?.level)}
                               </span>
                             </div>
 
                             <div className="flex items-center space-x-2 font-semibold">
-                              <FaBookBookmark className="text-green-700 text-base" />
-                              <span className="text-secret-text">
+                              <FaBookBookmark className="text-green-700 text-sm md:text-base" />
+                              <span className="text-secret-text text-xs md:text-base">
                                 {data?.totalModule} Modul
                               </span>
                             </div>
 
                             <div className="flex items-center space-x-2 font-semibold">
-                              <FaRegClock className="text-green-700 text-base" />
-                              <span className="text-secret-text">
+                              <FaRegClock className="text-green-700 text-xs md:text-base" />
+                              <span className="text-secret-text text-xs md:text-base">
                                 {data?.totalMinute} Menit
                               </span>
                             </div>
@@ -166,7 +166,7 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
                           className={`flex items-center px-6 py-2 space-x-2 font-bold text-white rounded-full bg-secret-pink hover:scale-105 duration-300 ${isLoading ? "cursor-wait" : "cursor-pointer"}`}
                           onClick={() => handleEnroll(data?.id, token)}
                         >
-                          {isLoading ? <VscLoading className="animate-spin font-bold text-lg mx-11"/>  : <><span>Beli Sekarang</span><FiArrowRight className="text-white text-lg" /></>}
+                          {isLoading ? <VscLoading className="animate-spin font-bold text-lg mx-11"/>  : <><span className="text-sm md:text-base">Beli Sekarang</span><FiArrowRight className="text-white md:text-lg" /></>}
                           
                         </button>
                       </div>

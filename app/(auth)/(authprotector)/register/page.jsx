@@ -64,14 +64,14 @@ export default function RegisterPage() {
 
       <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1" onSubmit={handleSubmit(handleRegister)}>
         <div className="w-full lg:w-2/3 text-black flex flex-col">
-          <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
+          <h1 className="font-bold text-xl md:text-3xl text-whit  lg:mb-12 text-left">
             Daftar
           </h1>
 
           {requiredArray.map((item, index) => (
             <AuthInput key={index} {...item} register={register} errors = {errors}/>
           ))}
-          <button disabled={isSubmitting} type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
+          <button disabled={isSubmitting} type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300 text-sm md:text-base">
             Masuk
           </button>
         </div>
