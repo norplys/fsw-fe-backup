@@ -13,7 +13,7 @@ export default function Chapter({
   const chapterIndex = index;
   return (
     <div key={index}>
-      <div className="flex items-center justify-between mb-2 text-sm font-bold">
+      <div className="flex items-center justify-between mb-2 text-xs md:text-sm font-bold">
         <h4 className="text-secret-darkblue">
           Chapter {index + 1} - {name}
         </h4>

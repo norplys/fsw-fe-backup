@@ -7,6 +7,9 @@ import { FiBell, FiList, FiUser } from 'react-icons/fi';
 import { CiLogin } from "react-icons/ci"
 import { useUsers } from '@/app/context/usersContext';
 import { useRouter } from 'next/navigation';
+import RespMenu from './RespMenu';
+import { FiAlignJustify } from "react-icons/fi";
+import { RxCross2 } from 'react-icons/rx';
 
 
 const Navbar = () => {
@@ -17,6 +20,7 @@ const Navbar = () => {
 	}, []);
 	const { user, handleToken, removeUser } = useUsers();
 	const [keyword, setKeyword] = useState('');
+	const [showMenu, setShowMenu] = useState(false);
 	const {push} = useRouter();
 
 	const ifToken =  async (token) => {
@@ -48,12 +52,12 @@ const Navbar = () => {
 	};
 	return (
 		<div className="bg-secret-background sticky top-0 z-20 shadow-2xl black100/40">
-		  <nav className="container flex flex-col gap-2 md:flex-row items-center justify-between h-50 md:h-20 py-2 mx-auto">
+		  <nav className="container flex gap-2  items-center justify-between h-50 md:h-20 py-2 mx-auto px-2">
 			<div className="flex items-center space-x-4">
 			  <Link href="/" className="flex items-center space-x-2">
-				<BiBrain className="text-white bg-secret-pink rounded-full text-5xl p-2" />
+				<BiBrain className="text-white bg-secret-pink rounded-full text-3xl md:text-5xl p-1 md:p-2" />
 				<div className="flex">
-				  <h1 className="text-2xl text-secret-text flex items-center font-bold">
+				  <h1 className="md:text-2xl text-secret-text flex items-center font-bold">
 					SkillHUB
 				  </h1>
 				</div>
@@ -75,7 +79,7 @@ const Navbar = () => {
 			  </form>
 			</div>
 	
-			<ul className="flex items-center space-x-4">
+			<ul className="items-center space-x-4 hidden md:flex">
 			  {user ? (
 				<div className="flex flex-col md:flex-row gap-5">
 				  <div className="flex gap-2">
@@ -109,14 +113,16 @@ const Navbar = () => {
 			  ) : (
 				<li>
 				  <Link href="/login">
-					<button className="px-4 py-2 font-semibold text-white rounded-lg flex gap-4 bg-secret-darkblue">
-					  <CiLogin className="text-white" size={25} />
+					<button className="px-4 py-2 font-semibold text-white rounded-lg flex justify-center items-center gap-4 bg-secret-darkblue text-xs md:text-base">
+					  <CiLogin className="text-white text-sm md:text-base" />
 					  Masuk
 					</button>
 				  </Link>
 				</li>
 			  )}
 			</ul>
+			<button className="md:hidden" onClick={() => setShowMenu(!showMenu)}>{showMenu ? <RxCross2 className="text-secret-darkblue text-2xl" /> : <FiAlignJustify className="text-secret-darkblue text-2xl" /> }</button>
+			<RespMenu user={user} handleLogOut={handleLogOut} showMenu={showMenu} handleSearch={handleSearch} onChange={onChange} keyword={keyword} />
 		  </nav>
 		</div>
 	  );

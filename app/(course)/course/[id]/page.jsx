@@ -150,31 +150,31 @@ const DetailKelas = () => {
         
           <div className="py-10 bg-secret-blue shadow-xl xl:h-[300px]">
             { !data?.isOnboarding && data?.isPaid ?  <OnBoardingModals data={data} token={token} /> : ''}
-            <div className="container grid gap-10 px-2 mx-auto xl:grid-cols-5">
+            <div className="container grid gap-10 px-1 md:px-2 mx-auto xl:grid-cols-5">
               <div className="xl:col-span-3">
                 <Link
                   className="flex items-center mb-4 space-x-2"
                   href={"/courses"}
                 >
-                  <FiArrowLeft color="sectext-secret-text" size={16} />
-                  <div className="font-bold text-secret-text">
+                  <FiArrowLeft className="text-secret-text hover:text-secret-darkblue text-sm md:text-base" size={16} />
+                  <div className="font-bold text-secret-text text-sm md:text-base">
                     Kelas Lainnya
                   </div>
                 </Link>
 
                 <div className="flex flex-col mb-3">
                   <div className="flex items-center justify-between ">
-                    <h1 className="text-2xl font-bold text-secret-text">
+                    <h1 className="text-base md:text-2xl font-bold text-secret-text">
                       {data?.category}
                     </h1>
                     <div className="flex items-center space-x-1">
-                      <FaStar className="text-yellow-400 text-base" />
-                      <span className="font-bold text-secret-text">
+                      <FaStar className="text-yellow-400 text-xs md:text-base" />
+                      <span className="font-bold text-secret-text text-xs md:text-2xl">
                         {data?.rating}
                       </span>
                     </div>
                   </div>
-                  <h2 className="text-xl font-bold text-secret-pink">
+                  <h2 className="font-bold text-secret-pink text-base md:text-2xl">
                     {data?.name}
                   </h2>
                   <p className="text-sm text-gray-500 ">by {data?.author}</p>
@@ -182,20 +182,20 @@ const DetailKelas = () => {
 
                 <div className="flex items-center justify-between mb-4 max-w-[400px]">
                   <div className="flex items-center space-x-2 font-semibold">
-                    <GiRank3 className="text-green-700 text-lg" />
-                    <span className="text-secret-text">{capitalize(data?.level)}</span>
+                    <GiRank3 className="text-green-700 text-sm md:text-lg" />
+                    <span className="text-secret-text text-sm md:text-base">{capitalize(data?.level)}</span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
-                    <FaBookBookmark className="text-green-700 text-base" />
-                    <span className="text-secret-text">
+                    <FaBookBookmark className="text-green-700 text-sm md:text-base" />
+                    <span className="text-secret-text text-sm md:text-base">
                       {data?.totalModule} Modul
                     </span>
                   </div>
 
                   <div className="flex items-center space-x-2 font-semibold">
-                    <FaRegClock className="text-green-700 text-base" />
-                    <span className="text-secret-text">
+                    <FaRegClock className="text-green-700 text-sm md:text-base" />
+                    <span className="text-secret-text text-sm md:text-base">
                       {data?.totalMinute} Menit
                     </span>
                   </div>
@@ -205,7 +205,7 @@ const DetailKelas = () => {
                   className="flex items-center justify-center px-6 py-2 space-x-2 bg-secret-darkblue rounded-full hover:scale-105 max-w-xs"
                   href={data?.telegram}
                 >
-                  <div className="font-bold text-white shadow-2xl hover:shadow-none">
+                  <div className="font-bold text-white shadow-2xl hover:shadow-none text-sm md:text-base">
                     Telegram Link
                   </div>
                   <BiSolidChat className="text-white" size={20} />
@@ -213,9 +213,9 @@ const DetailKelas = () => {
               </div>
 
               <div className="xl:col-span-2">
-                <div className="p-8 bg-white drop-shadow rounded-2xl">
+                <div className="p-4 md:p-8 bg-white drop-shadow rounded-2xl">
                   <div className="flex items-center justify-between mb-4">
-                    <h1 className="text-xl font-bold">Materi Belajar</h1>
+                    <h1 className="font-bold text-sm md:text-xl">Materi Belajar</h1>
                     {/* progress bar here */}
                     {data?.isPaid && <div className="relative py-2 rounded-full bg-secret-pink w-[200px] overflow-hidden">
                       <div
@@ -257,7 +257,7 @@ const DetailKelas = () => {
                 
                 videoData ? (
                   <iframe
-                    className="w-full h-full mb-5 rounded-2xl shadow-2xl"
+                    className="w-full h-36 mb-5 rounded-2xl shadow-2xl md:h-full"
                     src={videoData}
                     title="YouTube video player"
                     frameBorder="0"
@@ -267,7 +267,7 @@ const DetailKelas = () => {
                   
                 ) : (
                   <iframe
-                    className="w-full h-full mb-5 rounded-2xl shadow-2xl"
+                    className="w-full h-80 mb-5 rounded-2xl shadow-2xl md:h-full"
                     src={data?.introVideo}
                     title="YouTube video player"
                     frameBorder="0"
@@ -278,28 +278,28 @@ const DetailKelas = () => {
                 )}
                 <div className="flex gap-2 mb-3">
                   <button
-                    className="bg-secret-pink text-white font-bold px-2 rounded-lg text-lg hover:scale-105 duration-300 shadow-2xl "
+                    className="bg-secret-pink text-white font-bold px-2 rounded-lg text-sm md:text-lg hover:scale-105 duration-300 shadow-2xl "
                     onClick={handleCourses}
                   >
                     Kelas Lainnya
                   </button>
-                  <button className="bg-secret-darkblue text-white font-bold px-2 rounded-lg text-lg hover:scale-105 duration-300 shadow-2xl" onClick={handleNextVideo}>
+                  <button className="bg-secret-darkblue text-white font-bold px-2 rounded-lg text-sm md:text-lg hover:scale-105 duration-300 shadow-2xl " onClick={handleNextVideo}>
                     Video Selanjutnya
                   </button>
 
                 </div>
 
-                <h2 className="mb-3 text-2xl font-bold">Tentang Kelas</h2>
-                <p className="mb-5 leading-relaxed text-gray-500">
+                <h2 className="mb-3 text-sm md:text-2xl font-bold">Tentang Kelas</h2>
+                <p className="mb-5 leading-relaxed text-gray-500 text-xs md:text-base">
                   {data?.description}
                 </p>
 
-                <h2 className="mb-3 text-xl font-bold">
+                <h2 className="mb-3 text-sm md:text-xl font-bold">
                   Kelas Ini Ditujukan Untuk
                 </h2>
                 <ol className="mb-5 leading-relaxed text-gray-500 list-decimal list-inside">
                   {data?.classTarget.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index} className="text-xs md:text-base">{item}</li>
                   ))}
                 </ol>
               </div>
