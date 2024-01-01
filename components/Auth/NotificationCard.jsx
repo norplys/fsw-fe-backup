@@ -9,10 +9,10 @@ const FormattedDate = new Intl.DateTimeFormat('id-ID', {
 
     return (
         <div className="flex flex-col md:flex-row justify-start px-5 md:px-14 gap-5 my-7">
-                    <IoNotificationsCircleSharp className="text-4xl w-7 h-7 animate-pulse" />
+                    <IoNotificationsCircleSharp className="md:text-2xl text-xl animate-pulse" />
                     <div className="w-full">
                         <div className="flex justify-between">
-                            <h1 className="font-extrabold text-secret-darkblue">{data?.title}</h1>
+                            <h1 className="font-extrabold text-secret-darkblue text-sm md:text-base">{data?.title}</h1>
                             <div className="flex justify-center items-center">
                                 <h1 className=" text-neutral-400 text-xs">{FormattedDate}</h1>
                             </div>
