@@ -105,15 +105,15 @@ export default function OtpPage() {
         onSubmit={handleSubmit(handleOtp)}
       >
         <div className="w-full lg:w-2/3 text-black flex flex-col">
-          <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
+          <h1 className="font-bold text-xl md:text-3xl text-whit  lg:mb-12 text-left">
             Masukkan OTP
           </h1>
 
-          <p className="text-base text-secret-text mb-4">
+          <p className="text-sm md:text-base text-secret-text mb-4">
             Ketik 6 digit kode yang dikirimkan ke{" "}
             <span className="font-bold">{email}</span>
           </p>
-          <div className="mb-4 lg:mb-8 flex gap-6">
+          <div className="mb-4 lg:mb-8 flex gap-1 md:gap-6">
             {otp.map((_, index) => (
               <Otp
                 key={index}
@@ -126,7 +126,7 @@ export default function OtpPage() {
               />
             ))}
           </div>
-            <p className="text-base text-secret-text mb-4 text-center font-bold">
+            <p className=" text-secret-text mb-4 text-center font-bold text-sm md:text-base">
               {tokenData?.expiredAt}
             </p>
        

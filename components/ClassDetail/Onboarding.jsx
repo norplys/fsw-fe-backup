@@ -73,7 +73,7 @@ export default function OnBoardingModals({
 
                 <Dialog.Title
                   as="h3"
-                  className="mb-5 text-2xl font-bold text-center text-secret-darkblue "
+                  className="mb-5 text-lg md:text-2xl font-bold text-center text-secret-darkblue "
                 >
                   OnBoarding
                 </Dialog.Title> 
@@ -87,17 +87,17 @@ export default function OnBoardingModals({
                   />
                   </div>
                   <div className="flex flex-col gap-3 justify-center">
-                    <p className="text-secret-text text-base font-bold text-center border-b-2 border-secret-darkblue pb-2">
+                    <p className="text-secret-text text-sm md:text-base font-bold text-center border-b-2 border-secret-darkblue pb-2">
                       Persiapkan hal berikut untuk belajar yang maksimal :
                     </p>
-                    <p className="text-secret-text text-sm mb-3 text-center">
+                    <p className="text-secret-text text-xs md:text-sm mb-3 text-center">
                         {data.onboarding}
                     </p>
                   </div>
 
                   <button className="flex justify-center gap-1 mt-1 w-full py-2 bg-secret-pink rounded-[15px] relative hover:scale-105 duration-300 text-white font-bold" onClick={() => handleOnboarding(token, data?.id)}>
                     <div className="flex">
-                      {isLoading ? <VscLoading className="animate-spin font-bold text-lg mx-11"/>  : <><span>Saya Sudah Siap Belajar</span></>}
+                      {isLoading ? <VscLoading className="animate-spin font-bold text-lg mx-11"/>  : <><span className="text-sm md:text-base">Saya Sudah Siap Belajar</span></>}
                     </div>
                   </button>
               </Dialog.Panel>

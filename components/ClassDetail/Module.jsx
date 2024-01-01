@@ -14,7 +14,7 @@ export default function Module({
   userChapterModuleUuid,
 }) {
   return (
-    <div className="flex items-center justify-between py-3" key={index}>
+    <div className="flex items-center justify-between py-2 md:py-3" key={index}>
       <div className="flex items-center w-4/5 space-x-2">
         <div className="relative flex-shrink-0 w-10 h-10 rounded-full bg-check-fill">
           <span className="absolute text-xs text-black font-bold transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">

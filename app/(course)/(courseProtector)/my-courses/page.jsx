@@ -188,7 +188,7 @@ const onChange = (e) => {
             Kelas Berjalan
           </h1>
 
-          <form className="flex h-10 border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl relative md:mb-0 mb-5 md:h-fit" onSubmit={handleSubmit(handleSearch)}>
+          <form className="flex justify-between h-10 border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl relative md:mb-0 mb-5 md:h-fit bg-white" onSubmit={handleSubmit(handleSearch)}>
             <input
               {...register("search", {
                 onChange : (e) => onChange(e),
@@ -196,12 +196,12 @@ const onChange = (e) => {
               type="text"
               placeholder="Cari Kelas..."
               name="search"
-              className="text-black text-sm focus:outline-none"
+              className="text-black text-sm focus:outline-none flex-1"
               id="search-class"
               value={searchValue}
             />
 
-            <button htmlFor="search-class" className="flex md:static absolute right-1 top-[3px] justify-center items-center p-2 rounded-md bg-secret-darkblue hover:scale-110 duration-300" >
+            <button htmlFor="search-class" className="flex md:static justify-center items-center p-2  bg-secret-darkblue hover:scale-110 duration-300" >
             <BiSearchAlt className="text-secret-background text-sm"/>
             </button>
           </form>
@@ -210,7 +210,7 @@ const onChange = (e) => {
         <div className="flex lg:flex-row flex-col gap-10 ">
 
           <form
-            className="bg-secret-background border shadow-md flex flex-col w-64 p-5
+            className="bg-secret-background border shadow-md flex flex-col w-64 p-5 pb-0
             h-[580px] rounded-[16px] gap-5 mx-auto"
           >
             {isLoadingCategories ? 
@@ -248,8 +248,7 @@ const onChange = (e) => {
 
 
           <div className="container">
-
-            <div className="flex pb-2 overflow-x-scroll mb-4 text-sm md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 md:text-base md:pb-0 ">
+            <div className="flex pb-2 pt-2 overflow-x-scroll mb-4 text-sm md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 md:text-base md:pb-0 ">
 
               {ButtonData.map((item, index) => {
                 return (
