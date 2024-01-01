@@ -96,7 +96,7 @@ export default function Beranda () {
               <h1 className="font-bold text-secret-text4  text-sm md:text-[20px] ">
                 Kategori Belajar
               </h1>
-              <Link href="/courses" className="text-secret-text4 font-semibold  duration-300 hover:text-secret-darkblue hover:underline text-sm md:text-[20px]">
+              <Link href="/courses" className="text-secret-text4 font-semibold  duration-300 hover:text-secret-darkblue hover:underline text-sm md:text-base">
                 Lihat Semua
               </Link>
             </div>
@@ -112,14 +112,12 @@ export default function Beranda () {
               ) : (
                 dataCategories?.map((item, index) => {
                   return (
-              
                       <CardCategories
                       key={index}
                       name={item.name}
                       image={item.image}
                       categoryId={item.id}
                     />
-                  
                   );
                 })
               )}
@@ -133,12 +131,12 @@ export default function Beranda () {
                 Kursus Populer
               </h1>
 
-              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:text-secret-darkblue hover:underline text-sm md:text-[20px]">
+              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:text-secret-darkblue hover:underline text-sm md:text-base">
                 Lihat Semua
               </Link>
             </div>
 
-            <div className="flex gap-5  mb-5 md:justify-around pb-5 pt-2 overflow-x-auto lg:overflow-x-visible">
+            <div className="flex gap-5  mb-5 lg:justify-around pb-5 pt-2 overflow-x-auto lg:overflow-x-visible">
             {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <ButtonLoading key={index} />;
