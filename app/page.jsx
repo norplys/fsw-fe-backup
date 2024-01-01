@@ -78,13 +78,13 @@ export default function Beranda () {
       <div className="font-montserrat min-h-screen">
         <div className="flex w-full">
           <div className="before:bg-gradient-to-t from-transparent to-[#2FB5BF] before:w-full before:h-full before:absolute relative col-span-12 flex-2 w-full">
-            <div className="bg-[url('/homeImage.svg')] bg-cover h-96 flex justify-center items-center flex-col md:flex-row">
-              <div className="z-10  flex items-center text-white font-bold text-5xl md:w-96  drop-shadow-[0_3px_1.2px_rgba(0,0,0,0.8)] flex-shrink-0 ml-5 md:ml-0">
+            <div className="bg-[url('/homeImage.svg')] bg-cover h-72 flex justify-center items-center flex-col md:flex-row md:h-96">
+              <div className="z-10  flex items-center text-white font-bold text-3xl md:w-96  drop-shadow-[0_3px_1.2px_rgba(0,0,0,0.8)] flex-shrink-0 ml-5 md:ml-0  md:text-5xl">
                   Ready To Upgrade Your Skill ?
               </div>
               <div className="flex gap-3 ml-5 md:ml-0 mt-5 md:mt-0">
-              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md animate-pulse hover:scale-105" href={"/courses"}>Mulai Sekarang</Link>
-              <Link className="text-white font-bold text-2xl z-10 border border-white h-min p-2 rounded-md flex items-center hover:scale-105" href={"https://wa.me/6282284134328?text=Saya%20ingin%20bertanya%20perihal%20course%20di%20skillHUB"}> <CiHeadphones/> Tanya Kami</Link>
+              <Link className="text-white font-bold z-10 border border-white h-min p-2 rounded-md animate-pulse hover:scale-105 text-base md:text-2xl" href={"/courses"}>Mulai Sekarang</Link>
+              <Link className="text-white font-bold  z-10 border border-white h-min p-2 rounded-md flex items-center hover:scale-105 text-base md:text-2xl" href={"https://wa.me/6282284134328?text=Saya%20ingin%20bertanya%20perihal%20course%20di%20skillHUB"}> <CiHeadphones/> Tanya Kami</Link>
               </div>
             </div>
           </div>
@@ -93,15 +93,15 @@ export default function Beranda () {
         <div className="bg-secret-background">
           <div className="max-w-7xl mx-auto">
             <div className="flex leading-loose justify-between p-5">
-              <h1 className="font-bold text-secret-text4 text-[20px]">
+              <h1 className="font-bold text-secret-text4  text-base md:text-[20px] ">
                 Kategori Belajar
               </h1>
-              <Link href="/courses" className="text-secret-text4 font-semibold  duration-300 hover:text-secret-darkblue hover:underline">
+              <Link href="/courses" className="text-secret-text4 font-semibold  duration-300 hover:text-secret-darkblue hover:underline text-base md:text-[20px]">
                 Lihat Semua
               </Link>
             </div>
    
-            <div className="flex gap-5 pb-5 overflow-x-auto md:overflow-hidden-x-auto lg:overflow-x-auto xl:overflow-hidden 2xl:overflow-hidden">
+            <div className="flex gap-5 pb-5 overflow-x-auto md:overflow-x-auto">
               {isLoadingCategories ? (
                 array.map((item, index) => {
                   return <CategoryLoading key={index} />;
@@ -112,7 +112,7 @@ export default function Beranda () {
                 dataCategories?.map((item, index) => {
                   return (
                     <div key={index} className="flex-shrink-0 flex-grow w-[25%] xl:w-[10%] p-1">
-                        <CardCategories
+                      <CardCategories
                       key={index}
                       name={item.name}
                       image={item.image}
@@ -128,11 +128,11 @@ export default function Beranda () {
         <div className="bg-white pb-5">
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between leading-loose p-5">
-              <h1 className="font-bold text-secret-text4 text-[20px]">
+              <h1 className="font-bold text-secret-text4 text-base md:text-[20px]">
                 Kursus Populer
               </h1>
 
-              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:text-secret-darkblue hover:underline">
+              <Link href="/courses" className="text-secret-text4 font-semibold duration-300 hover:text-secret-darkblue hover:underline text-base md:text-[20px]">
                 Lihat Semua
               </Link>
             </div>
@@ -154,7 +154,7 @@ export default function Beranda () {
             </div>
 
     
-            <div className="grid grid-cols-1 md:grid-cols-3 mx-auto   gap-5 items-center h-full p-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 mx-auto gap-5 items-center h-full p-2">
               {isLoadingCourses ? (
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;

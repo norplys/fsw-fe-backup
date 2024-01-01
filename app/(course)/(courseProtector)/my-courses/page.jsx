@@ -181,14 +181,14 @@ const onChange = (e) => {
     levelFilterButton,
   ];
   return (
-    <div className="bg-secret-grey2 md:px-[150px] pt-4 w-full font-montserrat min-h-screen">
+    <div className="bg-secret-grey2 md:px-[50px] pt-4 w-full font-montserrat min-h-screen">
       <section className="max-w-7xl m-auto">
         <div className="flex justify-between md:flex-row flex-col p-2 md:p-0">
-          <h1 className="text-secret-text md:mb-10 mb-5 font-bold text-[24px]">
+          <h1 className="text-secret-text md:mb-10 mb-5 font-bold text-base md:text-[24px]">
             Kelas Berjalan
           </h1>
 
-          <form className="flex h-fit border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl relative md:mb-0 mb-5" onSubmit={handleSubmit(handleSearch)}>
+          <form className="flex h-10 border border-secret-darkblue pl-2 rounded-lg overflow-hidden shadow-xl relative md:mb-0 mb-5 md:h-fit" onSubmit={handleSubmit(handleSearch)}>
             <input
               {...register("search", {
                 onChange : (e) => onChange(e),
@@ -249,7 +249,7 @@ const onChange = (e) => {
 
           <div className="container">
 
-            <div className="flex  md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 mb-5">
+            <div className="flex pb-2 overflow-x-scroll text-sm md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 md:text-base md:pb-0 ">
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton
