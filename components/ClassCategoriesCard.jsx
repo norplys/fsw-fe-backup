@@ -18,10 +18,20 @@ export default function ClassCategoriesCard({
   id,
   price
 }) {
+  const priceFormat = (price) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(price);
+  }
+  const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
   return (
     <Link
       href={`course/${id}`}
-      className="flex flex-col course w-full h-[250px] bg-secret-background rounded-[15px] duration-300 shadow-xl hover:scale-105 hover:shadow-2xl"
+      className="flex flex-col course w-full h-[250px] bg-secret-background rounded-[15px] duration-300 shadow-md hover:shadow-xl scale-95 hover:scale-100"
     >
       <div className="w-full h-[80px] ">
         <Image
@@ -35,7 +45,7 @@ export default function ClassCategoriesCard({
 
       <div className="flex flex-col justify-around p-2 h-full">
         <div className="flex justify-between">
-          <p className="text-lg font-bold text-secret-pink">{category}</p>
+          <p className="text-lg md:text-base lg:text-lg xl:text-lg 2xl:text-lg font-bold text-secret-pink">{category}</p>
 
           <div className="flex gap-1 text-black items-center">
             <FaStar className="text-yellow-400 text-lg" />
@@ -44,7 +54,7 @@ export default function ClassCategoriesCard({
         </div>
 
         <div className="text-black">
-          <h2 className="text-base font-bold">{name}</h2>
+          <h2 className="text-base md:text-sm lg:text-base xl:text-base 2xl:text-base font-bold">{name}</h2>
 
           <p className="text-sm">by {teacher}</p>
         </div>
@@ -53,7 +63,7 @@ export default function ClassCategoriesCard({
           <div className="flex gap-1 leading-loose">
             <GiRank3 className="text-green-700 text-lg"/>
             <p className="font-semibold text-xs text-secret-text3">
-              {level} Level
+              {capitalize(level)} Level
             </p>
           </div>
           <div className="flex gap-1 leading-loose">
@@ -70,7 +80,7 @@ export default function ClassCategoriesCard({
             <IoDiamond className="text-xs text-secret-background" />
             <div className="flex gap-2">
             <h2 className="text-xs text-secret-background font-bold">Beli</h2>
-            <h2 className="text-xs font-bold text-secret-background">Rp {price}</h2>
+            <h2 className="text-xs font-bold text-secret-background">{priceFormat(price)}</h2>
           </div>
         </button>
         ) : (

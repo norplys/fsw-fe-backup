@@ -12,6 +12,7 @@ const PembayaranSukses = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const success = async () => {
+        if(!id) return push("/");
         await mockLoading;
         push(`/course/${id}`);
     }
@@ -32,18 +33,18 @@ const PembayaranSukses = () => {
         </div>
 
         {/* MAIN */}
-        <div className='grid justify-center items-center w-full text-center mb-10'>
-            <h1 className='font-bold text-secret-pink text-[64px]'>Selamat!</h1>
+        <div className='grid justify-center items-center w-full text-center mb-10 mt-4'>
+            <h1 className='font-bold text-secret-pink text-5xl md:text-[64px]'>Selamat!</h1>
             <Image
                 src='/shopSukses.svg'
                 width={200}
                 height={200}
                 alt='gambar shopping cart'
-                className='mx-auto'/>
+                className='mx-auto h-44 md:h-full'/>
             
             <h2 className='font-bold mt-3 md:text-[16px] text-[14px]'>Transaksi pembayaran kelas premium berhasil!</h2>
             <p className='mb-10 md:text-[14px] text-[12px]'>E-receipt telah dikirimkan ke email.</p>
-            <h2 className='font-bold bg-secret-darkblue p-2 rounded-full shadow-xl text-white w-fit'> Kamu akan dialihkan ke halaman detail course, mohon tunggu...</h2>
+            <h2 className='font-bold bg-secret-darkblue p-2 rounded-full shadow-xl text-white w-fit text-xs md:text-base mx-1 md:mx-auto'> Kamu akan dialihkan ke halaman detail course, mohon tunggu...</h2>
         </div>
     </div>
   )

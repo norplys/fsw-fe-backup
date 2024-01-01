@@ -19,8 +19,8 @@ const requiredArray = [{
   id: "email"
 }, {
   name: "Nomor Telepon",
-  type: "text",
-  placeholder: "+62",
+  type: "tel",
+  placeholder: "0812345678",
   id: "phone"
 }, {
   name: "Buat Password",
@@ -47,10 +47,10 @@ export default function RegisterPage() {
     const register = axios.post("https://final-project-online-course.et.r.appspot.com/v1/register", data);
     const res = await toast.promise(register, {
       loading: "Loading...",
-      success: `${data.name} Registered Successfully`,
-      error: "Register Failed"
+      success: `${data.name} Berhasil Diregister`,
+      error: "Register Gagal"
     });
-    toast.loading("Redirecting Please Wait...");
+    toast.loading("Mengalihkan...");
     await mockLoading();
     push(`/register/otp/${res.data.data.token}?email=${data.email}`);
 
@@ -62,29 +62,26 @@ export default function RegisterPage() {
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
 
-      <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1" onSubmit={handleSubmit(handleRegister)}>
+      <form className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1" onSubmit={handleSubmit(handleRegister)}>
         <div className="w-full lg:w-2/3 text-black flex flex-col">
-          <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
+          <h1 className="font-bold text-xl md:text-3xl text-whit  lg:mb-12 text-left">
             Daftar
           </h1>
 
           {requiredArray.map((item, index) => (
             <AuthInput key={index} {...item} register={register} errors = {errors}/>
           ))}
-          <button disabled={isSubmitting} type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300">
+          <button disabled={isSubmitting} type="submit" className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300 text-sm md:text-base">
             Masuk
           </button>
         </div>
       </form>
 
-      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1">
+      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
         <BiBrain className="text-9xl text-white" />
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
         </div>
       </div>

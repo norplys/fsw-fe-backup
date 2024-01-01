@@ -29,12 +29,14 @@ export default function LoginPage() {
     const login = handleUsers(data);
     await toast.promise (
       login , {
-        loading: 'Loading',
-        success: `${data.user} successfully logged in`,
-        error: `${data.user} failed to login`
+        loading: 'Memuat...',
+        success: `${data.user} Berhasil Login`,
+        error: `${data.user} Gagal Login`,
       }
     )
-    toast.loading('Redirecting Please Wait...')
+    toast.loading('Redirecting Please Wait...', {
+      duration: 2000,
+    })
     await sleepRedirect();
     if(!redirect){
       push('/');
@@ -62,16 +64,16 @@ export default function LoginPage() {
       {/* Bagian Kiri */}
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1"
+        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1"
       >
         <div className="w-full lg:w-2/3 text-black flex flex-col">
-          <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
+          <h1 className="font-bold text-xl md:text-3xl text-whit  lg:mb-12 text-left">
             Selamat Datang !
           </h1>
 
           {/* Email/No telp */}
           <div className="mb-4 lg:mb-8">
-            <label htmlFor="user" className="font-bold text-secret-text">
+            <label htmlFor="user" className="font-bold text-secret-text text-sm md:text-base">
               Email/No Telpon
             </label>
 
@@ -89,7 +91,7 @@ export default function LoginPage() {
               id="user"
               className={` ${
                 errors.user ? "border-red-500" : ""
-              } border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none`}
+              }text-sm md:text-base border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none`}
             />
             {errors.user && (
               <p className="text-red-500 text-sm font-bold">{errors.user.message}</p>
@@ -97,13 +99,13 @@ export default function LoginPage() {
           </div>
 
           <div className="grid grid-cols-2 mb-4 lg:mb-8">
-            <label htmlFor="password" className=" font-bold text-secret-text">
+            <label htmlFor="password" className=" font-bold text-secret-text text-sm md:text-base">
               Password
             </label>
 
             <Link
               href="/forgot-password"
-              className="text-secret-text font-bold text-base hover:underline hover:text-white text-right"
+              className="text-secret-text font-bold  hover:underline hover:text-white text-right text-sm md:text-base"
             >
               Lupa Kata Sandi ?
             </Link>
@@ -122,7 +124,7 @@ export default function LoginPage() {
               placeholder="Password"
               className={`border-2 ${
                 errors.password ? "border-red-500" : ""
-              } rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none`}
+              } rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none text-sm md:text-base`}
             />
             {errors.password && (
               <p className="text-red-500 text-sm font-bold">{errors.password.message}</p>
@@ -137,16 +139,16 @@ export default function LoginPage() {
           <button
             disabled={isSubmitting}
             type="submit"
-            className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300"
+            className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300 text-sm md:text-base"
           >
             Masuk
           </button>
 
-          <div className="text-secret-text items-center text-center mt-6">
+          <div className="text-secret-text items-center text-center mt-6 text-sm md:text-base">
             Belum punya akun?
             <Link
               href="/register"
-              className="text-secret-text font-bold hover:underline hover:text-white pl-2"
+              className="text-secret-text font-bold hover:underline hover:text-white pl-2 text-sm md:text-base"
             >
               Daftar di sini
             </Link>
@@ -155,14 +157,11 @@ export default function LoginPage() {
       </form>
 
       {/* Bagian Kanan */}
-      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1">
+      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
         <BiBrain className="text-9xl text-white" />
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
         </div>
       </div>

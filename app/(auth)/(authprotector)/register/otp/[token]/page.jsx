@@ -84,15 +84,16 @@ export default function OtpPage() {
       );
       await toast.promise(register, {
         loading: "Loading...",
-        success: "OTP successfully verified",
-        error: "OTP failed to verify",
+        success: "OTP Berhasil Diverifikasi",
+        error: "OTP Gagal Diverifikasi",
       });
-      toast.success("Otp successfully verified");
-      toast.loading("Redirecting Please Wait...");
+      toast.loading("Mengalihkan...");
       await sleepRedirect();
     } catch (err) {
       if (err.response.data.message === "jwt expired") {
+        toast.error("Sesi Anda Telah Habis Silahkan Register Ulang");
         push("/register");
+        return;
       }
       toast.error(err.response.data.message);
     }
@@ -100,19 +101,19 @@ export default function OtpPage() {
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
       <form
-        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1"
+        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1"
         onSubmit={handleSubmit(handleOtp)}
       >
         <div className="w-full lg:w-2/3 text-black flex flex-col">
-          <h1 className="font-bold text-3xl text-whit  lg:mb-12 text-left">
+          <h1 className="font-bold text-xl md:text-3xl text-whit  lg:mb-12 text-left">
             Masukkan OTP
           </h1>
 
-          <p className="text-base text-secret-text mb-4">
+          <p className="text-sm md:text-base text-secret-text mb-4">
             Ketik 6 digit kode yang dikirimkan ke{" "}
             <span className="font-bold">{email}</span>
           </p>
-          <div className="mb-4 lg:mb-8 flex gap-6">
+          <div className="mb-4 lg:mb-8 flex gap-1 md:gap-6">
             {otp.map((_, index) => (
               <Otp
                 key={index}
@@ -125,7 +126,7 @@ export default function OtpPage() {
               />
             ))}
           </div>
-            <p className="text-base text-secret-text mb-4 text-center font-bold">
+            <p className=" text-secret-text mb-4 text-center font-bold text-sm md:text-base">
               {tokenData?.expiredAt}
             </p>
        
@@ -139,14 +140,11 @@ export default function OtpPage() {
         </div>
       </form>
 
-      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1">
+      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
         <BiBrain className="text-9xl text-white" />
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
         </div>
       </div>

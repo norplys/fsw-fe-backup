@@ -8,19 +8,18 @@ export default function MyClassCard({
   name,
   image,
   rating,
-  teacher,
+  author,
   category,
   level,
   totalModule,
   totalMinute,
   id,
-  totalProgress
+  totalProgress,
 }) {
-  totalProgress = "50%"
   return (
     <Link
       href={`course/${id}`}
-      className="flex flex-col course w-full h-[250px] bg-secret-background rounded-[15px] duration-300 shadow-xl hover:scale-105 hover:shadow-2xl"
+      className="flex flex-col course w-full h-[250px] bg-secret-background rounded-[15px] duration-300 shadow-lg hover:shadow-2xl scale-95 hover:scale-100"
     >
       <div className="w-full h-[80px] ">
         <Image
@@ -45,29 +44,38 @@ export default function MyClassCard({
         <div className="text-black">
           <h2 className="text-base font-bold">{name}</h2>
 
-          <p className="text-sm">by {teacher}</p>
+          <p className="text-sm">by {author}</p>
         </div>
 
         <div className="flex justify-between mr-[10px] mt-1">
           <div className="flex gap-1 leading-loose">
-            <GiRank3 className="text-green-700 text-lg"/>
+            <GiRank3 className="text-green-700 text-lg" />
             <p className="font-semibold text-xs text-secret-text3">
               {level} Level
             </p>
           </div>
           <div className="flex gap-1 leading-loose">
-          <FaBookBookmark className="text-green-700 text-md"/>
-            <p className="text-xs font-semibold text-secret-text3">{totalModule} Modul</p>
+            <FaBookBookmark className="text-green-700 text-md" />
+            <p className="text-xs font-semibold text-secret-text3">
+              {totalModule} Modul
+            </p>
           </div>
           <div className="flex gap-1 leading-loose">
-          <FaRegClock className="text-green-700  text-md"/>
-            <p className="text-xs font-semibold text-secret-text3">{totalMinute} Menit</p>
+            <FaRegClock className="text-green-700  text-md" />
+            <p className="text-xs font-semibold text-secret-text3">
+              {totalMinute} Menit
+            </p>
           </div>
         </div>
-        <div className="w-[150px] bg-secret-pink rounded-[25px]">
-            <div className="bg-secret-darkblue rounded-[25px] py-1" style={{width : totalProgress}}>
-            <p className="text-xs font-bold text-secret-background pl-3">{totalProgress}</p>
-            </div>
+        <div className="w-[150px] bg-secret-pink rounded-[25px] max-h-4">
+          <div
+            className="bg-secret-darkblue rounded-[25px]"
+            style={{ width: `${totalProgress}%` }}
+          >
+            <p className="text-xs font-bold text-secret-background pl-3">
+              {totalProgress}%
+            </p>
+          </div>
         </div>
       </div>
     </Link>

@@ -28,13 +28,13 @@ export default function LoginAdmin() {
 		  }
 		const login = axios.post("https://final-project-online-course.et.r.appspot.com/v1/login/admin", data);
 		const res = await toast.promise(login, {
-			success: "Login Success",
+			success: "Login Berhasil",
 			loading: "Loading...",
-			error: "Login Failed",
+			error: "Login Gagal",
 			duration: 2000,
 		})
 		localStorage.setItem("token", res.data.data.token);
-		toast.loading("Redirecting...", { duration: 2000 });
+		toast.loading("Sedang Mengalihkan...", { duration: 2000 });
 		await sleepRedirect();
 		} catch (error) {
 		toast.error(error.response.data.message);
@@ -57,16 +57,20 @@ export default function LoginAdmin() {
       {/* Bagian Kiri */}
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan overflow-hidden flex-1"
+        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1"
       >
         <div className="w-full lg:w-2/3 text-black flex flex-col">
+<<<<<<< HEAD
           <h1 className="font-bold text-3xl text-white lg:mb-12 text-left">
+=======
+          <h1 className="font-bold text-xl md:text-3xl text-black lg:mb-12 text-left">
+>>>>>>> b82c9a424535fccf84739663813a1bd5c6d02163
             Selamat Datang !
           </h1>
 
           {/* Email/No telp */}
           <div className="mb-4 lg:mb-8">
-            <label htmlFor="user" className="font-bold text-secret-text">
+            <label htmlFor="user" className="font-bold text-secret-text text-sm md:text-base">
               Email/No Telpon
             </label>
 
@@ -84,7 +88,7 @@ export default function LoginAdmin() {
               id="user"
               className={` ${
                 errors.user ? "border-red-500" : ""
-              } border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none`}
+              } border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none text-sm md:text-base`}
             />
             {errors.user && (
               <p className="text-red-500 text-sm font-bold">{errors.user.message}</p>
@@ -92,13 +96,13 @@ export default function LoginAdmin() {
           </div>
 
           <div className="grid grid-cols-2 mb-4 lg:mb-8">
-            <label htmlFor="password" className=" font-bold text-secret-text">
+            <label htmlFor="password" className=" font-bold text-secret-text text-sm md:text-base">
               Password
             </label>
 
             <Link
               href="login/forgot-password"
-              className="text-secret-text font-bold text-base hover:underline hover:text-white text-right"
+              className="text-secret-text font-bold  hover:underline hover:text-white text-right text-sm md:text-base"
             >
               Lupa Kata Sandi ?
             </Link>
@@ -117,7 +121,7 @@ export default function LoginAdmin() {
               placeholder="Password"
               className={`border-2 ${
                 errors.password ? "border-red-500" : ""
-              } rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none`}
+              } rounded-2xl w-full p-2 text-secret-text col-span-2 mt-4 shadow-2xl focus:shadow-none focus:outline-none text-sm md:text-base`}
             />
             {errors.password && (
               <p className="text-red-500 text-sm font-bold">{errors.password.message}</p>
@@ -128,16 +132,16 @@ export default function LoginAdmin() {
           <button
             disabled={isSubmitting}
             type="submit"
-            className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300"
+            className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300 text-sm md:text-base"
           >
             Masuk
           </button>
 
-          <div className="text-secret-text items-center text-center mt-6">
+          <div className="text-secret-text items-center text-center mt-6 text-sm md:text-base">
             Bukan Admin ? 
             <Link
               href="/login"
-              className="text-secret-text font-bold hover:underline hover:text-white pl-2"
+              className="text-secret-text font-bold hover:underline hover:text-white pl-2 text-sm md:text-base"
             >
               Login Disini
             </Link>
@@ -146,14 +150,11 @@ export default function LoginAdmin() {
       </form>
 
       {/* Bagian Kanan */}
-      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 flex items-center justify-center flex-1">
+      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
         <BiBrain className="text-9xl text-white" />
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row items-center">
           <h1 className="text-7xl text-secret-text flex items-center font-bold">
-            Skill
-          </h1>
-          <h1 className="text-7xl text-secret-text font-bold rounded-xl">
-            HUB
+            SkillHUB
           </h1>
 		  <h1 className="text-xl text-secret-text3 font-bold rounded-xl">
             Admin

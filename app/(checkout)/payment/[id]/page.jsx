@@ -69,27 +69,34 @@ export default function KelasPembayaran () {
     const date = newDate.slice(0, 3).join("-");
     return `${date} ${time}`;
   };
+  const priceFormat = (price) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(price);
+  }
   return (
     <div>
       {/* KEMBALI DAN NOTIFIKASI BATAS PEMBAYARAN */}
       <div className="md:px-[100px] px-5 py-6 shadow-md">
         {/* LINK KEMBALI */}
-        <Link href="#" className="flex gap-5">
+        <Link href="#" className="flex gap-5 text-sm md:text-base items-center">
           <FaArrowLeft />
-          <h1 className="font-bold">Kembali</h1>
+          <h1 className="font-bold ">Kembali</h1>
         </Link>
 
-        <div className="bg-secret-red mx-auto px-5 py-3 rounded-xl md:w-[800px] mt-2">
+        <div className="bg-secret-red mx-auto md:mx-auto px-5 py-3 rounded-xl md:w-[500px] lg:w-[800px] xl:w-[800px] mt-2">
           <h1 className="text-center text-white font-bold md:text-[16px] text-[12px]">
-            Selesaikan Pembayaran sebelum {formatDate()}
+            Selesaikan Pembayaran sebelum <div>{formatDate()}</div>
           </h1>
         </div>
       </div>
-      <div className="flex md:flex-row flex-col md:px-[100px] h-[600px] mt-10 justify-center gap-5">
+      <div className="flex md:flex-col lg:flex-row xl:flex-row 2xl:flex-row flex-col max-w-[1440px] md:px-[100px] xl:px-[215px] 2xl:px-[215px] h-[600px] md:mt-10  justify-center mx-auto gap-6">
         {/* KIRI */}
         {/* kotak Pembayaran */}
-        <div className="w-[417px]">
-          <div className= "max-w-md rounded-2xl bg-white p-2">
+        <div className="md:w-[417px] sm:mx-auto sm:w-[417px] lg:w-[420px] xl:w-[420px] 2xl:w-[420px] md:mt-20 xl:mt-0 2xl:mt-0">
+          <div className= "max-w-md rounded-2xl bg-white p-2 mx-auto">
             <Disclosure className="sm:w-[600px]">
               {({ open }) => (
                 <>
@@ -205,7 +212,7 @@ export default function KelasPembayaran () {
 
         {/* KANAN */}
         {/* PEMBAYARAN KELAS */}
-        <div className="md:w-[400px] w-[300px] rounded-[16px] shadow-xl flex-grow-0 flex-shrink-0 h-[372px] bg-secret-blue pt-2">
+        <div className="md:w-[400px] w-full rounded-[16px] shadow-xl flex-grow-0 flex-shrink-0 h-[372px] bg-secret-blue pt-2 px-2 mx-auto">
           <h1 className="font-bold text-center">Pembayaran Kelas</h1>
           {/* KOTAK COURSE */}
           <div className="md:w-[323px] h-[150px] shadow-md rounded-[15px] mx-auto mt-3 bg-white">
@@ -227,19 +234,19 @@ export default function KelasPembayaran () {
             <div className="flex mt-5 justify-between">
               {/* HARGA */}
               <div className="flex flex-col gap-2">
-                <h4 className="font-bold md:text-[16px]">Harga</h4>
-                <p className="md:text-[14px] text-[12px]">Rp {data.price}</p>
+                <h4 className="font-bold text-sm md:text-[16px]">Harga</h4>
+                <p className="md:text-[14px] text-[12px]">{priceFormat(data.price)}</p>
               </div>
               {/* PPN */}
               <div className="flex flex-col gap-2">
-                <h4 className="font-bold">PPN 11%</h4>
-                <p className="md:text-[14px] text-[12px]">Rp {data.tax}</p>
+                <h4 className="font-bold text-sm">PPN 11%</h4>
+                <p className="md:text-[14px] text-[12px]">{priceFormat(data.tax)}</p>
               </div>
               {/* TOTAL BAYAR */}
               <div className="flex flex-col gap-2">
-                <h4 className="font-bold">Total Bayar</h4>
+                <h4 className="font-bold text-sm">Total Bayar</h4>
                 <p className="font-bold text-secret-text md:text-[14px] text-[12px]">
-                  Rp {data.total}
+                  {priceFormat(data.total)}
                 </p>
               </div>
             </div>

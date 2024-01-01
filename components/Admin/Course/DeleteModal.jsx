@@ -1,28 +1,39 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import axios from "axios";
-import {useQueryClient} from "react-query";
-import toast from "react-hot-toast"; 
+import { useQueryClient } from "react-query";
+import toast from "react-hot-toast";
+import { VscLoading } from "react-icons/vsc";
 
-export default function DeleteModal({ isOpen, setIsOpen,  id, token }) {
+export default function DeleteModal({ isOpen, setIsOpen, id, token }) {
   const [loading, setLoading] = useState(false);
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const handleDelete = async () => {
-    setLoading(true);
     try {
-      setIsOpen(false);
-      await axios.delete(`https://final-project-online-course.et.r.appspot.com/v1/admin/courses/${id.current}`, {
-        headers: {
+      setLoading(true);
+      const res = axios.delete(
+        `https://final-project-online-course.et.r.appspot.com/v1/admin/courses/${id.current}`,
+        {
+          headers: {
             Authorization: `Bearer ${token}`,
-        },
+          },
+        }
+      );
+      await toast.promise(res, {
+        loading: "Loading...",
+        success: "Berhasil menghapus kelas",
+        error: "Gagal menghapus kelas",
       });
+      queryClient.invalidateQueries("adminCourses");
+      queryClient.invalidateQueries("paymentStatus");
+      queryClient.invalidateQueries("adminStatistic");
+
       setLoading(false);
-    queryClient.invalidateQueries("adminCourses");
       setIsOpen(false);
     } catch (error) {
       setLoading(false);
-    toast.error(error.message);   
+      toast.error(error.message);
     }
   };
 
@@ -57,22 +68,43 @@ export default function DeleteModal({ isOpen, setIsOpen,  id, token }) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="relative w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-
                 <Dialog.Title
                   as="h3"
                   className="mb-5 text-xl font-bold text-center"
                 >
-                  Are You Sure Want To Delete This Course?
+                  Apakah anda yakin ingin menghapus kelas ini ?
                   <br />
                   <span className="bg-secret-red px-2 rounded-md text-white">
-                    THIS ACTION CANNOT BE UNDONE !
+                    Ini tidak dapat diurungkan
                   </span>
                 </Dialog.Title>
 
                 <div className="flex items-center justify-center border-t-4 pt-3">
                   <section className="flex w-lg gap-7">
-                    <button className="bg-secret-pink text-white rounded-xl font-bold px-2 text-lg " onClick={handleDelete}>Delete</button>
-                    <button className="bg-secret-darkblue text-white rounded-xl font-bold px-2 text-lg" onClick={() => setIsOpen(false)}>Cancel</button>
+                    {loading ? (
+                      <div
+                        className="bg-secret-pink text-white rounded-xl font-bold px-2 text-lg flex items-center justify-center cursor-progress"
+                        
+                      >
+                        <VscLoading className="animate-spin mr-2" />
+                        Loading...
+                      </div>
+                    ) : (
+                      <>
+                        <button
+                          className="bg-secret-pink text-white rounded-xl font-bold px-2 text-lg "
+                          onClick={handleDelete}
+                        >
+                          Delete
+                        </button>
+                        <button
+                          className="bg-secret-darkblue text-white rounded-xl font-bold px-2 text-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    )}
                   </section>
                 </div>
               </Dialog.Panel>
