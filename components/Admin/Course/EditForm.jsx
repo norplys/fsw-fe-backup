@@ -15,12 +15,13 @@ import { useQuery } from "react-query";
 import { VscLoading } from "react-icons/vsc";
 
 export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
+  console.log(id.current);
   const { data, isLoading, isError, error } = useQuery(
     ["course", id, token],
     async () => {
       if (!id.current) return false;
       const res = await axios.get(
-        `https://final-project-online-course.et.r.appspot.com/v1/course/${id.current}`,
+        `https://final-project-online-course.et.r.appspot.com/v1/admin/courses/${id.current}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -30,6 +31,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
       return res.data.data;
     }
   );
+  console.log(data);
   const category = {
 		"UI/UX Design" : 1,
 		"Product Management" : 2,
@@ -185,6 +187,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
   };
 
   const formatData = (data) => {
+    const defaultImage = categories.find((item) => item.id === Number(data.kategori)).image;
     data = { ...data, image: imageFile[0] };
     const newCourseChapter = data.chapter.map((item) => {
       return {
@@ -200,10 +203,10 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
         }),
       };
     });
-    const newData = {
+    let newData = {
       course_category_id: data.kategori,
       image:
-      imageFile?.length === 0 ? null : imageFile[0],
+      imageFile?.length === 0 ?  defaultImage : imageFile[0],
       name: data.nama,
       author: data.author,
       price: data.harga,
@@ -226,7 +229,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
   const onSubmit = async (data) => {
     try{
     const newData = formatData(data);
-    const res =  axios.put("https://final-project-online-course.et.r.appspot.com/v1/admin/courses", newData, {
+    const res =  axios.put(`https://final-project-online-course.et.r.appspot.com/v1/admin/courses/${id.current}`, newData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -238,10 +241,9 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     });
     setIsOpen(false);
   } catch (error) {
+    console.log(error);
     toast.error(error.response.data.message || "Terjadi kesalahan");
   }
-
-	console.log(newData);
   };
 
   return (

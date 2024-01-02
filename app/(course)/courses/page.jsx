@@ -178,10 +178,10 @@ useEffect(() => {
     levelFilterButton,
   ];
   return (
-    <div className="bg-secret-grey2 px-3 md:px-[150px] pt-4 w-full font-montserrat">
-      <section className="md:max-w-7xl m-auto mb-60 md:mb-0">
-        <div className="flex justify-between md:flex-row flex-col mb-10 gap-2">
-          <h1 className="text-secret-text font-bold text-[24px]">
+    <div className="bg-secret-grey2   md:px-[50px]  pt-4 w-full font-montserrat">
+      <section className="p-2 md:max-w-7xl m-auto mb-60 md:mb-0">
+        <div className="flex  justify-between md:flex-row flex-col mb-10 gap-2 ">
+          <h1 className="text-secret-text font-bold md:text-[24px]">
             Kelas Berjalan
           </h1>
 
@@ -193,21 +193,21 @@ useEffect(() => {
               type="text"
               placeholder="Cari Kelas..."
               name="search"
-              className="text-black text-sm focus:outline-none w-full"
+              className="text-black text-xs md:text-sm focus:outline-none w-full"
               id="search-class"
               value={searchValue}
             />
 
             <button htmlFor="search-class" className="flex justify-center items-center p-2 bg-secret-darkblue hover:scale-110 duration-300" >
-              <BiSearchAlt className="text-secret-background text-xl"/>
+              <BiSearchAlt className="text-secret-background md:text-xl"/>
             </button>
           </form>
         </div>
 
-        <div className="flex lg:flex-row gap-3 md:gap-[88px]">
+        <div className="flex justify-center items-center lg:justify-start lg:items-start flex-col lg:flex-row gap-10  md:gap-[88px]">
           <form
-            className="bg-secret-background border shadow-md flex flex-col w-64 p-5
-            md:h-[580px] h-[680px] rounded-[16px] gap-5"
+            className="bg-secret-background border shadow-md flex flex-col w-64 pb-0  p-5
+            h-[580px]  rounded-[16px] gap-5"
           >
             {isLoadingCategories ? 
               <FilterLoading/>
@@ -243,7 +243,7 @@ useEffect(() => {
 
           <div className="container">
 
-            <div className="flex gap-2 md:gap-7 mb-5 text-sm">
+            <div className="flex gap-2 md:gap-7 pb-5 text-sm overflow-x-scroll md:overflow-visible">
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton
@@ -256,7 +256,7 @@ useEffect(() => {
                 );
               })}
             </div>
-            <div className="flex flex-col overflow-x-scroll min-h-screen gap-3 p-3 md:grid md:grid-cols-2 md:max-w-3xl md:overflow-x-hidden content-start md:gap-6 hide-scroll-bar">
+            <div className="flex flex-col overflow-x-scroll min-h-screen gap-3 md:p-3 md:grid md:grid-cols-2 md:max-w-3xl md:overflow-x-hidden content-start md:gap-6 hide-scroll-bar">
               {isLoading ? 
                 array.map((item, index) => {
                   return <ClassCardLoading key={index} />;
