@@ -15,7 +15,6 @@ import { useQuery } from "react-query";
 import { VscLoading } from "react-icons/vsc";
 
 export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
-  console.log(id.current);
   const { data, isLoading, isError, error } = useQuery(
     ["course", id, token],
     async () => {
@@ -31,7 +30,6 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
       return res.data.data;
     }
   );
-  console.log(data);
   const category = {
 		"UI/UX Design" : 1,
 		"Product Management" : 2,
