@@ -59,7 +59,7 @@ export default function ClassCategoriesCard({
           <p className="text-sm">by {teacher}</p>
         </div>
 
-        <div className="flex justify-between mr-[10px] mt-1">
+        <div className="flex justify-between mr-[10px] mt-1 flex-wrap">
           <div className="flex gap-1 leading-loose">
             <GiRank3 className="text-green-700 text-lg"/>
             <p className="font-semibold text-xs text-secret-text3">
