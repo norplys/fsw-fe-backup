@@ -180,6 +180,7 @@ useEffect(() => {
   return (
     <div className="bg-secret-grey2   md:px-[50px]  pt-4 w-full font-montserrat">
       <section className="p-2 md:max-w-7xl m-auto  md:mb-0">
+
         <div className="flex  justify-between md:flex-row flex-col mb-10 gap-2 ">
           <h1 className="text-secret-text font-bold md:text-[24px]">
             Kelas Berjalan
@@ -205,6 +206,7 @@ useEffect(() => {
         </div>
 
         <div className="flex justify-center items-center lg:justify-start lg:items-start flex-col lg:flex-row gap-10">
+
           <form
             className="bg-secret-background border shadow-md flex flex-col w-64 pb-0  p-5
             h-[580px]  rounded-[16px] gap-5"
