@@ -10,6 +10,7 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import FilterLoading from "@/components/FilterLoading";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import Link from "next/link";
 const array = [1, 2, 3, 4];
 const levelFilterButton = {
@@ -55,6 +56,7 @@ export default function MyCourses() {
   const router = useRouter();
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams);
+  const [filterOpen, setFilterOpen] = useState(false);
   const token = localStorage.getItem("token");
   const {register, handleSubmit} = useForm({
     defaultValues: {
@@ -182,7 +184,7 @@ const onChange = (e) => {
   ];
   return (
     <div className="bg-secret-grey2 md:px-[50px] pt-4 w-full font-montserrat min-h-screen">
-      <section className="max-w-7xl m-auto">
+      <section className="max-w-7xl m-auto p-2 md:p-0">
         <div className="flex justify-between md:flex-row flex-col p-2 md:p-0">
           <h1 className="text-secret-text md:mb-10 mb-5 font-bold text-base md:text-[24px]">
             Kelas Berjalan
@@ -208,10 +210,11 @@ const onChange = (e) => {
         </div>
 
         <div className="flex lg:flex-row flex-col gap-10 ">
+           <button className="bg-secret-darkblue w-full h-4 rounded-xl lg:hidden flex justify-center text-white font-bold" onClick={() => setFilterOpen(!filterOpen)}>{filterOpen ? <IoIosArrowUp/> : <IoIosArrowDown/>}</button>
 
           <form
-            className="bg-secret-background border shadow-md flex flex-col w-64 p-5 pb-0
-            h-[580px] rounded-[16px] gap-5 mx-auto"
+            className={`bg-secret-background border shadow-md lg:flex flex-col w-64 p-5 pb-0
+            h-[580px] rounded-[16px] gap-5 mx-auto ${filterOpen ? "flex" : "hidden"}`}
           >
             {isLoadingCategories ? 
               <FilterLoading/>

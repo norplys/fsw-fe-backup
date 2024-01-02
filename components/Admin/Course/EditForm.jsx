@@ -571,11 +571,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                               minLength: {
                                 value: 3,
                                 message: "Target Kelas minimal 3 karakter",
-                              },
-                              maxLength: {
-                                value: 50,
-                                message: "Target Kelas maksimal 50 karakter",
-                              },
+                              }
                             })}
                           />
                           {errors?.targetKelas?.[index] && (
