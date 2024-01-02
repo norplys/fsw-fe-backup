@@ -14,14 +14,14 @@ const PaymentsPage = () => {
 	return (
 		<>
 			<div className='flex items-center justify-between mb-5'>
-				<h1 className='text-xl font-bold text-black'>Status Pembayaran</h1>
+				<h1 className='md:text-xl font-bold text-black'>Status Pembayaran</h1>
 			</div>
 
 			<div className='w-full mb-5 overflow-x-auto'>
 				<table className='w-full whitespace-nowrap'>
 					<thead>
-						<tr className='w-full h-10 text-sm font-semibold leading-none tracking-wide text-gray-800 bg-secret-background'>
-							<th className='w-1/7 min-w-[5rem] text-start px-5'>Username</th>
+						<tr className='w-full h-10 text-xs md:text-sm font-semibold leading-none tracking-wide text-gray-800 bg-secret-background'>
+							<th className='w-1/7 min-w-[5rem] text-start px-5 '>Username</th>
 							<th className='w-1/7 min-w-[7rem] text-start px-5'>Kategori</th>
 							<th className='w-1/7 min-w-[12rem] text-start px-5'>Nama Kelas</th>
 							<th className='w-1/7 min-w-[7rem] text-start px-5'>Status</th>
@@ -35,7 +35,7 @@ const PaymentsPage = () => {
 						data?.map((payment) => (
 							<tr
 								key={payment.id}
-								className='w-full h-16 text-sm leading-none text-gray-800 bg-white border-t border-b border-gray-100 hover:bg-gray-100'>
+								className='w-full h-16 text-xs md:text-sm leading-none text-gray-800 bg-white border-t border-b border-gray-100 hover:bg-gray-100'>
 								<td className='px-5'>
 									<span className='font-semibold'>{payment.user}</span>
 								</td>

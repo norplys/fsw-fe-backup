@@ -53,21 +53,17 @@ const CoursesPage = () => {
   return (
     <>
     <div className="container mx-auto p-5">
-      {/* <section className="py-5 xl:py-20"> */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
-          {/* {dashboard?.map((item, index) => (
-            <AdminCard statistic={item} key={index} />
-          ))} */}
         </div>
       {/* </section> */}
       <div className="flex flex-col md:flex-row items-center justify-between mb-5">
-        <h1 className="text-xl font-bold text-black mb-4 md:mb-0">Kelola Kelas</h1>
+        <h1 className="md:text-xl font-bold text-black mb-4 md:mb-0">Kelola Kelas</h1>
         <div className="flex items-center space-x-0 md:space-x-3 mb-3 md:mb-0">
           <button
-            className="flex items-center px-4 py-2 space-x-2 text-sm font-semibold border rounded-full text-secret-darkblue border-secret-darkblue"
+            className="flex items-center px-4 py-2 space-x-2 text-xs md:text-sm font-semibold border rounded-full text-secret-darkblue border-secret-darkblue"
             onClick={() => setIsOpen(true)}
           >
-            <BiPlus className="w-5 h-5 mr-2" />
+            <BiPlus className=" text-base md:text-xl mr-2" />
             Tambah Kelas
           </button>
         </div>
@@ -76,7 +72,7 @@ const CoursesPage = () => {
       <div className="w-full mb-5 overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
-            <tr className="text-sm font-semibold leading-none tracking-wide text-gray-800 bg-secret-background h-10">
+            <tr className="text-xs md:text-sm font-semibold leading-none tracking-wide text-gray-800 bg-secret-background h-10">
               <th className="w-1/7 min-w-[5rem] text-start px-5">Kode Kelas</th>
               <th className="w-1/7 min-w-[7rem] text-start px-5">Kategori</th>
               <th className="w-1/7 min-w-[12rem] text-start px-5">
