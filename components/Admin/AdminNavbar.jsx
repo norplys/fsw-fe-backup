@@ -4,10 +4,6 @@ import { IconButton } from '@/components/Admin/IconButton';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
-export const admin = {
-	name: 'Admin',
-};
-
 export const AdminNavbar = ({ setOpen, open }) => {
 	const { register, handleSubmit } = useForm();
 	const { push } = useRouter();
@@ -24,7 +20,7 @@ export const AdminNavbar = ({ setOpen, open }) => {
 	return (
 		<nav className='sticky top-0 left-0 h-20 bg-secret-background z-10'>
 			<div className='container flex items-center justify-between h-full px-2 mx-auto xl:px-10'>
-				<h2 className='text-sm lg:text-lg font-bold text-secret-darkblue mx-5'>Hi, {admin?.name}</h2>
+				<h2 className='text-xs md:text-sm lg:text-lg font-bold text-secret-darkblue mx-5'>Hi, Admin</h2>
 				<div className='flex items-center w-full max-w-[300px] space-x-4'>
 					<form className='relative w-full' onSubmit={handleSubmit(handleSearch)}>
 						<input
@@ -35,7 +31,7 @@ export const AdminNavbar = ({ setOpen, open }) => {
 							}
 							type='text'
 							placeholder='Cari Kursus...'
-							className='w-full px-5 py-3 text-sm border border-gray-300 rounded-xl focus:outline-none form-input focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
+							className='w-full px-5 py-3 text-xs md:text-sm border border-gray-300 rounded-xl focus:outline-none form-input focus:ring-secret-darkblue focus:border-transparent focus:ring-opacity-30 focus:ring'
 						/>
 						<button className='absolute transform -translate-y-1/2 right-2 top-1/2' type='submit'>
 							<IconButton icon={BiSearchAlt} variants='primary' />

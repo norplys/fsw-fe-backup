@@ -118,11 +118,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
         }),
       };
     });
-    console.log(categoryData);
     const newData = {
       course_category_id: data.kategori,
       image:
-        imageFile?.length === 0 ? defaultImage : defaultImage, 
+        imageFile?.length === 0 ? defaultImage : imageFile[0], 
       name: data.nama,
       author: data.author,
       price: data.harga,
@@ -208,7 +207,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
               <Dialog.Panel className="w-full max-w-screen-md p-5 xl:p-10 transition-all transform bg-white shadow-xl rounded-2xl max-h-[80vh] overflow-y-auto relative">
                 <Dialog.Title
                   as="h3"
-                  className="mb-5 text-xl font-bold text-center text-secret-darkblue"
+                  className="mb-5 md:text-xl font-bold text-center text-secret-darkblue"
                 >
                   Tambah Kelas
                 </Dialog.Title>
@@ -233,14 +232,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="nama"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Nama Kelas
                       </label>
                       <input
                         type="text"
                         placeholder="Nama Kelas"
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none bg-slate-50'
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none bg-slate-50'
 												${errors.nama ? "border-red-500 " : ""}`}
                         {...register("nama", {
                           required: "Nama Kelas harus diisi",
@@ -265,13 +264,13 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="kategori"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Kategori
                       </label>
                       <select
                         className={`
-												w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none'
+												w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none'
 												${errors.kategori ? "border-red-500 " : ""}`}
                         {...register("kategori", {
                           required: "Kategori harus diisi",
@@ -295,14 +294,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="kode"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Kode Kelas
                       </label>
                       <input
                         type="text"
                         placeholder="Kode"
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.kode ? "border-red-500" : ""}`}
                         {...register("kode", {
                           required: "Kode harus diisi",
@@ -319,14 +318,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="telegram"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Link Telegram
                       </label>
                       <input
                         type="text"
                         placeholder="https://www.tele.com/"
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.telegram ? "border-red-500" : ""}`}
                         {...register("telegram", {
                           required: "Telegram harus diisi",
@@ -344,14 +343,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="intro"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Intro Video
                       </label>
                       <input
                         type="text"
                         placeholder="https://www.youtube.com/"
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.intro ? "border-red-500" : ""}`}
                         {...register("intro", {
                           required: "Intro harus diisi",
@@ -369,14 +368,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="author"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Author
                       </label>
                       <input
                         type="text"
                         placeholder="Skillvoute"
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.author ? "border-red-500" : ""}`}
                         {...register("author", {
                           required: "Author harus diisi",
@@ -393,12 +392,12 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="tipe"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Tipe
                       </label>
                       <select
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.tipe ? "border-red-500" : ""}`}
                         {...register("tipe", {
                           required: "Tipe harus diisi",
@@ -419,12 +418,12 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-4">
                       <label
                         htmlFor="level"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Level
                       </label>
                       <select
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none ',
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none ',
 												${errors.level ? "border-red-500" : ""}`}
                         {...register("level", {
                           required: "Level harus diisi",
@@ -447,14 +446,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                       <div className="mb-4">
                         <label
                           htmlFor="harga"
-                          className="block mb-2 text-base font-semibold text-gray-700 "
+                          className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                         >
                           Harga
                         </label>
                         <input
                           type="number"
                           placeholder="Harga"
-                          className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                          className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.harga ? "border-red-500" : ""}`}
                           {...register("harga", {
                             required: "Harga harus diisi",
@@ -482,13 +481,13 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-6">
                       <label
                         htmlFor="targetKelas"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Target Kelas
                       </label>
                       <button
                         type="button"
-                        className="text-base font-bold text-white bg-secret-darkblue px-2 py-1 rounded-lg"
+                        className="text-xs md:text-base font-bold text-white bg-secret-darkblue px-2 py-1 rounded-lg"
                         onClick={() => append(" ")}
                       >
                         Tambah Target Kelas
@@ -501,7 +500,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                           <input
                             type="text"
                             placeholder="Target Kelas"
-                            className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                            className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 							${errors?.targetKelas?.[index] ? "border-red-500" : ""}`}
                             {...register(`targetKelas.${index}`, {
                               required: "Target Kelas harus diisi",
@@ -523,7 +522,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                           {index !== 0 ? (
                             <button
                               type="button"
-                              className="text-base font-bold text-white bg-red-500 p-1 rounded-lg"
+                              className="text-xs md:text-base font-bold text-white bg-red-500 p-1 rounded-lg"
                               onClick={() => remove(index)}
                             >
                               Hapus Target Kelas
@@ -541,13 +540,13 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-6">
                       <label
                         htmlFor="chapter"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Chapter
                       </label>
                       <button
                         type="button"
-                        className="text-base font-bold text-white bg-secret-darkblue px-2 py-1 rounded-lg"
+                        className="text-xs md:text-base font-bold text-white bg-secret-darkblue px-2 py-1 rounded-lg"
                         onClick={() =>
                           append2([
                             {
@@ -575,7 +574,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                               })}
                               type="text"
                               placeholder="Nama Chapter"
-                              className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none ${
+                              className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none ${
                                 errors.chapter?.[index]?.name
                                   ? "border-red-500"
                                   : ""
@@ -597,7 +596,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                               })}
                               type="number"
                               placeholder="60 Menit"
-                              className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none ${
+                              className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none ${
                                 errors.chapter?.[index]?.duration
                                   ? "border-red-500"
                                   : ""
@@ -611,7 +610,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                             {index !== 0 ? (
                               <button
                                 type="button"
-                                className="text-base font-bold text-white bg-red-500 p-1 rounded-lg"
+                                className="text-xs md:text-base font-bold text-white bg-red-500 p-1 rounded-lg"
                                 onClick={() => remove2(index)}
                               >
                                 Hapus Chapter
@@ -641,14 +640,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-6">
                       <label
                         htmlFor="onboarding"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Onboarding
                       </label>
                       <textarea
                         rows={3}
                         placeholder="Onboarding..."
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.onboarding ? "border-red-500" : ""}`}
                         {...register("onboarding", {
                           required: "Onboarding harus diisi",
@@ -673,14 +672,14 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-6">
                       <label
                         htmlFor="deskripsi"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Deskripsi
                       </label>
                       <textarea
                         rows={3}
                         placeholder="Deskripsi..."
-                        className={`w-full px-4 py-2 text-base border border-gray-300 rounded-xl focus:outline-none '
+                        className={`w-full px-4 py-2 text-xs md:text-base border border-gray-300 rounded-xl focus:outline-none '
 												${errors.deskripsi ? "border-red-500" : ""}`}
                         {...register("deskripsi", {
                           required: "Deskripsi harus diisi",
@@ -704,7 +703,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="mb-6 ">
                       <label
                         htmlFor="image"
-                        className="block mb-2 text-base font-semibold text-gray-700 "
+                        className="block mb-2 text-xs md:text-base font-semibold text-gray-700 "
                       >
                         Gambar
                       </label>
@@ -714,7 +713,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                         <div className="mb-2 flex gap-2">
                           <label
                             htmlFor="image"
-                            className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl"
+                            className="bg-secret-darkblue font-bold text-white w-fit py-1 px-2 rounded-xl text-xs md:text-base"
                           >
                             Cari File...
                           </label>
@@ -750,17 +749,17 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                     <div className="flex items-center space-x-2">
                       <button
                         type="reset"
-                        className={`w-full px-4 py-2 space-x-2 text-base font-semibold text-center border border-gray-300 rounded-full text-secret-darkblue ${isSubmitting ? "cursor-progress" : ""}`}
+                        className={`w-full px-4 py-2 space-x-2 text-xs md:text-base font-semibold text-center border border-gray-300 rounded-full text-secret-darkblue ${isSubmitting ? "cursor-progress" : ""}`}
                         disabled={isSubmitting}
                       >
-                        {isSubmitting ? <VscLoading className="animate-spin w-full text-xl font-bold"/> :  "Reset"}
+                        {isSubmitting ? <VscLoading className="animate-spin w-full text-lg md:text-xl font-bold"/> :  "Reset"}
                       </button>
                       <button
                         type="submit"
-                        className={`w-full px-4 py-2 space-x-2 text-base font-semibold text-center text-white rounded-full bg-secret-darkblue ${isSubmitting ? "cursor-progress" : ""}`}
+                        className={`w-full px-4 py-2 space-x-2 text-xs md:text-base font-semibold text-center text-white rounded-full bg-secret-darkblue ${isSubmitting ? "cursor-progress" : ""}`}
                         disabled={isSubmitting}
                       >
-                        {isSubmitting ? <VscLoading className="animate-spin w-full text-xl font-bold"/> :  "Simpan"}
+                        {isSubmitting ? <VscLoading className="animate-spin w-full text-lg md:text-xl font-bold"/> :  "Simpan"}
                       </button>
                     </div>
                   </form>

@@ -21,25 +21,25 @@ export default function Module ({ moduleIndex, control, register, errors}) {
       {fields.map((item, k) => {
         return (
           <div key={item.id} className="grid gap-2 w-full">
-            <label className="text-base py-1 font-semibold">Modul {k + 1}</label>
-            <label>Judul Modul</label>
+            <label className="text-xs md:text-base py-1 font-semibold">Modul {k + 1}</label>
+            <label className="text-xs md:text-base">Judul Modul</label>
             <input
               {...register(`chapter.${moduleIndex}.module.${k}.title`, {
                 required: "Judul modul tidak boleh kosong"
               })}
               placeholder="Judul Modul"
-              className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.title ? 'border-red-500' : 'border-gray-300'}`}
+              className={`w-full px-4 py-2 text-xs md:text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.title ? 'border-red-500' : 'border-gray-300'}`}
             />
             {errors?.chapter?.[moduleIndex]?.module?.[k]?.title && <p className='text-red-500 text-xs'>{errors?.chapter?.[moduleIndex]?.module?.[k]?.title?.message}</p>}
-            <label>Video</label>
+            <label className="text-xs md:text-base">Video</label>
             <input {...register(`chapter.${moduleIndex}.module.${k}.video`, {
               required: "URL video tidak boleh kosong",
               validate: validateUrl
             }) } 
             placeholder="URL Video"
-            className={`w-full px-4 py-2 text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.video ? 'border-red-500' : 'border-gray-300'}`}/>
+            className={`w-full px-4 py-2 text-xs md:text-base border rounded-xl ${errors?.chapter?.[moduleIndex]?.module?.[k]?.video ? 'border-red-500' : 'border-gray-300'}`}/>
             {errors?.chapter?.[moduleIndex]?.module?.[k]?.video && <p className='text-red-500 text-xs'>{errors?.chapter?.[moduleIndex]?.module?.[k]?.video?.message}</p>}
-            {k !== 0 ? <button type="button" onClick={() => remove(k)} className='text-base font-bold text-white bg-red-500 p-1 rounded-lg'>
+            {k !== 0 ? <button type="button" onClick={() => remove(k)} className='text-xs md:text-base font-bold text-white bg-red-500 p-1 rounded-lg'>
               Hapus Modul
             </button> : 
             ''}
@@ -48,7 +48,7 @@ export default function Module ({ moduleIndex, control, register, errors}) {
       })}
       <button
         type="button"
-        className="text-base font-bold text-white bg-green-500 p-1 rounded-lg"
+        className="text-xs md:text-base font-bold text-white bg-green-500 p-1 rounded-lg"
         onClick={() =>
           append({
             title: " ",
