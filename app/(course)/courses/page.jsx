@@ -10,6 +10,7 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import FilterLoading from "@/components/FilterLoading";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 
 const array = [1, 2, 3, 4];
@@ -56,6 +57,7 @@ export default function Courses() {
   const router = useRouter();
   const pathname = usePathname();
   const params = new URLSearchParams(searchParams);
+  const [filterOpen, setFilterOpen] = useState(false);
   const {register, handleSubmit} = useForm({
     defaultValues: {
       search : ''
@@ -205,9 +207,10 @@ useEffect(() => {
         </div>
 
         <div className="flex justify-center items-center lg:justify-start lg:items-start flex-col lg:flex-row gap-10">
+          <button className="bg-secret-darkblue w-full h-4 rounded-xl lg:hidden flex justify-center text-white font-bold" onClick={() => setFilterOpen(!filterOpen)}>{filterOpen ? <IoIosArrowUp/> : <IoIosArrowDown/>}</button>
           <form
-            className="bg-secret-background border shadow-md flex flex-col w-64 pb-0  p-5
-            h-[580px]  rounded-[16px] gap-5"
+            className={`bg-secret-background border shadow-md lg:flex flex-col w-64 pb-0  p-5
+            h-[580px]  rounded-[16px] gap-5 ${filterOpen ? "flex" : "hidden"}`}
           >
             {isLoadingCategories ? 
               <FilterLoading/>
