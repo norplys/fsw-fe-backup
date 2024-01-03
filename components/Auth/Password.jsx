@@ -26,6 +26,10 @@ export default function Password(){
             })
         }
         catch (err) {
+            if(err?.response?.status === 401){
+                toast.error("Password lama salah");
+                return;
+            }
             toast.error(err?.response?.data?.message);
         }
 
@@ -39,31 +43,34 @@ export default function Password(){
                                 <div className="flex flex-col md:w-[16rem] mb-2">
                                     <label htmlFor="name" className="text-gray-800 font-bold leading-tight tracking-normal text-xs md:text-sm mb-2">Masukkan Password Lama</label>
                                     <input
-                                        {...register("oldPassword", { required: true })}
+                                        {...register("oldPassword", { required : "Mohon Isi Kolom Ini" })}
                                         type="password"
                                         id="name" 
                                         className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-xs md:text-sm ${errors.oldPassword ? 'border-red-500' : ''}`} 
                                         placeholder="Text" 
                                         />
+                                    {errors.oldPassword && <p className="text-red-600">{errors.oldPassword.message}</p>}
                                 </div>
                             {/* </div> */}
                             <div className="flex flex-col md:w-[16rem] my-2">
                                 <label htmlFor="name" className="text-gray-800 font-bold leading-tight tracking-normal text-xs md:text-sm mb-2">Masukkan Password Baru</label>
                                 <input 
-                                    {...register("password1", { required: true, minLength: 8 })}
+                                    {...register("password1", { required: "Mohon Isi Kolom Ini", minLength: { value: 8, message: "Password minimal 8 karakter" }})}
                                     type="password"
                                     id="name" 
                                     className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-xs md:text-sm ${errors.password1 ? 'border-red-500' : ''}`} 
                                     placeholder="Text" />
+                                {errors.password1 && <p className="text-red-600">{errors.password1.message}</p>}
                             </div>
                             <div className="flex flex-col md:w-[16rem] my-2">
                                 <label htmlFor="name" className="text-gray-800  font-bold leading-tight tracking-normal text-xs md:text-sm mb-2">Ulangi Password Baru</label>
                                 <input
-                                    {...register("password2", { required: true, validate : value => value === watch('password1') })} 
+                                    {...register("password2", { required: "Mohon Isi Kolom Ini", validate : value => value === watch('password1') || "Password tidak sama" })} 
                                     type="password"
                                     id="name" 
                                     className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-xs md:text-sm ${errors.password2 ? 'border-red-500' : ''}`} 
                                     placeholder="Text" />
+                                {errors.password2 && <p className="text-red-600">{errors.password2.message}</p>}    
                             </div>
                             <div className="flex items-center justify-center md:w-[16rem] p-5 mb-8">
                             {isSubmitting ? 

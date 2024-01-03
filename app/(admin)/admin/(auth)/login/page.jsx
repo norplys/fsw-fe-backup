@@ -42,7 +42,11 @@ export default function LoginAdmin() {
       return;
     }
     if (error.response.status === 404) {
-      toast.error("Email atau Password Salah");
+      toast.error("Email tidak terdaftar");
+      return;
+    }
+    if (error.response.status === 500) {
+      toast.error("Terjadi Kesalahan Pada Server");
       return;
     }
 		toast.error(error.response.data.message);
