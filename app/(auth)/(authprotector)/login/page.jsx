@@ -34,7 +34,7 @@ export default function LoginPage() {
         error: `${data.user} Gagal Login`,
       }
     )
-    toast.loading('Redirecting Please Wait...', {
+    toast.loading('Sedang Mengalihkan...', {
       duration: 2000,
     })
     await sleepRedirect();
@@ -58,7 +58,6 @@ export default function LoginPage() {
     });
   };
 
-
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
       {/* Bagian Kiri */}
@@ -79,19 +78,19 @@ export default function LoginPage() {
 
             <input
               {...register("user", {
-                required: "Please fill this field",
+                required: "Mohon isi kolom ini",
                 pattern: {
                   value: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{10})+$/,
-                  message: "Please provide a valid Email Address or phone number",
+                  message: "Mohon isi dengan email/no telpon yang valid",
                 },
               })}
               type="text"
               name="user"
               placeholder="Ex: skillHUB@gmail.com / 081234567890"
               id="user"
-              className={` ${
+              className={` border-2 text-sm md:text-base rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none ${
                 errors.user ? "border-red-500" : ""
-              }text-sm md:text-base border-2 rounded-2xl w-full p-2 text-black mt-4 shadow-2xl focus:shadow-none focus:outline-none`}
+              }`}
             />
             {errors.user && (
               <p className="text-red-500 text-sm font-bold">{errors.user.message}</p>
@@ -112,10 +111,10 @@ export default function LoginPage() {
 
             <input
               {...register("password", {
-                required: "Please fill this field",
+                required: "Mohon isi kolom ini",
                 minLength: {
                   value: 8,
-                  message: "Password must be at least 8 characters",
+                  message: "Password minimal 8 karakter",
                 },
               })}
               type="password"

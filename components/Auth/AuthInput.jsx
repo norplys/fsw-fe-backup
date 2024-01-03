@@ -9,27 +9,27 @@ export default function AuthInput({
   watch,
 }) {
   const validation = {
-    required: `Please Fill This Form`,
+    required: `Mohon Isi Kolom Ini`,
   };
   if (id === "email") {
     validation.pattern = {
       value: /\S+@\S+\.\S+/,
-      message: "Please Enter Valid Email",
+      message: "Mohon Masukkan Email Yang Valid",
     };
   }
   if (id === "password1") {
     validation.minLength = {
       value: 8,
-      message: "Password Must Be At Least 8 Characters",
+      message: "Password Minimal 8 Karakter",
     };
   }
   if (id === "password2") {
     validation.minLength = {
       value: 8,
-      message: "Password Must Be At Least 8 Characters",
+      message: "Password Minimal 8 Karakter",
     };
     validation.validate = (value) =>
-      value === watch("password1") || "Password Doesn't Match";
+      value === watch("password1") || "Password Tidak Sama";
   }
   return (
     <div className="mb-4 lg:mb-8">
