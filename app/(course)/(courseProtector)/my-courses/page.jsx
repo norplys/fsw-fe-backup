@@ -219,7 +219,7 @@ const onChange = (e) => {
             {isLoadingCategories ? 
               <FilterLoading/>
              : errorCategories ? 
-              <div>Error, Please Try Again</div>
+              <div>Terjadi Kesalahan, Mohon Coba Kembali</div>
              :
            
               FilterData.map((item, index) => {
@@ -271,7 +271,7 @@ const onChange = (e) => {
                   return <ClassCardLoading key={index} />;
                 })
                : error ? 
-                <h1>An Error Occured</h1>
+                <h1>Terjadi Kesalahan, Mohon Coba Kembali</h1>
                : 
                 data.length ? 
                 data.map((item, index) => {

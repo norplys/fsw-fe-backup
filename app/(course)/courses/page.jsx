@@ -217,7 +217,7 @@ useEffect(() => {
             {isLoadingCategories ? 
               <FilterLoading/>
              : errorCategories ? 
-              <div>Error</div>
+              <div>Terjadi Kesalahan Mohon Coba Kembali</div>
              : 
               FilterData.map((item, index) => {
                 return (

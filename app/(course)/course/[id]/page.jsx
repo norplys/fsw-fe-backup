@@ -133,7 +133,7 @@ const DetailKelas = () => {
   if (isError) {
     return (
       <div className="container flex items-center justify-center h-screen">
-        <h1>{error.message} , Please try again</h1>
+        <h1>{error.message} , Mohon Coba Kembali</h1>
       </div>
     );
   }

@@ -37,6 +37,7 @@ export default function LoginAdmin() {
 		toast.loading("Sedang Mengalihkan...", { duration: 2000 });
 		await sleepRedirect();
 		} catch (error) {
+      console.log(error);
 		toast.error(error.response.data.message);
 		}
 	  };
@@ -72,10 +73,10 @@ export default function LoginAdmin() {
 
             <input
               {...register("user", {
-                required: "Please fill this field",
+                required: "Mohon Isi Kolom Ini",
                 pattern: {
                   value: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})|([0-9]{10})+$/,
-                  message: "Please provide a valid Email Address or phone number",
+                  message: "Mohon Masukkan Email/No Telpon Yang Valid",
                 },
               })}
               type="text"
@@ -105,10 +106,10 @@ export default function LoginAdmin() {
 
             <input
               {...register("password", {
-                required: "Please fill this field",
+                required: "Mohon Isi Kolom Ini",
                 minLength: {
                   value: 8,
-                  message: "Password must be at least 8 characters",
+                  message: "Password minimal 8 karakter",
                 },
               })}
               type="password"
