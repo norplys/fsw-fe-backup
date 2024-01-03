@@ -37,7 +37,14 @@ export default function LoginAdmin() {
 		toast.loading("Sedang Mengalihkan...", { duration: 2000 });
 		await sleepRedirect();
 		} catch (error) {
-      console.log(error);
+    if (error.response.status === 401) {
+      toast.error("Email atau Password Salah");
+      return;
+    }
+    if (error.response.status === 404) {
+      toast.error("Email atau Password Salah");
+      return;
+    }
 		toast.error(error.response.data.message);
 		}
 	  };
@@ -147,13 +154,13 @@ export default function LoginAdmin() {
       </form>
 
       {/* Bagian Kanan */}
-      <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
-        <BiBrain className="text-9xl text-white" />
+      <div className="bg-secret-pink p-8 xl:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
+        <BiBrain className="text-7xl xl:text-9xl text-white" />
         <div className="flex flex-col lg:flex-row items-center">
-          <h1 className="text-7xl text-secret-text flex items-center font-bold">
+          <h1 className="text-4xl xl:text-7xl text-secret-text flex items-center font-bold">
             SkillHUB
           </h1>
-		  <h1 className="text-xl text-secret-text3 font-bold rounded-xl">
+		  <h1 className="xl:text-xl text-secret-text3 font-bold rounded-xl">
             Admin
           </h1>
         </div>

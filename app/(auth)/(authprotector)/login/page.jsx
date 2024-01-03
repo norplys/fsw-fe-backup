@@ -63,7 +63,7 @@ export default function LoginPage() {
       {/* Bagian Kiri */}
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="p-8 lg:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1"
+        className="p-8 xl:p-16 lg:w-2/3 flex items-center justify-center bg-secret-cyan flex-1"
       >
         <div className="w-full lg:w-2/3 text-black flex flex-col">
           <h1 className="font-bold text-xl md:text-3xl text-whit  lg:mb-12 text-left">
@@ -157,9 +157,9 @@ export default function LoginPage() {
 
       {/* Bagian Kanan */}
       <div className="bg-secret-pink p-8 lg:p-16 lg:w-1/3 hidden lg:flex items-center justify-center flex-1">
-        <BiBrain className="text-9xl text-white" />
+        <BiBrain className="text-7xl xl:text-9xl text-white" />
         <div className="flex flex-col lg:flex-row items-center">
-          <h1 className="text-7xl text-secret-text flex items-center font-bold">
+          <h1 className="text-4xl xl:text-7xl text-secret-text flex items-center font-bold">
             SkillHUB
           </h1>
         </div>
