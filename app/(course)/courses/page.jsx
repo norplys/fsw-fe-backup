@@ -209,6 +209,7 @@ useEffect(() => {
 
         <div className="flex justify-center items-center lg:justify-start lg:items-start flex-col lg:flex-row gap-10">
           <button className="bg-secret-darkblue w-full h-4 rounded-xl lg:hidden flex justify-center text-white font-bold" onClick={() => setFilterOpen(!filterOpen)}>{filterOpen ? <IoIosArrowUp/> : <IoIosArrowDown/>}</button>
+
           <form
             className={`bg-secret-background border shadow-md lg:flex flex-col w-64 pb-0  p-5
             h-[580px]  rounded-[16px] gap-5 ${filterOpen ? "flex" : "hidden"}`}
