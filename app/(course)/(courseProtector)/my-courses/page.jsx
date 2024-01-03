@@ -251,7 +251,7 @@ const onChange = (e) => {
 
 
           <div className="container">
-            <div className="flex pb-2 pt-2 overflow-x-scroll mb-4 text-sm md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 md:text-base md:pb-0 ">
+            <div className="flex pb-2 pt-2 overflow-x-scroll mb-4 text-sm md:gap-7 xl:gap-7 lg:gap-7 gap-2 mr-1 ml-1 md:text-base md:pb-0 md:overflow-x-visible ">
 
               {ButtonData.map((item, index) => {
                 return (
