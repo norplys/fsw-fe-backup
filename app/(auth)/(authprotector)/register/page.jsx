@@ -47,7 +47,7 @@ export default function RegisterPage() {
     const register = axios.post("https://final-project-online-course.et.r.appspot.com/v1/register", data);
     const res = await toast.promise(register, {
       loading: "Loading...",
-      success: `${data.name} Berhasil Diregister`,
+      success: `${data.name} Berhasil Diregister, Silahkan Cek Email Anda Untuk Melakukan Verifikasi OTP`,
       error: "Register Gagal"
     });
     toast.loading("Mengalihkan...");
@@ -55,6 +55,14 @@ export default function RegisterPage() {
     push(`/register/otp/${res.data.data.token}?email=${data.email}`);
 
   } catch (error) {
+    if (error.response.status === 401) {
+      toast.error("Email atau Nomor Telepon Sudah Terdaftar");
+      return;
+    }
+    if (error.response.status === 500) {
+      toast.error("Terjadi Kesalahan Pada Server");
+      return;
+    }
     toast.error(error.response.data.message);
   }
 
