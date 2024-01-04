@@ -135,7 +135,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
     const newData = {
       course_category_id: data.kategori,
       image:
-        imageFile?.length === 0 ? defaultImage : imageFile[0], 
+        imageFile?.length === 0 ? defaultImage : defaultImage, 
       name: data.nama,
       author: data.author,
       price: data.harga,
