@@ -29,7 +29,7 @@ export default function LoginAdmin() {
 		const login = axios.post("https://final-project-online-course.et.r.appspot.com/v1/login/admin", data);
 		const res = await toast.promise(login, {
 			success: "Login Berhasil",
-			loading: "Loading...",
+			loading: "Memuat...",
 			error: "Login Gagal",
 			duration: 2000,
 		})

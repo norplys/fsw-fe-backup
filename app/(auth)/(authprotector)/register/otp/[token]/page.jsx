@@ -90,6 +90,10 @@ export default function OtpPage() {
       toast.loading("Mengalihkan...");
       await sleepRedirect();
     } catch (err) {
+      if(err.response.status === 400) {
+        toast.error("OTP Salah");
+        return;
+      }
       if (err.response.data.message === "jwt expired") {
         toast.error("Sesi Anda Telah Habis Silahkan Register Ulang");
         push("/register");

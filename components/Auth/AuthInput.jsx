@@ -31,6 +31,12 @@ export default function AuthInput({
     validation.validate = (value) =>
       value === watch("password1") || "Password Tidak Sama";
   }
+  if (id === "password") {
+    validation.minLength = {
+      value: 8,
+      message: "Password Minimal 8 Karakter",
+    };
+  }
   return (
     <div className="mb-4 lg:mb-8">
       <label htmlFor={id} className=" font-bold text-secret-text text-sm md:text-base">

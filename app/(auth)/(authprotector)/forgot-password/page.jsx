@@ -25,9 +25,17 @@ export default function ForgotPassword() {
       success: `Link untuk reset password telah dikirim ke ${data.email}`,
       error: "Gagal mengirim link reset password",
     });
-    toast.loading("Redirecting...", { duration: 2000 });
+    toast.loading("Mengalihkan...", { duration: 2000 });
     await sleepRedirect();
   } catch (err) {
+    if(err.response.status === 401){
+      toast.error("Email tidak terdaftar");
+      return;
+    }
+    if(err.response.status === 500){
+      toast.error("Server Error");
+      return;
+    }
     toast.error(err.response.data.message);
   }
   }
