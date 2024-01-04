@@ -251,7 +251,6 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     });
     setIsOpen(false);
   } catch (error) {
-    console.log(error);
     toast.error(error.response.data.message || "Terjadi kesalahan");
   }
   };

@@ -25,7 +25,6 @@ export default function OnBoardingModals({
       setIsOpen(false);
     }
     catch(err){
-      console.log(err);
       toast.error("Gagal memulai kelas mohon coba lagi");
       setIsLoading(false);
     }

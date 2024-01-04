@@ -21,7 +21,6 @@ const UsersProvider = ({ children }) => {
     setUser(res.data.data); 
   }
   catch(err){
-    console.log(err.response.status);
     if(err.response.status === 401){
       throw new Error("Email atau Password Salah");
     }
