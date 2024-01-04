@@ -12,6 +12,8 @@ import { useForm } from "react-hook-form";
 import FilterLoading from "@/components/FilterLoading";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import Link from "next/link";
+import { Collapse } from "@/components/Collapse";
+
 const array = [1, 2, 3, 4];
 const levelFilterButton = {
   category: "level",
@@ -211,10 +213,10 @@ const onChange = (e) => {
 
         <div className="flex lg:flex-row flex-col gap-10 ">
            <button className="bg-secret-darkblue w-full h-4 rounded-xl lg:hidden flex justify-center text-white font-bold" onClick={() => setFilterOpen(!filterOpen)}>{filterOpen ? <IoIosArrowUp/> : <IoIosArrowDown/>}</button>
-
+           <Collapse open = {filterOpen}>
           <form
-            className={`bg-secret-background border shadow-md lg:flex flex-col w-64 p-5 pb-0
-            h-[580px] rounded-[16px] gap-5 mx-auto ${filterOpen ? "flex" : "hidden"}`}
+            className="bg-secret-background border shadow-md lg:flex flex-col w-64 p-5 pb-0
+            h-[580px] rounded-[16px] gap-5 mx-auto flex"
           >
             {isLoadingCategories ? 
               <FilterLoading/>
@@ -248,6 +250,7 @@ const onChange = (e) => {
               </button>
             </div>
           </form>
+          </Collapse>
 
 
           <div className="container">
