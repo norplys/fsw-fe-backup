@@ -109,7 +109,7 @@ export default function LoginAdmin() {
             </label>
 
             <Link
-              href="login/forgot-password"
+              href="/forgot-password"
               className="text-secret-text font-bold  hover:underline hover:text-white text-right text-sm md:text-base"
             >
               Lupa Kata Sandi ?

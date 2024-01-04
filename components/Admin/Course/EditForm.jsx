@@ -15,7 +15,6 @@ import { useQuery } from "react-query";
 import { VscLoading } from "react-icons/vsc";
 
 export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
-  console.log(id.current);
   const { data, isLoading, isError, error } = useQuery(
     ["course", id, token],
     async () => {
@@ -31,7 +30,6 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
       return res.data.data;
     }
   );
-  console.log(data);
   const category = {
 		"UI/UX Design" : 1,
 		"Product Management" : 2,
@@ -170,6 +168,20 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
 
     return url.protocol === "http:" || url.protocol === "https:";
   }
+  const validate = {
+    required: "Chapter Kelas harus diisi",
+  }
+  if(premium === 'true'){
+    validate.minLength = {
+      value: 2,
+      message: "Chapter Kelas minimal 2",
+    }
+  }else{
+    validate.minLength = {
+      value: 1,
+      message: "Chapter Kelas minimal 1",
+    }
+  }
   const {
     fields: fields2,
     append: append2,
@@ -177,9 +189,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
   } = useFieldArray({
     name: "chapter",
     control,
-    rules: {
-      required: "Chapter harus diisi",
-    },
+    rules: validate
   });
 
   const removeImage = () => {
@@ -667,7 +677,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                                 {errors.chapter?.[index]?.duration?.message}
                               </p>
                             )}
-                            {index !== 0 ? (
+                            {(index !== 0 && !premium) || (index > 1 && premium) ? (
                               <button
                                 type="button"
                                 className="text-xs md:text-base font-bold text-white bg-red-500 p-1 rounded-lg"
@@ -688,6 +698,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
                               control={control}
                               register={register}
                               errors={errors}
+                              premium={premium}
                             />
                           </div>
                         </div>

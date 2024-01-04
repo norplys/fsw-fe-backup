@@ -19,6 +19,28 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
   const { push } = useRouter();
   const { data : categoryData, isLoading, isError } = useCategoriesData();
   const queryClient = useQueryClient();
+  const defaultValues = {
+    nama: "",
+    kategori: "",
+    kode: "",
+    telegram: "",
+    intro: "",
+    author: "",
+    tipe: "",
+    level: "",
+    harga: 0,
+    targetKelas: [" "],
+    chapter: [
+      {
+        name: "",
+        duration: 0,
+        module: [{ title: "", video: "" }],
+      },
+    ],
+    deskripsi: "",
+    image: "",
+    onboarding: "",
+  }
   const {
     register,
     handleSubmit,
@@ -26,28 +48,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
     control,
     watch,
   } = useForm({
-    defaultValues: {
-      nama: "",
-      kategori: "",
-      kode: "",
-      telegram: "",
-      intro: "",
-      author: "",
-      tipe: "",
-      level: "",
-      harga: 0,
-      targetKelas: [" "],
-      chapter: [
-        {
-          name: "",
-          duration: 0,
-          module: [{ title: "", video: "" }],
-        },
-      ],
-      deskripsi: "",
-      image: "",
-      onboarding: "",
-    },
+    defaultValues,
   });
   const [image, setImage] = useState(null);
   const imageFile = watch("image");
@@ -88,6 +89,21 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
 
     return url.protocol === "http:" || url.protocol === "https:";
   }
+  const validate = {
+    required: "Chapter Kelas harus diisi",
+  }
+  if(premium === 'true'){
+    validate.minLength = {
+      value: 2,
+      message: "Chapter Kelas minimal 2",
+    }
+  }else{
+    validate.minLength = {
+      value: 1,
+      message: "Chapter Kelas minimal 1",
+    }
+  }
+
   const {
     fields: fields2,
     append: append2,
@@ -95,9 +111,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
   } = useFieldArray({
     name: "chapter",
     control,
-    rules: {
-      required: "Chapter harus diisi",
-    },
+    rules: validate,
   });
 
   const removeImage = () => {
@@ -567,6 +581,10 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                             <input
                               {...register(`chapter.${index}.name`, {
                                 required: "Nama chapter wajib diisi",
+                                minLength: {
+                                  value: 3,
+                                  message: "Nama chapter minimal 3 karakter",
+                                },
                               })}
                               type="text"
                               placeholder="Nama Chapter"
@@ -603,7 +621,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                                 {errors.chapter?.[index]?.duration?.message}
                               </p>
                             )}
-                            {index !== 0 ? (
+                            {(index !== 0 && !premium) || (index > 1 && premium) ? (
                               <button
                                 type="button"
                                 className="text-xs md:text-base font-bold text-white bg-red-500 p-1 rounded-lg"
@@ -624,6 +642,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                               control={control}
                               register={register}
                               errors={errors}
+                              premium={premium}
                             />
                           </div>
                         </div>
