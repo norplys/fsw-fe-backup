@@ -66,8 +66,10 @@ export default function KelasPembayaran () {
   const formatDate = () => {
     const newDate = data.expired.split(" ");
     const time = newDate.slice(3);
-    const date = newDate.slice(0, 3).join("-");
-    return `${date} ${time}`;
+    const date = newDate.slice(0, 3);
+    const month = Number(date[1]) + 1
+    date[1] = month;
+    return `${date.join("-")} ${time}`;
   };
   const priceFormat = (price) => {
     return new Intl.NumberFormat("id-ID", {
