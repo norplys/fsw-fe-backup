@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BiSearchAlt } from "react-icons/bi";
 export default function RespMenu({user, handleLogOut, showMenu, handleSearch, onChange, keyword}){
     return (
-        <ul className={`block md:hidden absolute top-12 bg-secret-background p-2 right-1 shadow-2xl  ${showMenu ? '' : 'hidden' } rounded-lg`}>
+        <ul className={`block lg:hidden absolute top-12 md:top-20 bg-secret-background p-2 right-1 shadow-2xl  ${showMenu ? '' : 'hidden' } rounded-lg w-36`}>
             <form
 				className="  shadow-2xl shadow-black-200/40 flex bg-white rounded-lg overflow-hidden justify-between mb-2"
 				onSubmit={handleSearch}
@@ -14,7 +14,7 @@ export default function RespMenu({user, handleLogOut, showMenu, handleSearch, on
 				  value={keyword}
 				  placeholder="Cari Kursus..."
 				  onChange={onChange}
-				  className="w-20 px-1 py-1  placeholder:text-sm text-black outline-none"
+				  className="w-full px-1 py-1  placeholder:text-sm text-black outline-none"
 				/>
 				<button className="bg-secret-darkblue p-1">
 				  <BiSearchAlt className="text-white" />

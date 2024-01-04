@@ -170,7 +170,7 @@ const DetailKelas = () => {
                     </h1>
                     <div className="flex items-center space-x-1">
                       <FaStar className="text-yellow-400 text-xs md:text-base" />
-                      <span className="font-bold text-secret-text text-xs md:text-2xl">
+                      <span className="font-bold text-secret-text text-xs md:text-base">
                         {data?.rating}
                       </span>
                     </div>

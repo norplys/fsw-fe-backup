@@ -77,7 +77,7 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
                     leaveFrom="opacity-100 scale-100"
                     leaveTo="opacity-0 scale-95"
                   >
-                    <Dialog.Panel className="relative w-full max-w-lg p-1 md:p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                    <Dialog.Panel className="relative w-full max-w-lg  md:p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl p-3">
                       <button
                         className="absolute top-0 right-0 p-2 m-4 transition-all duration-200 ease-in-out bg-transparent rounded-full group"
                         onClick={() => setIsOpen(false)}
