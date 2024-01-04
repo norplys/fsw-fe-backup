@@ -14,10 +14,10 @@ export default function Chapter({
   return (
     <div key={index}>
       <div className="flex items-center justify-between mb-2 text-xs md:text-sm font-bold">
-        <h4 className="text-secret-darkblue">
+        <h4 className="text-secret-darkblue lg:max-w-xs">
           Chapter {index + 1} - {name}
         </h4>
-        <span className="text-secret-darkblue">{time} Menit</span>
+        <span className="text-secret-darkblue px-1">{time} Menit</span>
       </div>
 
       <div className="mb-4 divide-y-2 divide-zinc-100">
