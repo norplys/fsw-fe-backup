@@ -63,7 +63,7 @@ export default function ResetPassword() {
       }
       const res = axios.put(`https://final-project-online-course.et.r.appspot.com/v1/reset-password/${token}`, newData);
       await toast.promise(res, {
-        loading: "Loading...",
+        loading: "Memuat...",
         success: "Password berhasil diubah",
         error: "Gagal mengubah password, Mohon coba lagi",
       });

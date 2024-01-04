@@ -87,7 +87,7 @@ export default function DeleteModal({ isOpen, setIsOpen, id, token }) {
                         
                       >
                         <VscLoading className="animate-spin mr-2" />
-                        Loading...
+                        Memuat...
                       </div>
                     ) : (
                       <>

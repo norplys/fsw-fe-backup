@@ -46,7 +46,7 @@ export default function RegisterPage() {
     try{
     const register = axios.post("https://final-project-online-course.et.r.appspot.com/v1/register", data);
     const res = await toast.promise(register, {
-      loading: "Loading...",
+      loading: "Memuat...",
       success: `${data.name} Berhasil Diregister, Silahkan Cek Email Anda Untuk Melakukan Verifikasi OTP`,
       error: "Register Gagal"
     });
