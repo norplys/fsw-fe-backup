@@ -83,7 +83,7 @@ export default function KelasPembayaran () {
       {/* KEMBALI DAN NOTIFIKASI BATAS PEMBAYARAN */}
       <div className="md:px-[100px] px-5 py-6 shadow-md">
         {/* LINK KEMBALI */}
-        <Link href="#" className="flex gap-5 text-sm md:text-base items-center">
+        <Link href="/courses" className="flex gap-5 text-sm md:text-base items-center hover:text-secret-darkblue hover:underline">
           <FaArrowLeft />
           <h1 className="font-bold ">Kembali</h1>
         </Link>
