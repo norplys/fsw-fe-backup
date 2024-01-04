@@ -79,7 +79,7 @@ const Navbar = () => {
 			  </form>
 			</div>
 	
-			<ul className="items-center space-x-4 hidden md:flex">
+			<ul className="items-center space-x-4 hidden lg:flex">
 			  {user ? (
 				<div className="flex flex-col md:flex-row gap-5">
 				  <div className="flex gap-2">
@@ -121,7 +121,7 @@ const Navbar = () => {
 				</li>
 			  )}
 			</ul>
-			<button className="md:hidden" onClick={() => setShowMenu(!showMenu)}>{showMenu ? <RxCross2 className="text-secret-darkblue text-2xl" /> : <FiAlignJustify className="text-secret-darkblue text-2xl" /> }</button>
+			<button className="lg:hidden" onClick={() => setShowMenu(!showMenu)}>{showMenu ? <RxCross2 className="text-secret-darkblue text-2xl" /> : <FiAlignJustify className="text-secret-darkblue text-2xl" /> }</button>
 			<RespMenu user={user} handleLogOut={handleLogOut} showMenu={showMenu} handleSearch={handleSearch} onChange={onChange} keyword={keyword} />
 		  </nav>
 		</div>

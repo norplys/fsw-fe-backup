@@ -223,7 +223,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
                 {isLoading ? (
                   <PinkCircleLoading />
                 ) : isError ? (
-                  <div>{error.message}</div>
+                  <div>Terjadi Kesalahan, Mohon Coba Kembali</div>
                 ) : (
                   <form
                     className="w-full max-w-lg mx-auto flex flex-col justify-center"
