@@ -102,6 +102,16 @@ export default function OtpPage() {
       toast.error(err.response.data.message);
     }
   };
+
+  const formatDate = (date) => {
+    if(!date) return 0;
+    const newDate = new Date(date);
+    const intl = new Intl.DateTimeFormat("id-ID", {
+      dateStyle: "short",
+      timeStyle: "short",
+    }).format(newDate);
+    return intl;
+  };
   return (
     <div className=" flex flex-col lg:flex-row w-full min-h-screen">
       <form
@@ -130,8 +140,8 @@ export default function OtpPage() {
               />
             ))}
           </div>
-            <p className=" text-secret-text mb-4 text-center font-bold text-sm md:text-base">
-              {tokenData?.expiredAt}
+            <p className=" bg-secret-red text-white rounded-lg mb-4 text-center font-bold text-sm md:text-base border border-red-500">
+              Mohon Validasi OTP Sebelum {formatDate(tokenData?.expiredAt)}
             </p>
        
   
