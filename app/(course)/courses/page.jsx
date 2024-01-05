@@ -248,7 +248,7 @@ useEffect(() => {
 
           <div className="container">
 
-            <div className="flex gap-2 md:gap-7 pb-5 text-sm overflow-x-scroll md:overflow-x-visible">
+            <div className="flex gap-2 md:gap-7 pb-5 text-sm overflow-x-scroll md:overflow-x-visible pt-2 lg-pt-0">
               {ButtonData.map((item, index) => {
                 return (
                   <ClassButton

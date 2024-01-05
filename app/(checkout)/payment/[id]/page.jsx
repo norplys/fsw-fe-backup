@@ -63,14 +63,6 @@ export default function KelasPembayaran () {
   };
   if (loading) return <CircleLoading />;
 
-  const formatDate = () => {
-    const newDate = data.expired.split(" ");
-    const time = newDate.slice(3);
-    const date = newDate.slice(0, 3);
-    const month = Number(date[1]) + 1
-    date[1] = month;
-    return `${date.join("-")} ${time}`;
-  };
   const priceFormat = (price) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -90,7 +82,7 @@ export default function KelasPembayaran () {
 
         <div className="bg-secret-red mx-auto md:mx-auto px-5 py-3 rounded-xl md:w-[500px] lg:w-[800px] xl:w-[800px] mt-2">
           <h1 className="text-center text-white font-bold md:text-[16px] text-[12px]">
-            Selesaikan Pembayaran sebelum <div>{formatDate()}</div>
+            Selesaikan Pembayaran sebelum <div>{data.expired}</div>
           </h1>
         </div>
       </div>
@@ -253,7 +245,7 @@ export default function KelasPembayaran () {
               </div>
             </div>
             {/* TOMBOL BAYAR */}
-            <button className=" justify-between flex w-full bg-secret-pink px-5 py-3 rounded-[15px] mt-5 hover:scale-x-105 duration-300" onClick={(e) => {e.preventDefault(), handlePayment(data.paymentUuid)}}>
+            <button className=" justify-between flex w-full bg-secret-darkblue px-5 py-3 rounded-[15px] mt-5 hover:scale-x-105 duration-300" onClick={(e) => {e.preventDefault(), handlePayment(data.paymentUuid)}}>
               <h2 className="font-bold text-white md:text-[16px] text-[12px] ">
                 Bayar dan Ikuti Kelas Selamanya
               </h2>

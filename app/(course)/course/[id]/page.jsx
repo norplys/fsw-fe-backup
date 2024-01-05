@@ -158,7 +158,7 @@ const DetailKelas = () => {
                   href={"/courses"}
                 >
                   <FiArrowLeft className="text-secret-text hover:text-secret-darkblue text-sm md:text-base" size={16} />
-                  <div className="font-bold text-secret-text text-sm md:text-base">
+                  <div className="font-bold text-secret-text text-sm md:text-base hover:text-secret-darkblue">
                     Kelas Lainnya
                   </div>
                 </Link>

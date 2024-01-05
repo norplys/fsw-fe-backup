@@ -17,7 +17,7 @@ export default function HistoryCard({ data }) {
   const isExpired = formatedDate(data?.expiredAt) < formatedDate(today);
   return (
     <Link
-      className="flex flex-col  md:max-w-full h-[300px] md:h-[250px] bg-secret-background rounded-[15px] shadow-md"
+      className="flex flex-col  h-[300px] md:h-[250px] bg-secret-background rounded-[15px] shadow-md"
       href={data?.is_paid ? `/course/${data?.courseUuid}` : isExpired ? `/course/${data?.courseUuid}` : `/payment/${data?.paymentUuid}`}
     >
       <div className="w-full h-[80px] ">

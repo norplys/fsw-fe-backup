@@ -6,9 +6,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import {useState} from "react";
 
 export default function LoginAdmin() {
   const { push } = useRouter();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -33,10 +35,12 @@ export default function LoginAdmin() {
 			error: "Login Gagal",
 			duration: 2000,
 		})
+    setLoading(true);
 		localStorage.setItem("token", res.data.data.token);
 		toast.loading("Sedang Mengalihkan...", { duration: 2000 });
 		await sleepRedirect();
 		} catch (error) {
+    setLoading(false);
     if (error.response.status === 401) {
       toast.error("Email atau Password Salah");
       return;
@@ -138,7 +142,7 @@ export default function LoginAdmin() {
           </div>
 
           <button
-            disabled={isSubmitting}
+            disabled={isSubmitting || loading}
             type="submit"
             className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300 text-sm md:text-base"
           >
