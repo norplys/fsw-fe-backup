@@ -82,7 +82,7 @@ export default function KelasPembayaran () {
 
         <div className="bg-secret-red mx-auto md:mx-auto px-5 py-3 rounded-xl md:w-[500px] lg:w-[800px] xl:w-[800px] mt-2">
           <h1 className="text-center text-white font-bold md:text-[16px] text-[12px]">
-            Selesaikan Pembayaran sebelum <div>{data.expired}</div>
+            Selesaikan Pembayaran sebelum <div>{data?.expired}</div>
           </h1>
         </div>
       </div>
