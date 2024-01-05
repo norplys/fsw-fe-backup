@@ -72,7 +72,8 @@ export default function ProfileSaya (){
                       type="text"
                       id="name"
                       className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-xs md:text-sm ${errors.email ? 'border-red-500' : ''}`}
-                      placeholder="Text"
+                      placeholder="email@gmail.com"
+                      disabled
                     />
                   </div>
                   <div className="flex flex-col md:w-[16rem] my-2">
@@ -102,7 +103,7 @@ export default function ProfileSaya (){
                       type="text"
                       id="name"
                       className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-xs md:text-sm ${errors.country ? 'border-red-500' : ''}`}
-                      placeholder="Text"
+                      placeholder="Negara"
                     />
                   </div>
                   <div className="flex flex-col md:w-[16rem] my-2">
@@ -117,7 +118,7 @@ export default function ProfileSaya (){
                       type="text"
                       id="name"
                       className={`text-gray-600 focus:outline-none focus:border focus:border-indigo-700 w-full h-8 flex items-center pl-3 border-gray-300 rounded-xl border text-xs md:text-sm ${errors.city ? 'border-red-500' : ''}`}
-                      placeholder="Text"
+                      placeholder="Jakarta"
                     />
                   </div>
                   <div className="flex items-center justify-center md:w-[16rem] p-5 mb-8">
