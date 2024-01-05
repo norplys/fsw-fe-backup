@@ -52,10 +52,6 @@ export default function RegisterPage() {
     });
     toast.loading("Mengalihkan...");
     await mockLoading();
-    if(res.status === 200){
-      push(`/register/otp/${res.data.data}?email=${data.email}`);
-      return;
-    }
     push(`/register/otp/${res.data.data.token}?email=${data.email}`);
 
   } catch (error) {
