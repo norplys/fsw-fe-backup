@@ -6,11 +6,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useUsers } from "@/app/context/usersContext";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 export default function LoginPage() {
   const { handleUsers } = useUsers();
   const { push } = useRouter();
   const searchParams = useSearchParams();
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -34,6 +36,7 @@ export default function LoginPage() {
         error: `${data.user} Gagal Login`,
       }
     )
+    setLoading(true);
     toast.loading('Sedang Mengalihkan...', {
       duration: 2000,
     })
@@ -45,6 +48,7 @@ export default function LoginPage() {
     push(redirect);
     }
     catch(err){
+      setLoading(false);
       toast.error(err.message);
     }
 
@@ -136,7 +140,7 @@ export default function LoginPage() {
           </div>
 
           <button
-            disabled={isSubmitting}
+            disabled={isSubmitting || loading}
             type="submit"
             className="font-bold bg-secret-green text-white rounded-lg w-full p-2 shadow-2xl hover:shadow-none hover:scale-x-95 duration-300 text-sm md:text-base"
           >

@@ -25,7 +25,7 @@ const UsersProvider = ({ children }) => {
       throw new Error("Email atau Password Salah");
     }
     if(err.response.status === 404){
-      throw new Error("Email atau Password Salah");
+      throw new Error("Email tidak terdaftar");
     }
     if(err.response.status === 500){
       throw new Error("Terjadi Kesalahan Pada Server");
