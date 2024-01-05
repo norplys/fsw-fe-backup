@@ -52,9 +52,17 @@ export default function RegisterPage() {
     });
     toast.loading("Mengalihkan...");
     await mockLoading();
+    if(res.status === 200){
+      push(`/register/otp/${res.data.data}?email=${data.email}`);
+      return;
+    }
     push(`/register/otp/${res.data.data.token}?email=${data.email}`);
 
   } catch (error) {
+    if (error.response.status === 400) {
+      toast.error("Email atau Nomor Telepon Sudah Terdaftar");
+      return;
+    }
     if (error.response.status === 401) {
       toast.error("Email atau Nomor Telepon Sudah Terdaftar");
       return;
