@@ -24,7 +24,7 @@ export default function ProfileSaya (){
   const onSubmit = async(data) => {
     try {
       const token = localStorage.getItem("token");
-      const res = axios.put(`https://final-project-online-course.et.r.appspot.com/v1/profile`, data, {
+      const res = axios.put(`https://api.academy-skillhub.com/v1/profile`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

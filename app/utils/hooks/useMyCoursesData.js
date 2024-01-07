@@ -4,7 +4,7 @@ import axios from "axios";
 function myCoursesQueries(category, level, search, isComplete, token) {
   if (!category && !level && !isComplete && !search) {
     return axios.get(
-      "https://final-project-online-course.et.r.appspot.com/v1/courses/my-courses", {
+      "https://api.academy-skillhub.com/v1/courses/my-courses", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -12,7 +12,7 @@ function myCoursesQueries(category, level, search, isComplete, token) {
     );
   }
   return axios.get(
-    `https://final-project-online-course.et.r.appspot.com/v1/courses/my-courses?categoryId=${category}&level=${level}&isComplete=${isComplete}&search=${search}`, {
+    `https://api.academy-skillhub.com/v1/courses/my-courses?categoryId=${category}&level=${level}&isComplete=${isComplete}&search=${search}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },

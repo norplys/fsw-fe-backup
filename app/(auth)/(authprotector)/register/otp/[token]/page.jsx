@@ -58,7 +58,7 @@ export default function OtpPage() {
   const validateToken = async (token) => {
     try {
       const validate = await axios.get(
-        "https://final-project-online-course.et.r.appspot.com/v1/validate-jwt",
+        "https://api.academy-skillhub.com/v1/validate-jwt",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -74,7 +74,7 @@ export default function OtpPage() {
     try {
       const otp = Object.values(data).join("");
       const register = axios.post(
-        "https://final-project-online-course.et.r.appspot.com/v1/validate-register",
+        "https://api.academy-skillhub.com/v1/validate-register",
         { otp },
         {
           headers: {

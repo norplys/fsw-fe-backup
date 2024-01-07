@@ -78,7 +78,7 @@ export default function Beranda () {
       <div className="font-montserrat min-h-screen">
         <div className="flex w-full">
           <div className="before:bg-gradient-to-t from-transparent to-[#2FB5BF] before:w-full before:h-full before:absolute relative col-span-12 flex-2 w-full">
-            <div className="bg-[url('/homeImage.svg')] bg-cover h-72 flex justify-center items-center flex-col md:flex-row md:h-96">
+            <div className="bg-[url('/homeImage.png')] bg-cover h-72 flex justify-center items-center flex-col md:flex-row md:h-96">
               <div className="z-10  flex items-center text-white font-bold text-3xl md:w-96  drop-shadow-[0_3px_1.2px_rgba(0,0,0,0.8)] flex-shrink-0 ml-5 md:ml-0  md:text-5xl">
                   Ready To Upgrade Your Skill ?
               </div>

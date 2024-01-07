@@ -16,7 +16,7 @@ const UsersProvider = ({ children }) => {
       "email": user.user,
       "password": user.password
     }
-    const res = await axios.post("https://final-project-online-course.et.r.appspot.com/v1/login", data);
+    const res = await axios.post("https://api.academy-skillhub.com/v1/login", data);
     localStorage.setItem("token", res.data.data.token);
     setUser(res.data.data); 
   }
@@ -41,7 +41,7 @@ const UsersProvider = ({ children }) => {
 
   const handleToken = async (token) => {
     try{
-    const res = await axios.get("https://final-project-online-course.et.r.appspot.com/v1/profile", {
+    const res = await axios.get("https://api.academy-skillhub.com/v1/profile", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

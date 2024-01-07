@@ -16,7 +16,7 @@ export default function OnBoardingModals({
   const handleOnboarding = async (token, uuid) => {
     setIsLoading(true);
     try{
-      await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/courses/onboarding/${uuid}`, {}, {
+      await axios.put(`https://api.academy-skillhub.com/v1/courses/onboarding/${uuid}`, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

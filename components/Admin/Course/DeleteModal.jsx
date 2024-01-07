@@ -13,7 +13,7 @@ export default function DeleteModal({ isOpen, setIsOpen, id, token }) {
     try {
       setLoading(true);
       const res = axios.delete(
-        `https://final-project-online-course.et.r.appspot.com/v1/admin/courses/${id.current}`,
+        `https://api.academy-skillhub.com/v1/admin/courses/${id.current}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

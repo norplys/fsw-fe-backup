@@ -34,7 +34,7 @@ export default function ResetPassword() {
 
   const validateToken = async () => {
     try{
-      await axios.get("https://final-project-online-course.et.r.appspot.com/v1/validate-jwt", {
+      await axios.get("https://api.academy-skillhub.com/v1/validate-jwt", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -61,7 +61,7 @@ export default function ResetPassword() {
       const newData = {
         new_password : data.password1,
       }
-      const res = axios.put(`https://final-project-online-course.et.r.appspot.com/v1/reset-password/${token}`, newData);
+      const res = axios.put(`https://api.academy-skillhub.com/v1/reset-password/${token}`, newData);
       await toast.promise(res, {
         loading: "Memuat...",
         success: "Password berhasil diubah",

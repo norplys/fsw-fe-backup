@@ -8,7 +8,7 @@ export default function Password(){
         try {
             const token = localStorage.getItem("token");
             const res = axios.put(
-                "https://final-project-online-course.et.r.appspot.com/v1/update-password",
+                "https://api.academy-skillhub.com/v1/update-password",
                 {
                     oldPassword: data.oldPassword,
                     newPassword: data.password1,

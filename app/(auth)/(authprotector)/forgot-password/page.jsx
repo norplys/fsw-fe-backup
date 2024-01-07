@@ -19,7 +19,7 @@ export default function ForgotPassword() {
       email: data.email,
     }
     
-    const res =  axios.post("https://final-project-online-course.et.r.appspot.com/v1/forget-password", newData);
+    const res =  axios.post("https://api.academy-skillhub.com/v1/forget-password", newData);
     await toast.promise(res, {
       loading: "Loading...",
       success: `Link untuk reset password telah dikirim ke ${data.email}`,

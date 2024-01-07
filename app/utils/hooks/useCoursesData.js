@@ -4,11 +4,11 @@ import axios from "axios";
 function coursesQueries(category, level, search, premium) {
   if (!category && !level && !premium && !search) {
     return axios.get(
-      "https://final-project-online-course.et.r.appspot.com/v1/courses"
+      "https://api.academy-skillhub.com/v1/courses"
     );
   }
   return axios.get(
-    `https://final-project-online-course.et.r.appspot.com/v1/courses?categoryId=${category}&level=${level}&premium=${premium}&search=${search}`
+    `https://api.academy-skillhub.com/v1/courses?categoryId=${category}&level=${level}&premium=${premium}&search=${search}`
   );
 }
 

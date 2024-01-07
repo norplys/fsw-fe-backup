@@ -44,7 +44,7 @@ export default function RegisterPage() {
 
   const handleRegister = async (data) => {
     try{
-    const register = axios.post("https://final-project-online-course.et.r.appspot.com/v1/register", data);
+    const register = axios.post("https://api.academy-skillhub.com/v1/register", data);
     const res = await toast.promise(register, {
       loading: "Memuat...",
       success: `${data.name} Berhasil diregister, Silahkan verifikasi email anda`,

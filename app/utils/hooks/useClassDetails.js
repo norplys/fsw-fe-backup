@@ -3,9 +3,9 @@ import axios from 'axios';
 
 function classDetailsQueries(id, token) {
     if(!token){
-        return axios.get(`https://final-project-online-course.et.r.appspot.com/v1/course/${id}`)
+        return axios.get(`https://api.academy-skillhub.com/v1/course/${id}`)
     }
-    return axios.get(`https://final-project-online-course.et.r.appspot.com/v1/course/${id}`, {
+    return axios.get(`https://api.academy-skillhub.com/v1/course/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }  

@@ -2,7 +2,7 @@ import {useQuery} from "react-query"
 import axios from "axios"
 
 function paymentQueries(token) {
-    return axios.get("https://final-project-online-course.et.r.appspot.com/v1/courses/payment-history", {
+    return axios.get("https://api.academy-skillhub.com/v1/courses/payment-history", {
         headers: {
             Authorization: `Bearer ${token}`
         }

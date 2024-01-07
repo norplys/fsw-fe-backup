@@ -18,7 +18,7 @@ export default function PremiumEnrollModal({ data, isOpen, setIsOpen, token }) {
       try {
         setIsLoading(true);
         const res = await axios.post(
-          "https://final-project-online-course.et.r.appspot.com/v1/courses/enrollment",
+          "https://api.academy-skillhub.com/v1/courses/enrollment",
           {
             course_uuid: id,
           },

@@ -74,7 +74,7 @@ const DetailKelas = () => {
     });
     setUUID(uuid);
     if(userChapterModuleUuid){
-      await axios.put(`https://final-project-online-course.et.r.appspot.com/v1/course-modules/module-completed/${userChapterModuleUuid}`, {}, {
+      await axios.put(`https://api.academy-skillhub.com/v1/course-modules/module-completed/${userChapterModuleUuid}`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

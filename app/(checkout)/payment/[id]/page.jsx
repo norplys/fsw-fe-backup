@@ -25,7 +25,7 @@ export default function KelasPembayaran () {
   const getData = async (token) => {
     try{
     const res = await axios.get(
-      `https://final-project-online-course.et.r.appspot.com/v1/courses/invoice/${id}`,
+      `https://api.academy-skillhub.com/v1/courses/invoice/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ export default function KelasPembayaran () {
     const token = localStorage.getItem("token");
     setLoading(true);
     const res = await axios.put(
-      `https://final-project-online-course.et.r.appspot.com/v1/courses/payment/${paymentId}`,
+      `https://api.academy-skillhub.com/v1/courses/payment/${paymentId}`,
       {
         payment_method : "credit card",
       },

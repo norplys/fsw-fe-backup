@@ -159,7 +159,7 @@ export const CourseForm = ({ isOpen, setIsOpen }) => {
     try {
       const newData = formatData(data);
       const res = axios.post(
-        "https://final-project-online-course.et.r.appspot.com/v1/admin/courses",
+        "https://api.academy-skillhub.com/v1/admin/courses",
         newData,
         {
           headers: {

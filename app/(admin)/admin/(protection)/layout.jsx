@@ -22,7 +22,7 @@ export default function Index({children}) {
     const validateAdmin = async (token) => {
         try {
           const res = await axios.get(
-            "https://final-project-online-course.et.r.appspot.com/v1/profile",
+            "https://api.academy-skillhub.com/v1/profile",
             {
               headers: {
                 Authorization: `Bearer ${token}`,

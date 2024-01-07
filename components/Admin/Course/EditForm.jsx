@@ -20,7 +20,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
     async () => {
       if (!id.current) return false;
       const res = await axios.get(
-        `https://final-project-online-course.et.r.appspot.com/v1/admin/courses/${id.current}`,
+        `https://api.academy-skillhub.com/v1/admin/courses/${id.current}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -239,7 +239,7 @@ export const EditForm = ({ isOpen, setIsOpen, id, token }) => {
   const onSubmit = async (data) => {
     try{
     const newData = formatData(data);
-    const res =  axios.put(`https://final-project-online-course.et.r.appspot.com/v1/admin/courses/${id.current}`, newData, {
+    const res =  axios.put(`https://api.academy-skillhub.com/v1/admin/courses/${id.current}`, newData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

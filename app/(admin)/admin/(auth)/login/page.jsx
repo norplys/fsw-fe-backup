@@ -28,7 +28,7 @@ export default function LoginAdmin() {
 			"email": user.user,
 			"password": user.password
 		  }
-		const login = axios.post("https://final-project-online-course.et.r.appspot.com/v1/login/admin", data);
+		const login = axios.post("https://api.academy-skillhub.com/v1/login/admin", data);
 		const res = await toast.promise(login, {
 			success: "Login Berhasil",
 			loading: "Memuat...",

@@ -2,7 +2,7 @@ import {useQuery} from "react-query"
 import axios from "axios"
 
 function categoriesQueries() {
-    return axios.get("https://final-project-online-course.et.r.appspot.com/v1/course-categories")
+    return axios.get("https://api.academy-skillhub.com/v1/course-categories")
 }
 
 export function useCategoriesData(){
